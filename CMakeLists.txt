@@ -60,6 +60,8 @@ generate_export_header(tarte EXPORT_FILE_NAME include/${export_file_name})
 
 file(GLOB_RECURSE sources
     "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/external/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/utility/*.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${sources})
 
@@ -80,6 +82,7 @@ target_include_directories(tarte
 set_target_properties(tarte PROPERTIES
     SOVERSION ${PROJECT_VERSION_MAJOR}
     VERSION ${PROJECT_VERSION})
+
 
 if(TARTE_INSTALL AND NOT CMAKE_SKIP_INSTALL_RULES)
     configure_package_config_file(cmake/tarte-config.cmake.in tarte-config.cmake
