@@ -4,87 +4,89 @@
 
 namespace tarte {
 
-enum BOWMODE { MATUSIAK, VIGUE, TERRIEN };
+enum BowMode { kMatusiak, kVigue, kTerrien };
 
 template<class T>
 class Bow {
 private:
-    BOWMODE bowMode = VIGUE;
-    T mu_s{0.4}, mu_c{0.5}, mu_v{0}, v_s{0.1}, v_c{0.02}, a{100}, epsilon{1e-4}, mu_d{0.2}, n{100}, vt{0.01};
+    BowMode bow_mode_ = kVigue;
+    T mu_s_{0.4}, mu_c_{0.5}, mu_v_{0}, v_s_{0.1}, v_c_{0.02}, a_{100}, epsilon_{1e-4}, mu_d_{0.2}, n_{100}, vt_{0.01};
 
 public:
     Bow() { };
 
-    T phi(T vrel)
+    T Phi(T v_rel)
     {
         switch (bowMode) {
-        case MATUSIAK:
-            return mu_c / 2 * M_PI * atan(vrel / v_c) +
-                   (mu_s - mu_c) * sqrt(2 * a) * vrel * exp(-a * vrel * vrel + 0.5) + mu_v * vrel;
+        case kMatusiak:
+            return mu_c_ / 2 * M_PI * atan(vrel / v_c_) +
+                   (mu_s_ - mu_c_) * sqrt(2 * a_) * vrel * exp(-a_ * vrel * vrel + 0.5) + mu_v_ * vrel;
             break;
-        case TERRIEN:
-            return mu_d * tanh(4 * vrel / vt) + (mu_s - mu_d) * vrel / vt / pow(0.25 * pow(vrel / vt, 2) + 0.75, 2);
+        case kTerrien:
+            return mu_d_ * tanh(4 * vrel / vt_) +
+                   (mu_s_ - mu_d_) * vrel / vt_ / pow(0.25 * pow(vrel / vt_, 2) + 0.75, 2);
             break;
         default:
-            return (mu_d * vrel * sqrt(vrel * vrel + epsilon / (n * n)) + 2 * sqrt(mu_s * (mu_s - mu_d)) / n * vrel) /
-                   (vrel * vrel + 1 / (n * n));
+            return (mu_d_ * vrel * sqrt(vrel * vrel + epsilon_ / (n_ * n_)) +
+                    2 * sqrt(mu_s_ * (mu_s_ - mu_d_)) / n_ * vrel) /
+                   (vrel * vrel + 1 / (n_ * n_));
             break;
         }
     };
 
     // Getters
-    BOWMODE getBowMode() const { return bowMode; }
-    T getMuS() const { return mu_s; }
-    T getMuC() const { return mu_c; }
-    T getMuV() const { return mu_v; }
-    T getVS() const { return v_s; }
-    T getVC() const { return v_c; }
-    T getA() const { return a; }
-    T getEpsilon() const { return epsilon; }
-    T getMuD() const { return mu_d; }
-    T getN() const { return n; }
+    BowMode get_bow_mode() const { return bow_mode_; }
+    T get_mu_s() const { return mu_s_; }
+    T get_mu_c() const { return mu_c_; }
+    T get_mu_v() const { return mu_v_; }
+    T get_v_s() const { return v_s_; }
+    T get_v_c() const { return v_c_; }
+    T get_a() const { return a_; }
+    T get_epsilon() const { return epsilon_; }
+    T get_mu_d() const { return mu_d_; }
+    T get_n() const { return n_; }
 
     // Setters
-    void setBowMode(BOWMODE mode) { bowMode = mode; }
-    void setMuS(T value) { mu_s = value; }
-    void setMuC(T value) { mu_c = value; }
-    void setMuV(T value) { mu_v = value; }
-    void setVS(T value) { v_s = value; }
-    void setVC(T value) { v_c = value; }
-    void setA(T value) { a = value; }
-    void setEpsilon(T value) { epsilon = value; }
-    void setMuD(T value) { mu_d = value; }
-    void setN(T value) { n = value; }
+    void set_bow_mode(BowMode mode) { bow_mode_ = mode; }
+    void set_mu_s(T value) { mu_s_ = value; }
+    void set_mu_c(T value) { mu_c_ = value; }
+    void set_mu_v(T value) { mu_v_ = value; }
+    void set_v_s(T value) { v_s_ = value; }
+    void set_v_c(T value) { v_c_ = value; }
+    void set_a(T value) { a_ = value; }
+    void set_epsilon(T value) { epsilon_ = value; }
+    void set_mu_d(T value) { mu_d_ = value; }
+    void set_n(T value) { n_ = value; }
 
     // Convenience methods to set multiple Matusiak parameters at once
-    void setMatusiakParams(T mu_s_val, T mu_c_val, T mu_v_val, T v_s_val, T v_c_val, T a_val)
+    void set_matusiak_parameters(T mu_s, T mu_c, T mu_v, T v_s, T v_c, T a)
     {
-        mu_s = mu_s_val;
-        mu_c = mu_c_val;
-        mu_v = mu_v_val;
-        v_s = v_s_val;
-        v_c = v_c_val;
-        a = a_val;
-        bowMode = MATUSIAK;
+        mu_s_ = mu_s;
+        mu_c_ = mu_c;
+        mu_v_ = mu_v;
+        v_s_ = v_s;
+        v_c_ = v_c;
+        a_ = a;
+        bow_mode_ = kMatusiak;
     }
 
     // Convenience methods to set multiple Terrien parameters at once
-    void setTerrienParams(T mu_s_val, T mu_d_val, T vt_val)
+    void set_terrien_parameters(T mu_s, T mu_d, T vt)
     {
-        mu_s = mu_s_val;
-        mu_d = mu_d_val;
-        vt = vt_val;
-        bowMode = TERRIEN;
+        mu_s_ = mu_s;
+        mu_d_ = mu_d;
+        vt_ = vt;
+        bow_mode_ = kTerrien;
     }
 
     // Convenience methods to set multiple Vigue parameters at once
-    void setVigueParams(T mu_s_val, T mu_d_val, T n_val, T epsilon_val)
+    void set_vigue_parameters(T mu_s_, T mu_d, T n, T epsilon)
     {
-        mu_s = mu_s_val;
-        mu_d = mu_d_val;
-        n = n_val;
-        epsilon = epsilon_val;
-        bowMode = VIGUE;
+        mu_s_ = mu_s_;
+        mu_d_ = mu_d;
+        n_ = n;
+        epsilon_ = epsilon;
+        bow_mode_ = kVigue;
     }
 };
 } // namespace tarte

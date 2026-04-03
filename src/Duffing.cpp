@@ -1,135 +1,135 @@
-#include "Duffing.h"
+#include "duffing.h"
 
 namespace tarte {
 
-template<typename ftype>
-Duffing<ftype>::Duffing(float sampleRate)
+template<typename T>
+Duffing<T>::Duffing(float sampleRate)
 {
     ReinitDsp(sampleRate);
 };
 
-template<typename ftype>
-void Duffing<ftype>::ReinitDsp(float sampleRate)
+template<typename T>
+void Duffing<T>::ReinitDsp(float sampleRate)
 {
-    sr = sampleRate;
-    dt = 1 / (float(sr));
+    sr_ = sampleRate;
+    dt_ = 1 / (float(sr_));
 
     // Reinit state
-    qnow = 0;
-    qnext = qnow;
-    qlast = qnow;
+    q_next_ = q_now_ = q_last_ = 0;
 
-    r = 0;
+    r_now_ = 0;
 
-    RHS = LHS = qnow;
+    rhs_ = lhs_ = q_now_;
 
     // Reinit nonlinear variables
-    g = qnow;
-    dqV = qnow;
-    V = 0;
+    g_ = q_now_;
+    f_nl_ = q_now_;
+    E_nl_ = 0;
 
     // Reinit system matrices
-    M = K = R0 = 0;
+    mass_ = stiffness_ = dissipation_ = 0;
 
-    Amp = M;
-    Omega = 2 * M_PI * 100 * Amp;
-    Decay = M;
+    amplitude_ = mass_;
+    pulsation_ = 2 * M_PI * 100 * amplitude_;
+    decay_time_ = mass_;
 };
 
-template<typename ftype>
-void Duffing<ftype>::setModalMatrices()
-{
-    R0 = 1 / Omega;
-    M = 1 / (2 * 6.9) * Decay * R0;
-    K = M * Omega * Omega;
-};
-
-template<typename ftype>
-void Duffing<ftype>::setPhysicalParameters(ftype M, ftype K, ftype R)
-{
-    R0 = R;
-    this->M = M;
-    this->K = K;
-};
-
-template<typename ftype>
-void Duffing<ftype>::setLinearParameters(ftype Amp, ftype Omega, ftype Decay)
-{
-    this->Amp = Amp;
-    this->Omega = Omega;
-    this->Decay = Decay;
-
-    setModalMatrices();
-};
-
-template<typename ftype>
-void Duffing<ftype>::setAmp(ftype Amp)
-{
-    this->Amp = Amp;
-    setModalMatrices();
-};
-
-template<typename ftype>
-void Duffing<ftype>::setFreq(ftype Freq)
-{
-    Omega = 2 * M_PI * Freq;
-    setModalMatrices();
-};
-
-template<typename ftype>
-void Duffing<ftype>::setDecay(ftype Decay)
-{
-    this->Decay = Decay;
-    setModalMatrices();
-};
-
-template<typename ftype>
-void Duffing<ftype>::computeVAndVprime(ftype q)
-{
-    V = K * eta / 4 * pow(q, 4);
-    dqV = K * eta * pow(q, 3);
-};
-
-template<typename ftype>
-void Duffing<ftype>::computeV(ftype q)
-{
-    V = K * eta / 4 * pow(q, 4);
-};
-
-template<typename ftype>
-std::tuple<ftype, ftype, ftype> Duffing<ftype>::process(ftype forceIn)
+template<typename T>
+void Duffing<T>::Process(T input_force)
 {
     // Nonlinear part
-    computeVAndVprime(qnow);
-    g = dqV / (sqrt(2 * V) + NUM_EPS);
-    if (V > maxV) {
-        maxV = V;
+    ComputeVAndVprime(q_now_);
+    g_ = f_nl_ / (sqrt(2 * E_nl_) + kNumEps);
+    if (E_nl_ > max_E_nl_) {
+        max_E_nl_ = E_nl_;
     }
 
-    if (controlTerm) {
-        computeV((qnow + qlast) / 2);
-        epsilon = r - sqrt(2 * V);
-        g -= lambda0 * epsilon * dt * ((ftype(0) < (qnow - qlast)) - ((qnow - qlast) < ftype(0))) /
-             (abs(qnow - qlast) + NUM_EPS);
+    if (ctrl_term_) {
+        ComputeV((q_now_ + q_last_) / 2);
+        epsilon_ = r_now_ - sqrt(2 * E_nl_);
+        g_ -= lambda_ctrl_ * epsilon_ * dt_ * ((T(0) < (q_now_ - q_last_)) - ((q_now_ - q_last_) < T(0))) /
+              (abs(q_now_ - q_last_) + kNumEps);
     }
 
     // Linear part
-    RHS = (-K + 2 * M / (dt * dt)) * (qnow) - (M / (dt * dt) - (R0) / (2 * dt)) * (qlast) + forceIn;
+    rhs_ = (-stiffness_ + 2 * mass_ / (dt_ * dt_)) * (q_now_) -
+           (mass_ / (dt_ * dt_) - (dissipation_) / (2 * dt_)) * (q_last_) + input_force;
 
     // Nonlinear part
-    RHS += 0.25 * g * g * qlast - g * r;
+    rhs_ += 0.25 * g_ * g_ * q_last_ - g_ * r_now_;
 
     // Solve using Shermann-Morrisson
-    auto A0_inv = dt * dt / (M + dt * (R0) / 2);
-    qnext = A0_inv * RHS - (A0_inv * g * A0_inv * g * RHS) / (4 + A0_inv * g * g);
+    auto A0_inv = dt_ * dt_ / (mass_ + dt_ * (dissipation_) / 2);
+    q_next_ = A0_inv * rhs_ - (A0_inv * g_ * A0_inv * g_ * rhs_) / (4 + A0_inv * g_ * g_);
 
-    rlast = r;
-    r = r + 0.5 * g * (qnext - qlast);
+    r_last_ = r_now_;
+    r_now_ = r_now_ + 0.5 * g_ * (q_next_ - q_last_);
 
-    qlast = qnow;
-    qnow = qnext;
+    q_last_ = q_now_;
+    q_now_ = q_next_;
+};
 
-    return {(qnow + qlast) / 2, (qnow - qlast) / dt * M, rlast};
+// Intermediary and internal solver functions
+template<typename T>
+void Duffing<T>::ComputePhysicalParameters()
+{
+    dissipation_ = 1 / pulsation_;
+    mass_ = 1 / (2 * 6.9) * decay_time_ * dissipation_;
+    stiffness_ = mass_ * pulsation_ * pulsation_;
+};
+
+template<typename T>
+void Duffing<T>::ComputeVAndVprime(T q)
+{
+    E_nl_ = stiffness_ * eta_ / 4 * pow(q, 4);
+    f_nl_ = stiffness_ * eta_ * pow(q, 3);
+};
+
+template<typename T>
+void Duffing<T>::ComputeV(T q)
+{
+    E_nl_ = stiffness_ * eta_ / 4 * pow(q, 4);
+};
+
+// Setters and getters
+template<typename T>
+void Duffing<T>::set_physical_parameters(T mass, T stiffness, T dissipation, T eta_nl)
+{
+    dissipation_ = dissipation;
+    mass_ = mass;
+    stiffness_ = stiffness;
+    eta_ = eta_nl;
+};
+
+template<typename T>
+void Duffing<T>::set_linear_parameters(T amplitude, T pulsation, T decay_time)
+{
+    amplitude_ = amplitude;
+    pulsation_ = pulsation;
+    decay_time_ = decay_time;
+
+    ComputePhysicalParameters();
+};
+
+template<typename T>
+void Duffing<T>::set_amplitude(T amplitude)
+{
+    amplitude_ = amplitude;
+    ComputePhysicalParameters();
+};
+
+template<typename T>
+void Duffing<T>::set_frequency(T Freq)
+{
+    pulsation_ = 2 * M_PI * Freq;
+    ComputePhysicalParameters();
+};
+
+template<typename T>
+void Duffing<T>::set_decay_time(T decay_time)
+{
+    decay_time_ = decay_time;
+    ComputePhysicalParameters();
 };
 
 template class Duffing<double>;

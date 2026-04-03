@@ -40,8 +40,8 @@ endif()
 # tests sources
 #----------------------------------------------------------------------------------------------------------------------
 
-set(sources
-    add_test.cpp)
+file(GLOB_RECURSE sources
+    "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${sources})
 
 #----------------------------------------------------------------------------------------------------------------------

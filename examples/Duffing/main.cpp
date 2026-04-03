@@ -1,4 +1,4 @@
-#include <Duffing.h>
+#include <duffing.h>
 
 #include <iostream>
 

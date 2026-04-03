@@ -17,7 +17,7 @@ string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}" is_top_
 add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=ON)
 
 # TARTE_SHARED_LIBS option (undefined by default) can be used to force shared/static build
-option(TARTE_BUILD_TESTS "Build tarte tests" ON)
+option(TARTE_BUILD_TESTS "Build tarte tests" OFF)
 option(TARTE_BUILD_EXAMPLES "Build tarte examples" ON)
 option(TARTE_BUILD_DOCS "Build tarte documentation" OFF)
 option(TARTE_INSTALL "Generate target for installing tarte" ${is_top_level})
@@ -42,7 +42,7 @@ add_library(tarte::tarte ALIAS tarte)
 #----------------------------------------------------------------------------------------------------------------------
 # tarte dependencies
 #----------------------------------------------------------------------------------------------------------------------
-target_compile_features(tarte PUBLIC cxx_std_20)
+target_compile_features(tarte PUBLIC cxx_std_23)
 # Search for your dependencies here
 
 #----------------------------------------------------------------------------------------------------------------------

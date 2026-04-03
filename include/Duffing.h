@@ -8,63 +8,68 @@
 
 namespace tarte {
 
-template<typename ftype>
+template<typename T>
 class Duffing {
 private:
     // Numerical epsilon value
-    constexpr static ftype NUM_EPS{1e-14};
+    constexpr static T kNumEps{1e-14};
 
-    // Linear part: system parameters (diagonal)
-    ftype M, K, R0;
+    // Linear part: system parameters
+    T mass_, stiffness_, dissipation_;
     // Higer level modal parameters
-    ftype Amp, Omega, Decay;
+    T amplitude_, pulsation_, decay_time_;
 
     // Nonlinear parameters
-    ftype eta{0};
+    T eta_{0};
 
     // Time-scheme parameters
-    float sr;
-    ftype dt;
-    bool controlTerm{true};
-    ftype lambda0{0};
+    T sr_;
+    T dt_;
+    bool ctrl_term_{true};
+    T lambda_ctrl_{0};
 
     // System state
-    ftype qlast, qnow, qnext;
-    ftype r, rlast;
+    T q_last_, q_now_, q_next_;
+    T r_now_, r_last_;
 
     // Intermediate vectors
-    ftype RHS, LHS;
+    T rhs_, lhs_;
 
     // Nonlinear function evaluation
-    ftype g, dqV;
-    ftype V;
+    T g_, f_nl_;
+    T E_nl_;
 
     // Drift variable
-    ftype epsilon{0}, maxV{0};
+    T epsilon_{0}, max_E_nl_{0};
 
-    void setModalMatrices();
+    void ComputePhysicalParameters();
+
+    void ComputeVAndVprime(T q);
+
+    void ComputeV(T q);
 
 public:
-    Duffing(float sampleRate);
+    Duffing(float sample_rate);
 
-    void ReinitDsp(float sampleRate);
+    void ReinitDsp(float sample_rate);
 
-    void computeVAndVprime(ftype q);
+    void Process(T input_force);
 
-    void computeV(ftype q);
+    // "Listening" functions
+    T ReadDisplacement() { return q_now_; };
+    T ReadVelocity() { return (q_next_ - q_last_) / (2 * dt_); };
 
-    std::tuple<ftype, ftype, ftype> process(ftype forceIn);
-
+    // Getters and setters
     // Physical parameters
-    void setPhysicalParameters(ftype M, ftype K, ftype R);
-
+    void set_physical_parameters(T mass, T stiffness, T dissipation, T eta_nl = 0);
     // Higher level modal parameters
-    void setLinearParameters(ftype Amp, ftype Omega, ftype Decay);
-    void setAmp(ftype Amp);
-    void setFreq(ftype Freq);
-    void setDecay(ftype Decay);
-
-    void setLambda0(ftype lambda0) { this->lambda0 = std::clamp(lambda0, ftype(0), ftype(10000)); };
+    void set_linear_parameters(T amplitude, T pulsation, T decay_time);
+    void set_amplitude(T amplitude);
+    void set_frequency(T frequency);
+    void set_decay_time(T decay_time);
+    void set_nonlinearity(T eta) { eta_ = eta; };
+    // SAV drift control term (should be useless for duffing if parameters are not modulated in time)
+    void set_lambda_ctrl(T lambda_ctrl) { lambda_ctrl_ = std::clamp(lambda_ctrl, T(0), T(10000)); };
 };
 
 } // namespace tarte
