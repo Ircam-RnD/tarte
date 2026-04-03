@@ -1,0 +1,42 @@
+# VSCode
+.vscode/
+*.code-workspace
+
+# C++
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+build/
+dist/
+*.out
+*.app
+cmake_build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Results
+*.hdf5
+
+# General
+.DS_Store
+.env
+.idea/
+*.swp
+*.swo
+*~
