@@ -5,6 +5,7 @@ namespace tarte {
 template<typename T>
 Duffing<T>::Duffing(float sampleRate)
 {
+    set_linear_parameters(1.0f, 2 * M_PI * 440.0f, 1.0f);
     ReinitDsp(sampleRate);
 };
 
@@ -25,13 +26,6 @@ void Duffing<T>::ReinitDsp(float sampleRate)
     g_ = q_now_;
     f_nl_ = q_now_;
     E_nl_ = 0;
-
-    // Reinit system matrices
-    mass_ = stiffness_ = dissipation_ = 0;
-
-    amplitude_ = mass_;
-    pulsation_ = 2 * M_PI * 100 * amplitude_;
-    decay_time_ = mass_;
 };
 
 template<typename T>
@@ -73,7 +67,7 @@ void Duffing<T>::Process(T input_force)
 template<typename T>
 void Duffing<T>::ComputePhysicalParameters()
 {
-    dissipation_ = 1 / pulsation_;
+    dissipation_ = 1 / (3 * log(10.0f) * pulsation_);
     mass_ = 1 / (2 * 6.9) * decay_time_ * dissipation_;
     stiffness_ = mass_ * pulsation_ * pulsation_;
 };
