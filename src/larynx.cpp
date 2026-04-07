@@ -86,10 +86,10 @@ void Larynx<ftype>::ComputeSavVector()
                .sum();
     Enl_ += 0.5 * (contact_stiffness_ * (masses_interpenetrations_(0) * masses_interpenetrations_(0) +
                                          masses_interpenetrations_(1) * masses_interpenetrations_(1))) +
-            contact_stiffness_ * eta_contact_stiffness *
-                (pow(masses_interpenetrations_(0), alpha_contact_stiffness + 1) +
-                 pow(masses_interpenetrations_(1), alpha_contact_stiffness + 1)) /
-                (alpha_contact_stiffness + 1); // Contact
+            contact_stiffness_ * eta_contact_stiffness_ *
+                (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) +
+                 pow(masses_interpenetrations_(1), alpha_contact_stiffness_ + 1)) /
+                (alpha_contact_stiffness_ + 1); // Contact
 
     // Fnl_ should be modified to include the derivative of the smoothing function
     // here
@@ -97,11 +97,11 @@ void Larynx<ftype>::ComputeSavVector()
         eta_stiffness_ * elongation_matrix_.transpose() *
         (stiffnesses_.diagonal().array() * elongations_.array() * elongations_.array() * elongations_.array()).matrix();
     Fnl_(0) += contact_stiffness_ *
-               (eta_contact_stiffness * pow(masses_interpenetrations_(0), alpha_contact_stiffness) +
+               (eta_contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_) +
                 masses_interpenetrations_(0)) *
                masses_interpenetrations_derivatives_(0);
     Fnl_(1) += contact_stiffness_ *
-               (eta_contact_stiffness * pow(masses_interpenetrations_(1), alpha_contact_stiffness) +
+               (eta_contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_) +
                 masses_interpenetrations_(1)) *
                masses_interpenetrations_derivatives_(1);
 
@@ -121,10 +121,10 @@ void Larynx<ftype>::ComputeSavVector()
         Enl_ +=
             0.5 * (contact_stiffness_ * (masses_interpenetrations_(0) * masses_interpenetrations_(0) +
                                          masses_interpenetrations_(1) * masses_interpenetrations_(1))) +
-            contact_stiffness_ * eta_contact_stiffness *
-                (pow(masses_interpenetrations_(0), alpha_contact_stiffness + 1) + pow(masses_interpenetrations_(1),
-                                                                                      alpha_contact_stiffness + 1)) /
-                (alpha_contact_stiffness + 1); // Contact
+            contact_stiffness_ * eta_contact_stiffness_ *
+                (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) + pow(masses_interpenetrations_(1),
+                                                                                       alpha_contact_stiffness_ + 1)) /
+                (alpha_contact_stiffness_ + 1); // Contact
 
         epsilon_sav_ = r_(idx_now_) - sqrt(2 * Enl_);
         g_sav_ += -lambda_sav_ * epsilon_sav_ * dt_ *
