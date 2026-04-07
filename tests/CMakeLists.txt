@@ -8,10 +8,7 @@ project(tarte-tests)
 include("../cmake/utils.cmake")
 string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}" is_top_level)
 
-if(is_top_level)
-    enable_testing()
-endif()
-
+enable_testing()
 #----------------------------------------------------------------------------------------------------------------------
 # testing framework
 #----------------------------------------------------------------------------------------------------------------------
