@@ -44,11 +44,11 @@ void Larynx<ftype>::FillMassesInterpenetrationsAndAreas()
     masses_interpenetrations_ = q_(idx_next_, Eigen::all).transpose() - rest_positions_;
 
     areas_below_masses_ = widths_.cwiseProduct(softplusMatrix(-masses_interpenetrations_,
-                                                              epsilon_smooth_)); // 2 Comes from symmetric configuration
+                                                              kEpsilonSmooth_)); // 2 Comes from symmetric configuration
     smoothed_is_opened_ =
-        (-(masses_interpenetrations_ / epsilon_smooth_).array().tanh().matrix() + Eigen::Vector<ftype, 3>::Ones()) / 2;
-    masses_interpenetrations_derivatives_ = softplusDerivativeMatrix(masses_interpenetrations_, epsilon_smooth_);
-    masses_interpenetrations_ = softplusMatrix(masses_interpenetrations_, epsilon_smooth_);
+        (-(masses_interpenetrations_ / kEpsilonSmooth_).array().tanh().matrix() + Eigen::Vector<ftype, 3>::Ones()) / 2;
+    masses_interpenetrations_derivatives_ = softplusDerivativeMatrix(masses_interpenetrations_, kEpsilonSmooth_);
+    masses_interpenetrations_ = softplusMatrix(masses_interpenetrations_, kEpsilonSmooth_);
 }
 
 template<typename ftype>
@@ -112,7 +112,7 @@ void Larynx<ftype>::ComputeSavVector()
 
         masses_interpenetrations_ =
             softplusMatrix(0.5 * (q_(idx_next_, Eigen::all) + q_(idx_now_, Eigen::all)).transpose() - rest_positions_,
-                           epsilon_smooth_);
+                           kEpsilonSmooth_);
 
         Enl_ = 0.25 * eta_stiffness_ *
                (stiffnesses_.diagonal().array() * elongations_.array() * elongations_.array() * elongations_.array() *

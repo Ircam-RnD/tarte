@@ -61,7 +61,7 @@ private:
     Eigen::Matrix<ftype, 3, 2> u_woodburry_;
     Eigen::Matrix<ftype, 2, 2> woodburry_inv_;
 
-    ftype epsilon_smooth_{1e-5};
+    ftype const kEpsilonSmooth_{1e-5};
 
     // State
     Eigen::Matrix<ftype, 2, 3> p_, q_;
