@@ -53,8 +53,8 @@ void Duffing<T>::Process(T input_force)
     rhs_ += 0.25 * g_ * g_ * q_last_ - g_ * r_now_;
 
     // Solve using Shermann-Morrisson
-    auto A0_inv = dt_ * dt_ / (mass_ + dt_ * (dissipation_) / 2);
-    q_next_ = A0_inv * rhs_ - (A0_inv * g_ * A0_inv * g_ * rhs_) / (4 + A0_inv * g_ * g_);
+    auto A0_inv_ = dt_ * dt_ / (mass_ + dt_ * (dissipation_) / 2);
+    q_next_ = A0_inv_ * rhs_ - (A0_inv_ * g_ * A0_inv_ * g_ * rhs_) / (4 + A0_inv_ * g_ * g_);
 
     r_last_ = r_now_;
     r_now_ = r_now_ + 0.5 * g_ * (q_next_ - q_last_);

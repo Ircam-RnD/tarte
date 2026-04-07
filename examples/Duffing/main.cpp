@@ -1,6 +1,6 @@
 #define MINIAUDIO_IMPLEMENTATION
 #include "utility/audiowrite.h"
-#include "utility/vectormaths.h"
+#include "utility/maths.h"
 
 #include <duffing.h>
 #include <iostream>
@@ -27,8 +27,8 @@ int main(int, char*[])
             duffing_oscillator.Process(0.0f);
         samples[i] = duffing_oscillator.ReadDisplacement();
     }
-    utility::normalize_vector(samples);
+    tarte::normalize_vector(samples);
     // Write an example wav file
-    utility::WriteWav(path, samples, samplerate);
+    tarte::WriteWav(path, samples, samplerate);
     return 0;
 }

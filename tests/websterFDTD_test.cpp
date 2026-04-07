@@ -149,8 +149,8 @@ TEST(WebsterFDTD, ProcessSilenceYieldsNearZeroOutput)
     // A resting tube driven by zero input should settle to (near) zero.
     WebsterFDTD<float> wt(kSR, kLen);
     wt.SetConstantSection(2e-4f);
-    float p = runSilent(wt, 8192);
-    EXPECT_NEAR(p, 0.0f, 1e-6f);
+    float p_ = runSilent(wt, 8192);
+    EXPECT_NEAR(p_, 0.0f, 1e-6f);
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -159,7 +159,7 @@ TEST(WebsterFDTD, ProcessSilenceYieldsNearZeroOutput)
 
 TEST(WebsterFDTD, SuperpositionHolds)
 {
-    // p(a+b) ≈ p(a) + p(b) for a linear system
+    // p_(a+b) ≈ p_(a) + p_(b) for a linear system
     const double A = 1e-5f, B = 3e-5f;
     const int N = 128;
 
