@@ -127,10 +127,12 @@ void Larynx<ftype>::ComputeSavVector()
                 (alpha_contact_stiffness_ + 1); // Contact
 
         epsilon_sav_ = r_(idx_now_) - sqrt(2 * Enl_);
-        g_sav_ += -lambda_sav_ * epsilon_sav_ * dt_ *
-                  (p_(idx_now_, Eigen::all).array() > 0)
-                      .select(Eigen::Vector<ftype, -1>::Ones(3), -Eigen::Vector<ftype, -1>::Ones(3)) /
-                  (p_(idx_now_, Eigen::all).template lpNorm<1>() + 1e-14);
+        g_sav_ =
+            g_sav_.transpose() - (lambda_sav_ * epsilon_sav_ * dt_ *
+                                  (p_(idx_now_, Eigen::all).array() > 0)
+                                      .select(Eigen::Array<ftype, 1, 3>::Ones(), -Eigen::Array<ftype, 1, 3>::Ones()) /
+                                  (p_(idx_now_, Eigen::all).template lpNorm<1>() + 1e-14))
+                                     .matrix();
     }
 }
 
