@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-namespace utility {
+namespace tarte {
 
 void WriteWav(const std::string& path, const std::vector<float>& samples, int sampleRate)
 {
@@ -22,4 +22,4 @@ void WriteWav(const std::string& path, const std::vector<float>& samples, int sa
     ma_encoder_uninit(&encoder);
 }
 
-} // namespace utility
+} // namespace tarte

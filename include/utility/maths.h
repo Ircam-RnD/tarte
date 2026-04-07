@@ -1,6 +1,7 @@
 #pragma once
+#include <vector>
 
-namespace utility {
+namespace tarte {
 template<typename T>
 void normalize_vector(std::vector<T>& vec)
 {
@@ -14,4 +15,10 @@ void normalize_vector(std::vector<T>& vec)
         vec.at(i) /= max;
     }
 };
-} // namespace utility
+
+template<typename T>
+int sgn(T val)
+{
+    return (T(0) < val) - (val < T(0));
+}
+} // namespace tarte
