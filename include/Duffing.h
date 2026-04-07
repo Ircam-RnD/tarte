@@ -6,6 +6,7 @@
 
 #include <export.h>
 
+// TODO : change integration to exact for the linear part
 namespace tarte {
 
 template<typename T>
