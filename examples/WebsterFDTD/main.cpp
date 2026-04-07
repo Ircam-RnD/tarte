@@ -13,17 +13,17 @@ int main(int, char*[])
     float samplerate = 44100;
     float duration = 10;
     std::size_t num_sample = static_cast<int>(samplerate * duration);
-    tarte::WebsterFDTD<float> resonator_(samplerate, 1.0f);
-    resonator_.set_yielding_walls(false);
-    resonator_.SetConstantSection(1e-4);
+    tarte::WebsterFDTD<float> resonator(samplerate, 1.0f);
+    resonator.set_yielding_walls(false);
+    resonator.SetConstantSection(1e-4);
 
     std::vector<float> samples;
     samples.resize(num_sample);
 
     // Run a simulation with the default parameters and a dirac impulse as input
     for (int i = 0; i < samples.size(); i++) {
-        resonator_.Process((((double)rand() / (RAND_MAX)) - 0.5) * 1e-4);
-        samples[i] = resonator_.ReadRadiatedPressure();
+        resonator.Process((((double)rand() / (RAND_MAX)) - 0.5) * 1e-4);
+        samples[i] = resonator.ReadRadiatedPressure();
     }
     tarte::normalize_vector(samples);
     // Write an example wav file
