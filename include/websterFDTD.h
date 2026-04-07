@@ -59,20 +59,20 @@ private:
     void initializeLPFStates();
 
 public:
-    WebsterFDTD(float sampleRate, float length = 1.0f);
+    WebsterFDTD(ftype sampleRate, ftype length = ftype(17e-2));
 
     // Recomputes everything
-    void DspSetup(float sampleRate);
+    void DspSetup(ftype sampleRate);
 
     // Setters for target geometry
     void SetTargetGeometryFromArticulation(Articulation articulation);
     void SetConstantSection(ftype section);
 
     // Geometry filtering functions
-    void set_lp_frequency(int index, float freq);
-    void set_lp_Q(int index, float freq);
-    void set_lp_frequencies(float freq);
-    void set_lp_Qs(float freq);
+    void set_lp_frequency(int index, ftype freq);
+    void set_lp_Q(int index, ftype freq);
+    void set_lp_frequencies(ftype freq);
+    void set_lp_Qs(ftype freq);
 
     // Process a sample
     void Process(ftype inputFlow);

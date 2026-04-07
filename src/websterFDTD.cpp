@@ -5,14 +5,14 @@
 namespace tarte {
 
 template<typename ftype>
-WebsterFDTD<ftype>::WebsterFDTD(float sampleRate, float length)
+WebsterFDTD<ftype>::WebsterFDTD(ftype sampleRate, ftype length)
 {
     l0_ = length;
     DspSetup(sampleRate);
 }
 
 template<typename ftype>
-void WebsterFDTD<ftype>::DspSetup(float sampleRate)
+void WebsterFDTD<ftype>::DspSetup(ftype sampleRate)
 {
     sr_ = sampleRate;
     dt_ = 1 / sr_;
@@ -276,7 +276,7 @@ void WebsterFDTD<ftype>::set_N_lpf(int num)
 }
 
 template<typename ftype>
-void WebsterFDTD<ftype>::set_lp_frequency(int index, float freq)
+void WebsterFDTD<ftype>::set_lp_frequency(int index, ftype freq)
 {
     if (index >= 0 && index < N_lpf_) {
         lp_filters_[index].set_freq(freq);
@@ -284,7 +284,7 @@ void WebsterFDTD<ftype>::set_lp_frequency(int index, float freq)
 }
 
 template<typename ftype>
-void WebsterFDTD<ftype>::set_lp_Q(int index, float Q)
+void WebsterFDTD<ftype>::set_lp_Q(int index, ftype Q)
 {
     if (index >= 0 && index < N_lpf_) {
         lp_filters_[index].set_Q(Q);
@@ -292,7 +292,7 @@ void WebsterFDTD<ftype>::set_lp_Q(int index, float Q)
 }
 
 template<typename ftype>
-void WebsterFDTD<ftype>::set_lp_frequencies(float freq)
+void WebsterFDTD<ftype>::set_lp_frequencies(ftype freq)
 {
     for (int i = 0; i < N_lpf_; ++i) {
         lp_filters_[i].set_freq(freq);
@@ -300,7 +300,7 @@ void WebsterFDTD<ftype>::set_lp_frequencies(float freq)
 }
 
 template<typename ftype>
-void WebsterFDTD<ftype>::set_lp_Qs(float Q)
+void WebsterFDTD<ftype>::set_lp_Qs(ftype Q)
 {
     for (int i = 0; i < N_lpf_; ++i) {
         lp_filters_[i].set_Q(Q);
