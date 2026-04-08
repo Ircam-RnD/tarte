@@ -110,7 +110,7 @@ void WebsterFDTD<ftype>::SetNStability()
 }
 
 template<typename ftype, typename intype>
-void WebsterFDTD<ftype>::SetTargetGeometry(intypt const* in, std::size_t const size)
+void WebsterFDTD<ftype>::SetTargetGeometry(intype const* in, std::size_t const size)
 {
     size_t safe_size = std::min(size, std::size_t(S_target_.size()));
     for (size_t i = 0; i < safe_size; ++i) {
