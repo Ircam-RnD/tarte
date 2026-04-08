@@ -4,6 +4,7 @@
 #include <utility/biquad.h>
 
 #include <Eigen/Dense>
+#include <algorithm>
 
 namespace tarte {
 
@@ -65,6 +66,7 @@ public:
     void DspSetup(ftype sampleRate);
 
     // Setters for target geometry
+    void SetTargetGeometry(ftype const* in, std::size_t const size);
     void SetTargetGeometryFromArticulation(Articulation articulation);
     void SetConstantSection(ftype section);
 
@@ -86,6 +88,8 @@ public:
     inline ftype ReadRadiatedPressure() { return c0_ * c0_ * rho_now_(N_ - 1); }
 
     // Getters
+    inline std::size_t get_N() { return N_; }
+
     inline ftype get_c0() { return c0_; }
     inline ftype get_rho0() { return rho0_; }
     inline ftype get_l0() { return l0_; }

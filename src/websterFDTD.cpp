@@ -110,6 +110,15 @@ void WebsterFDTD<ftype>::SetNStability()
 }
 
 template<typename ftype>
+void WebsterFDTD<ftype>::SetTargetGeometry(ftype const* in, std::size_t const size)
+{
+    size_t safe_size = std::min(size, std::size_t(S_target_.size()));
+    for (size_t i = 0; i < safe_size; ++i) {
+        S_target_[i] = std::max(float(1e-8), float(in[i]));
+    }
+}
+
+template<typename ftype>
 void WebsterFDTD<ftype>::SetTargetGeometryFromArticulation(Articulation articulation)
 {
     articulation.getAreas(x_direct_.data(), S_target_.data(), N_ + 1);
