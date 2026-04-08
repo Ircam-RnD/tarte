@@ -40,6 +40,16 @@ Larynx<ftype>::Larynx(ftype samplerate, bool yielding_walls)
 };
 
 template<typename ftype>
+void Larynx<ftype>::DspSetup(ftype samplerate)
+{
+    sr_ = samplerate;
+    dt_ = 1 / sr_;
+    resonator_->DspSetup(samplerate);
+
+    A0_inv_ = dt_;
+}
+
+template<typename ftype>
 void Larynx<ftype>::FillMassesInterpenetrationsAndAreas()
 {
     masses_interpenetrations_ = q_(idx_next_, Eigen::all).transpose() - rest_positions_;

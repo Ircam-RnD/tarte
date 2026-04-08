@@ -93,6 +93,7 @@ private:
 
 public:
     Larynx(ftype samplerate, bool yielding_walls = false);
+    void DspSetup(ftype sampleRate);
 
     void Process(ftype Pin);
 
