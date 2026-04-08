@@ -150,19 +150,20 @@ void Larynx<ftype>::ComputeSavVector()
 template<typename ftype>
 void Larynx<ftype>::Process(ftype Pin)
 {
-    // Optional computations needed for power balance variables
-    sub_glottal_flow =
-        -Rk_ * (Psub_(idx_next_) - Psup_) + 0.5 * effective_surfaces_Psub_.transpose() * mass_matrix_inv_ *
-                                                (p_(idx_now_, Eigen::all) + p_(idx_next_, Eigen::all)).transpose();
-    dissipated_power_flow_ = Rk_ * pow(Psub_(idx_next_) - Psup_, 2);
-    auto pmid = 0.5 * (p_(idx_now_, Eigen::all) + p_(idx_next_, Eigen::all)).transpose();
-    dissipated_power_folds_ = pmid.transpose() * mass_matrix_inv_ * dissipation_matrix_ * mass_matrix_inv_ * pmid;
-    dissipated_power_ = dissipated_power_flow_ + dissipated_power_folds_;
+    if (compute_powers_) {
+        // Optional computations needed for power balance variables
+        sub_glottal_flow =
+            -Rk_ * (Psub_(idx_next_) - Psup_) + 0.5 * effective_surfaces_Psub_.transpose() * mass_matrix_inv_ *
+                                                    (p_(idx_now_, Eigen::all) + p_(idx_next_, Eigen::all)).transpose();
+        dissipated_power_flow_ = Rk_ * pow(Psub_(idx_next_) - Psup_, 2);
+        auto pmid = 0.5 * (p_(idx_now_, Eigen::all) + p_(idx_next_, Eigen::all)).transpose();
+        dissipated_power_folds_ = pmid.transpose() * mass_matrix_inv_ * dissipation_matrix_ * mass_matrix_inv_ * pmid;
+        dissipated_power_ = dissipated_power_flow_ + dissipated_power_folds_;
 
-    external_power_sub_ = sub_glottal_flow * Psub_(idx_next_);
-    external_power_sup_ = sup_glottal_flow * Psup_;
-    external_power_ = external_power_sub_ + external_power_sup_;
-
+        external_power_sub_ = sub_glottal_flow * Psub_(idx_next_);
+        external_power_sup_ = sup_glottal_flow * Psup_;
+        external_power_ = external_power_sub_ + external_power_sup_;
+    }
     // Step 0: Advance state
     idx_now_ = idx_next_;
     idx_next_ = (idx_now_ + 1) % 2;
@@ -219,19 +220,21 @@ void Larynx<ftype>::Process(ftype Pin)
     //             * (p_(idx_now_, Eigen::all) + p_(idx_next_, Eigen::all)).transpose();
     resonator_->Process(sup_glottal_flow);
 
-    // Optional computations needed for power balance variables
-    auto qmid = 0.5 * (q_(idx_now_, Eigen::all) + q_(idx_next_, Eigen::all)).transpose();
-    kinetic_energy_(idx_next_) =
-        0.5 * p_(idx_now_, Eigen::all) *
-        (Eigen::Matrix<ftype, 3, 3>::Identity() - dt_ * dt_ / 4 * mass_matrix_inv_ * stiffness_matrix_ -
-         dt_ / 2 * mass_matrix_inv_ * dissipation_matrix_) *
-        mass_matrix_inv_ * p_(idx_now_, Eigen::all).transpose();
-    potential_energy_(idx_next_) =
-        0.5 * qmid.transpose() * stiffness_matrix_ * qmid + 0.5 * r_(idx_now_) * r_(idx_now_);
+    if (compute_powers_) {
+        // Optional computations needed for power balance variables
+        auto qmid = 0.5 * (q_(idx_now_, Eigen::all) + q_(idx_next_, Eigen::all)).transpose();
+        kinetic_energy_(idx_next_) =
+            0.5 * p_(idx_now_, Eigen::all) *
+            (Eigen::Matrix<ftype, 3, 3>::Identity() - dt_ * dt_ / 4 * mass_matrix_inv_ * stiffness_matrix_ -
+             dt_ / 2 * mass_matrix_inv_ * dissipation_matrix_) *
+            mass_matrix_inv_ * p_(idx_now_, Eigen::all).transpose();
+        potential_energy_(idx_next_) =
+            0.5 * qmid.transpose() * stiffness_matrix_ * qmid + 0.5 * r_(idx_now_) * r_(idx_now_);
 
-    stored_power_kinetic_ = (kinetic_energy_(idx_next_) - kinetic_energy_(idx_now_)) / dt_;
-    stored_power_potential_ = (potential_energy_(idx_next_) - potential_energy_(idx_now_)) / dt_;
-    stored_power_ = stored_power_kinetic_ + stored_power_potential_;
+        stored_power_kinetic_ = (kinetic_energy_(idx_next_) - kinetic_energy_(idx_now_)) / dt_;
+        stored_power_potential_ = (potential_energy_(idx_next_) - potential_energy_(idx_now_)) / dt_;
+        stored_power_ = stored_power_kinetic_ + stored_power_potential_;
+    }
 };
 
 template class Larynx<float>;

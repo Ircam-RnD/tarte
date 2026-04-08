@@ -73,6 +73,7 @@ private:
     ftype Psup_;
 
     // Power variables
+    bool compute_powers_{false};
     Eigen::Vector<ftype, 2> kinetic_energy_, potential_energy_;
     ftype dissipated_power_, dissipated_power_flow_, dissipated_power_folds_;
     ftype external_power_, external_power_sub_, external_power_sup_;
@@ -120,6 +121,7 @@ public:
     inline ftype ReadPressureDrop() { return Psub_(idx_now_) - Psup_; };
 
     // Power variables
+    void set_compute_powers(bool compute_powers) { compute_powers_ = compute_powers; }
     std::tuple<ftype, ftype, ftype> ReadDissipatedPowers()
     {
         return {dissipated_power_, dissipated_power_flow_, dissipated_power_folds_};
