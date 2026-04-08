@@ -91,13 +91,12 @@ void WebsterFDTD<ftype>::DspSetup(ftype sampleRate)
     N_lpf_ = N_ + 1;
     lp_filters_.resize(N_lpf_);
     for (int i = 0; i < N_lpf_; ++i) {
-        lp_filters_[i] = Biquad(sr_, kLowPass, 10.0f, 0.0f, 0.5f);
+        lp_filters_[i] = Biquad(sr_, kLowPass, lpf_frequency_, 0.0f, 0.5f);
         // Initialize filter state to corresponding SdirectTarget value
         if (i < S_target_.size()) {
             lp_filters_[i].InitializeState(static_cast<double>(S_target_[i]));
         }
     }
-    set_lp_frequencies(10.0);
     set_lp_Qs(0.5);
 }
 
@@ -294,8 +293,9 @@ void WebsterFDTD<ftype>::set_lp_Q(int index, ftype Q)
 template<typename ftype>
 void WebsterFDTD<ftype>::set_lp_frequencies(ftype freq)
 {
+    lpf_frequency_ = std::clamp(freq, ftype(0.1), ftype(100.0));
     for (int i = 0; i < N_lpf_; ++i) {
-        lp_filters_[i].set_freq(freq);
+        lp_filters_[i].set_freq(lpf_frequency_);
     }
 }
 

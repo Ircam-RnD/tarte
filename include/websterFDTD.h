@@ -37,6 +37,7 @@ private:
 
     // LPF
     std::vector<Biquad> lp_filters_;
+    float lpf_frequency_{10.0f};
     int N_lpf_{4}; // Default number of LPF instances
     void set_N_lpf(int num);
 
@@ -102,6 +103,8 @@ public:
     inline ftype get_l0() { return l0_; }
     inline ftype get_wall_area_mass() { return wall_area_mass_; }
     inline ftype get_wall_area_damping() { return wall_area_damping_; }
+
+    inline float get_lpf_frequency() { return lpf_frequency_; }
 
     // Setters
     inline void set_yielding_walls(bool isYielding)
