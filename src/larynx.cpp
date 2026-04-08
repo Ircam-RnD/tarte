@@ -69,7 +69,7 @@ void Larynx<ftype>::ComputeEffectiveAreas()
 }
 
 template<typename ftype>
-void Larynx<ftype>::ComputeNonlienarDissipationVector()
+void Larynx<ftype>::ComputeNonlinearDissipationVector()
 {
     area_min_ = areas_below_masses_(Eigen::seq(0, 1)).minCoeff();
     mean_flow_ = area_min_ * sqrt(2 / (kt_ * rho0_) * abs(Psub_(idx_now_) - Psup_)) * sgn(Psub_(idx_now_) - Psup_);
@@ -166,7 +166,7 @@ void Larynx<ftype>::Process(ftype Pin)
     // Step 2: Rk_ and g_sav_ explicit computation
     FillMassesInterpenetrationsAndAreas();
     ComputeEffectiveAreas();
-    ComputeNonlienarDissipationVector();
+    ComputeNonlinearDissipationVector();
     ComputeSavVector();
 
     // Step 3: get resonator_ feedback coefficients

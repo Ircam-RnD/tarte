@@ -88,7 +88,7 @@ private:
     // Functions
     void FillMassesInterpenetrationsAndAreas();
     void ComputeEffectiveAreas();
-    void ComputeNonlienarDissipationVector();
+    void ComputeNonlinearDissipationVector();
     void ComputeSavVector();
 
 public:
