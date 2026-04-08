@@ -109,8 +109,8 @@ void WebsterFDTD<ftype>::SetNStability()
     h_ = l0_ / N_;
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::SetTargetGeometry(ftype const* in, std::size_t const size)
+template<typename ftype, typename intype>
+void WebsterFDTD<ftype>::SetTargetGeometry(intypt const* in, std::size_t const size)
 {
     size_t safe_size = std::min(size, std::size_t(S_target_.size()));
     for (size_t i = 0; i < safe_size; ++i) {
