@@ -10,6 +10,7 @@ Larynx<ftype>::Larynx(ftype samplerate, bool yielding_walls)
 
     resonator_ = std::make_shared<WebsterFDTD<ftype>>(sr_);
     resonator_->set_yielding_walls(yielding_walls);
+    resonator_->set_time_varying_geometry(true);
 
     A0_inv_ = dt_;
     mass_matrix_inv_ = masses_.inverse();
