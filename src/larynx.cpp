@@ -16,10 +16,10 @@ Larynx<ftype>::Larynx(ftype samplerate, bool yielding_walls)
     mass_matrix_inv_ = masses_.inverse();
 
     // clang-format off
-  elongation_matrix_ << 1, 0, -1,
-                      0, 1, -1,
-                      0, 0, 1,
-                      1, -1, 0;
+    elongation_matrix_ << 1, 0, -1,
+                            0, 1, -1,
+                            0, 0, 1,
+                            1, -1, 0;
     // clang-format on
     stiffness_matrix_ = elongation_matrix_.transpose() * stiffnesses_ * elongation_matrix_;
 

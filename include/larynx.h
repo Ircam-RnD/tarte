@@ -147,12 +147,26 @@ public:
     inline void set_masses(const Eigen::Vector<ftype, 3> masses)
     {
         masses_.diagonal() = ClipEigen(masses.array(), 1e-6, 1e-3);
+        mass_matrix_inv_ = masses_.inverse();
+
+        dissipation_coefficients_.diagonal()(0) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(0) * masses_.diagonal()(0));
+        dissipation_coefficients_.diagonal()(1) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(1) * masses_.diagonal()(1));
+        dissipation_coefficients_.diagonal()(2) = xi_ * sqrt(stiffnesses_.diagonal()(2) * masses_.diagonal()(2));
+        dissipation_coefficients_.diagonal()(3) = 0;
+        dissipation_matrix_ = elongation_matrix_.transpose() * dissipation_coefficients_ * elongation_matrix_;
     };
     inline void set_masses(const ftype& lower, const ftype& upper, const ftype& body)
     {
         masses_.diagonal()(0) = std::clamp(lower, ftype(1e-6), ftype(1e-3));
         masses_.diagonal()(1) = std::clamp(upper, ftype(1e-6), ftype(1e-3));
         masses_.diagonal()(2) = std::clamp(body, ftype(1e-6), ftype(1e-3));
+        mass_matrix_inv_ = masses_.inverse();
+
+        dissipation_coefficients_.diagonal()(0) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(0) * masses_.diagonal()(0));
+        dissipation_coefficients_.diagonal()(1) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(1) * masses_.diagonal()(1));
+        dissipation_coefficients_.diagonal()(2) = xi_ * sqrt(stiffnesses_.diagonal()(2) * masses_.diagonal()(2));
+        dissipation_coefficients_.diagonal()(3) = 0;
+        dissipation_matrix_ = elongation_matrix_.transpose() * dissipation_coefficients_ * elongation_matrix_;
     };
 
     inline void set_lengths(const Eigen::Vector<ftype, 3> lengths)
@@ -171,6 +185,12 @@ public:
     inline void set_stiffnesses(const Eigen::Vector<ftype, 4> stiffnesses)
     {
         stiffnesses_.diagonal() = ClipEigen(stiffnesses.array(), ftype(0), ftype(1e2));
+
+        dissipation_coefficients_.diagonal()(0) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(0) * masses_.diagonal()(0));
+        dissipation_coefficients_.diagonal()(1) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(1) * masses_.diagonal()(1));
+        dissipation_coefficients_.diagonal()(2) = xi_ * sqrt(stiffnesses_.diagonal()(2) * masses_.diagonal()(2));
+        dissipation_coefficients_.diagonal()(3) = 0;
+        dissipation_matrix_ = elongation_matrix_.transpose() * dissipation_coefficients_ * elongation_matrix_;
     };
     inline void set_stiffnesses(const ftype& lower, const ftype& upper, const ftype& body, const ftype& coupling)
     {
@@ -178,6 +198,12 @@ public:
         stiffnesses_.diagonal()(1) = std::clamp(upper, ftype(0), ftype(1e2));
         stiffnesses_.diagonal()(2) = std::clamp(body, ftype(0), ftype(1e2));
         stiffnesses_.diagonal()(3) = std::clamp(coupling, ftype(0), ftype(1e2));
+
+        dissipation_coefficients_.diagonal()(0) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(0) * masses_.diagonal()(0));
+        dissipation_coefficients_.diagonal()(1) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(1) * masses_.diagonal()(1));
+        dissipation_coefficients_.diagonal()(2) = xi_ * sqrt(stiffnesses_.diagonal()(2) * masses_.diagonal()(2));
+        dissipation_coefficients_.diagonal()(3) = 0;
+        dissipation_matrix_ = elongation_matrix_.transpose() * dissipation_coefficients_ * elongation_matrix_;
     };
 
     inline void set_eta_stiffness(const ftype eta_stiffness)
