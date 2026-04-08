@@ -123,7 +123,7 @@ public:
     {
         return {dissipated_power_, dissipated_power_flow_, dissipated_power_folds_};
     };
-    std::tuple<ftype, ftype, ftype> ReadExcahngedPowers()
+    std::tuple<ftype, ftype, ftype> ReadExchangedPowers()
     {
         return {external_power_, external_power_sub_, external_power_sup_};
     };
