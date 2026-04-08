@@ -135,6 +135,8 @@ public:
         return {stored_power_, stored_power_kinetic_, stored_power_potential_};
     };
 
+    // Compute and retrieve linear characteristics of the vocal fold model
+
     // Setters
     inline void set_rest_positions(const Eigen::Vector<ftype, 3> rest_positions)
     {
@@ -189,6 +191,8 @@ public:
     {
         stiffnesses_.diagonal() = ClipEigen(stiffnesses.array(), ftype(0), ftype(1e2));
 
+        stiffness_matrix_ = elongation_matrix_.transpose() * stiffnesses_ * elongation_matrix_;
+
         dissipation_coefficients_.diagonal()(0) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(0) * masses_.diagonal()(0));
         dissipation_coefficients_.diagonal()(1) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(1) * masses_.diagonal()(1));
         dissipation_coefficients_.diagonal()(2) = xi_ * sqrt(stiffnesses_.diagonal()(2) * masses_.diagonal()(2));
@@ -201,6 +205,8 @@ public:
         stiffnesses_.diagonal()(1) = std::clamp(upper, ftype(0), ftype(1e2));
         stiffnesses_.diagonal()(2) = std::clamp(body, ftype(0), ftype(1e2));
         stiffnesses_.diagonal()(3) = std::clamp(coupling, ftype(0), ftype(1e2));
+
+        stiffness_matrix_ = elongation_matrix_.transpose() * stiffnesses_ * elongation_matrix_;
 
         dissipation_coefficients_.diagonal()(0) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(0) * masses_.diagonal()(0));
         dissipation_coefficients_.diagonal()(1) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(1) * masses_.diagonal()(1));
