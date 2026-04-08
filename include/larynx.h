@@ -137,20 +137,49 @@ public:
     {
         rest_positions_ = ClipEigen(rest_positions.array(), 1e-5, 1e-2);
     };
+    inline void set_rest_positions(const ftype& lower, const ftype& upper, const ftype& body)
+    {
+        rest_positions_(0) = std::clamp(lower, ftype(1e-5), ftype(1e-2));
+        rest_positions_(1) = std::clamp(upper, ftype(1e-5), ftype(1e-2));
+        rest_positions_(2) = std::clamp(body, ftype(1e-5), ftype(1e-2));
+    };
 
     inline void set_masses(const Eigen::Vector<ftype, 3> masses)
     {
         masses_.diagonal() = ClipEigen(masses.array(), 1e-6, 1e-3);
     };
+    inline void set_masses(const ftype& lower, const ftype& upper, const ftype& body)
+    {
+        masses_.diagonal()(0) = std::clamp(lower, ftype(1e-6), ftype(1e-3));
+        masses_.diagonal()(1) = std::clamp(upper, ftype(1e-6), ftype(1e-3));
+        masses_.diagonal()(2) = std::clamp(body, ftype(1e-6), ftype(1e-3));
+    };
+
     inline void set_lengths(const Eigen::Vector<ftype, 3> lengths)
     {
         lengths_ = ClipEigen(lengths.array(), 1e-4, 1e-2);
     };
+    inline void set_lengths(const ftype& lower, const ftype& upper, const ftype& body)
+    {
+        lengths_(0) = std::clamp(lower, ftype(1e-4), ftype(1e-2));
+        lengths_(1) = std::clamp(upper, ftype(1e-4), ftype(1e-2));
+        lengths_(2) = std::clamp(body, ftype(1e-4), ftype(1e-2));
+    };
+
     inline void set_width(const ftype width) { widths_(0) = widths_(1) = std::clamp(width, ftype(1e-3), ftype(1e-1)); };
+
     inline void set_stiffnesses(const Eigen::Vector<ftype, 4> stiffnesses)
     {
         stiffnesses_.diagonal() = ClipEigen(stiffnesses.array(), ftype(0), ftype(1e2));
     };
+    inline void set_masses(const ftype& lower, const ftype& upper, const ftype& body, const ftype& coupling)
+    {
+        stiffnesses_.diagonal()(0) = std::clamp(lower, ftype(0), ftype(1e2));
+        stiffnesses_.diagonal()(1) = std::clamp(upper, ftype(0), ftype(1e2));
+        stiffnesses_.diagonal()(2) = std::clamp(body, ftype(0), ftype(1e2));
+        stiffnesses_.diagonal()(3) = std::clamp(coupling, ftype(0), ftype(1e2));
+    };
+
     inline void set_eta_stiffness(const ftype eta_stiffness)
     {
         eta_stiffness_ = std::clamp(eta_stiffness, ftype(0), ftype(1e12));
