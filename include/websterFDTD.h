@@ -66,7 +66,14 @@ public:
     void DspSetup(ftype sampleRate);
 
     // Setters for target geometry
-    void SetTargetGeometry(ftype const* in, std::size_t const size);
+    template<typename intype>
+    void SetTargetGeometry(intype const* in, std::size_t const size)
+    {
+        size_t safe_size = std::min(size, std::size_t(S_target_.size()));
+        for (size_t i = 0; i < safe_size; ++i) {
+            S_target_[i] = std::max(float(1e-8), float(in[i]));
+        }
+    };
     void SetTargetGeometryFromArticulation(Articulation articulation);
     void SetConstantSection(ftype section);
 
