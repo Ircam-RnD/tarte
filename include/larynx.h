@@ -172,7 +172,7 @@ public:
     {
         stiffnesses_.diagonal() = ClipEigen(stiffnesses.array(), ftype(0), ftype(1e2));
     };
-    inline void set_masses(const ftype& lower, const ftype& upper, const ftype& body, const ftype& coupling)
+    inline void set_stiffnesses(const ftype& lower, const ftype& upper, const ftype& body, const ftype& coupling)
     {
         stiffnesses_.diagonal()(0) = std::clamp(lower, ftype(0), ftype(1e2));
         stiffnesses_.diagonal()(1) = std::clamp(upper, ftype(0), ftype(1e2));
