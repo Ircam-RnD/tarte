@@ -237,6 +237,33 @@ void Larynx<ftype>::Process(ftype Pin)
     }
 };
 
+template<typename ftype>
+std::tuple<Eigen::Vector<ftype, 3>, Eigen::Vector<ftype, 3>, Eigen::Matrix<ftype, 3, 3>> Larynx<
+    ftype>::GetModalCharacteristics()
+{
+    // We know that M, K and R are symmetric for this model.
+    // Evaluate eigenfrequencies and eigenvectors from undamped problems
+    Eigen::SelfAdjointEigenSolver<Eigen::Matrix<ftype, 3, 3>> eig(mass_matrix_inv_ * stiffness_matrix_);
+    Eigen::Vector<ftype, 3> eigen_frequencies = eig.eigenvalues().cwiseMax(ftype(0)).cwiseSqrt() / (2 * M_PI);
+
+    Eigen::Matrix<ftype, 3, 3> Phi = eig.eigenvectors();
+    // Normalize wrt max displacement
+    for (int i = 0; i < 3; ++i) {
+        ftype norm = Phi.col(i).cwiseAbs().maxCoeff();
+        if (norm > ftype(1e-12))
+            Phi.col(i) /= norm;
+    }
+
+    // Modal damping ratio from projected dissipation matrix
+    // ζ_i = φᵢᵀ D φᵢ / (2 ω_i)
+    Eigen::Vector<ftype, 3> zeta = Eigen::Vector<ftype, 3>::Zero();
+    for (int i = 0; i < 3; ++i)
+        if (eigen_frequencies(i) > ftype(1e-12))
+            zeta(i) =
+                Phi.col(i).dot(dissipation_matrix_ * Phi.col(i)) / (ftype(2) * ftype(2) * M_PI * eigen_frequencies(i));
+
+    return {eigen_frequencies, zeta, Phi};
+}
 template class Larynx<float>;
 template class Larynx<double>;
 

@@ -136,6 +136,7 @@ public:
     };
 
     // Compute and retrieve linear characteristics of the vocal fold model
+    std::tuple<Eigen::Vector<ftype, 3>, Eigen::Vector<ftype, 3>, Eigen::Matrix<ftype, 3, 3>> GetModalCharacteristics();
 
     // Setters
     inline void set_rest_positions(const Eigen::Vector<ftype, 3> rest_positions)
