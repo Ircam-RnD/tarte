@@ -43,7 +43,7 @@ public:
         for (size_t i = 0; i < n; ++i) {
             sum_alphas += alphas[i];
         }
-        for (size_t i = 0; 6; ++i) {
+        for (size_t i = 0; i < 6; ++i) {
             positions_[i] = 0;
             areas_[i] = 0;
             if (i < 4) {
