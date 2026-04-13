@@ -1,8 +1,8 @@
 #pragma once
 
+#include <array>
 #include <cmath>
 #include <string>
-#include <vector>
 
 namespace tarte::vowels {
 // Data from 1D parametric vocal tract model: "Construction and Evaluation of a Parametric One-Dimensional Vocal Tract
@@ -10,28 +10,28 @@ namespace tarte::vowels {
 
 struct Vowel {
     std::string name;
-    std::vector<float> areas;
-    std::vector<float> positions;
-    std::vector<float> etas;
-    std::vector<float> formant_frequencies;
+    std::array<float, 6> areas;
+    std::array<float, 6> positions;
+    std::array<float, 4> etas;
+    std::array<float, 2> formant_frequencies;
 };
 
-inline const std::vector<std::string> vowelNames = {"/a:/",
-                                                    "/e:/",
-                                                    "/i:/",
-                                                    "/o:/",
-                                                    "/u:/",
-                                                    "/E:/",
-                                                    "/ø:/",
-                                                    "/y:/",
-                                                    "/a/",
-                                                    "/E/",
-                                                    "/I/",
-                                                    "/O/",
-                                                    "/U/",
-                                                    "/œ/",
-                                                    "/Y/",
-                                                    "/@/"};
+inline const std::array<std::string, 16> vowelNames = {"/a:/",
+                                                       "/e:/",
+                                                       "/i:/",
+                                                       "/o:/",
+                                                       "/u:/",
+                                                       "/E:/",
+                                                       "/ø:/",
+                                                       "/y:/",
+                                                       "/a/",
+                                                       "/E/",
+                                                       "/I/",
+                                                       "/O/",
+                                                       "/U/",
+                                                       "/œ/",
+                                                       "/Y/",
+                                                       "/@/"};
 
 inline const float maxF0 = 710;  // Highest frequency of first formant for all vowels
 inline const float maxF1 = 2200; // Highest frequency of second formant for all vowels
@@ -135,5 +135,5 @@ inline const Vowel schwa = {"/@/",
                             {0.208, 0.726, 2.679, 0.896},
                             {406, 1626}};
 
-inline const std::vector<Vowel> vowels = {a, e, i, o, u, E, oe, y, a_short, E_short, I, O, U, oe_short, Y, schwa};
+inline const std::array<Vowel, 16> vowels = {a, e, i, o, u, E, oe, y, a_short, E_short, I, O, U, oe_short, Y, schwa};
 } // namespace tarte::vowels

@@ -2,6 +2,7 @@
 
 #include "vowels.h"
 #include <algorithm>
+#include <array>
 #include <cmath>
 #include <utility>
 #include <vector>
@@ -10,7 +11,8 @@ namespace tarte {
 
 class Articulation {
 private:
-    std::vector<float> areas_, positions_, etas_; // Etas are the "warping exponent"
+    std::array<float, 6> areas_, positions_;
+    std::array<float, 4> etas_; // Etas are the "warping exponent"
 
 public:
     Articulation(vowels::Vowel const& v = vowels::a) { SetFromVowel(v); };
@@ -25,10 +27,12 @@ public:
     void Interpolate2Vowels(vowels::Vowel const& v1, vowels::Vowel const& v2, float alpha)
     {
         // Vowel = (1 - alpha) * v1 + alpha * v2
-        for (size_t i = 0; i < positions_.size(); ++i) {
+        for (size_t i = 0; i < 6; ++i) {
             positions_[i] = v1.positions[i] + alpha * (v2.positions[i] - v1.positions[i]);
             areas_[i] = v1.areas[i] + alpha * (v2.areas[i] - v1.areas[i]);
-            etas_[i] = v1.etas[i] + alpha * (v2.etas[i] - v1.etas[i]);
+            if (i < 4) {
+                etas_[i] = v1.etas[i] + alpha * (v2.etas[i] - v1.etas[i]); // Only 4 exponents
+            }
         }
     };
 
@@ -39,14 +43,18 @@ public:
         for (size_t i = 0; i < n; ++i) {
             sum_alphas += alphas[i];
         }
-        for (size_t i = 0; i < positions_.size(); ++i) {
+        for (size_t i = 0; 6; ++i) {
             positions_[i] = 0;
             areas_[i] = 0;
-            etas_[i] = 0;
+            if (i < 4) {
+                etas_[i] = 0;
+            }
             for (size_t j = 0; j < n; ++j) {
                 positions_[i] += alphas[j] / sum_alphas * vs[j].positions[i];
                 areas_[i] += alphas[j] / sum_alphas * vs[j].areas[i];
-                etas_[i] += alphas[j] / sum_alphas * vs[j].etas[i];
+                if (i < 4) {
+                    etas_[i] += alphas[j] / sum_alphas * vs[j].etas[i];
+                }
             }
         }
     };
