@@ -69,8 +69,8 @@ void Larynx<ftype>::DspSetup(ftype samplerate)
 template<typename ftype>
 void Larynx<ftype>::FillMassesInterpenetrationsAndAreas()
 {
-    masses_interpenetrations_ = -(q_(idx_next_, Eigen::seq(0, 2)).transpose() + left_vf_.rest_positions_ +
-                                  q_(idx_next_, Eigen::seq(3, 5)).transpose() + right_vf_.rest_positions_);
+    masses_interpenetrations_ = (q_(idx_next_, Eigen::seq(0, 2)).transpose() - left_vf_.rest_positions_ +
+                                 q_(idx_next_, Eigen::seq(3, 5)).transpose() - right_vf_.rest_positions_);
 
     areas_below_masses_ = widths_.cwiseProduct(softplusMatrix(-masses_interpenetrations_, kEpsilonSmooth_));
     smoothed_is_opened_ =
@@ -179,10 +179,10 @@ void Larynx<ftype>::ComputeSavVector()
                     .sum();
 
         masses_interpenetrations_ =
-            softplusMatrix(-0.5 * ((q_(idx_next_, Eigen::seq(0, 2)) + q_(idx_now_, Eigen::seq(0, 2))).transpose() +
-                                   left_vf_.rest_positions_ +
-                                   (q_(idx_next_, Eigen::seq(3, 5)) + q_(idx_now_, Eigen::seq(3, 5))).transpose() +
-                                   right_vf_.rest_positions_),
+            softplusMatrix(0.5 * ((q_(idx_next_, Eigen::seq(0, 2)) + q_(idx_now_, Eigen::seq(0, 2))).transpose() -
+                                  left_vf_.rest_positions_ +
+                                  (q_(idx_next_, Eigen::seq(3, 5)) + q_(idx_now_, Eigen::seq(3, 5))).transpose() +
+                                  -right_vf_.rest_positions_),
                            kEpsilonSmooth_);
 
         Enl_ +=
@@ -212,7 +212,7 @@ void Larynx<ftype>::Process(ftype Pin)
     if (compute_powers_) {
         // Optional computations needed for power balance variables
         pmid = 0.5 * (p_(idx_now_, Eigen::all) + p_(idx_next_, Eigen::all)).transpose();
-        sub_glottal_flow = -Rk_ * (Psub_(idx_next_) - Psup_) -
+        sub_glottal_flow = -Rk_ * (Psub_(idx_next_) - Psup_) +
                            effective_surfaces_Psub_.transpose() *
                                (mass_matrix_inv_left * pmid.head(3) + mass_matrix_inv_right * pmid.tail(3));
         dissipated_power_flow_ = Rk_ * pow(Psub_(idx_next_) - Psup_, 2);
