@@ -13,18 +13,7 @@ Larynx<ftype>::Larynx(ftype samplerate, bool yielding_walls)
     resonator_->set_time_varying_geometry(true);
 
     A0_inv_ = dt_;
-    mass_matrix_inv_.diagonal().head(3) = left_vf_.masses_.inverse().diagonal();
-    mass_matrix_inv_.diagonal().tail(3) = right_vf_.masses_.inverse().diagonal();
-
-    stiffness_matrix_left_ = BodyCoverVF<ftype>::elongation_matrix_.transpose() * left_vf_.stiffnesses_ *
-                             BodyCoverVF<ftype>::elongation_matrix_;
-    stiffness_matrix_right_ = BodyCoverVF<ftype>::elongation_matrix_.transpose() * right_vf_.stiffnesses_ *
-                              BodyCoverVF<ftype>::elongation_matrix_;
-
-    dissipation_matrix_left_ = BodyCoverVF<ftype>::elongation_matrix_.transpose() * left_vf_.dissipation_coefficients_ *
-                               BodyCoverVF<ftype>::elongation_matrix_;
-    dissipation_matrix_right_ = BodyCoverVF<ftype>::elongation_matrix_.transpose() *
-                                left_vf_.dissipation_coefficients_ * BodyCoverVF<ftype>::elongation_matrix_;
+    RecomputeMatrices();
 
     p_.setZero();
     q_.setZero();
@@ -262,9 +251,9 @@ void Larynx<ftype>::Process(ftype Pin)
         g_sav_.head(3) * r_[idx_now_] - effective_surfaces_Psub_ * Psub_(idx_next_) -
         effective_surfaces_Psup_ * C0_feedback_;
     rhs_.tail(3) =
-        -stiffness_matrix_right_ * q_(idx_next_, Eigen::seq(0, 2)).transpose() +
+        -stiffness_matrix_right_ * q_(idx_next_, Eigen::seq(3, 5)).transpose() +
         (1 / dt_ * Eigen::Matrix<ftype, 3, 3>::Identity() - dissipation_matrix_right_ * mass_matrix_inv_right) *
-            p_(idx_now_, Eigen::seq(0, 2)).transpose() -
+            p_(idx_now_, Eigen::seq(3, 5)).transpose() -
         dt_ / 4 * g_sav_.tail(3) * (g_sav_.transpose() * mass_matrix_inv_ * p_(idx_now_, Eigen::all).transpose()) -
         g_sav_.tail(3) * r_[idx_now_] - effective_surfaces_Psub_ * Psub_(idx_next_) -
         effective_surfaces_Psup_ * C0_feedback_;
