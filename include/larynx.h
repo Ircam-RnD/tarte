@@ -332,7 +332,7 @@ public:
     void set_rho0(const ftype rho0) { rho0_ = std::clamp(rho0, ftype(1), ftype(15)); }
     void set_kt(const ftype kt) { kt_ = std::clamp(kt, ftype(1), ftype(2)); }
 
-    // ftype set_lambda_sav() { return lambda_sav_; }
+    void set_lambda_sav(const ftype lambda_sav) { lambda_sav_ = std::clamp(lambda_sav, ftype(0), sr_); }
 
     // // Getters
     inline Eigen::Vector<ftype, 3> get_rest_positions(FoldIdentifier fold_id = kBoth)
