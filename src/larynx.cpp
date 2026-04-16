@@ -129,19 +129,19 @@ void Larynx<ftype>::ComputeSavVector()
                  pow(masses_interpenetrations_(1), alpha_contact_stiffness_ + 1)) /
                 (alpha_contact_stiffness_ + 1); // Contact
 
-    Fnl_(0) += -contact_stiffness_ *
+    Fnl_(0) += contact_stiffness_ *
                (eta_contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_) +
                 masses_interpenetrations_(0)) *
                masses_interpenetrations_derivatives_(0);
-    Fnl_(1) += -contact_stiffness_ *
+    Fnl_(1) += contact_stiffness_ *
                (eta_contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_) +
                 masses_interpenetrations_(1)) *
                masses_interpenetrations_derivatives_(1);
-    Fnl_(3) += -contact_stiffness_ *
+    Fnl_(3) += contact_stiffness_ *
                (eta_contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_) +
                 masses_interpenetrations_(0)) *
                masses_interpenetrations_derivatives_(0);
-    Fnl_(4) += -contact_stiffness_ *
+    Fnl_(4) += contact_stiffness_ *
                (eta_contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_) +
                 masses_interpenetrations_(1)) *
                masses_interpenetrations_derivatives_(1);
