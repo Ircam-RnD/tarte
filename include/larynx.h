@@ -1,9 +1,10 @@
 #pragma once
 
-#include <utility/eigen_utility.h>
-#include <utility/maths.h>
-#include <utility/smoothing.h>
-#include <websterFDTD.h>
+#include "body_cover_vf.h"
+#include "utility/eigen_utility.h"
+#include "utility/maths.h"
+#include "utility/smoothing.h"
+#include "websterFDTD.h"
 
 #include <Eigen/Dense>
 #include <array>
@@ -15,43 +16,19 @@
 
 namespace tarte {
 
-template<typename T>
-struct BodyCoverVF {
-    // Vocal fold: order is lower-upper-body
-    Eigen::DiagonalMatrix<T, 3> masses_{1e-5, 1e-5, 5e-5};
-    Eigen::Vector<T, 3> rest_positions_{1.8e-4, 1.79e-4, 3e-3};
-
-    Eigen::DiagonalMatrix<T, 4> stiffnesses_{5, 3.5, 20, 0.5}; // lower, upper, body, lower-upper
-    T eta_stiffness_{1e6};
-
-    T xi_{0.4};
-    Eigen::DiagonalMatrix<T, 4> dissipation_coefficients_;
-    static inline const Eigen::Matrix<T, 4, 3> elongation_matrix_ =
-        (Eigen::Matrix<T, 4, 3>() << 1, 0, -1, 0, 1, -1, 0, 0, 1, 1, -1, 0).finished();
-
-    BodyCoverVF() { FillDissipationCoefficients(); };
-    void FillDissipationCoefficients()
-    {
-        dissipation_coefficients_.diagonal()(0) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(0) * masses_.diagonal()(0));
-        dissipation_coefficients_.diagonal()(1) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(1) * masses_.diagonal()(1));
-        dissipation_coefficients_.diagonal()(2) = xi_ * sqrt(stiffnesses_.diagonal()(2) * masses_.diagonal()(2));
-        dissipation_coefficients_.diagonal()(3) = 0;
-    }
-};
-
 enum FoldIdentifier { kRight, kLeft, kBoth };
 
 template<typename ftype>
 class Larynx {
 private:
-    // Folds hysical parameters are in there
-    BodyCoverVF<ftype> left_vf_, right_vf_;
+    // Folds physical parameters are in there
+    std::shared_ptr<BodyCoverVF<ftype>> left_vf_, right_vf_;
 
     // The lengths and widths of the masses are supposed to be the same for both folds
     Eigen::Vector<ftype, 3> lengths_{1.5e-3, 1.5e-3, 3e-3};
     Eigen::Vector<ftype, 3> widths_{1e-2, 1e-2, 0};
 
-    // Contact parameters are supposed to be the same for both folds
+    // Contact parameters
     ftype contact_stiffness_{15}, eta_contact_stiffness_{1e6}, alpha_contact_stiffness_{3};
 
     ftype rho0_{1.2}, c0_{340}, kt_{1.3};
@@ -62,10 +39,12 @@ private:
     Eigen::Matrix<ftype, 3, 3> stiffness_matrix_right_, dissipation_matrix_right_; // Right fold only
     Eigen::Vector<ftype, 4> elongations_;
 
-    // The following quantities need to be defined only once for both folds, as they are realted to the fluid flow
+    // The following quantities need to be defined only once for both folds, as they are related to the fluid flow
     Eigen::Vector<ftype, 3> masses_interpenetrations_, areas_below_masses_, smoothed_is_opened_,
         masses_interpenetrations_derivatives_;
-    Eigen::Vector<ftype, 3> effective_surfaces_Psub_, effective_surfaces_Psup_;
+    // The effective surfaces must however be fold dependant if the folds have different geometries
+    Eigen::Vector<ftype, 3> effective_surfaces_Psub_left_, effective_surfaces_Psup_left_;
+    Eigen::Vector<ftype, 3> effective_surfaces_Psub_right_, effective_surfaces_Psup_right_;
 
     Eigen::Vector<ftype, 6> g_sav_{0, 0, 0, 0, 0, 0}, Fnl_{0, 0, 0, 0, 0, 0};
     ftype Enl_, epsilon_sav_;
@@ -111,7 +90,7 @@ private:
     ftype sr_, dt_;
 
     // Functions
-    void RecomputeMatrices();
+    void RecomputeMatrices(bool update_from_muscles = false);
     void FillMassesInterpenetrationsAndAreas();
     void ComputeEffectiveAreas();
     void ComputeNonlinearDissipationVector();
@@ -161,98 +140,80 @@ public:
     };
 
     // Compute and retrieve linear characteristics of the vocal fold model
-    std::tuple<Eigen::Vector<ftype, 3>, Eigen::Vector<ftype, 3>, Eigen::Matrix<ftype, 3, 3>> GetModalCharacteristics();
+    // std::tuple<Eigen::Vector<ftype, 3>, Eigen::Vector<ftype, 3>, Eigen::Matrix<ftype, 3, 3>>
+    // GetModalCharacteristics();
 
     // Setters
     void set_rest_positions(const Eigen::Vector<ftype, 3>& rest_positions, FoldIdentifier fold_id = kBoth)
     {
         switch (fold_id) {
-        case kLeft: left_vf_.rest_positions_ = ClipEigen(rest_positions.array(), 1e-5, 1e-2); break;
-        case kRight: right_vf_.rest_positions_ = ClipEigen(rest_positions.array(), 1e-5, 1e-2); break;
+        case kLeft: left_vf_->set_rest_positions(rest_positions); break;
+        case kRight: right_vf_->set_rest_positions(rest_positions); break;
         default:
-            left_vf_.rest_positions_ = right_vf_.rest_positions_ = ClipEigen(rest_positions.array(), 1e-5, 1e-2);
+            left_vf_->set_rest_positions(rest_positions);
+            right_vf_->set_rest_positions(rest_positions);
             break;
         }
     };
     void set_rest_positions(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
-        switch (fold_id) {
-        case kLeft:
-            left_vf_.rest_positions_(0) = std::clamp(lower, ftype(1e-5), ftype(1e-2));
-            left_vf_.rest_positions_(1) = std::clamp(upper, ftype(1e-5), ftype(1e-2));
-            left_vf_.rest_positions_(2) = std::clamp(body, ftype(1e-5), ftype(1e-2));
-            break;
-        case kRight:
-            right_vf_.rest_positions_(0) = std::clamp(lower, ftype(1e-5), ftype(1e-2));
-            right_vf_.rest_positions_(1) = std::clamp(upper, ftype(1e-5), ftype(1e-2));
-            right_vf_.rest_positions_(2) = std::clamp(body, ftype(1e-5), ftype(1e-2));
-            break;
-        default:
-            left_vf_.rest_positions_(0) = std::clamp(lower, ftype(1e-5), ftype(1e-2));
-            left_vf_.rest_positions_(1) = std::clamp(upper, ftype(1e-5), ftype(1e-2));
-            left_vf_.rest_positions_(2) = std::clamp(body, ftype(1e-5), ftype(1e-2));
-            right_vf_.rest_positions_(0) = std::clamp(lower, ftype(1e-5), ftype(1e-2));
-            right_vf_.rest_positions_(1) = std::clamp(upper, ftype(1e-5), ftype(1e-2));
-            right_vf_.rest_positions_(2) = std::clamp(body, ftype(1e-5), ftype(1e-2));
-            break;
-        }
+        set_rest_positions(Eigen::Vector<ftype, 3>{lower, upper, body}, fold_id);
     };
 
     void set_masses(const Eigen::Vector<ftype, 3>& masses, FoldIdentifier fold_id = kBoth)
     {
         switch (fold_id) {
-        case kLeft: left_vf_.masses_.diagonal() = ClipEigen(masses.array(), 1e-6, 1e-3); break;
-        case kRight: right_vf_.masses_.diagonal() = ClipEigen(masses.array(), 1e-6, 1e-3); break;
+        case kLeft: left_vf_->set_masses(masses); break;
+        case kRight: right_vf_->set_masses(masses); break;
         default:
-            right_vf_.masses_.diagonal() = left_vf_.masses_.diagonal() = ClipEigen(masses.array(), 1e-6, 1e-3);
+            left_vf_->set_masses(masses);
+            right_vf_->set_masses(masses);
             break;
         }
         RecomputeMatrices();
     };
     void set_masses(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
-        switch (fold_id) {
-        case kLeft:
-            left_vf_.masses_.diagonal()(0) = std::clamp(lower, ftype(1e-6), ftype(1e-3));
-            left_vf_.masses_.diagonal()(1) = std::clamp(upper, ftype(1e-6), ftype(1e-3));
-            left_vf_.masses_.diagonal()(2) = std::clamp(body, ftype(1e-6), ftype(1e-3));
-            break;
-        case kRight:
-            right_vf_.masses_.diagonal()(0) = std::clamp(lower, ftype(1e-6), ftype(1e-3));
-            right_vf_.masses_.diagonal()(1) = std::clamp(upper, ftype(1e-6), ftype(1e-3));
-            right_vf_.masses_.diagonal()(2) = std::clamp(body, ftype(1e-6), ftype(1e-3));
-            break;
-        default:
-            left_vf_.masses_.diagonal()(0) = std::clamp(lower, ftype(1e-6), ftype(1e-3));
-            left_vf_.masses_.diagonal()(1) = std::clamp(upper, ftype(1e-6), ftype(1e-3));
-            left_vf_.masses_.diagonal()(2) = std::clamp(body, ftype(1e-6), ftype(1e-3));
+        set_masses(Eigen::Vector<ftype, 3>{lower, upper, body}, fold_id);
+    };
 
-            right_vf_.masses_.diagonal()(0) = std::clamp(lower, ftype(1e-6), ftype(1e-3));
-            right_vf_.masses_.diagonal()(1) = std::clamp(upper, ftype(1e-6), ftype(1e-3));
-            right_vf_.masses_.diagonal()(2) = std::clamp(body, ftype(1e-6), ftype(1e-3));
+    void set_length(const ftype& length, FoldIdentifier fold_id = kBoth)
+    {
+        switch (fold_id) {
+        case kLeft: left_vf_->set_length(length); break;
+        case kRight: right_vf_->set_length(length); break;
+        default:
+            left_vf_->set_length(length);
+            right_vf_->set_length(length);
+            break;
+        }
+    };
+
+    void set_thicknesses(const Eigen::Vector<ftype, 3>& thicknesses, FoldIdentifier fold_id = kBoth)
+    {
+        switch (fold_id) {
+        case kLeft: left_vf_->set_thicknesses(thicknesses); break;
+        case kRight: right_vf_->set_thicknesses(thicknesses); break;
+        default:
+            left_vf_->set_thicknesses(thicknesses);
+            right_vf_->set_thicknesses(thicknesses);
             break;
         }
         RecomputeMatrices();
     };
-
-    void set_lengths(const Eigen::Vector<ftype, 3>& lengths) { lengths_ = ClipEigen(lengths.array(), 1e-4, 1e-2); };
-    void set_lengths(const ftype& lower, const ftype& upper, const ftype& body)
+    void set_thicknesses(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
-        lengths_(0) = std::clamp(lower, ftype(1e-4), ftype(1e-2));
-        lengths_(1) = std::clamp(upper, ftype(1e-4), ftype(1e-2));
-        lengths_(2) = std::clamp(body, ftype(1e-4), ftype(1e-2));
+        set_thicknesses(Eigen::Vector<ftype, 3>{lower, upper, body}, fold_id);
     };
-
-    void set_width(const ftype& width) { widths_(0) = widths_(1) = std::clamp(width, ftype(1e-3), ftype(1e-1)); };
 
     void set_stiffnesses(const Eigen::Vector<ftype, 4>& stiffnesses, FoldIdentifier fold_id = kBoth)
     {
         switch (fold_id) {
-        case kLeft: left_vf_.stiffnesses_.diagonal() = ClipEigen(stiffnesses.array(), 1e-6, 1e-3); break;
-        case kRight: right_vf_.stiffnesses_.diagonal() = ClipEigen(stiffnesses.array(), 1e-6, 1e-3); break;
+        case kLeft: left_vf_->set_stiffnesses(stiffnesses); break;
+        case kRight: right_vf_->set_stiffnesses(stiffnesses); break;
         default:
-            right_vf_.stiffnesses_.diagonal() = left_vf_.stiffnesses_.diagonal() =
-                ClipEigen(stiffnesses.array(), 1e-6, 1e-3);
+            left_vf_->set_stiffnesses(stiffnesses);
+            right_vf_->set_stiffnesses(stiffnesses);
             break;
         }
         RecomputeMatrices();
@@ -263,43 +224,17 @@ public:
                          const ftype& coupling,
                          FoldIdentifier fold_id = kBoth)
     {
-        switch (fold_id) {
-        case kLeft:
-            left_vf_.stiffnesses_.diagonal()(0) = std::clamp(lower, ftype(0), ftype(10000));
-            left_vf_.stiffnesses_.diagonal()(1) = std::clamp(upper, ftype(0), ftype(10000));
-            left_vf_.stiffnesses_.diagonal()(2) = std::clamp(body, ftype(0), ftype(10000));
-            left_vf_.stiffnesses_.diagonal()(3) = std::clamp(coupling, ftype(0), ftype(10000));
-            break;
-        case kRight:
-            right_vf_.stiffnesses_.diagonal()(0) = std::clamp(lower, ftype(0), ftype(10000));
-            right_vf_.stiffnesses_.diagonal()(1) = std::clamp(upper, ftype(0), ftype(10000));
-            right_vf_.stiffnesses_.diagonal()(2) = std::clamp(body, ftype(0), ftype(10000));
-            right_vf_.stiffnesses_.diagonal()(3) = std::clamp(coupling, ftype(0), ftype(10000));
-            break;
-        default:
-            left_vf_.stiffnesses_.diagonal()(0) = std::clamp(lower, ftype(0), ftype(10000));
-            left_vf_.stiffnesses_.diagonal()(1) = std::clamp(upper, ftype(0), ftype(10000));
-            left_vf_.stiffnesses_.diagonal()(2) = std::clamp(body, ftype(0), ftype(10000));
-            left_vf_.stiffnesses_.diagonal()(3) = std::clamp(coupling, ftype(0), ftype(10000));
-
-            right_vf_.stiffnesses_.diagonal()(0) = std::clamp(lower, ftype(0), ftype(10000));
-            right_vf_.stiffnesses_.diagonal()(1) = std::clamp(upper, ftype(0), ftype(10000));
-            right_vf_.stiffnesses_.diagonal()(2) = std::clamp(body, ftype(0), ftype(10000));
-            right_vf_.stiffnesses_.diagonal()(3) = std::clamp(coupling, ftype(0), ftype(10000));
-            break;
-        }
-        RecomputeMatrices();
+        set_stiffnesses(Eigen::Vector<ftype, 4>{lower, upper, body, coupling}, fold_id);
     };
 
     void set_eta_stiffness(const ftype& eta_stiffness, FoldIdentifier fold_id = kBoth)
     {
         switch (fold_id) {
-        case kLeft: left_vf_.eta_stiffness_ = std::clamp(eta_stiffness, ftype(0), ftype(1e12)); break;
-        case kRight: right_vf_.eta_stiffness_ = std::clamp(eta_stiffness, ftype(0), ftype(1e12)); break;
+        case kLeft: left_vf_->set_eta_stiffness(eta_stiffness); break;
+        case kRight: right_vf_->set_eta_stiffness(eta_stiffness); break;
         default:
-            left_vf_.eta_stiffness_ = std::clamp(eta_stiffness, ftype(0), ftype(1e12));
-
-            right_vf_.eta_stiffness_ = std::clamp(eta_stiffness, ftype(0), ftype(1e12));
+            left_vf_->set_eta_stiffness(eta_stiffness);
+            right_vf_->set_eta_stiffness(eta_stiffness);
             break;
         }
     }
@@ -315,18 +250,48 @@ public:
     {
         eta_contact_stiffness_ = std::clamp(eta_contact_stiffness, ftype(0), ftype(1e12));
     }
-    void set_xi(const ftype xi, FoldIdentifier fold_id = kBoth)
+
+    void set_muscles_activation(const ftype& ca_activity,
+                                const ftype& ta_activity,
+                                const ftype& lc_activity,
+                                FoldIdentifier fold_id = kBoth)
     {
         switch (fold_id) {
-        case kLeft: left_vf_.xi_ = std::clamp(xi, ftype(0), ftype(1e12)); break;
-        case kRight: right_vf_.xi_ = std::clamp(xi, ftype(0), ftype(1e12)); break;
+        case kLeft:
+            left_vf_->SetCricothyroidActivity(ca_activity);
+            left_vf_->SetThyroarytenoidActivity(ta_activity);
+            left_vf_->SetCricoarytenoidActivity(lc_activity);
+            break;
+        case kRight:
+            right_vf_->SetCricothyroidActivity(ca_activity);
+            right_vf_->SetThyroarytenoidActivity(ta_activity);
+            right_vf_->SetCricoarytenoidActivity(lc_activity);
+            break;
         default:
-            left_vf_.xi_ = std::clamp(xi, ftype(0), ftype(1e12));
+            left_vf_->SetCricothyroidActivity(ca_activity);
+            left_vf_->SetThyroarytenoidActivity(ta_activity);
+            left_vf_->SetCricoarytenoidActivity(lc_activity);
 
-            right_vf_.xi_ = std::clamp(xi, ftype(0), ftype(1e12));
+            right_vf_->SetCricothyroidActivity(ca_activity);
+            right_vf_->SetThyroarytenoidActivity(ta_activity);
+            right_vf_->SetCricoarytenoidActivity(lc_activity);
             break;
         }
-    }
+        RecomputeMatrices();
+    };
+
+    // void set_xi(const ftype xi, FoldIdentifier fold_id = kBoth)
+    // {
+    //     switch (fold_id) {
+    //     case kLeft: left_vf_.xi_ = std::clamp(xi, ftype(0), ftype(1e12)); break;
+    //     case kRight: right_vf_.xi_ = std::clamp(xi, ftype(0), ftype(1e12)); break;
+    //     default:
+    //         left_vf_.xi_ = std::clamp(xi, ftype(0), ftype(1e12));
+
+    //         right_vf_.xi_ = std::clamp(xi, ftype(0), ftype(1e12));
+    //         break;
+    //     }
+    // }
 
     void set_c0(const ftype c0) { c0_ = std::clamp(c0, ftype(300), ftype(380)); }
     void set_rho0(const ftype rho0) { rho0_ = std::clamp(rho0, ftype(1), ftype(15)); }
@@ -334,54 +299,69 @@ public:
 
     void set_lambda_sav(const ftype lambda_sav) { lambda_sav_ = std::clamp(lambda_sav, ftype(0), sr_); }
 
-    // // Getters
+    // Getters
     inline Eigen::Vector<ftype, 3> get_rest_positions(FoldIdentifier fold_id = kBoth)
     {
         if (fold_id == kRight) {
-            return right_vf_.rest_positions_;
+            return right_vf_->rest_positions();
         } else {
-            return left_vf_.rest_positions_;
+            return left_vf_->rest_positions();
         }
     };
 
     inline Eigen::Vector<ftype, 3> get_masses(FoldIdentifier fold_id = kBoth)
     {
         if (fold_id == kRight) {
-            return right_vf_.masses_.diagonal();
+            return right_vf_->masses().diagonal();
         } else {
-            return left_vf_.masses_.diagonal();
+            return left_vf_->masses().diagonal();
         }
     };
-    inline Eigen::Vector<ftype, 3> get_lengths() { return lengths_; };
-    inline Eigen::Vector<ftype, 3> get_widths() { return widths_; };
+
+    inline Eigen::Vector<ftype, 3> get_lengths(FoldIdentifier fold_id = kBoth)
+    {
+        if (fold_id == kRight) {
+            return right_vf_->lengths();
+        } else {
+            return left_vf_->lengths();
+        }
+    };
+    inline Eigen::Vector<ftype, 3> get_thicknesses(FoldIdentifier fold_id = kBoth)
+    {
+        if (fold_id == kRight) {
+            return right_vf_->thicknesses();
+        } else {
+            return left_vf_->thicknesses();
+        }
+    };
     inline Eigen::Vector<ftype, 4> get_stiffnesses(FoldIdentifier fold_id = kBoth)
     {
         if (fold_id == kRight) {
-            return right_vf_.stiffnesses_.diagonal();
+            return right_vf_->stiffnesses().diagonal();
         } else {
-            return left_vf_.stiffnesses_.diagonal();
+            return left_vf_->stiffnesses().diagonal();
         }
     };
     inline ftype get_eta_stiffness(FoldIdentifier fold_id = kBoth)
     {
         if (fold_id == kRight) {
-            return right_vf_.eta_stiffness_;
+            return right_vf_->eta_stiffness();
         } else {
-            return left_vf_.eta_stiffness_;
+            return left_vf_->eta_stiffness();
         }
     }
 
     inline ftype get_contact_stiffness() { return contact_stiffness_; }
     inline ftype get_alpha_contact_stiffness() { return alpha_contact_stiffness_; }
     inline ftype get_eta_contact_stiffness() { return eta_contact_stiffness_; }
-    inline ftype get_xi(FoldIdentifier fold_id = kBoth)
-    {
-        if (fold_id == kRight) {
-            return right_vf_.xi_;
-        } else {
-            return left_vf_.xi_;
-        }
-    }
+    // inline ftype get_xi(FoldIdentifier fold_id = kBoth)
+    // {
+    //     if (fold_id == kRight) {
+    //         return right_vf_.xi_;
+    //     } else {
+    //         return left_vf_.xi_;
+    //     }
+    // }
 
     inline ftype get_c0() { return c0_; }
     inline ftype get_rho0() { return rho0_; }
