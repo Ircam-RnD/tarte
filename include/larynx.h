@@ -157,7 +157,9 @@ public:
     };
     void set_rest_positions(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
-        set_rest_positions(Eigen::Vector<ftype, 3>{lower, upper, body}, fold_id);
+        Eigen::Vector<ftype, 3> v;
+        v << lower, upper, body;
+        set_rest_positions(v, fold_id);
     };
 
     void set_masses(const Eigen::Vector<ftype, 3>& masses, FoldIdentifier fold_id = kBoth)
@@ -174,7 +176,9 @@ public:
     };
     void set_masses(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
-        set_masses(Eigen::Vector<ftype, 3>{lower, upper, body}, fold_id);
+        Eigen::Vector<ftype, 3> v;
+        v << lower, upper, body;
+        set_masses(v, fold_id);
     };
 
     void set_length(const ftype& length, FoldIdentifier fold_id = kBoth)
@@ -203,7 +207,9 @@ public:
     };
     void set_thicknesses(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
-        set_thicknesses(Eigen::Vector<ftype, 3>{lower, upper, body}, fold_id);
+        Eigen::Vector<ftype, 3> v;
+        v << lower, upper, body;
+        set_thicknesses(v, fold_id);
     };
 
     void set_stiffnesses(const Eigen::Vector<ftype, 4>& stiffnesses, FoldIdentifier fold_id = kBoth)
@@ -224,7 +230,9 @@ public:
                          const ftype& coupling,
                          FoldIdentifier fold_id = kBoth)
     {
-        set_stiffnesses(Eigen::Vector<ftype, 4>{lower, upper, body, coupling}, fold_id);
+        Eigen::Vector<ftype, 4> v;
+        v << lower, upper, body, coupling;
+        set_stiffnesses(v, fold_id);
     };
 
     void set_eta_stiffness(const ftype& eta_stiffness, FoldIdentifier fold_id = kBoth)
