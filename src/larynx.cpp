@@ -50,7 +50,7 @@ void Larynx<ftype>::RecomputeMatrices(bool update_from_muscles)
     dissipation_matrix_left_ = BodyCoverVF<ftype>::elongation_matrix_.transpose() *
                                left_vf_->dissipation_coefficients() * BodyCoverVF<ftype>::elongation_matrix_;
     dissipation_matrix_right_ = BodyCoverVF<ftype>::elongation_matrix_.transpose() *
-                                left_vf_->dissipation_coefficients() * BodyCoverVF<ftype>::elongation_matrix_;
+                                right_vf_->dissipation_coefficients() * BodyCoverVF<ftype>::elongation_matrix_;
 }
 
 template<typename ftype>
@@ -318,11 +318,11 @@ void Larynx<ftype>::Process(ftype Pin)
             0.5 * p_(idx_now_, Eigen::seq(3, 5)) *
             (Eigen::Matrix<ftype, 3, 3>::Identity() - dt_ * dt_ / 4 * mass_matrix_inv_right * stiffness_matrix_right_ -
              dt_ / 2 * mass_matrix_inv_right * dissipation_matrix_right_) *
-            mass_matrix_inv_left * p_(idx_now_, Eigen::seq(3, 5)).transpose();
+            mass_matrix_inv_right * p_(idx_now_, Eigen::seq(3, 5)).transpose();
 
         potential_energy_(idx_next_) =
             0.5 * qmid.head(3).transpose() * stiffness_matrix_left_ * qmid.head(3) + 0.5 * r_(idx_now_) * r_(idx_now_);
-        potential_energy_(idx_next_) =
+        potential_energy_(idx_next_) +=
             0.5 * qmid.tail(3).transpose() * stiffness_matrix_right_ * qmid.tail(3) + 0.5 * r_(idx_now_) * r_(idx_now_);
 
         stored_power_kinetic_ = (kinetic_energy_(idx_next_) - kinetic_energy_(idx_now_)) / dt_;
