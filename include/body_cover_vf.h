@@ -173,7 +173,7 @@ public:
     void set_masses(const Eigen::Vector<T, 3>& masses) { masses_.diagonal() = ClipEigen(masses.array(), 1e-6, 1e-3); };
     void set_stiffnesses(const Eigen::Vector<T, 4>& stiffnesses)
     {
-        stiffnesses_.diagonal() = ClipEigen(stiffnesses.array(), 1e-6, 1e-3);
+        stiffnesses_.diagonal() = ClipEigen(stiffnesses.array(), 1e-6, 1e6);
     };
     void set_eta_stiffness(const T& eta_stiffness) { eta_stiffness_ = std::clamp(eta_stiffness, T(0), T(1e12)); };
     void set_rest_positions(const Eigen::Vector<T, 3>& rest_positions)
