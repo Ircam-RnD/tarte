@@ -277,7 +277,7 @@ public:
             right_vf_->SetCricoarytenoidActivity(lc_activity);
             break;
         }
-        RecomputeMatrices();
+        RecomputeMatrices(true);
     };
 
     // void set_xi(const ftype xi, FoldIdentifier fold_id = kBoth)

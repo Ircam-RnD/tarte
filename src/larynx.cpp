@@ -34,6 +34,9 @@ void Larynx<ftype>::RecomputeMatrices(bool update_from_muscles)
     if (update_from_muscles) {
         left_vf_->ComputeParametersFromMuscularActivity();
         right_vf_->ComputeParametersFromMuscularActivity();
+    } else {
+        left_vf_->FillDissipationCoefficients();
+        right_vf_->FillDissipationCoefficients();
     }
 
     mass_matrix_inv_.diagonal().head(3) = left_vf_->masses().inverse().diagonal();

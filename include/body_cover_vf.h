@@ -87,14 +87,6 @@ private:
     T xi_{0.4};
     Eigen::DiagonalMatrix<T, 4> dissipation_coefficients_;
 
-    void FillDissipationCoefficients()
-    {
-        dissipation_coefficients_.diagonal()(0) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(0) * masses_.diagonal()(0));
-        dissipation_coefficients_.diagonal()(1) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(1) * masses_.diagonal()(1));
-        dissipation_coefficients_.diagonal()(2) = xi_ * sqrt(stiffnesses_.diagonal()(2) * masses_.diagonal()(2));
-        dissipation_coefficients_.diagonal()(3) = 0;
-    }
-
 public:
     static inline const Eigen::Matrix<T, 4, 3> elongation_matrix_ =
         (Eigen::Matrix<T, 4, 3>() << 1, 0, -1, 0, 1, -1, 0, 0, 1, 1, -1, 0).finished();
@@ -158,6 +150,14 @@ public:
                      T(0)); // coupling
 
         FillDissipationCoefficients();
+    }
+
+    void FillDissipationCoefficients()
+    {
+        dissipation_coefficients_.diagonal()(0) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(0) * masses_.diagonal()(0));
+        dissipation_coefficients_.diagonal()(1) = 2 * xi_ * sqrt(stiffnesses_.diagonal()(1) * masses_.diagonal()(1));
+        dissipation_coefficients_.diagonal()(2) = xi_ * sqrt(stiffnesses_.diagonal()(2) * masses_.diagonal()(2));
+        dissipation_coefficients_.diagonal()(3) = 0;
     }
 
     // Direct accessors to lower level parameters for easier read in the larynx class
