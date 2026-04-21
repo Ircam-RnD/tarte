@@ -69,10 +69,7 @@ private:
     {
         return PassiveStress(sigma_0_ligament_, sigma_2_ligament_, e1_ligament_, e2_ligament_, C_ligament_, e);
     };
-    static T PassiveStressTA(const T& e)
-    {
-        return PassiveStress(sigma_0_mucosa_, sigma_2_mucosa_, e1_mucosa_, e2_mucosa_, C_mucosa_, e);
-    };
+    static T PassiveStressTA(const T& e) { return PassiveStress(sigma_0_ta_, sigma_2_ta_, e1_ta_, e2_ta_, C_ta_, e); };
 
     T sigma_body_, sigma_cover_;
     T sigma_muscle_, sigma_muscle_passive_, sigma_ligament_, sigma_mucosa_;
@@ -108,7 +105,7 @@ public:
         thickness_ = std::min(base_thickness_ / (1 + 0.8 * elongation_), 0.3e-2);
         thicknesses_(0) = thickness_ * shear_mode_nodal_point_;
         thicknesses_(1) = thickness_ * (1 - shear_mode_nodal_point_);
-        thicknesses_(1) = thickness_;
+        thicknesses_(2) = thickness_;
 
         lengths_(0) = lengths_(1) = base_length_ * (1 + elongation_);
 
@@ -125,11 +122,11 @@ public:
         sigma_ligament_ = PassiveStressLigament(elongation_);
         sigma_mucosa_ = PassiveStressMucosa(elongation_);
         sigma_muscle_passive_ = PassiveStressTA(elongation_);
-        sigma_body_ = (0.5 * sigma_ligament_ * depth_ligament_ + sigma_muscle_ * depth_muscle_) / depth_body_;
-        sigma_cover_ = (0.5 * sigma_ligament_ * depth_ligament_ + sigma_muscle_ * depth_muscle_) / depth_cover_;
         sigma_muscle_ = alpha_ta_ * sigma_max_ta_ *
                             std::max(T(0), 1 - b_ta_ * (elongation_ - e_ta_opt_) * (elongation_ - e_ta_opt_)) +
                         sigma_muscle_passive_;
+        sigma_body_ = (0.5 * sigma_ligament_ * depth_ligament_ + sigma_muscle_ * depth_muscle_) / depth_body_;
+        sigma_cover_ = (0.5 * sigma_mucosa_ * depth_mucosa_ + sigma_muscle_ * depth_muscle_) / depth_cover_;
 
         // Low level parameters
         masses_.diagonal()(0) = density_ * lengths_(0) * thicknesses_(0) * depth_cover_;
