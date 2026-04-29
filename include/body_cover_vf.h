@@ -32,8 +32,9 @@ private:
         0}; // This describes the length in contact with the fluid (so the 3rd element is always 0)
 
     // Numerical constants for stress computations (table 1 of [2])
-    static constexpr T e1_mucosa_{-0.5}, e2_mucosa_{0.35}, sigma_0_mucosa_{500}, sigma_2_mucosa_{30000}, C_mucosa_{4.4};
-    static constexpr T e1_ligament_{-0.5}, e2_ligament_{0.0}, sigma_0_ligament_{400}, sigma_2_ligament_{1393},
+    static constexpr T e1_mucosa_{-0.5}, e2_mucosa_{0.35}, sigma_0_mucosa_{500e3}, sigma_2_mucosa_{30000},
+        C_mucosa_{4.4};
+    static constexpr T e1_ligament_{-0.5}, e2_ligament_{0.0}, sigma_0_ligament_{400e3}, sigma_2_ligament_{1393},
         C_ligament_{17};
     static constexpr T e1_ta_{-0.5}, e2_ta_{-0.05}, sigma_0_ta_{1000.0}, sigma_2_ta_{1500.0}, C_ta_{6.5},
         sigma_max_ta_{105000}, e_ta_opt_{0.4}, b_ta_{1.07};
