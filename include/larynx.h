@@ -259,28 +259,28 @@ public:
         eta_contact_stiffness_ = std::clamp(eta_contact_stiffness, ftype(0), ftype(1e12));
     }
 
-    void set_muscles_activation(const ftype& ca_activity,
+    void set_muscles_activation(const ftype& ct_activity,
                                 const ftype& ta_activity,
                                 const ftype& lc_activity,
                                 FoldIdentifier fold_id = kBoth)
     {
         switch (fold_id) {
         case kLeft:
-            left_vf_->SetCricothyroidActivity(ca_activity);
+            left_vf_->SetCricothyroidActivity(ct_activity);
             left_vf_->SetThyroarytenoidActivity(ta_activity);
             left_vf_->SetCricoarytenoidActivity(lc_activity);
             break;
         case kRight:
-            right_vf_->SetCricothyroidActivity(ca_activity);
+            right_vf_->SetCricothyroidActivity(ct_activity);
             right_vf_->SetThyroarytenoidActivity(ta_activity);
             right_vf_->SetCricoarytenoidActivity(lc_activity);
             break;
         default:
-            left_vf_->SetCricothyroidActivity(ca_activity);
+            left_vf_->SetCricothyroidActivity(ct_activity);
             left_vf_->SetThyroarytenoidActivity(ta_activity);
             left_vf_->SetCricoarytenoidActivity(lc_activity);
 
-            right_vf_->SetCricothyroidActivity(ca_activity);
+            right_vf_->SetCricothyroidActivity(ct_activity);
             right_vf_->SetThyroarytenoidActivity(ta_activity);
             right_vf_->SetCricoarytenoidActivity(lc_activity);
             break;
