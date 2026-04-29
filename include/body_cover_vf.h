@@ -35,7 +35,7 @@ private:
     static constexpr T e1_mucosa_{-0.5}, e2_mucosa_{0.35}, sigma_0_mucosa_{500}, sigma_2_mucosa_{30000}, C_mucosa_{4.4};
     static constexpr T e1_ligament_{-0.5}, e2_ligament_{0.0}, sigma_0_ligament_{400}, sigma_2_ligament_{1393},
         C_ligament_{17};
-    static constexpr T e1_ta_{-0.5}, e2_ta_{-0.05}, sigma_0_ta_{1.0}, sigma_2_ta_{1.5}, C_ta_{6.5},
+    static constexpr T e1_ta_{-0.5}, e2_ta_{-0.05}, sigma_0_ta_{1000.0}, sigma_2_ta_{1500.0}, C_ta_{6.5},
         sigma_max_ta_{105000}, e_ta_opt_{0.4}, b_ta_{1.07};
 
     // Numerical constants for elongation computations
@@ -102,7 +102,7 @@ public:
             (1 + alpha_ta_) / 3; // relative version, between 1/3 and 2/3 of the vocal fold thickness_
         elongation_ = e_gain_ * (e_torque_ratio_ * alpha_ct_ - alpha_ta_) - e_strain_factor * alpha_lc_;
 
-        thickness_ = std::min(base_thickness_ / (1 + 0.8 * elongation_), 0.3e-2);
+        thickness_ = base_thickness_ / (1 + 0.8 * elongation_), 0.3e-2;
         thicknesses_(0) = thickness_ * shear_mode_nodal_point_;
         thicknesses_(1) = thickness_ * (1 - shear_mode_nodal_point_);
         thicknesses_(2) = thickness_;
