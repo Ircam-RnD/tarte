@@ -113,10 +113,10 @@ public:
         depth_cover_ = (depth_mucosa_ + 0.5 * depth_ligament_) / (1 + 0.2 * elongation_);
 
         rest_positions_(1) = 0.25 * base_length_ * (1 - 2 * alpha_lc_);
-        rest_positions_(0) =
-            rest_positions_(1) +
-            thickness_ * (0.05 - 0.15 * 0.33); // "Rectangular" configuration, almost negligible convergence
-        rest_positions_(2) = 3e-3;             // Arbitrary, no impact on the dynamics.
+        // rest_positions_(0) = rest_positions_(1) + thickness_ * (0.05 - 0.15 * alpha_ta_); // Convergence rule Eq. 63
+        rest_positions_(0) = rest_positions_(1) + thickness_ * tan(0.0001); // "Nearly rectangular" case
+
+        rest_positions_(2) = 3e-3; // Arbitrary, no impact on the dynamics.
 
         // Stresses
         sigma_ligament_ = PassiveStressLigament(elongation_);
