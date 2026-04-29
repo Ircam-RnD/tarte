@@ -102,7 +102,7 @@ public:
             (1 + alpha_ta_) / 3; // relative version, between 1/3 and 2/3 of the vocal fold thickness_
         elongation_ = e_gain_ * (e_torque_ratio_ * alpha_ct_ - alpha_ta_) - e_strain_factor * alpha_lc_;
 
-        thickness_ = base_thickness_ / (1 + 0.8 * elongation_), 0.3e-2;
+        thickness_ = base_thickness_ / (1 + 0.8 * elongation_);
         thicknesses_(0) = thickness_ * shear_mode_nodal_point_;
         thicknesses_(1) = thickness_ * (1 - shear_mode_nodal_point_);
         thicknesses_(2) = thickness_;
