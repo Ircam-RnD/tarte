@@ -126,7 +126,7 @@ public:
                             std::max(T(0), 1 - b_ta_ * (elongation_ - e_ta_opt_) * (elongation_ - e_ta_opt_)) +
                         sigma_muscle_passive_;
         sigma_body_ = (0.5 * sigma_ligament_ * depth_ligament_ + sigma_muscle_ * depth_muscle_) / depth_body_;
-        sigma_cover_ = (0.5 * sigma_mucosa_ * depth_mucosa_ + sigma_muscle_ * depth_muscle_) / depth_cover_;
+        sigma_cover_ = (0.5 * sigma_ligament_ * depth_ligament_ + sigma_mucosa_ * depth_mucosa_) / depth_cover_;
 
         // Low level parameters
         masses_.diagonal()(0) = density_ * lengths_(0) * thicknesses_(0) * depth_cover_;
