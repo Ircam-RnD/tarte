@@ -141,7 +141,7 @@ public:
                                      M_PI * M_PI * sigma_body_ * (depth_body_ / lengths_(0)) * thickness_;
         stiffnesses_.diagonal()(3) =
             std::max(T((0.5 * shear_modulus_cover_ * (lengths_(0) * depth_cover_ / thickness_) /
-                            (1 / 3 - shear_mode_nodal_point_ * (1 - shear_mode_nodal_point_)) -
+                            (T(1) / T(3) - shear_mode_nodal_point_ * (1 - shear_mode_nodal_point_)) -
                         2 * shear_modulus_cover_ * (lengths_(0) * thickness_ / depth_cover_)) *
                        shear_mode_nodal_point_ * (1 - shear_mode_nodal_point_)),
                      T(0)); // coupling
