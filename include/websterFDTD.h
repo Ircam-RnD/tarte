@@ -73,10 +73,10 @@ private:
     void set_N_lpf(int num);
 
 public:
-    WebsterFDTD(ftype sampleRate, ftype length = ftype(17e-2));
+    WebsterFDTD(ftype sampleRate, ftype length = ftype(17e-2), Articulation* art = nullptr);
 
-    // Recomputes everything (no heap allocation occurs here)
-    void DspSetup(ftype sampleRate);
+    // Recomputes everything
+    void DspSetup(ftype sampleRate, Articulation* art = nullptr);
 
     // Geometry setters
     template<typename intype>
@@ -88,7 +88,7 @@ public:
             S_target_[i] = static_cast<ftype>(std::max(float(1e-8), float(in[i])));
         }
     }
-    void SetTargetGeometryFromArticulation(Articulation articulation);
+    void SetTargetGeometryFromArticulation(Articulation articulation, bool force_direct = false);
     void SetConstantSection(ftype section);
 
     // Geometry smoothing

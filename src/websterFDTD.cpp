@@ -5,15 +5,15 @@
 namespace tarte {
 
 template<typename ftype>
-WebsterFDTD<ftype>::WebsterFDTD(ftype sampleRate, ftype length)
+WebsterFDTD<ftype>::WebsterFDTD(ftype sampleRate, ftype length, Articulation* art)
 {
     l0_ = length;
-    DspSetup(sampleRate);
+    DspSetup(sampleRate, art);
 }
 
 // DspSetup – no heap allocation; all arrays are fixed-size
 template<typename ftype>
-void WebsterFDTD<ftype>::DspSetup(ftype sampleRate)
+void WebsterFDTD<ftype>::DspSetup(ftype sampleRate, Articulation* art)
 {
     sr_ = sampleRate;
     dt_ = 1 / sr_;
@@ -28,11 +28,14 @@ void WebsterFDTD<ftype>::DspSetup(ftype sampleRate)
     x_dual_.head(N_ - 1) = x_direct_.segment(1, N_ - 1);
 
     // Sections
-    S_target_.head(N_ + 1).setOnes();
-    S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
-    S_direct_last_.head(N_ + 1) = S_direct_.head(N_ + 1);
-
-    ComputeDiscreteGreometry();
+    if (art) {
+        SetTargetGeometryFromArticulation(*art, true);
+    } else {
+        S_target_.head(N_ + 1).setOnes();
+        S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
+        S_direct_last_.head(N_ + 1) = S_direct_.head(N_ + 1);
+        ComputeDiscreteGreometry();
+    }
     S_primal_last_.head(N_) = S_primal_.head(N_);
 
     d_S_primal_.head(N_).setZero();
@@ -100,10 +103,10 @@ void WebsterFDTD<ftype>::SetNStability()
 }
 
 template<typename ftype>
-void WebsterFDTD<ftype>::SetTargetGeometryFromArticulation(Articulation articulation)
+void WebsterFDTD<ftype>::SetTargetGeometryFromArticulation(Articulation articulation, bool force_direct)
 {
     articulation.getAreas(x_direct_.data(), S_target_.data(), N_ + 1);
-    if (!time_varying_geometry_) {
+    if (!time_varying_geometry_ or force_direct) {
         S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
         ComputeDiscreteGreometry();
         UpdateCoefficients();
