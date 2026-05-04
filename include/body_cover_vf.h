@@ -26,10 +26,7 @@ private:
     Eigen::Vector<T, 3> thicknesses_{1.5e-3,
                                      1.5e-3,
                                      3e-3}; // effective thicknesses of the 3 masses for use in pressure mappings
-    Eigen::Vector<T, 3> lengths_{
-        1e-2,
-        1e-2,
-        0}; // This describes the length in contact with the fluid (so the 3rd element is always 0)
+    Eigen::Vector<T, 3> lengths_{1e-2, 1e-2, 1e-2};
 
     // Numerical constants for stress computations (table 1 of [2])
     static constexpr T e1_mucosa_{-0.5}, e2_mucosa_{0.35}, sigma_0_mucosa_{500}, sigma_2_mucosa_{30000}, C_mucosa_{4.4};
@@ -107,7 +104,7 @@ public:
         thicknesses_(1) = thickness_ * (1 - shear_mode_nodal_point_);
         thicknesses_(2) = thickness_;
 
-        lengths_(0) = lengths_(1) = base_length_ * (1 + elongation_);
+        lengths_(0) = lengths_(1) = lengths_(2) = base_length_ * (1 + elongation_);
 
         depth_body_ = (alpha_ta_ * depth_muscle_ + 0.5 * depth_ligament_) / (1. + 0.2 * elongation_);
         depth_cover_ = (depth_mucosa_ + 0.5 * depth_ligament_) / (1 + 0.2 * elongation_);

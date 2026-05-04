@@ -24,10 +24,6 @@ private:
     // Folds physical parameters are in there
     std::shared_ptr<BodyCoverVF<ftype>> left_vf_, right_vf_;
 
-    // The lengths and widths of the masses are supposed to be the same for both folds
-    Eigen::Vector<ftype, 3> lengths_{1.5e-3, 1.5e-3, 3e-3};
-    Eigen::Vector<ftype, 3> widths_{1e-2, 1e-2, 0};
-
     // Contact parameters
     ftype contact_stiffness_{15}, eta_contact_stiffness_{1e6}, alpha_contact_stiffness_{3};
 

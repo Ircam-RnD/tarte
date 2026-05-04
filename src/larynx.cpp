@@ -90,6 +90,10 @@ void Larynx<ftype>::ComputeEffectiveAreas()
             left_vf_->lengths().cwiseProduct(left_vf_->thicknesses()).cwiseProduct(smoothed_is_opened_);
         effective_surfaces_Psup_right_ =
             right_vf_->lengths().cwiseProduct(right_vf_->thicknesses()).cwiseProduct(smoothed_is_opened_);
+
+        // The body mass should never be exposed to fluid pressure
+        effective_surfaces_Psup_left_(2) = 0;
+        effective_surfaces_Psup_right_(2) = 0;
     } else {
         effective_surfaces_Psub_left_(0) = left_vf_->lengths()(0) * left_vf_->thicknesses()(0) *
                                            (1 - area_ratio_ * area_ratio_) * (smoothed_is_opened_(0));
