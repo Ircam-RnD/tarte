@@ -94,7 +94,7 @@ private:
 
 public:
     Larynx(ftype samplerate, bool yielding_walls = false);
-    void DspSetup(ftype sampleRate);
+    void DspSetup(ftype sampleRate, Articulation* art = nullptr);
 
     void Process(ftype Pin);
 

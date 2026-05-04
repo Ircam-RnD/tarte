@@ -54,11 +54,11 @@ void Larynx<ftype>::RecomputeMatrices(bool update_from_muscles)
 }
 
 template<typename ftype>
-void Larynx<ftype>::DspSetup(ftype samplerate)
+void Larynx<ftype>::DspSetup(ftype samplerate, Articulation* art)
 {
     sr_ = samplerate;
     dt_ = 1 / sr_;
-    resonator_->DspSetup(samplerate);
+    resonator_->DspSetup(samplerate, art);
 
     A0_inv_ = dt_;
 }
