@@ -60,7 +60,7 @@ private:
     Eigen::Matrix<ftype, 6, 2> u_woodburry_;
     Eigen::Matrix<ftype, 2, 2> woodburry_inv_;
 
-    ftype const kEpsilonSmooth_{1e-5};
+    ftype epsilon_smooth_{1e-5};
 
     // State
     Eigen::Matrix<ftype, 2, 6> p_, q_;
@@ -242,15 +242,15 @@ public:
             break;
         }
     }
-    void set_contact_stiffness(const ftype contact_stiffness)
+    void set_contact_stiffness(const ftype& contact_stiffness)
     {
         contact_stiffness_ = std::clamp(contact_stiffness, ftype(0), ftype(1e3));
     }
-    void set_alpha_contact_stiffness(const ftype alpha_contact_stiffness)
+    void set_alpha_contact_stiffness(const ftype& alpha_contact_stiffness)
     {
         alpha_contact_stiffness_ = std::clamp(alpha_contact_stiffness, ftype(1), ftype(5));
     }
-    void set_eta_contact_stiffness(const ftype eta_contact_stiffness)
+    void set_eta_contact_stiffness(const ftype& eta_contact_stiffness)
     {
         eta_contact_stiffness_ = std::clamp(eta_contact_stiffness, ftype(0), ftype(1e12));
     }
@@ -297,11 +297,15 @@ public:
     //     }
     // }
 
-    void set_c0(const ftype c0) { c0_ = std::clamp(c0, ftype(300), ftype(380)); }
-    void set_rho0(const ftype rho0) { rho0_ = std::clamp(rho0, ftype(1), ftype(15)); }
-    void set_kt(const ftype kt) { kt_ = std::clamp(kt, ftype(1), ftype(2)); }
+    void set_c0(const ftype& c0) { c0_ = std::clamp(c0, ftype(300), ftype(380)); }
+    void set_rho0(const ftype& rho0) { rho0_ = std::clamp(rho0, ftype(1), ftype(15)); }
+    void set_kt(const ftype& kt) { kt_ = std::clamp(kt, ftype(1), ftype(2)); }
 
-    void set_lambda_sav(const ftype lambda_sav) { lambda_sav_ = std::clamp(lambda_sav, ftype(0), sr_); }
+    void set_lambda_sav(const ftype& lambda_sav) { lambda_sav_ = std::clamp(lambda_sav, ftype(0), sr_); }
+    void set_epsilon_smooth(const ftype& epsilon_smooth)
+    {
+        epsilon_smooth_ = std::clamp(epsilon_smooth, ftype(1e-6), ftype(1e-2));
+    }
 
     // Getters
     inline Eigen::Vector<ftype, 3> get_rest_positions(FoldIdentifier fold_id = kBoth)
@@ -372,6 +376,7 @@ public:
     inline ftype get_kt() { return kt_; }
 
     inline ftype get_lambda_sav() { return lambda_sav_; }
+    inline ftype get_epsilon_smooth() { return epsilon_smooth_; }
 
     std::shared_ptr<WebsterFDTD<ftype>> get_resonator() { return resonator_; }
 };

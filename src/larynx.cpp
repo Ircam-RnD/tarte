@@ -70,11 +70,11 @@ void Larynx<ftype>::FillMassesInterpenetrationsAndAreas()
                                  q_(idx_next_, Eigen::seq(3, 5)).transpose() - right_vf_->rest_positions());
 
     areas_below_masses_ = 0.5 * (left_vf_->lengths() + right_vf_->lengths())
-                                    .cwiseProduct(softplusMatrix(-masses_interpenetrations_, kEpsilonSmooth_));
+                                    .cwiseProduct(softplusMatrix(-masses_interpenetrations_, epsilon_smooth_));
     smoothed_is_opened_ =
-        (-(masses_interpenetrations_ / kEpsilonSmooth_).array().tanh().matrix() + Eigen::Vector<ftype, 3>::Ones()) / 2;
-    masses_interpenetrations_derivatives_ = softplusDerivativeMatrix(masses_interpenetrations_, kEpsilonSmooth_);
-    masses_interpenetrations_ = softplusMatrix(masses_interpenetrations_, kEpsilonSmooth_);
+        (-(masses_interpenetrations_ / epsilon_smooth_).array().tanh().matrix() + Eigen::Vector<ftype, 3>::Ones()) / 2;
+    masses_interpenetrations_derivatives_ = softplusDerivativeMatrix(masses_interpenetrations_, epsilon_smooth_);
+    masses_interpenetrations_ = softplusMatrix(masses_interpenetrations_, epsilon_smooth_);
 }
 
 template<typename ftype>
@@ -154,7 +154,7 @@ void Larynx<ftype>::ComputeSavVector()
             contact_stiffness_ * eta_contact_stiffness_ *
                 (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) +
                  pow(masses_interpenetrations_(1), alpha_contact_stiffness_ + 1)) /
-                (alpha_contact_stiffness_ + 1); // Contact
+                (alpha_contact_stiffness_ + 1);
 
     Fnl_(0) += contact_stiffness_ *
                (eta_contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_) +
@@ -199,7 +199,7 @@ void Larynx<ftype>::ComputeSavVector()
                                   left_vf_->rest_positions() +
                                   (q_(idx_next_, Eigen::seq(3, 5)) + q_(idx_now_, Eigen::seq(3, 5))).transpose() +
                                   -right_vf_->rest_positions()),
-                           kEpsilonSmooth_);
+                           epsilon_smooth_);
 
         Enl_ +=
             0.5 * (contact_stiffness_ * (masses_interpenetrations_(0) * masses_interpenetrations_(0) +
