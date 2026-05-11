@@ -79,10 +79,16 @@ public:
         return (q_(idx_now_) + q_(idx_next_)) * 0.5;
     };
 
-    inline ftype ReadOpening() { return opening_; };
+    inline ftype ReadEffectiveOpening() { return opening_; };
 
     inline ftype ReadRadiatedPressure() { return resonator_->ReadRadiatedPressure(); }
     inline ftype ReadAuxiliaryVariable() { return r_(idx_now_); };
+
+    // Flow variables
+    inline ftype ReadMeanMouthpieceFlow() { return mean_flow_; };
+    inline ftype ReadMouthpieceFlow() { return resonator_flow_; };
+    inline ftype ReadPressureDrop() { return Psub_(idx_now_) - Psup_; };
+    inline ftype getCurrentState() { return Psub_(idx_now_) - Psup_; };
 
     // Power variables
     std::tuple<ftype, ftype, ftype> getCurrentDissipatedPowers()
@@ -97,12 +103,6 @@ public:
     {
         return {stored_power_, stored_power_kinetic_, stored_power_potential_};
     };
-
-    // Flow variables
-    inline ftype getCurrentMeanFlow() { return mean_flow_; };
-    inline ftype getCurrentResonatorFlow() { return resonator_flow_; };
-    inline ftype getCurrentPressureDrop() { return Psub_(idx_now_) - Psup_; };
-    inline ftype getCurrentState() { return Psub_(idx_now_) - Psup_; };
 
     // Setters
     void set_mass(const ftype& mass)
