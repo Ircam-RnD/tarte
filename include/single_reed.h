@@ -37,7 +37,7 @@ private:
 
     ftype rhs_;
 
-    ftype epsilon_smooth_{1e-7}, epsilon_smooth_P_{1};
+    ftype epsilon_smooth_{1e-7}, epsilon_smooth_P_{10};
 
     // State
     Eigen::Vector<ftype, 2> p_, q_, r_;
@@ -126,6 +126,10 @@ public:
     {
         contact_stiffness_ = std::clamp(contact_stiffness, ftype(0), ftype(1e13));
     }
+    void set_epsilon_smooth(const ftype& epsilon_smooth)
+    {
+        epsilon_smooth_ = std::clamp(epsilon_smooth, ftype(1e-8), ftype(1e-3));
+    }
 
     // Getters
     ftype get_mass() { return mass_; }
@@ -135,6 +139,7 @@ public:
     ftype get_surface() { return surface_; }
     ftype get_lay_position() { return lay_position_; }
     ftype get_contact_stiffness() { return contact_stiffness_; }
+    ftype get_epsilon_smooth() { return epsilon_smooth_; }
 
     std::shared_ptr<WebsterFDTD<ftype>> get_resonator() { return resonator_; }
 };
