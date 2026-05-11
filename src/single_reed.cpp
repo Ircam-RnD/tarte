@@ -25,6 +25,24 @@ SingleReed<ftype>::SingleReed(float samplerate)
 };
 
 template<typename ftype>
+void SingleReed<ftype>::DspSetup(float samplerate)
+{
+    sr_ = samplerate;
+    dt_ = 1 / sr_;
+
+    resonator_->DspSetup(samplerate);
+
+    p_.setZero();
+    q_.setZero();
+    r_.setZero();
+    Psub_centered_.setZero();
+    Psub_.setZero();
+
+    kinetic_energy_.setZero();
+    potential_energy_.setZero();
+}
+
+template<typename ftype>
 void SingleReed<ftype>::fillOpeningAndInterpenetration()
 {
     interpenetration_ = q_(idx_next_) - lay_position_;

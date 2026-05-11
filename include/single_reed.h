@@ -69,6 +69,8 @@ private:
 public:
     SingleReed(float samplerate);
 
+    void DspSetup(float samplerate);
+
     void Process(float Pin);
 
     inline ftype ReadDisplacement()
