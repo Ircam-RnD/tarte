@@ -31,6 +31,7 @@ void SingleReed<ftype>::DspSetup(float samplerate)
     dt_ = 1 / sr_;
 
     resonator_->DspSetup(samplerate);
+    resonator_->SetConstantSection(M_PI * 1e-4);
 
     p_.setZero();
     q_.setZero();

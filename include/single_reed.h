@@ -84,8 +84,6 @@ public:
     inline ftype ReadRadiatedPressure() { return resonator_->ReadRadiatedPressure(); }
     inline ftype ReadAuxiliaryVariable() { return r_(idx_now_); };
 
-    inline ftype get_lay_position() { return lay_position_; };
-
     // Power variables
     std::tuple<ftype, ftype, ftype> getCurrentDissipatedPowers()
     {
@@ -105,6 +103,38 @@ public:
     inline ftype getCurrentResonatorFlow() { return resonator_flow_; };
     inline ftype getCurrentPressureDrop() { return Psub_(idx_now_) - Psup_; };
     inline ftype getCurrentState() { return Psub_(idx_now_) - Psup_; };
+
+    // Setters
+    void set_mass(const ftype& mass)
+    {
+        mass_ = std::clamp(mass, ftype(1e-5), ftype(1e-3));
+        dissipation_coefficient_ = 2 * mass_ * damping_;
+    }
+    void set_stiffness(const ftype& stiffness) { stiffness_ = std::clamp(stiffness, ftype(1e1), ftype(1e4)); }
+    void set_damping(const ftype& damping)
+    {
+        damping_ = std::clamp(damping, ftype(0), ftype(10000));
+        dissipation_coefficient_ = 2 * mass_ * damping_;
+    }
+    void set_lay_position(const ftype& lay_position)
+    {
+        lay_position_ = std::clamp(lay_position, ftype(0), ftype(1e-2));
+    }
+    void set_width(const ftype& width) { width_ = std::clamp(width, ftype(1e-3), ftype(3e-2)); }
+    void set_surface(const ftype& surface) { surface_ = std::clamp(surface, ftype(1e-6), ftype(1e-3)); }
+    void set_contact_stiffness(const ftype& contact_stiffness)
+    {
+        contact_stiffness_ = std::clamp(contact_stiffness, ftype(0), ftype(1e13));
+    }
+
+    // Getters
+    ftype get_mass() { return mass_; }
+    ftype get_stiffness() { return stiffness_; }
+    ftype get_damping() { return damping_; }
+    ftype get_width() { return width_; }
+    ftype get_surface() { return surface_; }
+    ftype get_lay_position() { return lay_position_; }
+    ftype get_contact_stiffness() { return contact_stiffness_; }
 
     std::shared_ptr<WebsterFDTD<ftype>> get_resonator() { return resonator_; }
 };
