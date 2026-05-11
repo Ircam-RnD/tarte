@@ -53,7 +53,7 @@ void SingleReed<ftype>::fillOpeningAndInterpenetration()
     // interpenetration_ = softplus(interpenetration_, epsilon_smooth_);
     // interpenetration_derivative_ = softplusDerivative(interpenetration_,
     // epsilon_smooth_);
-    smoothed_is_opened_ = (-tanh(interpenetration_ / epsilon_smooth_) + 1) / 2;
+    smoothed_is_opened_ = 1;
 
     if (interpenetration_ >= 0) {
         interpenetration_derivative_ = 1;
