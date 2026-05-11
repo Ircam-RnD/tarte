@@ -37,7 +37,7 @@ private:
 
     ftype rhs_;
 
-    ftype epsilon_smooth_{1e-7}, epsilon_smooth_P_{10};
+    ftype smoothed_is_opened_;
 
     // State
     Eigen::Vector<ftype, 2> p_, q_, r_;
@@ -60,6 +60,7 @@ private:
 
     // Solver parameters
     ftype sr_, dt_;
+    ftype epsilon_smooth_{1e-7}, epsilon_smooth_P_{10};
 
     // Functions
     void fillOpeningAndInterpenetration();

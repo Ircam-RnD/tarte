@@ -53,6 +53,7 @@ void SingleReed<ftype>::fillOpeningAndInterpenetration()
     // interpenetration_ = softplus(interpenetration_, epsilon_smooth_);
     // interpenetration_derivative_ = softplusDerivative(interpenetration_,
     // epsilon_smooth_);
+    smoothed_is_opened_ = (-tanh(interpenetration_ / epsilon_smooth_) + 1) / 2;
 
     if (interpenetration_ >= 0) {
         interpenetration_derivative_ = 1;
@@ -152,18 +153,19 @@ void SingleReed<ftype>::Process(float Pin)
     computeRk();
     std::tie(a_resonator_, b_resonator_) = resonator_->GetIOLinearDependencyCoefficients();
     C0_feedback_ = 1 / (R_k_ + 1 / b_resonator_) *
-                   (a_resonator_ / b_resonator_ + R_k_ * Psub_(idx_next_) + 0.5 * surface_ / mass_ * p_(idx_now_));
-    C1_feedback_ = 1 / (R_k_ + 1 / b_resonator_) * 0.5 / mass_ * surface_;
+                   (a_resonator_ / b_resonator_ + R_k_ * Psub_(idx_next_) +
+                    0.5 * surface_ * smoothed_is_opened_ / mass_ * p_(idx_now_));
+    C1_feedback_ = 1 / (R_k_ + 1 / b_resonator_) * 0.5 / mass_ * surface_ * smoothed_is_opened_;
 
     computegSAV();
 
     // Step 4: solve for pnext
     rhs_ = -stiffness_ * q_(idx_next_) +
            (1 / dt_ - 0.25 * dt_ * g_sav_ * g_sav_ / mass_ - dissipation_coefficient_ / (2 * mass_)) * p_(idx_now_) +
-           surface_ * (Psub_(idx_next_) - C0_feedback_) - g_sav_ * r_(idx_now_);
+           surface_ * smoothed_is_opened_ * (Psub_(idx_next_) - C0_feedback_) - g_sav_ * r_(idx_now_);
 
     p_(idx_next_) = rhs_ / (1 / dt_ + 0.25 * dt_ * g_sav_ * g_sav_ / mass_ + dissipation_coefficient_ / (2 * mass_) +
-                            surface_ * C1_feedback_);
+                            surface_ * smoothed_is_opened_ * C1_feedback_);
 
     // Step 5: r_ update
     r_(idx_next_) = r_(idx_now_) + 0.5 * dt_ * g_sav_ / mass_ * (p_(idx_now_) + p_(idx_next_));
