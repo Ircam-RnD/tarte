@@ -1,3 +1,4 @@
 add_subdirectory(Duffing)
 add_subdirectory(WebsterFDTD)
 add_subdirectory(Larynx)
+add_subdirectory(SingleReed)
