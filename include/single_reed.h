@@ -67,6 +67,10 @@ private:
     void computeRk();
     void computegSAV();
 
+    // Experimental noise
+    float noise_ratio_{0.f}, random_value_;
+    ftype noise_flow_;
+
 public:
     SingleReed(float samplerate);
 
@@ -131,6 +135,7 @@ public:
     {
         epsilon_smooth_ = std::clamp(epsilon_smooth, ftype(1e-8), ftype(1e-3));
     }
+    void set_noise_ratio(const ftype& noise_ratio) { noise_ratio_ = std::clamp(noise_ratio, ftype(0), ftype(1)); }
 
     // Getters
     ftype get_mass() { return mass_; }
@@ -141,6 +146,7 @@ public:
     ftype get_lay_position() { return lay_position_; }
     ftype get_contact_stiffness() { return contact_stiffness_; }
     ftype get_epsilon_smooth() { return epsilon_smooth_; }
+    ftype get_noise_ratio() { return noise_ratio_; }
 
     std::shared_ptr<WebsterFDTD<ftype>> get_resonator() { return resonator_; }
 };
