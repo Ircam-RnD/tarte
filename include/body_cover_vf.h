@@ -7,6 +7,8 @@
 #include <cmath>
 
 namespace tarte {
+enum Gender { MALE, FEMALE };
+
 template<typename T>
 class BodyCoverVF {
     // Model from [1] "Voice simulation with a body‐cover model of the vocal folds", Story and Titze, 1995
@@ -18,6 +20,7 @@ private:
     T alpha_ct_{0.5}, alpha_ta_{0.5}, alpha_lc_{0.5}; // cricothyroid, thyroarytenoid, lateral cricoarytenoid
 
     // Intermediary physical parameters (see section 'II. A minimal parameter set' of the paper [2])
+    Gender gender_{Gender::MALE};
     T comp_striffness_, shear_stiffness_;
     T depth_, depth_cover_, depth_body_;
     T shear_mode_nodal_point_;
@@ -179,6 +182,27 @@ public:
     {
         thicknesses_ = ClipEigen(thicknesses.array(), 1e-5, 1e3);
     };
+
+    // Set and get gender
+    void set_gender(Gender gender)
+    {
+        gender_ = gender;
+        switch (gender_) {
+        case MALE:
+            base_length_ = 1.6e-2; // 1.6e-2 for male, 1e-2 for female
+            depth_mucosa_ = 0.2e-2;
+            depth_ligament_ = 0.2e-2;
+            depth_muscle_ = 0.4e-2; // 0.2e-2, 0.2e-2, 0.4e-2 for male, 0.15e-2, 0.15e-2, 0.3e-2 for female
+            break;
+        case FEMALE:
+            base_length_ = 1.2e-2; // 1.6e-2 for male, 1e-2 for female
+            depth_mucosa_ = 0.15e-2;
+            depth_ligament_ = 0152e-2;
+            depth_muscle_ = 0.3e-2; // 0.2e-2, 0.2e-2, 0.4e-2 for male, 0.15e-2, 0.15e-2, 0.3e-2 for female
+            break;
+        }
+    }
+    Gender get_gender() { return gender_; }
 };
 
 } // namespace tarte

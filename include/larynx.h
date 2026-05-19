@@ -307,6 +307,11 @@ public:
         epsilon_smooth_ = std::clamp(epsilon_smooth, ftype(1e-6), ftype(1e-2));
     }
     void set_noise_ratio(const ftype& noise_ratio) { noise_ratio_ = std::clamp(noise_ratio, ftype(0), ftype(1)); }
+    void set_gender(Gender gender)
+    {
+        left_vf_->set_gender(gender);
+        right_vf_->set_gender(gender);
+    }
 
     // Getters
     inline Eigen::Vector<ftype, 3> get_rest_positions(FoldIdentifier fold_id = kBoth)
@@ -378,6 +383,8 @@ public:
     inline ftype get_lambda_sav() { return lambda_sav_; }
     inline ftype get_epsilon_smooth() { return epsilon_smooth_; }
     inline ftype get_noise_ratio() { return noise_ratio_; }
+
+    inline Gender get_gender() { return left_vf_->get_gender(); }
 
     std::shared_ptr<WebsterFDTD<ftype>> get_resonator() { return resonator_; }
 };
