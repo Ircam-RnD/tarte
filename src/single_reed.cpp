@@ -10,7 +10,7 @@ SingleReed<ftype>::SingleReed(float samplerate)
     sr_ = samplerate;
     dt_ = 1 / sr_;
 
-    resonator_ = std::make_shared<WebsterFDTD<ftype>>(sr_);
+    resonator_ = std::make_shared<WebsterFDTD<ftype, 300>>(sr_);
 
     dissipation_coefficient_ = 2 * mass_ * damping_;
 

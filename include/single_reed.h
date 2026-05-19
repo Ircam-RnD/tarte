@@ -56,7 +56,7 @@ private:
 
     // Resonator
     ftype mouth_flow_{0}, resonator_flow_{0};
-    std::shared_ptr<WebsterFDTD<ftype>> resonator_;
+    std::shared_ptr<WebsterFDTD<ftype, 300>> resonator_;
 
     // Solver parameters
     ftype sr_, dt_;
@@ -148,7 +148,7 @@ public:
     ftype get_epsilon_smooth() { return epsilon_smooth_; }
     ftype get_noise_ratio() { return noise_ratio_; }
 
-    std::shared_ptr<WebsterFDTD<ftype>> get_resonator() { return resonator_; }
+    std::shared_ptr<WebsterFDTD<ftype, 300>> get_resonator() { return resonator_; }
 };
 
 } // namespace tarte
