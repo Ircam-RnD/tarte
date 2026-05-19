@@ -197,7 +197,7 @@ public:
         case FEMALE:
             base_length_ = 1.2e-2; // 1.6e-2 for male, 1e-2 for female
             depth_mucosa_ = 0.15e-2;
-            depth_ligament_ = 0152e-2;
+            depth_ligament_ = 0.15e-2;
             depth_muscle_ = 0.3e-2; // 0.2e-2, 0.2e-2, 0.4e-2 for male, 0.15e-2, 0.15e-2, 0.3e-2 for female
             break;
         }
