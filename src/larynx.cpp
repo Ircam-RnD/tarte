@@ -73,9 +73,8 @@ void Larynx<ftype>::FillMassesInterpenetrationsAndAreas()
                                     .cwiseProduct(softplusMatrix(-masses_interpenetrations_, epsilon_smooth_));
     smoothed_is_opened_ =
         (-(masses_interpenetrations_ / epsilon_smooth_).array().tanh().matrix() + Eigen::Vector<ftype, 3>::Ones()) / 2;
-    masses_interpenetrations_derivatives_ =
-        softplusDerivativeMatrix(masses_interpenetrations_, epsilon_smooth_, ftype(-300.));
-    masses_interpenetrations_ = softplusMatrix(masses_interpenetrations_, epsilon_smooth_, ftype(-300.));
+    masses_interpenetrations_ =
+        (masses_interpenetrations_.array() > 0).select(masses_interpenetrations_, Eigen::Vector<ftype, 3>::Zero());
 }
 
 template<typename ftype>
@@ -150,34 +149,19 @@ void Larynx<ftype>::ComputeSavVector()
                         .matrix();
 
     // Contact
-    Enl_ +=
-        // 0.5 * (contact_stiffness_ * (masses_interpenetrations_(0) * masses_interpenetrations_(0) +
-        //                                      masses_interpenetrations_(1) * masses_interpenetrations_(1))) +
-        contact_stiffness_ * eta_contact_stiffness_ *
-        (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) +
-         pow(masses_interpenetrations_(1), alpha_contact_stiffness_ + 1)) /
-        (alpha_contact_stiffness_ + 1);
+    Enl_ += contact_stiffness_ * eta_contact_stiffness_ *
+            (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) +
+             pow(masses_interpenetrations_(1), alpha_contact_stiffness_ + 1)) /
+            (alpha_contact_stiffness_ + 1);
 
-    Fnl_(0) += contact_stiffness_ *
-               (eta_contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_)
-                // + masses_interpenetrations_(0)
-                ) *
-               masses_interpenetrations_derivatives_(0);
-    Fnl_(1) += contact_stiffness_ *
-               (eta_contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_)
-                //    + masses_interpenetrations_(1)
-                ) *
-               masses_interpenetrations_derivatives_(1);
-    Fnl_(3) += contact_stiffness_ *
-               (eta_contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_)
-                //    + masses_interpenetrations_(0)
-                ) *
-               masses_interpenetrations_derivatives_(0);
-    Fnl_(4) += contact_stiffness_ *
-               (eta_contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_)
-                //    +masses_interpenetrations_(1)
-                ) *
-               masses_interpenetrations_derivatives_(1);
+    Fnl_(0) +=
+        contact_stiffness_ * (eta_contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_));
+    Fnl_(1) +=
+        contact_stiffness_ * (eta_contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_));
+    Fnl_(3) +=
+        contact_stiffness_ * (eta_contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_));
+    Fnl_(4) +=
+        contact_stiffness_ * (eta_contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_));
 
     g_sav_ = Fnl_ / (sqrt(2 * Enl_) + 1e-14);
 
@@ -201,20 +185,17 @@ void Larynx<ftype>::ComputeSavVector()
                     .sum();
 
         masses_interpenetrations_ =
-            softplusMatrix(0.5 * ((q_(idx_next_, Eigen::seq(0, 2)) + q_(idx_now_, Eigen::seq(0, 2))).transpose() -
-                                  left_vf_->rest_positions() +
-                                  (q_(idx_next_, Eigen::seq(3, 5)) + q_(idx_now_, Eigen::seq(3, 5))).transpose() +
-                                  -right_vf_->rest_positions()),
-                           epsilon_smooth_,
-                           ftype(-300.0));
+            0.5 * ((q_(idx_next_, Eigen::seq(0, 2)) + q_(idx_now_, Eigen::seq(0, 2))).transpose() -
+                   left_vf_->rest_positions() +
+                   (q_(idx_next_, Eigen::seq(3, 5)) + q_(idx_now_, Eigen::seq(3, 5))).transpose() +
+                   -right_vf_->rest_positions());
+        masses_interpenetrations_ =
+            (masses_interpenetrations_.array() > 0).select(masses_interpenetrations_, Eigen::Vector<ftype, 3>::Zero());
 
-        Enl_ +=
-            // 0.5 * (contact_stiffness_ * (masses_interpenetrations_(0) * masses_interpenetrations_(0) +
-            //                              masses_interpenetrations_(1) * masses_interpenetrations_(1))) +
-            contact_stiffness_ * eta_contact_stiffness_ *
-            (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) + pow(masses_interpenetrations_(1),
-                                                                                   alpha_contact_stiffness_ + 1)) /
-            (alpha_contact_stiffness_ + 1); // Contact
+        Enl_ += contact_stiffness_ * eta_contact_stiffness_ *
+                (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) + pow(masses_interpenetrations_(1),
+                                                                                       alpha_contact_stiffness_ + 1)) /
+                (alpha_contact_stiffness_ + 1); // Contact
 
         epsilon_sav_ = r_(idx_now_) - sqrt(2 * Enl_);
         g_sav_ = g_sav_ - (lambda_sav_ * epsilon_sav_ * dt_ *
