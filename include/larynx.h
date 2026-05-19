@@ -25,7 +25,7 @@ private:
     std::shared_ptr<BodyCoverVF<ftype>> left_vf_, right_vf_;
 
     // Contact parameters
-    ftype contact_stiffness_{15}, eta_contact_stiffness_{1e6}, alpha_contact_stiffness_{3};
+    ftype contact_stiffness_{15}, eta_contact_stiffness_{1e6}, alpha_contact_stiffness_{1.3};
 
     ftype rho0_{1.2}, c0_{340}, kt_{1.3};
 
