@@ -4,16 +4,16 @@
 
 namespace tarte {
 
-template<typename ftype>
-WebsterFDTD<ftype>::WebsterFDTD(ftype sampleRate, ftype length, Articulation* art)
+template<typename ftype, int kMaxN>
+WebsterFDTD<ftype, kMaxN>::WebsterFDTD(ftype sampleRate, ftype length, Articulation* art)
 {
     l0_ = length;
     DspSetup(sampleRate, art);
 }
 
 // DspSetup – no heap allocation; all arrays are fixed-size
-template<typename ftype>
-void WebsterFDTD<ftype>::DspSetup(ftype sampleRate, Articulation* art)
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
 {
     sr_ = sampleRate;
     dt_ = 1 / sr_;
@@ -86,8 +86,8 @@ void WebsterFDTD<ftype>::DspSetup(ftype sampleRate, Articulation* art)
     set_lp_Qs(0.5);
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::SetNStability()
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::SetNStability()
 {
     h_ = c0_ / sr_;
     N_ = static_cast<int>(std::floor(l0_ / h_));
@@ -102,8 +102,8 @@ void WebsterFDTD<ftype>::SetNStability()
     h_ = l0_ / N_;
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::SetTargetGeometryFromArticulation(Articulation articulation, bool force_direct)
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::SetTargetGeometryFromArticulation(Articulation articulation, bool force_direct)
 {
     articulation.getAreas(x_direct_.data(), S_target_.data(), N_ + 1);
     if (!time_varying_geometry_ or force_direct) {
@@ -113,8 +113,8 @@ void WebsterFDTD<ftype>::SetTargetGeometryFromArticulation(Articulation articula
     }
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::SetConstantSection(ftype section)
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::SetConstantSection(ftype section)
 {
     S_target_.head(N_ + 1).setConstant(section);
     if (!time_varying_geometry_) {
@@ -125,8 +125,8 @@ void WebsterFDTD<ftype>::SetConstantSection(ftype section)
     }
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::ComputeDiscreteGreometry()
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::ComputeDiscreteGreometry()
 {
     S_direct_(0) = S_direct_(1);
     S_direct_(N_) = S_direct_(N_ - 1);
@@ -138,8 +138,8 @@ void WebsterFDTD<ftype>::ComputeDiscreteGreometry()
     S_primal_.head(N_) = 0.5 * (S_direct_.head(N_) + S_direct_.segment(1, N_));
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::UpdateWallParameters()
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::UpdateWallParameters()
 {
     wall_mass_.head(N_) = wall_area_mass_ * 2 * S_primal_.head(N_).sqrt() * static_cast<ftype>(std::sqrt(M_PI));
     wall_stiffness_.head(N_) = wall_mass_.head(N_) * (2 * M_PI * 70) * (2 * M_PI * 70);
@@ -147,8 +147,8 @@ void WebsterFDTD<ftype>::UpdateWallParameters()
         wall_area_damping_ * 2 * S_primal_.head(N_).sqrt() * static_cast<ftype>(std::sqrt(M_PI));
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::UpdateRadiationParameters()
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::UpdateRadiationParameters()
 {
     ftype Aout = S_primal_[N_ - 1];
     lip_radius = std::sqrt(Aout / static_cast<ftype>(M_PI));
@@ -157,8 +157,8 @@ void WebsterFDTD<ftype>::UpdateRadiationParameters()
     R_rad_ = 128 / (9 * static_cast<ftype>(M_PI) * static_cast<ftype>(M_PI)) * Z0;
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::UpdateCoefficients()
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
 {
     // Convenience aliases onto active segments (avoid repeating .head(N_) everywhere)
     auto Sp = S_primal_.head(N_);
@@ -211,8 +211,8 @@ void WebsterFDTD<ftype>::UpdateCoefficients()
     }
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::Process(ftype inputFlow)
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
 {
     // These views should not have any cost
     auto rho_now = rho_now_.head(N_);
@@ -288,8 +288,8 @@ void WebsterFDTD<ftype>::Process(ftype inputFlow)
     }
 }
 
-template<typename ftype>
-std::tuple<ftype, ftype> WebsterFDTD<ftype>::GetIOLinearDependencyCoefficients()
+template<typename ftype, int kMaxN>
+std::tuple<ftype, ftype> WebsterFDTD<ftype, kMaxN>::GetIOLinearDependencyCoefficients()
 {
     return {c0_ * c0_ * ftype(0.5) *
                 (rho_now_(0) + 1 / A_(0) *
@@ -298,8 +298,8 @@ std::tuple<ftype, ftype> WebsterFDTD<ftype>::GetIOLinearDependencyCoefficients()
             ftype(0.5) * c0_ * c0_ * (1 / A_(0)) * G_(0)};
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::set_N_lpf(int num)
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::set_N_lpf(int num)
 {
     N_lpf_ = std::clamp(num, 1, kMaxN + 1);
     for (int i = 0; i < N_lpf_; ++i) {
@@ -307,24 +307,24 @@ void WebsterFDTD<ftype>::set_N_lpf(int num)
     }
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::set_lp_frequency(int index, ftype freq)
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::set_lp_frequency(int index, ftype freq)
 {
     if (index >= 0 && index < N_lpf_) {
         lp_filters_[index].set_freq(freq);
     }
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::set_lp_Q(int index, ftype Q)
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::set_lp_Q(int index, ftype Q)
 {
     if (index >= 0 && index < N_lpf_) {
         lp_filters_[index].set_Q(Q);
     }
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::set_lp_frequencies(ftype freq)
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::set_lp_frequencies(ftype freq)
 {
     lpf_frequency_ = std::clamp(freq, ftype(0.1), ftype(100.0));
     for (int i = 0; i < N_lpf_; ++i) {
@@ -332,31 +332,36 @@ void WebsterFDTD<ftype>::set_lp_frequencies(ftype freq)
     }
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::set_lp_Qs(ftype Q)
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::set_lp_Qs(ftype Q)
 {
     for (int i = 0; i < N_lpf_; ++i) {
         lp_filters_[i].set_Q(Q);
     }
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::filterSdirectTarget()
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::filterSdirectTarget()
 {
     for (int i = 0; i < N_ + 1 && i < N_lpf_; ++i) {
         S_target_[i] = static_cast<ftype>(lp_filters_[i].Process(static_cast<double>(S_target_[i])));
     }
 }
 
-template<typename ftype>
-void WebsterFDTD<ftype>::initializeLPFStates()
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::initializeLPFStates()
 {
     for (int i = 0; i < N_lpf_ && i < N_ + 1; ++i) {
         lp_filters_[i].InitializeState(static_cast<double>(S_target_[i]));
     }
 }
 
+// Default to kMaxN = 50, enough for voice at 96000 Hz
 template class WebsterFDTD<float>;
 template class WebsterFDTD<double>;
+
+// also allow for kMaxN = 300, sould be enough for every musical resonator.
+template class WebsterFDTD<float, 300>;
+template class WebsterFDTD<double, 300>;
 
 } // namespace tarte

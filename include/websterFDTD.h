@@ -8,13 +8,12 @@
 
 namespace tarte {
 
-// Maximum number of discretization elements supported.
+// Maximum number of discretization elements supported is kMaxN.
 // All arrays are pre-allocated to this size to avoid dynamic allocation
 // during real-time processing and to make DspSetup / Process safe to
 // call from different threads without heap-reallocation races.
-static constexpr int kMaxN = 40;
 
-template<typename ftype>
+template<typename ftype, int kMaxN = 50>
 class WebsterFDTD {
 private:
     // Size N+1  →  kMaxN + 1
