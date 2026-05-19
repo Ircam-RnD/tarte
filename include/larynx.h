@@ -25,7 +25,7 @@ private:
     std::shared_ptr<BodyCoverVF<ftype>> left_vf_, right_vf_;
 
     // Contact parameters
-    ftype contact_stiffness_{15}, eta_contact_stiffness_{1e6}, alpha_contact_stiffness_{1.3};
+    ftype contact_stiffness_{15}, alpha_contact_stiffness_{1.3};
 
     ftype rho0_{1.2}, c0_{340}, kt_{1.3};
 
@@ -84,6 +84,10 @@ private:
 
     // Solver parameters
     ftype sr_, dt_;
+
+    // Experimental noise
+    float noise_ratio_{0.f}, random_value_;
+    ftype noise_flow_;
 
     // Functions
     void RecomputeMatrices(bool update_from_muscles = false);
@@ -250,10 +254,6 @@ public:
     {
         alpha_contact_stiffness_ = std::clamp(alpha_contact_stiffness, ftype(1), ftype(5));
     }
-    void set_eta_contact_stiffness(const ftype& eta_contact_stiffness)
-    {
-        eta_contact_stiffness_ = std::clamp(eta_contact_stiffness, ftype(0), ftype(1e12));
-    }
 
     void set_muscles_activation(const ftype& ct_activity,
                                 const ftype& ta_activity,
@@ -306,6 +306,7 @@ public:
     {
         epsilon_smooth_ = std::clamp(epsilon_smooth, ftype(1e-6), ftype(1e-2));
     }
+    void set_noise_ratio(const ftype& noise_ratio) { noise_ratio_ = std::clamp(noise_ratio, ftype(0), ftype(1)); }
 
     // Getters
     inline Eigen::Vector<ftype, 3> get_rest_positions(FoldIdentifier fold_id = kBoth)
@@ -361,7 +362,6 @@ public:
 
     inline ftype get_contact_stiffness() { return contact_stiffness_; }
     inline ftype get_alpha_contact_stiffness() { return alpha_contact_stiffness_; }
-    inline ftype get_eta_contact_stiffness() { return eta_contact_stiffness_; }
     // inline ftype get_xi(FoldIdentifier fold_id = kBoth)
     // {
     //     if (fold_id == kRight) {
@@ -377,6 +377,7 @@ public:
 
     inline ftype get_lambda_sav() { return lambda_sav_; }
     inline ftype get_epsilon_smooth() { return epsilon_smooth_; }
+    inline ftype get_noise_ratio() { return noise_ratio_; }
 
     std::shared_ptr<WebsterFDTD<ftype>> get_resonator() { return resonator_; }
 };

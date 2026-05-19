@@ -21,6 +21,10 @@ int main(int, char*[])
     proc.get_resonator()->set_time_varying_geometry(false);
     proc.get_resonator()->SetTargetGeometryFromArticulation(art);
 
+    proc.set_lambda_sav(10);
+    proc.set_contact_stiffness(15);
+    proc.set_noise_ratio(0.3);
+
     std::vector<float> samples;
     samples.resize(num_sample);
 

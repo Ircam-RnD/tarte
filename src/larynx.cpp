@@ -116,7 +116,12 @@ void Larynx<ftype>::ComputeNonlinearDissipationVector()
 {
     area_min_ = areas_below_masses_(Eigen::seq(0, 1)).minCoeff();
     mean_flow_ = area_min_ * sqrt(2 / (kt_ * rho0_) * abs(Psub_(idx_now_) - Psup_)) * sgn(Psub_(idx_now_) - Psup_);
-    Rk_ = mean_flow_ / (Psub_(idx_now_) - Psup_ + std::copysign(1e-14, Psub_(idx_now_) - Psup_));
+
+    random_value_ = -1 + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (2));
+    // Sign coherent noise for 0 < noise_ratio_ < 1
+    noise_flow_ = mean_flow_ * (1 + noise_ratio_ * random_value_);
+
+    Rk_ = noise_flow_ / (Psub_(idx_now_) - Psup_ + std::copysign(1e-14, Psub_(idx_now_) - Psup_));
 }
 
 template<typename ftype>
@@ -149,19 +154,15 @@ void Larynx<ftype>::ComputeSavVector()
                         .matrix();
 
     // Contact
-    Enl_ += contact_stiffness_ * eta_contact_stiffness_ *
+    Enl_ += contact_stiffness_ *
             (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) +
              pow(masses_interpenetrations_(1), alpha_contact_stiffness_ + 1)) /
             (alpha_contact_stiffness_ + 1);
 
-    Fnl_(0) +=
-        contact_stiffness_ * (eta_contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_));
-    Fnl_(1) +=
-        contact_stiffness_ * (eta_contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_));
-    Fnl_(3) +=
-        contact_stiffness_ * (eta_contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_));
-    Fnl_(4) +=
-        contact_stiffness_ * (eta_contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_));
+    Fnl_(0) += contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_);
+    Fnl_(1) += contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_);
+    Fnl_(3) += contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_);
+    Fnl_(4) += contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_);
 
     g_sav_ = Fnl_ / (sqrt(2 * Enl_) + 1e-14);
 
@@ -192,7 +193,7 @@ void Larynx<ftype>::ComputeSavVector()
         masses_interpenetrations_ =
             (masses_interpenetrations_.array() > 0).select(masses_interpenetrations_, Eigen::Vector<ftype, 3>::Zero());
 
-        Enl_ += contact_stiffness_ * eta_contact_stiffness_ *
+        Enl_ += contact_stiffness_ *
                 (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) + pow(masses_interpenetrations_(1),
                                                                                        alpha_contact_stiffness_ + 1)) /
                 (alpha_contact_stiffness_ + 1); // Contact
