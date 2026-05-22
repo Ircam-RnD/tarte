@@ -59,8 +59,6 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     C_low_.head(N_ - 1).setZero();
     D_.head(N_).setZero();
     E_.head(N_).setZero();
-    F_.head(N_).setZero();
-    G_.head(N_).setZero();
     A_rad_.head(N_).setZero();
     B_rad_.head(N_).setZero();
 
@@ -163,8 +161,6 @@ void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
     // Convenience aliases onto active segments (avoid repeating .head(N_) everywhere)
     auto Sp = S_primal_.head(N_);
     auto Sd = S_dual_.head(N_ - 1);
-    auto Gl = G_lips_.head(N_);
-    auto Gg = G_glottis_.head(N_);
     auto wm = wall_mass_.head(N_);
     auto wd = wall_dissipation_.head(N_);
     auto ws = wall_stiffness_.head(N_);
@@ -174,41 +170,25 @@ void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
     if (yielding_walls) {
         intermediary_.head(N_) = 2 / dt_ + wd / wm + ws / (2 * wm) * dt_;
 
-        A_.head(N_) = 1 / dt_ + 4 * static_cast<ftype>(M_PI) * rhoc2 / (2 * wm * intermediary_.head(N_)) +
-                      rhoc2 * Gl / (Sp * 2 * h_ * R_rad_) + rhoc2 * Gl * dt_ / (Sp * 4 * h_ * L_rad_);
+        A_.head(N_) = 1 / dt_ + 4 * static_cast<ftype>(M_PI) * rhoc2 / (2 * wm * intermediary_.head(N_));
+        A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * 2 * h_ * R_rad_) + rhoc2 * dt_ / (Sp(N_ - 1) * 4 * h_ * L_rad_);
 
-        B_.head(N_) = 1 / dt_ - 4 * static_cast<ftype>(M_PI) * rhoc2 / (2 * wm * intermediary_.head(N_)) -
-                      rhoc2 * Gl / (Sp * 2 * h_ * R_rad_) - rhoc2 * Gl * dt_ / (Sp * 4 * h_ * L_rad_);
-
-        C_top_.head(N_ - 1) = -1 / Sp.head(N_ - 1) * rho0_ / h_ * Sd;
-        C_low_.head(N_ - 1) = 1 / Sp.tail(N_ - 1) * rho0_ / h_ * Sd;
-
-        D_.head(N_) = -2 * rho0_ / (dt_ * intermediary_.head(N_) * Sp);
         E_.head(N_) = rho0_ / (intermediary_.head(N_) * Sp) * ws / wm;
-        F_.head(N_) = -rho0_ * Gl / (h_ * Sp);
-        G_.head(N_) = rho0_ * Gg / (h_ * Sp);
 
         A_rad_.head(N_) = 1 / dt_ + wd / (2 * wm) + ws / (4 * wm) * dt_;
-        B_rad_.head(N_) = 1 / dt_ - wd / (2 * wm) - ws / (4 * wm) * dt_;
+        B_rad_.head(N_) = -A_rad_.head(N_) + 2 / dt_;
 
     } else {
-        intermediary_.head(N_).setConstant(2 / dt_);
-
-        A_.head(N_) = 1 / dt_ + rhoc2 * Gl / (Sp * 2 * h_ * R_rad_) + rhoc2 * Gl * dt_ / (Sp * 4 * h_ * L_rad_);
-
-        B_.head(N_) = 1 / dt_ - rhoc2 * Gl / (Sp * 2 * h_ * R_rad_) - rhoc2 * Gl * dt_ / (Sp * 4 * h_ * L_rad_);
-
-        C_top_.head(N_ - 1) = -1 / Sp.head(N_ - 1) * rho0_ / h_ * Sd;
-        C_low_.head(N_ - 1) = 1 / Sp.tail(N_ - 1) * rho0_ / h_ * Sd;
-
-        D_.head(N_) = -2 * rho0_ / (dt_ * intermediary_.head(N_) * Sp);
-        E_.head(N_).setZero();
-        F_.head(N_) = -rho0_ * Gl / (h_ * Sp);
-        G_.head(N_) = rho0_ * Gg / (h_ * Sp);
-
-        A_rad_.head(N_).setConstant(1 / dt_);
-        B_rad_.head(N_).setConstant(1 / dt_);
+        A_.head(N_) = 1 / dt_;
+        A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * 2 * h_ * R_rad_) + rhoc2 * dt_ / (Sp(N_ - 1) * 4 * h_ * L_rad_);
     }
+
+    B_.head(N_) = -A_.head(N_) + 2 / dt_;
+    C_top_.head(N_ - 1) = -1 / Sp.head(N_ - 1) * rho0_ / h_ * Sd;
+    C_low_.head(N_ - 1) = 1 / Sp.tail(N_ - 1) * rho0_ / h_ * Sd;
+
+    F_ = -rho0_ / (h_ * Sp(N_ - 1)); // lips boundary
+    G_ = rho0_ / (h_ * Sp(0));       // Glottis boudary
 }
 
 template<typename ftype, int kMaxN>
@@ -225,8 +205,6 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
     auto C_low = C_low_.head(N_ - 1);
     auto D = D_.head(N_);
     auto E = E_.head(N_);
-    auto F = F_.head(N_);
-    auto Gv = G_.head(N_);
     auto A_rad = A_rad_.head(N_);
     auto B_rad = B_rad_.head(N_);
 
@@ -245,8 +223,10 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
         dv.head(N_ - 1) += C_top * vel;
         dv.tail(N_ - 1) += C_low * vel;
 
-        rho_next = (1 / A) * (B * rho_now + dv + D * wvn + E * wdisp + F * radiation_flow + Gv * inputFlow -
-                              rho0_ * (1 / Sp * dSp));
+        rho_next = (1 / A) * (B * rho_now + dv + D * wvn + E * wdisp - rho0_ * (1 / Sp * dSp));
+
+        rho_next(0) += G_ * inputFlow / A(0);
+        rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
 
         vel = vel - c0_ * c0_ / rho0_ / h_ * dt_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
 
@@ -261,7 +241,9 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
         dv.head(N_ - 1) += C_top * vel;
         dv.tail(N_ - 1) += C_low * vel;
 
-        rho_next = (1 / A) * (B * rho_now + dv + F * radiation_flow + Gv * inputFlow - rho0_ * (1 / Sp * dSp));
+        rho_next = (1 / A) * (B * rho_now + dv - rho0_ * (1 / Sp * dSp));
+        rho_next(0) += G_ * inputFlow / A(0);
+        rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
 
         vel = vel - c0_ * c0_ / rho0_ / h_ * dt_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
 
@@ -275,14 +257,15 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
     S_primal_last_.head(N_) = S_primal_.head(N_);
 
     if (time_varying_geometry_) {
+        // ~25 ms total
         for (int i = 0; i < N_ + 1 && i < N_lpf_; ++i) {
             S_direct_[i] = static_cast<ftype>(lp_filters_[i].Process(static_cast<double>(S_target_[i])));
-        }
+        } // ~9ms
 
-        ComputeDiscreteGreometry();
-        UpdateWallParameters();
-        UpdateRadiationParameters();
-        UpdateCoefficients();
+        ComputeDiscreteGreometry();  // ~1ms
+        UpdateWallParameters();      // ~2ms
+        UpdateRadiationParameters(); // negligible
+        UpdateCoefficients();        // ~ 15 ms
 
         d_S_primal_.head(N_) = (S_primal_.head(N_) - S_primal_last_.head(N_)) / dt_;
     }
@@ -295,7 +278,7 @@ std::tuple<ftype, ftype> WebsterFDTD<ftype, kMaxN>::GetIOLinearDependencyCoeffic
                 (rho_now_(0) + 1 / A_(0) *
                                    (B_(0) * rho_now_(0) - rho0_ / h_ * S_dual_(0) / S_primal_(0) * vel_(0) -
                                     rho0_ * (1 / S_primal_(0) * d_S_primal_(0)))),
-            ftype(0.5) * c0_ * c0_ * (1 / A_(0)) * G_(0)};
+            ftype(0.5) * c0_ * c0_ * (1 / A_(0)) * G_};
 }
 
 template<typename ftype, int kMaxN>

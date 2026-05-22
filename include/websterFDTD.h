@@ -56,7 +56,8 @@ private:
 
     // FDTD coefficient arrays
     ArrayN intermediary_;
-    ArrayN d_plus_v_, A_, B_, D_, E_, F_, G_, A_rad_, B_rad_;
+    ArrayN d_plus_v_, A_, B_, D_, E_, A_rad_, B_rad_;
+    ftype F_, G_;
     ArrayNm1 C_top_, C_low_;
 
     // Private helpers
