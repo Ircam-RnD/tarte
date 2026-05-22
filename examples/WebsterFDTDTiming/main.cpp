@@ -12,7 +12,7 @@ int main(int, char*[])
 {
     std::string path = "websterFDTD.wav";
     float samplerate = 44100;
-    float duration = 10;
+    float duration = 50;
     std::size_t num_sample = static_cast<int>(samplerate * duration);
     tarte::WebsterFDTD<float, 300> resonator(samplerate, 1.0f);
     resonator.set_yielding_walls(false);

@@ -18,6 +18,8 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     sr_ = sampleRate;
     dt_ = 1 / sr_;
 
+    c02_ = c0_ * c0_; // squared sound velocity
+
     // Determine N (clamped to kMaxN)
     SetNStability();
 
@@ -165,7 +167,7 @@ void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
     auto wd = wall_dissipation_.head(N_);
     auto ws = wall_stiffness_.head(N_);
 
-    ftype rhoc2 = rho0_ * c0_ * c0_;
+    ftype rhoc2 = rho0_ * c02_;
 
     if (yielding_walls) {
         intermediary_.head(N_) = 2 / dt_ + wd / wm + ws / (2 * wm) * dt_;
@@ -228,13 +230,12 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
         rho_next(0) += G_ * inputFlow / A(0);
         rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
 
-        vel = vel - c0_ * c0_ / rho0_ / h_ * dt_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
+        vel = vel - c02_ / rho0_ / h_ * dt_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
 
-        wvx =
-            (1 / A_rad) * (B_rad * wvn - (ws / wm) * wdisp + (Sp * c0_ * c0_ / wm * ftype(0.5)) * (rho_now + rho_next));
+        wvx = (1 / A_rad) * (B_rad * wvn - (ws / wm) * wdisp + (Sp * c02_ / wm * ftype(0.5)) * (rho_now + rho_next));
 
         wdisp += dt_ * ftype(0.5) * (wvn + wvx);
-        radiation_flow += dt_ * c0_ * c0_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
+        radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
 
     } else {
         dv.setZero();
@@ -245,19 +246,16 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
         rho_next(0) += G_ * inputFlow / A(0);
         rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
 
-        vel = vel - c0_ * c0_ / rho0_ / h_ * dt_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
+        vel = vel - c02_ / rho0_ / h_ * dt_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
 
-        radiation_flow += dt_ * c0_ * c0_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
+        radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
     }
 
     rho_now_.head(N_) = rho_next_.head(N_);
     wall_vel_now_.head(N_) = wall_vel_next_.head(N_);
 
-    S_direct_last_.head(N_ + 1) = S_direct_.head(N_ + 1);
-    S_primal_last_.head(N_) = S_primal_.head(N_);
-
     if (time_varying_geometry_) {
-        // ~25 ms total
+        // ~19 ms total
         for (int i = 0; i < N_ + 1 && i < N_lpf_; ++i) {
             S_direct_[i] = static_cast<ftype>(lp_filters_[i].Process(static_cast<double>(S_target_[i])));
         } // ~9ms
@@ -265,8 +263,10 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
         ComputeDiscreteGreometry();  // ~1ms
         UpdateWallParameters();      // ~2ms
         UpdateRadiationParameters(); // negligible
-        UpdateCoefficients();        // ~ 15 ms
+        UpdateCoefficients();        // ~ 7 ms
 
+        S_direct_last_.head(N_ + 1) = S_direct_.head(N_ + 1);
+        S_primal_last_.head(N_) = S_primal_.head(N_);
         d_S_primal_.head(N_) = (S_primal_.head(N_) - S_primal_last_.head(N_)) / dt_;
     }
 }
@@ -274,11 +274,11 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
 template<typename ftype, int kMaxN>
 std::tuple<ftype, ftype> WebsterFDTD<ftype, kMaxN>::GetIOLinearDependencyCoefficients()
 {
-    return {c0_ * c0_ * ftype(0.5) *
+    return {c02_ * ftype(0.5) *
                 (rho_now_(0) + 1 / A_(0) *
                                    (B_(0) * rho_now_(0) - rho0_ / h_ * S_dual_(0) / S_primal_(0) * vel_(0) -
                                     rho0_ * (1 / S_primal_(0) * d_S_primal_(0)))),
-            ftype(0.5) * c0_ * c0_ * (1 / A_(0)) * G_};
+            ftype(0.5) * c02_ * (1 / A_(0)) * G_};
 }
 
 template<typename ftype, int kMaxN>

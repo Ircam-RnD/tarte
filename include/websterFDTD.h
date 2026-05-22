@@ -24,8 +24,8 @@ private:
     using ArrayNm1 = Eigen::Array<ftype, kMaxN - 1, 1>;
 
     // Physical parameters
-    ftype c0_{340}, rho0_{1.2}, l0_{17e-2};    // Acoustic
-    ftype lip_radius{0}, L_rad_{0}, R_rad_{0}; // Radiation
+    ftype c0_{340}, rho0_{1.2}, l0_{17e-2}, c02_{0.0}; // Acoustic
+    ftype lip_radius{0}, L_rad_{0}, R_rad_{0};         // Radiation
     bool yielding_walls{false};
     ftype wall_area_mass_{15}, wall_area_damping_{16000};  // Yielding walls, per-area values
     ArrayN wall_mass_, wall_dissipation_, wall_stiffness_; // Yielding walls
