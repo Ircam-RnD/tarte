@@ -34,7 +34,6 @@ private:
     ArrayNp1 S_direct_, S_target_, S_direct_last_;
     ArrayNm1 S_dual_;
     ArrayN S_primal_, S_primal_last_, d_S_primal_;
-    ArrayN G_lips_, G_glottis_;
 
     // Discretization parameters
     ftype dt_{0}, sr_{0}, h_{0};

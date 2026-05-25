@@ -43,35 +43,29 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
 
     d_S_primal_.head(N_).setZero();
 
-    // Boundaries
-    G_lips_.head(N_).setZero();
-    G_lips_(N_ - 1) = 1;
-    G_glottis_.head(N_).setZero();
-    G_glottis_(0) = 1;
-
     // Wall and radiation
     UpdateWallParameters();
     UpdateRadiationParameters();
 
     // Intermediary arrays reset
-    d_plus_v_.head(N_).setZero();
-    intermediary_.head(N_).setZero();
-    A_.head(N_).setZero();
-    B_.head(N_).setZero();
-    C_top_.head(N_ - 1).setZero();
-    C_low_.head(N_ - 1).setZero();
-    D_.head(N_).setZero();
-    E_.head(N_).setZero();
-    A_rad_.head(N_).setZero();
-    B_rad_.head(N_).setZero();
+    d_plus_v_.setZero();
+    intermediary_.setZero();
+    A_.setZero();
+    B_.setZero();
+    C_top_.head.setZero();
+    C_low_.head.setZero();
+    D_.setZero();
+    E_.setZero();
+    A_rad_.setZero();
+    B_rad_.setZero();
 
     // State reset
-    rho_now_ac().head(N_).setZero();
-    rho_next_ac().head(N_).setZero();
-    vel_.head(N_ - 1).setZero();
-    wall_displacement_.head(N_).setZero();
-    wall_vel_now_ac().head(N_).setZero();
-    wall_vel_next_ac().head(N_).setZero();
+    rho_now_ac().setZero();
+    rho_next_ac().setZero();
+    vel_.head.setZero();
+    wall_displacement_.setZero();
+    wall_vel_now_ac().setZero();
+    wall_vel_next_ac().setZero();
     radiation_flow = 0;
 
     UpdateCoefficients();
