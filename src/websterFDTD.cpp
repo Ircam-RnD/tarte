@@ -52,8 +52,8 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     intermediary_.setZero();
     A_.setZero();
     B_.setZero();
-    C_top_.head.setZero();
-    C_low_.head.setZero();
+    C_top_.setZero();
+    C_low_.setZero();
     D_.setZero();
     E_.setZero();
     A_rad_.setZero();
@@ -62,7 +62,7 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     // State reset
     rho_now_ac().setZero();
     rho_next_ac().setZero();
-    vel_.head.setZero();
+    vel_.setZero();
     wall_displacement_.setZero();
     wall_vel_now_ac().setZero();
     wall_vel_next_ac().setZero();
