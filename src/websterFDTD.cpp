@@ -19,6 +19,7 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     dt_ = 1 / sr_;
 
     c02_ = c0_ * c0_; // squared sound velocity
+    vel_coeff_ = c02_ / rho0_ / h_ * dt_;
 
     // Determine N (clamped to kMaxN)
     SetNStability();
@@ -65,12 +66,12 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     B_rad_.head(N_).setZero();
 
     // State reset
-    rho_now_.head(N_).setZero();
-    rho_next_.head(N_).setZero();
+    rho_now_ac().head(N_).setZero();
+    rho_next_ac().head(N_).setZero();
     vel_.head(N_ - 1).setZero();
     wall_displacement_.head(N_).setZero();
-    wall_vel_now_.head(N_).setZero();
-    wall_vel_next_.head(N_).setZero();
+    wall_vel_now_ac().head(N_).setZero();
+    wall_vel_next_ac().head(N_).setZero();
     radiation_flow = 0;
 
     UpdateCoefficients();
@@ -197,8 +198,8 @@ template<typename ftype, int kMaxN>
 void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
 {
     // These views should not have any cost
-    auto rho_now = rho_now_.head(N_);
-    auto rho_next = rho_next_.head(N_);
+    auto rho_now = rho_now_ac().head(N_);
+    auto rho_next = rho_next_ac().head(N_);
     auto vel = vel_.head(N_ - 1);
 
     auto A = A_.head(N_);
@@ -217,12 +218,12 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
     auto wm = wall_mass_.head(N_);
     auto ws = wall_stiffness_.head(N_);
     auto wdisp = wall_displacement_.head(N_);
-    auto wvn = wall_vel_now_.head(N_);
-    auto wvx = wall_vel_next_.head(N_);
+    auto wvn = wall_vel_now_ac().head(N_);
+    auto wvx = wall_vel_next_ac().head(N_);
 
     if (yielding_walls) {
-        dv.setZero();
-        dv.head(N_ - 1) += C_top * vel;
+        dv.head(N_ - 1) = C_top * vel;
+        dv(N_ - 1) = 0;
         dv.tail(N_ - 1) += C_low * vel;
 
         rho_next = (1 / A) * (B * rho_now + dv + D * wvn + E * wdisp - rho0_ * (1 / Sp * dSp));
@@ -230,7 +231,7 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
         rho_next(0) += G_ * inputFlow / A(0);
         rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
 
-        vel = vel - c02_ / rho0_ / h_ * dt_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
+        vel = vel - vel_coeff_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
 
         wvx = (1 / A_rad) * (B_rad * wvn - (ws / wm) * wdisp + (Sp * c02_ / wm * ftype(0.5)) * (rho_now + rho_next));
 
@@ -238,21 +239,21 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
         radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
 
     } else {
-        dv.setZero();
-        dv.head(N_ - 1) += C_top * vel;
+        dv.head(N_ - 1) = C_top * vel;
+        dv(N_ - 1) = 0;
         dv.tail(N_ - 1) += C_low * vel;
 
         rho_next = (1 / A) * (B * rho_now + dv - rho0_ * (1 / Sp * dSp));
         rho_next(0) += G_ * inputFlow / A(0);
         rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
 
-        vel = vel - c02_ / rho0_ / h_ * dt_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
+        vel = vel - vel_coeff_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
 
         radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
     }
 
-    rho_now_.head(N_) = rho_next_.head(N_);
-    wall_vel_now_.head(N_) = wall_vel_next_.head(N_);
+    // Swap buffers to advance state
+    flip_ = !flip_;
 
     if (time_varying_geometry_) {
         // ~19 ms total
@@ -275,9 +276,9 @@ template<typename ftype, int kMaxN>
 std::tuple<ftype, ftype> WebsterFDTD<ftype, kMaxN>::GetIOLinearDependencyCoefficients()
 {
     return {c02_ * ftype(0.5) *
-                (rho_now_(0) + 1 / A_(0) *
-                                   (B_(0) * rho_now_(0) - rho0_ / h_ * S_dual_(0) / S_primal_(0) * vel_(0) -
-                                    rho0_ * (1 / S_primal_(0) * d_S_primal_(0)))),
+                (rho_now_ac()(0) + 1 / A_(0) *
+                                       (B_(0) * rho_now_ac()(0) - rho0_ / h_ * S_dual_(0) / S_primal_(0) * vel_(0) -
+                                        rho0_ * (1 / S_primal_(0) * d_S_primal_(0)))),
             ftype(0.5) * c02_ * (1 / A_(0)) * G_};
 }
 

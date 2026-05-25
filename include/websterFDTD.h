@@ -43,11 +43,20 @@ private:
     ArrayN x_primal_;
     int N_{0}; // Active number of elements; always <= kMaxN
 
-    // State variables
-    ArrayN rho_now_, rho_next_;                               // Acoustic
-    ArrayNm1 vel_;                                            // Acoustic velocity
-    ArrayN wall_displacement_, wall_vel_now_, wall_vel_next_; // Walls
-    ftype radiation_flow{0};                                  // Radiation
+    // State variables, ping-pong buffer
+    bool flip_ = false;
+
+    Eigen::Array<ftype, kMaxN, 1> rho_buf_[2];      // Acoustic density
+    Eigen::Array<ftype, kMaxN, 1> wall_vel_buf_[2]; // Wall velocity
+    // accessors
+    auto& rho_now_ac() { return rho_buf_[flip_]; }
+    auto& rho_next_ac() { return rho_buf_[!flip_]; }
+    auto& wall_vel_now_ac() { return wall_vel_buf_[flip_]; }
+    auto& wall_vel_next_ac() { return wall_vel_buf_[!flip_]; }
+
+    ArrayN wall_displacement_;
+    ArrayNm1 vel_;           // Acoustic velocity
+    ftype radiation_flow{0}; // Radiation
 
     // LPF  (N_lpf_ <= kMaxN + 1)
     std::array<Biquad, kMaxN + 1> lp_filters_;
@@ -58,6 +67,7 @@ private:
     ArrayN intermediary_;
     ArrayN d_plus_v_, A_, B_, D_, E_, A_rad_, B_rad_;
     ftype F_, G_;
+    ftype vel_coeff_;
     ArrayNm1 C_top_, C_low_;
 
     // Private helpers
@@ -103,8 +113,8 @@ public:
     std::tuple<ftype, ftype> GetIOLinearDependencyCoefficients();
 
     // Listeners
-    inline ftype ReadInputPressure() { return c0_ * c0_ * rho_now_(0); }
-    inline ftype ReadRadiatedPressure() { return c0_ * c0_ * rho_now_(N_ - 1); }
+    inline ftype ReadInputPressure() { return c0_ * c0_ * rho_now_ac()(0); }
+    inline ftype ReadRadiatedPressure() { return c0_ * c0_ * rho_now_ac()(N_ - 1); }
 
     // Getters
     inline std::size_t get_N() { return static_cast<std::size_t>(N_); }
