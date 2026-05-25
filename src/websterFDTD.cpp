@@ -19,18 +19,26 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     dt_ = 1 / sr_;
 
     c02_ = c0_ * c0_; // squared sound velocity
-    vel_coeff_ = c02_ / rho0_ / h_ * dt_;
 
     // Determine N (clamped to kMaxN)
     SetNStability();
 
+    vel_coeff_ = c02_ / rho0_ / h_ * dt_;
     // Spatial grids (write only into active segment)
+    x_direct_.setZero();
+    x_dual_.setZero();
     x_direct_.head(N_ + 1) = Eigen::Array<ftype, -1, 1>::LinSpaced(N_ + 1, -h_ / 2, l0_ + h_ / 2);
-    x_primal_.head(N_) = Eigen::Array<ftype, -1, 1>::LinSpaced(N_, 0, l0_);
+    // x_primal_.head(N_) = Eigen::Array<ftype, -1, 1>::LinSpaced(N_, 0, l0_);
     // x_dual_ is a view into x_direct_[1 .. N-1]; we replicate that here:
     x_dual_.head(N_ - 1) = x_direct_.segment(1, N_ - 1);
 
     // Sections
+    S_target_.setZero();
+    S_direct_.setZero();
+    S_primal_.setZero();
+    S_direct_last_.setZero();
+    S_primal_last_.setZero();
+    d_S_primal_.setZero();
     if (art) {
         SetTargetGeometryFromArticulation(*art, true);
     } else {
@@ -41,9 +49,10 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     }
     S_primal_last_.head(N_) = S_primal_.head(N_);
 
-    d_S_primal_.head(N_).setZero();
-
     // Wall and radiation
+    wall_mass_.setZero();
+    wall_dissipation_.setZero();
+    wall_stiffness_.setZero();
     UpdateWallParameters();
     UpdateRadiationParameters();
 
@@ -60,6 +69,7 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     B_rad_.setZero();
 
     // State reset
+    flip_ = false;
     rho_now_ac().setZero();
     rho_next_ac().setZero();
     vel_.setZero();
@@ -104,6 +114,8 @@ void WebsterFDTD<ftype, kMaxN>::SetTargetGeometryFromArticulation(Articulation a
     if (!time_varying_geometry_ or force_direct) {
         S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
         ComputeDiscreteGreometry();
+        UpdateWallParameters();
+        UpdateRadiationParameters();
         UpdateCoefficients();
     }
 }
@@ -115,6 +127,7 @@ void WebsterFDTD<ftype, kMaxN>::SetConstantSection(ftype section)
     if (!time_varying_geometry_) {
         S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
         ComputeDiscreteGreometry();
+        UpdateWallParameters();
         UpdateRadiationParameters();
         UpdateCoefficients();
     }

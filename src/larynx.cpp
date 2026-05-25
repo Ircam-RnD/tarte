@@ -61,6 +61,21 @@ void Larynx<ftype>::DspSetup(ftype samplerate, Articulation* art)
     resonator_->DspSetup(samplerate, art);
 
     A0_inv_ = dt_;
+
+    RecomputeMatrices();
+
+    p_.setZero();
+    q_.setZero();
+    r_.setZero();
+    Psub_centered_.setZero();
+    Psub_.setZero();
+    Psup_ = 0;
+
+    a_resonator_ = b_resonator_ = C0_feedback_ = 0;
+    sub_glottal_flow = sup_glottal_flow = 0;
+
+    kinetic_energy_.setZero();
+    potential_energy_.setZero();
 }
 
 template<typename ftype>
