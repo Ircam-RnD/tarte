@@ -23,7 +23,7 @@ int main(int, char*[])
 
     proc.set_lambda_sav(10);
     proc.set_contact_stiffness(15);
-    proc.set_noise_ratio(0.3);
+    // proc.set_noise_ratio(0.3);
 
     std::vector<float> samples;
     samples.resize(num_sample);

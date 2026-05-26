@@ -39,6 +39,7 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     S_direct_last_.setZero();
     S_primal_last_.setZero();
     d_S_primal_.setZero();
+    gamma_primal_.setZero();
     if (art) {
         SetTargetGeometryFromArticulation(*art, true);
     } else {
@@ -49,11 +50,7 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     }
     S_primal_last_.head(N_) = S_primal_.head(N_);
 
-    // Wall and radiation
-    wall_mass_.setZero();
-    wall_dissipation_.setZero();
-    wall_stiffness_.setZero();
-    UpdateWallParameters();
+    // Radiation
     UpdateRadiationParameters();
 
     // Intermediary arrays reset
@@ -74,8 +71,8 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     rho_next_ac().setZero();
     vel_.setZero();
     wall_displacement_.setZero();
-    wall_vel_now_ac().setZero();
-    wall_vel_next_ac().setZero();
+    wall_momentum_now_ac().setZero();
+    wall_momentum_next_ac().setZero();
     radiation_flow = 0;
 
     UpdateCoefficients();
@@ -114,7 +111,6 @@ void WebsterFDTD<ftype, kMaxN>::SetTargetGeometryFromArticulation(Articulation a
     if (!time_varying_geometry_ or force_direct) {
         S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
         ComputeDiscreteGreometry();
-        UpdateWallParameters();
         UpdateRadiationParameters();
         UpdateCoefficients();
     }
@@ -127,7 +123,6 @@ void WebsterFDTD<ftype, kMaxN>::SetConstantSection(ftype section)
     if (!time_varying_geometry_) {
         S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
         ComputeDiscreteGreometry();
-        UpdateWallParameters();
         UpdateRadiationParameters();
         UpdateCoefficients();
     }
@@ -144,15 +139,8 @@ void WebsterFDTD<ftype, kMaxN>::ComputeDiscreteGreometry()
 
     // S_primal_[0 .. N-1] = 0.5 * (S_direct_[0..N-1] + S_direct_[1..N])
     S_primal_.head(N_) = 0.5 * (S_direct_.head(N_) + S_direct_.segment(1, N_));
-}
-
-template<typename ftype, int kMaxN>
-void WebsterFDTD<ftype, kMaxN>::UpdateWallParameters()
-{
-    wall_mass_.head(N_) = wall_area_mass_ * 2 * S_primal_.head(N_).sqrt() * static_cast<ftype>(std::sqrt(M_PI));
-    wall_stiffness_.head(N_) = wall_mass_.head(N_) * (2 * M_PI * 70) * (2 * M_PI * 70);
-    wall_dissipation_.head(N_) =
-        wall_area_damping_ * 2 * S_primal_.head(N_).sqrt() * static_cast<ftype>(std::sqrt(M_PI));
+    gamma_primal_.head(N_) =
+        2 * S_primal_.head(N_).sqrt() * static_cast<ftype>(std::sqrt(M_PI)); // Assume circular shape
 }
 
 template<typename ftype, int kMaxN>
@@ -171,21 +159,23 @@ void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
     // Convenience aliases onto active segments (avoid repeating .head(N_) everywhere)
     auto Sp = S_primal_.head(N_);
     auto Sd = S_dual_.head(N_ - 1);
-    auto wm = wall_mass_.head(N_);
-    auto wd = wall_dissipation_.head(N_);
-    auto ws = wall_stiffness_.head(N_);
+    auto gamma = gamma_primal_.head(N_);
+    auto mw = wall_area_mass_;
+    auto rw = wall_area_damping_;
+    auto kw = wall_area_stiffness_;
 
     ftype rhoc2 = rho0_ * c02_;
 
     if (yielding_walls) {
-        intermediary_.head(N_) = 2 / dt_ + wd / wm + ws / (2 * wm) * dt_;
+        intermediary_.head(N_) = 2 / dt_ + rw / mw + kw / (2 * mw) * dt_;
 
-        A_.head(N_) = 1 / dt_ + 4 * static_cast<ftype>(M_PI) * rhoc2 / (2 * wm * intermediary_.head(N_));
+        A_.head(N_) = 1 / dt_ + gamma * rhoc2 / (2 * mw * intermediary_.head(N_));
         A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * 2 * h_ * R_rad_) + rhoc2 * dt_ / (Sp(N_ - 1) * 4 * h_ * L_rad_);
 
-        E_.head(N_) = rho0_ / (intermediary_.head(N_) * Sp) * ws / wm;
+        D_.head(N_) = -2 * rho0_ * gamma / (dt_ * mw * intermediary_.head(N_) * Sp);
+        E_.head(N_) = rho0_ * gamma / (intermediary_.head(N_) * Sp) * kw / mw;
 
-        A_rad_.head(N_) = 1 / dt_ + wd / (2 * wm) + ws / (4 * wm) * dt_;
+        A_rad_.head(N_) = intermediary_.head(N_) * 0.5;
         B_rad_.head(N_) = -A_rad_.head(N_) + 2 / dt_;
 
     } else {
@@ -222,27 +212,27 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
     auto dSp = d_S_primal_.head(N_);
     auto Sp = S_primal_.head(N_);
 
-    auto wm = wall_mass_.head(N_);
-    auto ws = wall_stiffness_.head(N_);
+    auto mw = wall_area_mass_;
+    auto kw = wall_area_stiffness_;
     auto wdisp = wall_displacement_.head(N_);
-    auto wvn = wall_vel_now_ac().head(N_);
-    auto wvx = wall_vel_next_ac().head(N_);
+    auto wp_now = wall_momentum_now_ac().head(N_);
+    auto wp_next = wall_momentum_next_ac().head(N_);
 
     if (yielding_walls) {
         dv.head(N_ - 1) = C_top * vel;
         dv(N_ - 1) = 0;
         dv.tail(N_ - 1) += C_low * vel;
 
-        rho_next = (1 / A) * (B * rho_now + dv + D * wvn + E * wdisp - rho0_ * (1 / Sp * dSp));
+        rho_next = (1 / A) * (B * rho_now + dv + D * wp_now + E * wdisp - rho0_ * (dSp / Sp));
 
         rho_next(0) += G_ * inputFlow / A(0);
         rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
 
         vel = vel - vel_coeff_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
 
-        wvx = (1 / A_rad) * (B_rad * wvn - (ws / wm) * wdisp + (Sp * c02_ / wm * ftype(0.5)) * (rho_now + rho_next));
+        wp_next = (1 / A_rad) * (B_rad * wp_now - kw * wdisp + (c02_ * ftype(0.5)) * (rho_now + rho_next));
 
-        wdisp += dt_ * ftype(0.5) * (wvn + wvx);
+        wdisp += dt_ * ftype(0.5) / wall_area_mass_ * (wp_now + wp_next);
         radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
 
     } else {
@@ -269,7 +259,6 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
         } // ~9ms
 
         ComputeDiscreteGreometry();  // ~1ms
-        UpdateWallParameters();      // ~2ms
         UpdateRadiationParameters(); // negligible
         UpdateCoefficients();        // ~ 7 ms
 

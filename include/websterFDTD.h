@@ -27,13 +27,13 @@ private:
     ftype c0_{340}, rho0_{1.2}, l0_{17e-2}, c02_{0.0}; // Acoustic
     ftype lip_radius{0}, L_rad_{0}, R_rad_{0};         // Radiation
     bool yielding_walls{false};
-    ftype wall_area_mass_{15}, wall_area_damping_{16000};  // Yielding walls, per-area values
-    ArrayN wall_mass_, wall_dissipation_, wall_stiffness_; // Yielding walls
+    ftype wall_area_mass_{15}, wall_area_stiffness_{3e6}, wall_area_damping_{16000}; // Yielding walls, per-area values
 
     // Articulation
     ArrayNp1 S_direct_, S_target_, S_direct_last_;
     ArrayNm1 S_dual_;
     ArrayN S_primal_, S_primal_last_, d_S_primal_;
+    ArrayN gamma_primal_; // Circumference
 
     // Discretization parameters
     ftype dt_{0}, sr_{0}, h_{0};
@@ -45,13 +45,13 @@ private:
     // State variables, ping-pong buffer
     bool flip_ = false;
 
-    Eigen::Array<ftype, kMaxN, 1> rho_buf_[2];      // Acoustic density
-    Eigen::Array<ftype, kMaxN, 1> wall_vel_buf_[2]; // Wall velocity
+    Eigen::Array<ftype, kMaxN, 1> rho_buf_[2];           // Acoustic density
+    Eigen::Array<ftype, kMaxN, 1> wall_momentum_buf_[2]; // Per-area wall momentum
     // accessors
     auto& rho_now_ac() { return rho_buf_[flip_]; }
     auto& rho_next_ac() { return rho_buf_[!flip_]; }
-    auto& wall_vel_now_ac() { return wall_vel_buf_[flip_]; }
-    auto& wall_vel_next_ac() { return wall_vel_buf_[!flip_]; }
+    auto& wall_momentum_now_ac() { return wall_momentum_buf_[flip_]; }
+    auto& wall_momentum_next_ac() { return wall_momentum_buf_[!flip_]; }
 
     ArrayN wall_displacement_;
     ArrayNm1 vel_;           // Acoustic velocity
@@ -73,7 +73,6 @@ private:
     void SetNStability();
     void ComputeDiscreteGreometry();
     bool time_varying_geometry_{false};
-    void UpdateWallParameters();
     void UpdateRadiationParameters();
     void UpdateCoefficients();
 
