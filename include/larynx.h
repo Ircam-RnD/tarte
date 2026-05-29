@@ -45,7 +45,7 @@ private:
     Eigen::Vector<ftype, 6> g_sav_{0, 0, 0, 0, 0, 0}, Fnl_{0, 0, 0, 0, 0, 0};
     ftype Enl_, epsilon_sav_;
     bool const control_term_{true};
-    ftype lambda_sav_{1000};
+    ftype lambda_sav_{10};
 
     ftype area_ratio_, area_min_;
     ftype mean_flow_, Rk_;

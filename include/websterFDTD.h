@@ -80,6 +80,16 @@ private:
     void initializeLPFStates();
     void set_N_lpf(int num);
 
+    // Power variables
+    ftype kinetic_energy_fluid_[2], potential_energy_fluid_[2], kinetic_energy_walls_[2], potential_energy_walls_[2],
+        kinetic_energy_radiation_[2];
+    ftype P_diss_walls_, P_diss_radiation_, P_diss_tot_;
+    ftype P_in_;
+    ftype P_stored_fluid_, P_stored_walls_, P_stored_radiation_, P_stored_tot_;
+    ftype P_tot_;
+
+    void ComputePowers();
+
 public:
     WebsterFDTD(ftype sampleRate, ftype length = ftype(17e-2), Articulation* art = nullptr);
 

@@ -169,21 +169,21 @@ void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
     if (yielding_walls) {
         intermediary_.head(N_) = 2 / dt_ + rw / mw + kw / (2 * mw) * dt_;
 
-        A_.head(N_) = 1 / dt_ + gamma * rhoc2 / (2 * mw * intermediary_.head(N_));
+        A_.head(N_) = 1 / dt_ + gamma * rhoc2 / (2 * mw * Sp * intermediary_.head(N_));
         A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * 2 * h_ * R_rad_) + rhoc2 * dt_ / (Sp(N_ - 1) * 4 * h_ * L_rad_);
 
         D_.head(N_) = -2 * rho0_ * gamma / (dt_ * mw * intermediary_.head(N_) * Sp);
-        E_.head(N_) = rho0_ * gamma / (intermediary_.head(N_) * Sp) * kw / mw;
+        E_.head(N_) = rho0_ * gamma * kw / (intermediary_.head(N_) * Sp * mw);
 
         A_rad_.head(N_) = intermediary_.head(N_) * 0.5;
-        B_rad_.head(N_) = -A_rad_.head(N_) + 2 / dt_;
+        B_rad_.head(N_) = 2 / dt_ - A_rad_.head(N_);
 
     } else {
         A_.head(N_) = 1 / dt_;
         A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * 2 * h_ * R_rad_) + rhoc2 * dt_ / (Sp(N_ - 1) * 4 * h_ * L_rad_);
     }
 
-    B_.head(N_) = -A_.head(N_) + 2 / dt_;
+    B_.head(N_) = 2 / dt_ - A_.head(N_);
     C_top_.head(N_ - 1) = -1 / Sp.head(N_ - 1) * rho0_ / h_ * Sd;
     C_low_.head(N_ - 1) = 1 / Sp.tail(N_ - 1) * rho0_ / h_ * Sd;
 
@@ -272,10 +272,36 @@ template<typename ftype, int kMaxN>
 std::tuple<ftype, ftype> WebsterFDTD<ftype, kMaxN>::GetIOLinearDependencyCoefficients()
 {
     return {c02_ * ftype(0.5) *
-                (rho_now_ac()(0) + 1 / A_(0) *
-                                       (B_(0) * rho_now_ac()(0) - rho0_ / h_ * S_dual_(0) / S_primal_(0) * vel_(0) -
-                                        rho0_ * (1 / S_primal_(0) * d_S_primal_(0)))),
+                (rho_now_ac()(0) +
+                 (1 / A_(0)) * (B_(0) * rho_now_ac()(0) - S_dual_(0) / S_primal_(0) * rho0_ / h_ * vel_(0) +
+                                D_(0) * wall_momentum_now_ac()(0) + E_(0) * wall_displacement_(0) -
+                                rho0_ * (d_S_primal_(0) / S_primal_(0)))),
             ftype(0.5) * c02_ * (1 / A_(0)) * G_};
+}
+
+template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::ComputePowers()
+{
+    kinetic_energy_fluid_[!flip_] = 0;
+    potential_energy_fluid_[!flip_] = 0;
+    kinetic_energy_walls_[!flip_] = 0;
+    potential_energy_walls_[!flip_] = 0;
+    kinetic_energy_radiation_[!flip_] = 0;
+
+    P_stored_fluid_ = (kinetic_energy_fluid_[!flip_] - kinetic_energy_fluid_[flip_] + potential_energy_fluid_[!flip_] -
+                       potential_energy_fluid_[flip_]) /
+                      dt_;
+    P_stored_walls_ = (kinetic_energy_walls_[!flip_] - kinetic_energy_walls_[flip_] + potential_energy_walls_[!flip_] -
+                       potential_energy_walls_[flip_]) /
+                      dt_;
+    P_stored_radiation_ = (kinetic_energy_radiation_[!flip_] - kinetic_energy_radiation_[flip_]) / dt_;
+    P_stored_tot_ = P_stored_fluid_ + P_stored_walls_ + P_stored_radiation_;
+
+    P_diss_walls_ = 0;
+    P_diss_radiation_ = 0;
+    P_diss_tot_ = P_diss_walls_ + P_diss_radiation_;
+    P_in_ = 0;
+    P_tot_ = P_in_ + P_diss_tot_ + P_stored_tot_;
 }
 
 template<typename ftype, int kMaxN>

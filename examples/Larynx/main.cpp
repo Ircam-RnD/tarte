@@ -3,6 +3,7 @@
 #include "larynx.h"
 #include "utility/audiowrite.h"
 #include "utility/maths.h"
+#include "vowels.h"
 
 #include <iostream>
 #include <string>
@@ -17,6 +18,7 @@ int main(int, char*[])
     std::size_t num_sample = static_cast<int>(samplerate * duration);
     tarte::Larynx<double> proc(samplerate, true);
     tarte::Articulation art;
+    art.SetFromVowel(tarte::vowels::i);
     proc.get_resonator()->set_l0(17e-2);
     proc.get_resonator()->set_time_varying_geometry(false);
     proc.get_resonator()->SetTargetGeometryFromArticulation(art);
