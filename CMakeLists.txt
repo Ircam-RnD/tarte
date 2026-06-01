@@ -19,7 +19,7 @@ add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=ON)
 # TARTE_SHARED_LIBS option (undefined by default) can be used to force shared/static build
 option(TARTE_BUILD_TESTS "Build tarte tests" OFF)
 option(TARTE_BUILD_EXAMPLES "Build tarte examples" ON)
-option(TARTE_BUILD_DOCS "Build tarte documentation" OFF)
+option(TARTE_BUILD_DOCS "Build tarte documentation" ON)
 option(TARTE_INSTALL "Generate target for installing tarte" ${is_top_level})
 set_if_undefined(TARTE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/tarte" CACHE STRING
     "Install path for tarte package-related CMake files")
@@ -159,7 +159,23 @@ if(TARTE_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
-if(TARTE_BUILD_DOCS)
-    find_package(Doxygen REQUIRED)
-    doxygen_add_docs(docs include)
-endif()
+# if(TARTE_BUILD_DOCS)
+#     find_package(Doxygen REQUIRED)
+
+#     set(DOXYGEN_EXCLUDE
+#         "${CMAKE_CURRENT_SOURCE_DIR}/include/external"
+#         "${CMAKE_CURRENT_SOURCE_DIR}/src/deprecated"
+#     )
+
+#     set(DOXYGEN_EXCLUDE_PATTERNS
+#         "${CMAKE_CURRENT_SOURCE_DIR}/include/external/*"
+#         "${CMAKE_CURRENT_SOURCE_DIR}/src/deprecated/*"
+#     )
+
+#     set(DOXYGEN_GENERATE_XML YES)
+#     set(DOXYGEN_XML_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/doxygen")
+
+#     set(DOXYGEN_GENERATE_HTML NO)   # optional: disable if MkDocs replaces it
+
+#     doxygen_add_docs(docs include)
+# endif()

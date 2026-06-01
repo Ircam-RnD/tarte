@@ -1,0 +1,45 @@
+site_name: Tarte - physical audio synthesis
+theme:
+  name: material
+  palette:
+    # Palette for bright mode
+    - media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: deep orange
+      accent: red
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      primary: red
+      accent: deep orange
+  features:
+    - navigation.tabs
+    - navigation.path
+    - navigation.top
+
+plugins:
+  - search
+  - mkdoxy:
+      projects:
+        tarte:
+          src-dirs: src/ include/ examples/       # path to your C++ sources
+          full-doc: true
+          doxy-cfg:
+            FILE_PATTERNS: "*.cpp *.h"
+            RECURSIVE: YES
+            EXCLUDE: "include/external src/deprecated"
+            EXCLUDE_PATTERNS: "*/external/* */deprecated/*"
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Examples: examples/basic-usage.md
+  - API reference:
+      - Classes: "tarte/annotated.md"
+      - Files: "tarte/files.md"
