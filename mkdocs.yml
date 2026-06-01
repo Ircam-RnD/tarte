@@ -1,4 +1,6 @@
 site_name: Tarte - physical audio synthesis
+site_author: Thomas Risse
+site_description: Physical audio synthesis engine
 theme:
   name: material
   palette:
@@ -22,6 +24,11 @@ theme:
     - navigation.tabs
     - navigation.path
     - navigation.top
+
+extra:
+  generator: false  # removes the "Made with Material" footer line
+
+copyright: Made by Thomas Risse using Mkdocs with Material theme
 
 plugins:
   - search
