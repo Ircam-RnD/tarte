@@ -32,7 +32,7 @@ copyright: Made by Thomas Risse using Mkdocs with Material theme
 
 plugins:
   - search
-  - jupyterlite
+  # - jupyterlite
   - mkdoxy:
       projects:
         tarte:
