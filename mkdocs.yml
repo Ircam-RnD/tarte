@@ -32,6 +32,7 @@ copyright: Made by Thomas Risse using Mkdocs with Material theme
 
 plugins:
   - search
+  - jupyterlite
   - mkdoxy:
       projects:
         tarte:
@@ -43,10 +44,10 @@ plugins:
             EXCLUDE: "include/external src/deprecated"
             EXCLUDE_PATTERNS: "*/external/* */deprecated/*"
 
-nav:
-  - Home: index.md
-  - Getting started: getting-started.md
-  - Examples: examples/basic-usage.md
-  - API reference:
-      - Classes: "tarte/annotated.md"
-      - Files: "tarte/files.md"
+# nav:
+#   - Home: index.md
+#   - Theory: 
+#   - Examples: examples/basic-usage.md
+#   - API reference:
+#       - Classes: "tarte/annotated.md"
+#       - Files: "tarte/files.md"
