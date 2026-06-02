@@ -1,8 +1,9 @@
 #pragma once
 #define LARYNX_H
 
-#include <utility/smoothing.h>
-#include <websterFDTD.h>
+#include "noise_generator.h"
+#include "utility/smoothing.h"
+#include "websterFDTD.h"
 
 #include <Eigen/Dense>
 #include <array>
@@ -68,7 +69,8 @@ private:
     void computegSAV();
 
     // Experimental noise
-    float noise_ratio_{0.f}, random_value_;
+    NoiseGenerator noise_generator_ = NoiseGenerator(NoiseColor::Pink);
+    float noise_ratio_{0.f};
     ftype noise_flow_;
 
 public:

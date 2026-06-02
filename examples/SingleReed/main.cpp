@@ -21,6 +21,8 @@ int main(int, char*[])
     proc.get_resonator()->set_time_varying_geometry(false);
     proc.get_resonator()->SetConstantSection(M_PI * 1e-4);
 
+    proc.set_noise_ratio(0.6);
+
     std::vector<float> samples;
     samples.resize(num_sample);
 

@@ -71,9 +71,8 @@ void SingleReed<ftype>::computeRk()
     // timestep n+1/2 nees to be used for better results.
     mean_flow_ = opening_ * sqrt(2 / (kt_ * rho_0_) * abs(Psub_(idx_now_) - Psup_)) *
                  tanh((Psub_(idx_now_) - Psup_) / epsilon_smooth_P_); // Some kind of smoothing of the sign function
-    random_value_ = -1 + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (2));
     // Sign coherent noise for 0 < noise_ratio_ < 1
-    noise_flow_ = mean_flow_ * (1 + noise_ratio_ * random_value_);
+    noise_flow_ = mean_flow_ * (1 + noise_ratio_ * noise_generator_.Process());
     R_k_ = noise_flow_ / (Psub_(idx_now_) - Psup_ + std::copysign(1e-10, Psub_(idx_now_) - Psup_));
 }
 

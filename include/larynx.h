@@ -1,6 +1,7 @@
 #pragma once
 
 #include "body_cover_vf.h"
+#include "noise_generator.h"
 #include "utility/eigen_utility.h"
 #include "utility/maths.h"
 #include "utility/smoothing.h"
@@ -86,7 +87,8 @@ private:
     ftype sr_, dt_;
 
     // Experimental noise
-    float noise_ratio_{0.f}, random_value_;
+    NoiseGenerator noise_generator_ = NoiseGenerator(NoiseColor::Pink);
+    float noise_ratio_{0.f};
     ftype noise_flow_;
 
     // Functions
