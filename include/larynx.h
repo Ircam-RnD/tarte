@@ -284,8 +284,6 @@ public:
             break;
         }
         RecomputeMatrices(true);
-        // The left vocal fold is arbitrary taken as reference to update contact stiffness
-        contact_stiffness_ = 3 * left_vf_->stiffnesses().diagonal()(1); // Also arbitrary upper stiffness
     };
 
     // void set_xi(const ftype xi, FoldIdentifier fold_id = kBoth)

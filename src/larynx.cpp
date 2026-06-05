@@ -51,6 +51,9 @@ void Larynx<ftype>::RecomputeMatrices(bool update_from_muscles)
                                left_vf_->dissipation_coefficients() * BodyCoverVF<ftype>::elongation_matrix_;
     dissipation_matrix_right_ = BodyCoverVF<ftype>::elongation_matrix_.transpose() *
                                 right_vf_->dissipation_coefficients() * BodyCoverVF<ftype>::elongation_matrix_;
+
+    // The left vocal fold is arbitrary taken as reference to update contact stiffness
+    contact_stiffness_ = 3 * left_vf_->stiffnesses().diagonal()(1); // Also arbitrary upper stiffness
 }
 
 template<typename ftype>
