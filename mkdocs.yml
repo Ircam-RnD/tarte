@@ -28,6 +28,14 @@ theme:
 extra:
   generator: false  # removes the "Made with Material" footer line
 
+markdown_extensions:
+- pymdownx.arithmatex:
+    generic: true
+
+extra_javascript:
+  # - docs/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
 copyright: Made by Thomas Risse using Mkdocs with Material theme
 
 plugins:
