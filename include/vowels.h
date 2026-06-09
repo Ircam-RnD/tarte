@@ -33,6 +33,9 @@ inline const std::array<std::string, 16> vowelNames = {"/a:/",
                                                        "/Y/",
                                                        "/@/"};
 
+inline const float minF0 = 228; // Lowest frequency of first formant for all vowels
+inline const float minF1 = 601; // Lowest frequency of second formant for all vowels
+
 inline const float maxF0 = 710;  // Highest frequency of first formant for all vowels
 inline const float maxF1 = 2200; // Highest frequency of second formant for all vowels
 
