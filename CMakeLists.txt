@@ -43,8 +43,10 @@ add_library(tarte::tarte ALIAS tarte)
 # tarte dependencies
 #----------------------------------------------------------------------------------------------------------------------
 target_compile_features(tarte PUBLIC cxx_std_23)
-# Search for your dependencies here
+# Search for dependencies here
 find_package(Eigen3 REQUIRED NO_MODULE)
+find_package(HDF5 REQUIRED COMPONENTS C CXX)
+find_package(nlohmann_json REQUIRED)
 
 #----------------------------------------------------------------------------------------------------------------------
 # tarte sources
@@ -84,7 +86,10 @@ set_target_properties(tarte PROPERTIES
     SOVERSION ${PROJECT_VERSION_MAJOR}
     VERSION ${PROJECT_VERSION})
 
-target_link_libraries(tarte PUBLIC Eigen3::Eigen)
+target_link_libraries(tarte PUBLIC 
+    Eigen3::Eigen 
+    ${HDF5_LIBRARIES} 
+    nlohmann_json::nlohmann_json)
 
 
 if(TARTE_INSTALL AND NOT CMAKE_SKIP_INSTALL_RULES)
