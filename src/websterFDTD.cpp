@@ -156,7 +156,6 @@ void WebsterFDTD<ftype, kMaxN>::UpdateRadiationParameters()
 template<typename ftype, int kMaxN>
 void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
 {
-    // Convenience aliases onto active segments (avoid repeating .head(N_) everywhere)
     auto Sp = S_primal_.head(N_);
     auto Sd = S_dual_.head(N_ - 1);
     auto gamma = gamma_primal_.head(N_);
