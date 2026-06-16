@@ -27,13 +27,15 @@ theme:
 
 extra:
   generator: false  # removes the "Made with Material" footer line
+extra_css: [extra.css]
 
 markdown_extensions:
 - pymdownx.arithmatex:
     generic: true
+- footnotes
 
 extra_javascript:
-  # - docs/mathjax.js
+  - mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 copyright: Made by Thomas Risse using Mkdocs with Material theme
@@ -41,6 +43,8 @@ copyright: Made by Thomas Risse using Mkdocs with Material theme
 plugins:
   - search
   # - jupyterlite
+  - bibtex:
+      bib_file: "docs/refs.bib"
   - mkdoxy:
       projects:
         tarte:
