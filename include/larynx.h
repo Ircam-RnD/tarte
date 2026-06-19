@@ -108,7 +108,7 @@ public:
     inline Eigen::Vector<ftype, 6> ReadFoldsDisplacement()
     {
         // Midpoint to evaluate on the same grid as inputs and momentums.
-        return (q_(idx_now_, Eigen::all) + q_(idx_next_, Eigen::all)) * 0.5;
+        return (q_(idx_now_, Eigen::placeholders::all) + q_(idx_next_, Eigen::placeholders::all)) * 0.5;
     };
 
     inline Eigen::Vector<ftype, 3> ReadEffectiveOpenings()

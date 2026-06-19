@@ -13,7 +13,7 @@ int main(int, char*[])
 {
     std::string path = "larynx.wav";
     float samplerate = 44100;
-    float duration = 10;
+    float duration = 1.0;
     float subglottal_pressure = 800;
     std::size_t num_sample = static_cast<int>(samplerate * duration);
     tarte::Larynx<double> proc(samplerate, true);
@@ -25,6 +25,7 @@ int main(int, char*[])
 
     proc.set_lambda_sav(10);
     proc.set_contact_stiffness(15);
+    // proc.set_eta_stiffness(0);
     // proc.set_noise_ratio(0.3);
 
     std::vector<float> samples;
