@@ -21,6 +21,7 @@ option(TARTE_BUILD_TESTS "Build tarte tests" OFF)
 option(TARTE_BUILD_EXAMPLES "Build tarte examples" ON)
 option(TARTE_BUILD_DOCS "Build tarte documentation" ON)
 option(TARTE_INSTALL "Generate target for installing tarte" ${is_top_level})
+option(TARTE_USE_HDF5 "Enable HDF5 support" ON)
 set_if_undefined(TARTE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/tarte" CACHE STRING
     "Install path for tarte package-related CMake files")
 
@@ -45,7 +46,6 @@ add_library(tarte::tarte ALIAS tarte)
 target_compile_features(tarte PUBLIC cxx_std_23)
 # Search for dependencies here
 find_package(Eigen3 5.0 REQUIRED NO_MODULE)
-find_package(HDF5 REQUIRED COMPONENTS C CXX)
 find_package(nlohmann_json REQUIRED)
 
 #----------------------------------------------------------------------------------------------------------------------
@@ -88,8 +88,13 @@ set_target_properties(tarte PROPERTIES
 
 target_link_libraries(tarte PUBLIC 
     Eigen3::Eigen 
-    ${HDF5_LIBRARIES} 
     nlohmann_json::nlohmann_json)
+
+if(TARTE_USE_HDF5)
+    find_package(HDF5 REQUIRED COMPONENTS C CXX)
+    target_link_libraries(tarte PUBLIC ${HDF5_LIBRARIES})
+    target_compile_definitions(tarte PUBLIC TARTE_HDF5_ENABLED)
+endif()
 
 
 if(TARTE_INSTALL AND NOT CMAKE_SKIP_INSTALL_RULES)
