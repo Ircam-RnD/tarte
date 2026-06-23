@@ -1,6 +1,8 @@
-#include "utility/ResultsStorage.h"
-#include <filesystem>
-#include <iostream>
+#ifdef TARTE_HDF5_ENABLED
+
+#    include "utility/ResultsStorage.h"
+#    include <filesystem>
+#    include <iostream>
 
 ResultsStorage::ResultsStorage(const std::string& filename, bool overwrite):
     filename_(filename),
@@ -618,3 +620,5 @@ bool ResultsStorage::readIndices(const std::string& name, std::vector<int>& indi
         return false;
     }
 }
+
+#endif
