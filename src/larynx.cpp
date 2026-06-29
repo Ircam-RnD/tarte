@@ -145,7 +145,6 @@ template<typename ftype>
 void Larynx<ftype>::ComputeSavVector()
 {
     Enl_ = 0;
-    Fnl_.setZero();
 
     // Left fold
     elongations_ = BodyCoverVF<ftype>::elongation_matrix_ * q_(idx_next_, Eigen::seq(0, 2)).transpose();
@@ -154,10 +153,10 @@ void Larynx<ftype>::ComputeSavVector()
             (left_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
              elongations_.array() * elongations_.array())
                 .sum();
-    Fnl_.head(3) += left_vf_->eta_stiffness() * BodyCoverVF<ftype>::elongation_matrix_.transpose() *
-                    (left_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
-                     elongations_.array())
-                        .matrix();
+    Fnl_.head(3) = left_vf_->eta_stiffness() * BodyCoverVF<ftype>::elongation_matrix_.transpose() *
+                   (left_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
+                    elongations_.array())
+                       .matrix();
     // Right fold
     elongations_ = BodyCoverVF<ftype>::elongation_matrix_ * q_(idx_next_, Eigen::seq(3, 5)).transpose();
 
@@ -165,10 +164,10 @@ void Larynx<ftype>::ComputeSavVector()
             (right_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
              elongations_.array() * elongations_.array())
                 .sum();
-    Fnl_.tail(3) += right_vf_->eta_stiffness() * BodyCoverVF<ftype>::elongation_matrix_.transpose() *
-                    (right_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
-                     elongations_.array())
-                        .matrix();
+    Fnl_.tail(3) = right_vf_->eta_stiffness() * BodyCoverVF<ftype>::elongation_matrix_.transpose() *
+                   (right_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
+                    elongations_.array())
+                       .matrix();
 
     // Contact
     Enl_ += contact_stiffness_ *
