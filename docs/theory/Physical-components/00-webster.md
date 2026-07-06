@@ -13,7 +13,7 @@ As this component is built mainly to be used in the vocal tract, visco-thermal l
 | -------------- | -------- | ---------- | ---------------------- |
 | Rest density   | $\rho_0$ | $M.L^{-3}$ | $1.2\ kg.m^{-3}$       |
 | Speed of sound | $c_0$    | $L.T^{-1}$ | $340\ m.s^{-1}$        |
-| Tube length    | $l_0$    | $L$        | $17\ cm$ (vt)          |
+| Tube length    | $l_0$    | $L$        | $17\ cm$ (vocal tract) |
 
 | Time-space dependent variable | Notation | Dimension         | S.I.unit    |
 | ----------------------------- | -------- | ----------------- | ----------- |
@@ -25,9 +25,7 @@ As this component is built mainly to be used in the vocal tract, visco-thermal l
 
 ## PDE formulation
 
-### Basis
-
-The system considered directly follow from the reduction of Euler equations to 1D by considering homogenous fields on cross-sections and normal velocity coninuitiy at the tube closed boundaries. The kinetic energy associated with the non-axial velocity is neglected and the system partially linearized.
+The system considered directly follow from the reduction of Euler equations to 1D by considering homogenous fields on cross-sections and normal velocity continuity at the tube closed boundaries. The kinetic energy associated with the non-axial velocity is neglected and the system partially linearized.
 
 The state reduces to $x = [v, \rho, A]^\intercal$, associated with Hamiltonian
 $$
@@ -147,7 +145,7 @@ The collapsed section's content goes here
 
 ## Spatial discretization (finite differences)
 
-Finite differences on staggered grids are used for spatial discretization (see e.g. [@Tre18]). The presentation is made here for volume flow input on both end of the tube. 
+Finite differences on staggered grids are used for spatial discretization (see e.g. Trenchant 2018[@Tre18]). The presentation is made here for volume flow input on both end of the tube. 
 
 $\rho$, $A_0$ and $\widetilde A$ are discretized on a primal grid with constant spatial step $h$ and $N$ edges. $v$ is discretized on the dual (interleaved) grid with $N-1$ edges. The finite difference matrix 
 $$
@@ -206,6 +204,30 @@ $$
 
 $\boldsymbol{A_p}$ and $\boldsymbol{A_d}$ are linked by an averaging operator to be specified later, as one choice is better with the chosen time discretization scheme. The notation $\rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0}$ indicates that all values expect the one at index 0 are null (multiplication with a discrete Dirac function).
 
+The conjugated output vector, including both the distributed pressure applied on the walls and the boundaries pressure writes
+$$
+    \boldsymbol{y} = 
+    \begin{bmatrix}
+        \boldsymbol{P_w} \\\
+        \widetilde{\boldsymbol{P_w}} \\\
+        - P_l \\\
+        P_r
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 &  \rho_0 h \boldsymbol{A_p}^{-1} & -1 \\\ 
+        0 &  \rho_0 h \boldsymbol{A_p}^{-1} & 0 \\\ 
+        0 & - \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0} & 0  \\\ 
+        0 & \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=N-1} &0 
+    \end{bmatrix}
+    \begin{bmatrix}
+        \boldsymbol{A_d} \rho_0 \boldsymbol{v} \\\
+        \boldsymbol{A_p} \frac{c_0^2}{\rho_0} \boldsymbol{\rho} \\\
+        \frac{1}{2} \left(\rho_0 \boldsymbol{v}^2 + \frac{c_0^2 \boldsymbol{\rho}^2}{\rho_0}\right)
+    \end{bmatrix}.
+$$
+
+
 <details><summary>Power balance (ODE continuous time)</summary>
 
 The collapsed section's content goes here
@@ -213,6 +235,15 @@ The collapsed section's content goes here
 </details>
 
 ## Time discretization (Störmer-Verlet)
+
+Time discretization is made using a Störmer-Verlet scheme. It writes:
+$$
+\begin{align}
+    \delta_{t+} \boldsymbol{v}^{n-\frac{1}{2}} &= - \mathbf D^+ \frac{c_0^2}{\rho_0} \boldsymbol{\rho}^n \\\
+    \delta_{t+} \boldsymbol{\rho}^n &= - \boldsymbol{A_p}^{-1} \boldsymbol{D}^{-} \boldsymbol{A_d} \rho_0 \boldsymbol{v^{n+\frac{1}{2}}} - \rho_0 \boldsymbol{A_p}^{-1} \left(h \partial_t \boldsymbol{A_0} + h \partial_t \widetilde{\boldsymbol{A}} - Q_l \vert_{i=0} + Q_r\vert_{i=N-1}\right)^{n+\frac{1}{2}} \\\
+    \delta_{t+} \boldsymbol{A_0}^{n-\frac{1}{2}} &= (\partial_t \boldsymbol{A_0})^{n+\frac{1}{2}}
+\end{align}
+$$
 
 <details><summary>Power balance (ODE discrete time)</summary>
 
