@@ -167,6 +167,7 @@ $$
         \dot{\boldsymbol{A_p}}
     \end{bmatrix}
     =&
+    \frac{1}{h}
     \begin{bmatrix}
         0 &- \mathbf D^+ \boldsymbol{A_p}^{-1} & 0 \\\
         -\boldsymbol{A_p}^{-1}  \mathbf D^- & 0 & 0 \\\
@@ -174,12 +175,13 @@ $$
     \end{bmatrix}
     \underbrace{
     \begin{bmatrix}
-        \boldsymbol{A_d} \rho_0 \boldsymbol{v} \\\
-        \boldsymbol{A_p} \frac{c_0^2}{\rho_0} \boldsymbol{\rho} \\\
-        \frac{1}{2} \left(\rho_0 \boldsymbol{v}^2 + \frac{c_0^2 \boldsymbol{\rho}^2}{\rho_0}\right)
+        h\boldsymbol{A_d} \rho_0 \boldsymbol{v} \\\
+        h\boldsymbol{A_p} \frac{c_0^2}{\rho_0} \boldsymbol{\rho} \\\
+        h\frac{1}{2} \left(\rho_0 \boldsymbol{v}^2 + \frac{c_0^2 \boldsymbol{\rho}^2}{\rho_0}\right)
     \end{bmatrix}
     }_{\nabla H}\nonumber\\\
     &+
+    \frac{1}{h}
     \begin{bmatrix}
         0 & 0 & 0 & 0\\\
         - \rho_0 h \boldsymbol{A_p}^{-1} & - \rho_0 h \boldsymbol{A_p}^{-1} & \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0}& -\rho_0 \boldsymbol{A_p}^{-1}\vert_{i=N-1}\\\
@@ -199,12 +201,12 @@ $$
 with state $\mathbf x = [\boldsymbol{v}, \boldsymbol{\rho}, \boldsymbol{A}_p]^\intercal$ and Hamiltonian
 
 $$
-    H (\mathbf x) = \frac{1}{2} \left(\rho_0 \vert \boldsymbol{v} \vert^2_{\boldsymbol{A_d}} + \frac{c_0^2}{\rho_0} \vert \boldsymbol{\rho} \vert_{\boldsymbol{A_p}}^2\right).
+    H (\mathbf x) = \frac{1}{2} h \left(\rho_0 \vert \boldsymbol{v} \vert^2_{\boldsymbol{A_d}} + \frac{c_0^2}{\rho_0} \vert \boldsymbol{\rho} \vert_{\boldsymbol{A_p}}^2\right).
 $$
 
 $\boldsymbol{A_p}$ and $\boldsymbol{A_d}$ are linked by an averaging operator to be specified later, as one choice is better with the chosen time discretization scheme. The notation $\rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0}$ indicates that all values expect the one at index 0 are null (multiplication with a discrete Dirac function).
 
-The conjugated output vector, including both the distributed pressure applied on the walls and the boundaries pressure writes
+The conjugated output vector, including both the linear force density applied on the walls and the boundaries pressure writes
 $$
     \boldsymbol{y} = 
     \begin{bmatrix}
@@ -240,7 +242,7 @@ Time discretization is made using a Störmer-Verlet scheme. It writes:
 $$
 \begin{align}
     \delta_{t+} \boldsymbol{v}^{n-\frac{1}{2}} &= - \mathbf D^+ \frac{c_0^2}{\rho_0} \boldsymbol{\rho}^n \\\
-    \delta_{t+} \boldsymbol{\rho}^n &= - \boldsymbol{A_p}^{-1} \boldsymbol{D}^{-} \boldsymbol{A_d} \rho_0 \boldsymbol{v^{n+\frac{1}{2}}} - \rho_0 \boldsymbol{A_p}^{-1} \left(h \partial_t \boldsymbol{A_0} + h \partial_t \widetilde{\boldsymbol{A}} - Q_l \vert_{i=0} + Q_r\vert_{i=N-1}\right)^{n+\frac{1}{2}} \\\
+    \delta_{t+} \boldsymbol{\rho}^n &= - \boldsymbol{A_p}^{-1} \boldsymbol{D}^{-} \boldsymbol{A_d} \rho_0 \boldsymbol{v^{n+\frac{1}{2}}} - \rho_0 \boldsymbol{A_p}^{-1} \left(\partial_t \boldsymbol{A_0} + \partial_t \widetilde{\boldsymbol{A}} - \frac{1}{h}Q_l \vert_{i=0} + \frac{1}{h}Q_r\vert_{i=N-1}\right)^{n+\frac{1}{2}} \\\
     \delta_{t+} \boldsymbol{A_0}^{n-\frac{1}{2}} &= (\partial_t \boldsymbol{A_0})^{n+\frac{1}{2}}
 \end{align}
 $$
