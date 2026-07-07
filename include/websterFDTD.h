@@ -90,11 +90,15 @@ private:
 
     void ComputePowers();
 
-    void BuildLaplaceStateSpace(Eigen::MatrixXcd& matinternal,
-                                Eigen::VectorXcd& Sxu,
-                                Eigen::RowVectorXcd& matoutZ,
-                                Eigen::RowVectorXcd& matoutTFFlow,
-                                Eigen::RowVectorXcd& matoutTFPressure) const;
+    void BuildLaplaceStateSpace(Eigen::MatrixXd& matinternal,
+                                Eigen::VectorXd& Sxu,
+                                Eigen::RowVectorXd& matoutZ,
+                                Eigen::RowVectorXd& matoutTFFlow,
+                                Eigen::RowVectorXd& matoutTFPressure) const;
+
+    Eigen::VectorXcd poles_, impedance_residues_, transfer_function_flow_residues_,
+        transfer_function_pressure_residues_;
+    void BuildPoleResidue();
 
 public:
     WebsterFDTD(ftype sampleRate, ftype length = ftype(17e-2), Articulation* art = nullptr);
@@ -136,9 +140,7 @@ public:
         std::complex<double> transferFunctionFlow;
         std::complex<double> transferFunctionPressure;
     };
-    FrequencyResponse ComputeFrequencyResponse(std::complex<double> s) const;
-    std::complex<double> ComputeInputImpedance(std::complex<double> s) const;
-    std::complex<double> ComputeTransferFunction(std::complex<double> s) const;
+    std::vector<FrequencyResponse> ComputeFrequencyResponse(const std::vector<double>& frequenciesHz);
 
     // Getters
     inline std::size_t get_N() { return static_cast<std::size_t>(N_); }

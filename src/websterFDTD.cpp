@@ -304,11 +304,11 @@ void WebsterFDTD<ftype, kMaxN>::ComputePowers()
 }
 
 template<typename ftype, int kMaxN>
-void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXcd& matinternal,
-                                                       Eigen::VectorXcd& Sxu,
-                                                       Eigen::RowVectorXcd& matoutZ,
-                                                       Eigen::RowVectorXcd& matoutTFFlow,
-                                                       Eigen::RowVectorXcd& matoutTFPressure) const
+void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXd& matinternal,
+                                                       Eigen::VectorXd& Sxu,
+                                                       Eigen::RowVectorXd& matoutZ,
+                                                       Eigen::RowVectorXd& matoutTFFlow,
+                                                       Eigen::RowVectorXd& matoutTFPressure) const
 {
     using Cplx = std::complex<double>;
 
@@ -381,13 +381,13 @@ void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXcd& matinte
         SxuArr.segment(Nv, Nx) = rho0 / Sp * Gg;
         SxuArr /= h;
 
-        matinternal = (Sxx * Hdiag.matrix().asDiagonal()).cast<Cplx>();
-        Sxu = SxuArr.matrix().cast<Cplx>();
-        matoutZ = (SxuArr.matrix().transpose() * Hdiag.matrix().asDiagonal()).cast<Cplx>();
+        matinternal = (Sxx * Hdiag.matrix().asDiagonal());
+        Sxu = SxuArr.matrix();
+        matoutZ = (SxuArr.matrix().transpose() * Hdiag.matrix().asDiagonal());
 
         Eigen::RowVectorXd mTF;
         fillCommonTF(mTF, total);
-        matoutTFFlow = (mTF * Hdiag.matrix().asDiagonal()).cast<Cplx>();
+        matoutTFFlow = (mTF * Hdiag.matrix().asDiagonal());
 
         matoutTFPressure.resize(Nx);
         matoutTFPressure.setZero();
@@ -416,13 +416,13 @@ void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXcd& matinte
         SxuArr.segment(Nv, Nx) = rho0 / Sp * Gg;
         SxuArr /= h;
 
-        matinternal = (Sxx * Hdiag.matrix().asDiagonal()).cast<Cplx>();
-        Sxu = SxuArr.matrix().cast<Cplx>();
-        matoutZ = (SxuArr.matrix().transpose() * Hdiag.matrix().asDiagonal()).cast<Cplx>();
+        matinternal = (Sxx * Hdiag.matrix().asDiagonal());
+        Sxu = SxuArr.matrix();
+        matoutZ = (SxuArr.matrix().transpose() * Hdiag.matrix().asDiagonal());
 
         Eigen::RowVectorXd mTF;
         fillCommonTF(mTF, total);
-        matoutTFFlow = (mTF * Hdiag.matrix().asDiagonal()).cast<Cplx>();
+        matoutTFFlow = (mTF * Hdiag.matrix().asDiagonal());
 
         matoutTFPressure.resize(total);
         matoutTFPressure.setZero();
@@ -431,37 +431,58 @@ void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXcd& matinte
 }
 
 template<typename ftype, int kMaxN>
-typename WebsterFDTD<ftype, kMaxN>::FrequencyResponse WebsterFDTD<ftype, kMaxN>::ComputeFrequencyResponse(
-    std::complex<double> s) const
+void WebsterFDTD<ftype, kMaxN>::BuildPoleResidue()
 {
-    Eigen::MatrixXcd matinternal;
-    Eigen::VectorXcd Sxu;
-    Eigen::RowVectorXcd matoutZ, matoutTFFlow, matOutTFPressure;
+    Eigen::MatrixXd matinternal;
+    Eigen::VectorXd Sxu;
+    Eigen::RowVectorXd matoutZ, matoutTFFlow, matOutTFPressure;
     BuildLaplaceStateSpace(matinternal, Sxu, matoutZ, matoutTFFlow, matOutTFPressure);
 
-    const int total = static_cast<int>(matinternal.rows());
-    Eigen::MatrixXcd M = s * Eigen::MatrixXcd::Identity(total, total) - matinternal;
+    Eigen::EigenSolver<Eigen::MatrixXd> es(matinternal);
+    poles_ = es.eigenvalues();
+    Eigen::MatrixXcd V = es.eigenvectors();
+    Eigen::MatrixXcd Vinv = V.inverse();
 
-    // Solve once, reuse for three outputs (avoids forming the full inverse).
-    Eigen::VectorXcd x = M.fullPivLu().solve(Sxu);
+    impedance_residues_ = (matoutZ * V).transpose().array() * (Vinv * Sxu).array();
+    transfer_function_flow_residues_ = (matoutTFFlow * V).transpose().array() * (Vinv * Sxu).array();
+    transfer_function_pressure_residues_ = (matOutTFPressure * V).transpose().array() * (Vinv * Sxu).array();
+}
 
-    FrequencyResponse out;
-    out.impedance = (matoutZ * x)(0);
-    out.transferFunctionFlow = (matoutTFFlow * x)(0);
-    out.transferFunctionPressure = (matOutTFPressure * x)(0);
+template<typename ftype, int kMaxN>
+std::vector<typename WebsterFDTD<ftype, kMaxN>::FrequencyResponse> WebsterFDTD<ftype, kMaxN>::ComputeFrequencyResponse(
+    const std::vector<double>& frequenciesHz)
+{
+    // Build the (poles, residues) once from the current geometry — O(N^3), done a single time.
+    BuildPoleResidue();
+
+    const int nPoles = static_cast<int>(poles_.size());
+
+    std::vector<FrequencyResponse> out;
+    out.reserve(frequenciesHz.size());
+
+    for (double freq: frequenciesHz) {
+        const std::complex<double> s(0.0, 2.0 * M_PI * freq);
+
+        std::complex<double> Z(0.0, 0.0);
+        std::complex<double> TFflow(0.0, 0.0);
+        std::complex<double> TFpressure(0.0, 0.0);
+
+        // Cheap O(N) sum per frequency instead of an O(N^3) solve.
+        for (int i = 0; i < nPoles; ++i) {
+            const std::complex<double> denom = s - poles_(i);
+            Z += impedance_residues_(i) / denom;
+            TFflow += transfer_function_flow_residues_(i) / denom;
+            TFpressure += transfer_function_pressure_residues_(i) / denom;
+        }
+
+        FrequencyResponse resp;
+        resp.impedance = Z;
+        resp.transferFunctionFlow = TFflow;
+        resp.transferFunctionPressure = TFpressure;
+        out.push_back(resp);
+    }
+
     return out;
-}
-
-template<typename ftype, int kMaxN>
-std::complex<double> WebsterFDTD<ftype, kMaxN>::ComputeInputImpedance(std::complex<double> s) const
-{
-    return ComputeFrequencyResponse(s).impedance;
-}
-
-template<typename ftype, int kMaxN>
-std::complex<double> WebsterFDTD<ftype, kMaxN>::ComputeTransferFunction(std::complex<double> s) const
-{
-    return ComputeFrequencyResponse(s).transferFunctionFlow;
 }
 
 template<typename ftype, int kMaxN>
