@@ -304,6 +304,167 @@ void WebsterFDTD<ftype, kMaxN>::ComputePowers()
 }
 
 template<typename ftype, int kMaxN>
+void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXcd& matinternal,
+                                                       Eigen::VectorXcd& Sxu,
+                                                       Eigen::RowVectorXcd& matoutZ,
+                                                       Eigen::RowVectorXcd& matoutTFFlow,
+                                                       Eigen::RowVectorXcd& matoutTFPressure) const
+{
+    using Cplx = std::complex<double>;
+
+    const int Nx = N_;     // # pressure (Sp) states
+    const int Nv = N_ - 1; // # velocity (Sd) states
+
+    Eigen::ArrayXd Sp = S_primal_.head(Nx).template cast<double>();
+    Eigen::ArrayXd Sd = S_dual_.head(Nv).template cast<double>();
+    const double h = static_cast<double>(h_);
+    const double rho0 = static_cast<double>(rho0_);
+    const double c0 = static_cast<double>(c0_);
+    const double Lrad = static_cast<double>(L_rad_);
+    const double Rrad = static_cast<double>(R_rad_);
+
+    // Finite-difference matrix (same as Dplus/Dmin in the Python version)
+    Eigen::MatrixXd Dplus = Eigen::MatrixXd::Zero(Nx, Nv);
+    for (int i = 0; i < Nv; ++i) {
+        Dplus(i, i) += 1.0 / h;
+        Dplus(i + 1, i) += -1.0 / h;
+    }
+    Eigen::MatrixXd Dmin = -Dplus.transpose();                       // Nv x Nx
+    Eigen::MatrixXd S0 = -Dmin * Sp.inverse().matrix().asDiagonal(); // Nv x Nx
+
+    Eigen::ArrayXd Gl = Eigen::ArrayXd::Zero(Nx);
+    Gl(Nx - 1) = 1.0; // outlet
+    Eigen::ArrayXd Gg = Eigen::ArrayXd::Zero(Nx);
+    Gg(0) = 1.0; // glottis
+
+    auto fillCommonTF = [&](Eigen::RowVectorXd& mTF, int total) {
+        mTF = Eigen::RowVectorXd::Zero(total);
+        mTF(Nv + Nx - 1) = rho0 / (Rrad * h * Sp(Nx - 1)); // resistive branch
+        mTF(total - 1) = 1.0 / Lrad;                       // inductive branch
+    };
+
+    if (yielding_walls) {
+        // Layout: [Nv | Nx | Nx | Nx | 1]
+        const int total = Nv + 3 * Nx + 1;
+        Eigen::ArrayXd perim = gamma_primal_.head(Nx).template cast<double>();
+        const double mw = static_cast<double>(wall_area_mass_);
+        const double kw = static_cast<double>(wall_area_stiffness_);
+        const double bw = static_cast<double>(wall_area_damping_);
+
+        Eigen::ArrayXd Hdiag(total);
+        Hdiag.segment(0, Nv) = h * Sd * rho0;
+        Hdiag.segment(Nv, Nx) = h * Sp * (c0 * c0) / rho0;
+        Hdiag.segment(Nv + Nx, Nx) = h * perim / mw;
+        Hdiag.segment(Nv + 2 * Nx, Nx) = h * perim * kw;
+        Hdiag(total - 1) = Lrad;
+
+        Eigen::ArrayXd SRrad = -(rho0 * rho0) / (h * Rrad) * (Gl / Sp.square());
+        Eigen::ArrayXd SLrad = -rho0 / Lrad * (Gl / Sp);
+        Eigen::ArrayXd SRw = -bw / perim;
+        Eigen::ArrayXd S0w = -1.0 / perim;
+        Eigen::ArrayXd Sfw = -rho0 / Sp;
+
+        Eigen::MatrixXd Sxx = Eigen::MatrixXd::Zero(total, total);
+        Sxx.block(0, Nv, Nv, Nx) = S0;
+        Sxx.block(Nv, 0, Nx, Nv) = -S0.transpose();
+        Sxx.block(Nv, Nv, Nx, Nx) = SRrad.matrix().asDiagonal();
+        Sxx.block(Nv, Nv + Nx, Nx, Nx) = Sfw.matrix().asDiagonal();
+        Sxx.block(Nv, Nv + 3 * Nx, Nx, 1) = SLrad.matrix();
+        Sxx.block(Nv + Nx, Nv, Nx, Nx) = (-Sfw.matrix()).asDiagonal();
+        Sxx.block(Nv + Nx, Nv + Nx, Nx, Nx) = SRw.matrix().asDiagonal();
+        Sxx.block(Nv + Nx, Nv + 2 * Nx, Nx, Nx) = S0w.matrix().asDiagonal();
+        Sxx.block(Nv + 2 * Nx, Nv + Nx, Nx, Nx) = (-S0w.matrix()).asDiagonal();
+        Sxx.block(total - 1, Nv, 1, Nx) = -SLrad.matrix().transpose();
+        Sxx /= h;
+
+        Eigen::ArrayXd SxuArr = Eigen::ArrayXd::Zero(total);
+        SxuArr.segment(Nv, Nx) = rho0 / Sp * Gg;
+        SxuArr /= h;
+
+        matinternal = (Sxx * Hdiag.matrix().asDiagonal()).cast<Cplx>();
+        Sxu = SxuArr.matrix().cast<Cplx>();
+        matoutZ = (SxuArr.matrix().transpose() * Hdiag.matrix().asDiagonal()).cast<Cplx>();
+
+        Eigen::RowVectorXd mTF;
+        fillCommonTF(mTF, total);
+        matoutTFFlow = (mTF * Hdiag.matrix().asDiagonal()).cast<Cplx>();
+
+        matoutTFPressure.resize(Nx);
+        matoutTFPressure.setZero();
+        matoutTFPressure(Nx - 1) = rho0_ / (Sp[Nx - 1] * h) * Hdiag(Nx - 1);
+    } else {
+        // Layout: [Nv | Nx | 1]
+        const int total = Nv + Nx + 1;
+
+        Eigen::ArrayXd Hdiag(total);
+        Hdiag.segment(0, Nv) = h * Sd * rho0;
+        Hdiag.segment(Nv, Nx) = h * Sp * (c0 * c0) / rho0;
+        Hdiag(total - 1) = Lrad;
+
+        Eigen::ArrayXd S1 = -(rho0 * rho0) / (h * Rrad) * (Gl / Sp.square());
+        Eigen::ArrayXd S2 = -rho0 / Lrad * (Gl / Sp);
+
+        Eigen::MatrixXd Sxx = Eigen::MatrixXd::Zero(total, total);
+        Sxx.block(0, Nv, Nv, Nx) = S0;
+        Sxx.block(Nv, 0, Nx, Nv) = -S0.transpose();
+        Sxx.block(Nv, Nv, Nx, Nx) = S1.matrix().asDiagonal();
+        Sxx.block(Nv, Nv + Nx, Nx, 1) = S2.matrix();
+        Sxx.block(total - 1, Nv, 1, Nx) = -S2.matrix().transpose();
+        Sxx /= h;
+
+        Eigen::ArrayXd SxuArr = Eigen::ArrayXd::Zero(total);
+        SxuArr.segment(Nv, Nx) = rho0 / Sp * Gg;
+        SxuArr /= h;
+
+        matinternal = (Sxx * Hdiag.matrix().asDiagonal()).cast<Cplx>();
+        Sxu = SxuArr.matrix().cast<Cplx>();
+        matoutZ = (SxuArr.matrix().transpose() * Hdiag.matrix().asDiagonal()).cast<Cplx>();
+
+        Eigen::RowVectorXd mTF;
+        fillCommonTF(mTF, total);
+        matoutTFFlow = (mTF * Hdiag.matrix().asDiagonal()).cast<Cplx>();
+
+        matoutTFPressure.resize(total);
+        matoutTFPressure.setZero();
+        matoutTFPressure(Nv + Nx - 1) = rho0_ / (Sp[Nx - 1] * h) * Hdiag(Nx - 1);
+    }
+}
+
+template<typename ftype, int kMaxN>
+typename WebsterFDTD<ftype, kMaxN>::FrequencyResponse WebsterFDTD<ftype, kMaxN>::ComputeFrequencyResponse(
+    std::complex<double> s) const
+{
+    Eigen::MatrixXcd matinternal;
+    Eigen::VectorXcd Sxu;
+    Eigen::RowVectorXcd matoutZ, matoutTFFlow, matOutTFPressure;
+    BuildLaplaceStateSpace(matinternal, Sxu, matoutZ, matoutTFFlow, matOutTFPressure);
+
+    const int total = static_cast<int>(matinternal.rows());
+    Eigen::MatrixXcd M = s * Eigen::MatrixXcd::Identity(total, total) - matinternal;
+
+    // Solve once, reuse for three outputs (avoids forming the full inverse).
+    Eigen::VectorXcd x = M.partialPivLu().solve(Sxu);
+
+    FrequencyResponse out;
+    out.impedance = (matoutZ * x)(0);
+    out.transferFunctionFlow = (matoutTFFlow * x)(0);
+    out.transferFunctionPressure = (matOutTFPressure * x)(0);
+    return out;
+}
+
+template<typename ftype, int kMaxN>
+std::complex<double> WebsterFDTD<ftype, kMaxN>::ComputeInputImpedance(std::complex<double> s) const
+{
+    return ComputeFrequencyResponse(s).impedance;
+}
+
+template<typename ftype, int kMaxN>
+std::complex<double> WebsterFDTD<ftype, kMaxN>::ComputeTransferFunction(std::complex<double> s) const
+{
+    return ComputeFrequencyResponse(s).transferFunctionFlow;
+}
+
+template<typename ftype, int kMaxN>
 void WebsterFDTD<ftype, kMaxN>::set_N_lpf(int num)
 {
     N_lpf_ = std::clamp(num, 1, kMaxN + 1);

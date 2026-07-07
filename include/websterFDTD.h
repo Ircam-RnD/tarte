@@ -90,6 +90,12 @@ private:
 
     void ComputePowers();
 
+    void BuildLaplaceStateSpace(Eigen::MatrixXcd& matinternal,
+                                Eigen::VectorXcd& Sxu,
+                                Eigen::RowVectorXcd& matoutZ,
+                                Eigen::RowVectorXcd& matoutTFFlow,
+                                Eigen::RowVectorXcd& matoutTFPressure) const;
+
 public:
     WebsterFDTD(ftype sampleRate, ftype length = ftype(17e-2), Articulation* art = nullptr);
 
@@ -123,6 +129,16 @@ public:
     // Listeners
     inline ftype ReadInputPressure() { return c0_ * c0_ * rho_now_ac()(0); }
     inline ftype ReadRadiatedPressure() { return c0_ * c0_ * rho_now_ac()(N_ - 1); }
+
+    // Frequency response estimation
+    struct FrequencyResponse {
+        std::complex<double> impedance;
+        std::complex<double> transferFunctionFlow;
+        std::complex<double> transferFunctionPressure;
+    };
+    FrequencyResponse ComputeFrequencyResponse(std::complex<double> s) const;
+    std::complex<double> ComputeInputImpedance(std::complex<double> s) const;
+    std::complex<double> ComputeTransferFunction(std::complex<double> s) const;
 
     // Getters
     inline std::size_t get_N() { return static_cast<std::size_t>(N_); }

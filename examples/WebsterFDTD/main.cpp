@@ -14,8 +14,12 @@ int main(int, char*[])
     float duration = 10;
     std::size_t num_sample = static_cast<int>(samplerate * duration);
     tarte::WebsterFDTD<float> resonator(samplerate, 1.0f);
-    resonator.set_yielding_walls(false);
-    resonator.SetConstantSection(1e-4);
+    tarte::Articulation art;
+    art.SetFromVowel(tarte::vowels::i);
+    resonator.set_yielding_walls(true);
+    resonator.set_l0(17e-2);
+    resonator.set_time_varying_geometry(false);
+    resonator.SetTargetGeometryFromArticulation(art);
 
     std::vector<float> samples;
     samples.resize(num_sample);
