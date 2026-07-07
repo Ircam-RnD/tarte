@@ -443,7 +443,7 @@ typename WebsterFDTD<ftype, kMaxN>::FrequencyResponse WebsterFDTD<ftype, kMaxN>:
     Eigen::MatrixXcd M = s * Eigen::MatrixXcd::Identity(total, total) - matinternal;
 
     // Solve once, reuse for three outputs (avoids forming the full inverse).
-    Eigen::VectorXcd x = M.partialPivLu().solve(Sxu);
+    Eigen::VectorXcd x = M.fullPivLu().solve(Sxu);
 
     FrequencyResponse out;
     out.impedance = (matoutZ * x)(0);
