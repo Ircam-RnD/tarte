@@ -389,9 +389,9 @@ void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXd& matinter
         fillCommonTF(mTF, total);
         matoutTFFlow = (mTF * Hdiag.matrix().asDiagonal());
 
-        matoutTFPressure.resize(Nx);
+        matoutTFPressure.resize(total);
         matoutTFPressure.setZero();
-        matoutTFPressure(Nx - 1) = rho0_ / (Sp[Nx - 1] * h) * Hdiag(Nx - 1);
+        matoutTFPressure(Nv + Nx - 1) = rho0_ / (Sp[Nx - 1] * h) * Hdiag(Nv + Nx - 1);
     } else {
         // Layout: [Nv | Nx | 1]
         const int total = Nv + Nx + 1;
@@ -426,7 +426,7 @@ void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXd& matinter
 
         matoutTFPressure.resize(total);
         matoutTFPressure.setZero();
-        matoutTFPressure(Nv + Nx - 1) = rho0_ / (Sp[Nx - 1] * h) * Hdiag(Nx - 1);
+        matoutTFPressure(Nv + Nx - 1) = rho0_ / (Sp[Nx - 1] * h) * Hdiag(Nv + Nx - 1);
     }
 }
 
@@ -452,7 +452,6 @@ template<typename ftype, int kMaxN>
 std::vector<typename WebsterFDTD<ftype, kMaxN>::FrequencyResponse> WebsterFDTD<ftype, kMaxN>::ComputeFrequencyResponse(
     const std::vector<double>& frequenciesHz)
 {
-    // Build the (poles, residues) once from the current geometry — O(N^3), done a single time.
     BuildPoleResidue();
 
     const int nPoles = static_cast<int>(poles_.size());
@@ -467,7 +466,6 @@ std::vector<typename WebsterFDTD<ftype, kMaxN>::FrequencyResponse> WebsterFDTD<f
         std::complex<double> TFflow(0.0, 0.0);
         std::complex<double> TFpressure(0.0, 0.0);
 
-        // Cheap O(N) sum per frequency instead of an O(N^3) solve.
         for (int i = 0; i < nPoles; ++i) {
             const std::complex<double> denom = s - poles_(i);
             Z += impedance_residues_(i) / denom;
