@@ -15,6 +15,19 @@ namespace tarte {
 
 template<typename ftype, int kMaxN = 50>
 class WebsterFDTD {
+public:
+    struct FrequencyResponse {
+        std::complex<double> impedance;
+        std::complex<double> transferFunctionFlow;
+        std::complex<double> transferFunctionPressure;
+    };
+    struct PolesResidues {
+        std::vector<std::complex<double>> poles;
+        std::vector<std::complex<double>> impedanceResidues;
+        std::vector<std::complex<double>> tranferFunctionFlowResidues;
+        std::vector<std::complex<double>> tranferFunctionPressureResidues;
+    };
+
 private:
     // Size N+1  →  kMaxN + 1
     using ArrayNp1 = Eigen::Array<ftype, kMaxN + 1, 1>;
@@ -28,6 +41,7 @@ private:
     ftype lip_radius{0}, L_rad_{0}, R_rad_{0};         // Radiation
     bool yielding_walls{false};
     ftype wall_area_mass_{15}, wall_area_stiffness_{3e6}, wall_area_damping_{16000}; // Yielding walls, per-area values
+    bool time_varying_geometry_{false};
 
     // Articulation
     ArrayNp1 S_direct_, S_target_, S_direct_last_;
@@ -72,7 +86,6 @@ private:
     // Private helpers
     void SetNStability();
     void ComputeDiscreteGreometry();
-    bool time_varying_geometry_{false};
     void UpdateRadiationParameters();
     void UpdateCoefficients();
 
@@ -95,10 +108,6 @@ private:
                                 Eigen::RowVectorXd& matoutZ,
                                 Eigen::RowVectorXd& matoutTFFlow,
                                 Eigen::RowVectorXd& matoutTFPressure) const;
-
-    Eigen::VectorXcd poles_, impedance_residues_, transfer_function_flow_residues_,
-        transfer_function_pressure_residues_;
-    void BuildPoleResidue();
 
 public:
     WebsterFDTD(ftype sampleRate, ftype length = ftype(17e-2), Articulation* art = nullptr);
@@ -135,11 +144,7 @@ public:
     inline ftype ReadRadiatedPressure() { return c0_ * c0_ * rho_now_ac()(N_ - 1); }
 
     // Frequency response estimation
-    struct FrequencyResponse {
-        std::complex<double> impedance;
-        std::complex<double> transferFunctionFlow;
-        std::complex<double> transferFunctionPressure;
-    };
+    PolesResidues ComputePolesResidues();
     std::vector<FrequencyResponse> ComputeFrequencyResponse(const std::vector<double>& frequenciesHz);
 
     // Getters

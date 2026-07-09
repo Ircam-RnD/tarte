@@ -431,7 +431,7 @@ void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXd& matinter
 }
 
 template<typename ftype, int kMaxN>
-void WebsterFDTD<ftype, kMaxN>::BuildPoleResidue()
+WebsterFDTD<ftype, kMaxN>::PolesResidues WebsterFDTD<ftype, kMaxN>::ComputePolesResidues()
 {
     Eigen::MatrixXd matinternal;
     Eigen::VectorXd Sxu;
@@ -439,22 +439,39 @@ void WebsterFDTD<ftype, kMaxN>::BuildPoleResidue()
     BuildLaplaceStateSpace(matinternal, Sxu, matoutZ, matoutTFFlow, matOutTFPressure);
 
     Eigen::EigenSolver<Eigen::MatrixXd> es(matinternal);
-    poles_ = es.eigenvalues();
+    Eigen::VectorXcd poles = es.eigenvalues();
     Eigen::MatrixXcd V = es.eigenvectors();
     Eigen::MatrixXcd Vinv = V.inverse();
 
-    impedance_residues_ = (matoutZ * V).transpose().array() * (Vinv * Sxu).array();
-    transfer_function_flow_residues_ = (matoutTFFlow * V).transpose().array() * (Vinv * Sxu).array();
-    transfer_function_pressure_residues_ = (matOutTFPressure * V).transpose().array() * (Vinv * Sxu).array();
+    Eigen::VectorXcd impedance_residues = (matoutZ * V).transpose().array() * (Vinv * Sxu).array();
+    Eigen::VectorXcd tranfer_function_flow_residues = (matoutTFFlow * V).transpose().array() * (Vinv * Sxu).array();
+    Eigen::VectorXcd tranfer_function_pressure_residues =
+        (matOutTFPressure * V).transpose().array() * (Vinv * Sxu).array();
+
+    PolesResidues out;
+    out.poles.resize(poles.size());
+    Eigen::VectorXcd::Map(&out.poles[0], poles.size()) = poles;
+
+    out.impedanceResidues.resize(impedance_residues.size());
+    Eigen::VectorXcd::Map(&out.impedanceResidues[0], impedance_residues.size()) = impedance_residues;
+
+    out.tranferFunctionFlowResidues.resize(tranfer_function_flow_residues.size());
+    Eigen::VectorXcd::Map(&out.tranferFunctionFlowResidues[0], tranfer_function_flow_residues.size()) =
+        tranfer_function_flow_residues;
+
+    out.tranferFunctionPressureResidues.resize(tranfer_function_pressure_residues.size());
+    Eigen::VectorXcd::Map(&out.tranferFunctionPressureResidues[0], tranfer_function_pressure_residues.size()) =
+        tranfer_function_pressure_residues;
+    return out;
 }
 
 template<typename ftype, int kMaxN>
 std::vector<typename WebsterFDTD<ftype, kMaxN>::FrequencyResponse> WebsterFDTD<ftype, kMaxN>::ComputeFrequencyResponse(
     const std::vector<double>& frequenciesHz)
 {
-    BuildPoleResidue();
+    PolesResidues poles_residues = ComputePolesResidues();
 
-    const int nPoles = static_cast<int>(poles_.size());
+    const int n_poles = static_cast<int>(poles_residues.poles.size());
 
     std::vector<FrequencyResponse> out;
     out.reserve(frequenciesHz.size());
@@ -466,11 +483,11 @@ std::vector<typename WebsterFDTD<ftype, kMaxN>::FrequencyResponse> WebsterFDTD<f
         std::complex<double> TFflow(0.0, 0.0);
         std::complex<double> TFpressure(0.0, 0.0);
 
-        for (int i = 0; i < nPoles; ++i) {
-            const std::complex<double> denom = s - poles_(i);
-            Z += impedance_residues_(i) / denom;
-            TFflow += transfer_function_flow_residues_(i) / denom;
-            TFpressure += transfer_function_pressure_residues_(i) / denom;
+        for (int i = 0; i < n_poles; ++i) {
+            const std::complex<double> denom = s - poles_residues.poles.at(i);
+            Z += poles_residues.impedanceResidues.at(i) / denom;
+            TFflow += poles_residues.tranferFunctionFlowResidues.at(i) / denom;
+            TFpressure += poles_residues.tranferFunctionPressureResidues.at(i) / denom;
         }
 
         FrequencyResponse resp;
