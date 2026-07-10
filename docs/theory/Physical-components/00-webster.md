@@ -15,6 +15,8 @@ As this component is built mainly to be used in the vocal tract, visco-thermal l
 | Speed of sound | $c_0$    | $L.T^{-1}$ | $340\ m.s^{-1}$        |
 | Tube length    | $l_0$    | $L$        | $17\ cm$ (vocal tract) |
 
+The tube length is considered here to be constant. This hypothesis can be somewhat relaxed for the vocal tract by modulating the length in a non-power preserving way, but still stable under slow variations. The axial variable is named $\xi$.
+
 | Time-space dependent variable | Notation | Dimension         | S.I.unit    |
 | ----------------------------- | -------- | ----------------- | ----------- |
 | Density                       | $\rho$   | $M.L^{-3}$        | $kg.m^{-3}$ |
@@ -22,6 +24,7 @@ As this component is built mainly to be used in the vocal tract, visco-thermal l
 | Velocity (axial)              | $v$      | $L.T^{-1}$        | $m.s^{-1}$  |
 | Cross-section area            | $A$      | $L^2$             | $m^2$       |
 | Perimeter                     | $\Gamma$ | $L$               | $m$         |
+
 
 ## PDE formulation
 
@@ -43,8 +46,8 @@ $$
     \end{bmatrix}
     =
     \begin{bmatrix}
-        0 &-\partial_x\left(\frac{\bullet}{A}\right) & 0 \\\
-        -\frac{1}{A} \partial_x & 0 & 0 \\\
+        0 &-\partial_{\xi}\left(\frac{\bullet}{A}\right) & 0 \\\
+        -\frac{1}{A} \partial_{\xi} & 0 & 0 \\\
         0 & 0 & 0
     \end{bmatrix}
     \underbrace{
@@ -86,7 +89,7 @@ $$
 
 Note that the pressure here includes an unexpected term related to the last element of the Hamiltonian gradient. This follows from the linearization process: it is a second order perturbation to the received pressure by the walls, non-physical but structurally obtained to preserve the power balance. 
 
-Boundary conditions at $x=0$ and $x=l_0$ are considered to be either of the from of a volume flow or pressure control (with the other as the power conjugated output).
+Boundary conditions at $\xi=0$ and $\xi=l_0$ are considered to be either of the from of a volume flow or pressure control (with the other as the power conjugated output).
 
 
 
@@ -106,8 +109,8 @@ $$
     \end{bmatrix}
     =
     \begin{bmatrix}
-        0 &-\partial_x\left(\frac{\bullet}{A_0}\right) & 0 \\\
-        -\frac{1}{A_0} \partial_x & 0 & 0 \\\
+        0 &-\partial_{\xi}\left(\frac{\bullet}{A_0}\right) & 0 \\\
+        -\frac{1}{A_0} \partial_{\xi} & 0 & 0 \\\
         0 & 0 & 0
     \end{bmatrix}
     \underbrace{
@@ -139,7 +142,21 @@ $$
 
 <details><summary>Power balance (EDP)</summary>
 
-The collapsed section's content goes here
+The power balance is obtained directly by using the formula
+
+$$
+\begin{align*}
+    \frac{d}{dt} \mathcal H &= \int_{\xi=0}^{\xi = l_0} \nabla \mathcal H^\intercal \partial_t \boldsymbol{x} \; d\xi, \\\
+    &= \int_{\xi=0}^{\xi = l_0} - \partial_{\xi} \left( A_0 v c_0^2 \rho\right) - c_0^2 \rho (\partial_t A_0 + \partial_t \widetilde{A})+ 
+    \frac{1}{2} \left(\rho_0 v^2 + \frac{c_0^2 \rho^2}{\rho_0}\right) \partial_t A_0 \; d\xi,\\\
+    &= -[QP]_{\xi = 0}^{\xi=l_0} + 
+    \int_{\xi=0}^{\xi = l_0} - c_0^2 \rho (\partial_t A_0 + \partial_t \widetilde{A})+ 
+    \frac{1}{2} \left(\rho_0 v^2 + \frac{c_0^2 \rho^2}{\rho_0}\right) \partial_t A_0 \; d\xi.
+
+\end{align*}
+$$
+
+As the interconnection operators is formally skew-symmetric, no dissipation terms are present. The energy exchanged with the walls, due to variations of $A_0$ and $\widetilde A$ includes the integral of the product of area variations and pressure along the tube. Is also includes the spurious second order pressure term. Energy exchanged at the tube boundaries writes as the product of volume flow and pressure at $\xi = 0$ and $\xi = l_0$.
 
 </details>
 
@@ -181,10 +198,9 @@ $$
     \end{bmatrix}
     }_{\nabla H}\nonumber\\\
     &+
-    \frac{1}{h}
     \begin{bmatrix}
         0 & 0 & 0 & 0\\\
-        - \rho_0 h \boldsymbol{A_p}^{-1} & - \rho_0 h \boldsymbol{A_p}^{-1} & \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0}& -\rho_0 \boldsymbol{A_p}^{-1}\vert_{i=N-1}\\\
+        - \rho_0  \boldsymbol{A_p}^{-1} & - \rho_0  \boldsymbol{A_p}^{-1} & \frac{1}{h} \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0}& - \frac{1}{h}\rho_0 \boldsymbol{A_p}^{-1}\vert_{i=N-1}\\\
         1 & 0 & 0 & 0
     \end{bmatrix}
     \underbrace{
@@ -217,22 +233,26 @@ $$
     \end{bmatrix}
     =
     \begin{bmatrix}
-        0 &  \rho_0 h \boldsymbol{A_p}^{-1} & -1 \\\ 
-        0 &  \rho_0 h \boldsymbol{A_p}^{-1} & 0 \\\ 
-        0 & - \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0} & 0  \\\ 
-        0 & \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=N-1} &0 
+        0 &  \rho_0 \boldsymbol{A_p}^{-1} & -1 \\\ 
+        0 &  \rho_0 \boldsymbol{A_p}^{-1} & 0 \\\ 
+        0 & - \frac{1}{h} \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0} & 0  \\\ 
+        0 & \frac{1}{h} \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=N-1} &0 
     \end{bmatrix}
     \begin{bmatrix}
-        \boldsymbol{A_d} \rho_0 \boldsymbol{v} \\\
-        \boldsymbol{A_p} \frac{c_0^2}{\rho_0} \boldsymbol{\rho} \\\
-        \frac{1}{2} \left(\rho_0 \boldsymbol{v}^2 + \frac{c_0^2 \boldsymbol{\rho}^2}{\rho_0}\right)
+        h \boldsymbol{A_d} \rho_0 \boldsymbol{v} \\\
+        h \boldsymbol{A_p} \frac{c_0^2}{\rho_0} \boldsymbol{\rho} \\\
+        h \frac{1}{2} \left(\rho_0 \boldsymbol{v}^2 + \frac{c_0^2 \boldsymbol{\rho}^2}{\rho_0}\right)
     \end{bmatrix}.
 $$
 
 
 <details><summary>Power balance (ODE continuous time)</summary>
 
-The collapsed section's content goes here
+In the finite dimensional case, the power balance is easier to compute. Direct application of port-Hamiltonian theory yields:
+$$
+\frac{d}{dt} H  + \boldsymbol{y}^\intercal \boldsymbol{u} = 0.
+$$
+Elements of $\boldymbol u$ and $\boldymbol y$ are direct counterparts to the PDE case.
 
 </details>
 
@@ -241,14 +261,110 @@ The collapsed section's content goes here
 Time discretization is made using a Störmer-Verlet scheme. It writes:
 $$
 \begin{align}
-    \delta_{t+} \boldsymbol{v}^{n-\frac{1}{2}} &= - \mathbf D^+ \frac{c_0^2}{\rho_0} \boldsymbol{\rho}^n \\\
-    \delta_{t+} \boldsymbol{\rho}^n &= - \boldsymbol{A_p}^{-1} \boldsymbol{D}^{-} \boldsymbol{A_d} \rho_0 \boldsymbol{v^{n+\frac{1}{2}}} - \rho_0 \boldsymbol{A_p}^{-1} \left(\partial_t \boldsymbol{A_0} + \partial_t \widetilde{\boldsymbol{A}} - \frac{1}{h}Q_l \vert_{i=0} + \frac{1}{h}Q_r\vert_{i=N-1}\right)^{n+\frac{1}{2}} \\\
+    \delta_{t+} \boldsymbol{v}^{n-\frac{1}{2}} &= - \mathbf D^+ \frac{c_0^2}{\rho_0} \boldsymbol{\rho}^n \label{eq:update_v} \\\
+    \delta_{t+} \boldsymbol{\rho}^n &= - \boldsymbol{A_p}^{-1} \boldsymbol{D}^{-} \boldsymbol{A_d} \rho_0 \boldsymbol{v^{n+\frac{1}{2}}} \nonumber \\\
+    & \quad  - \rho_0 \boldsymbol{A_p}^{-1} \left(\partial_t \boldsymbol{A_0} + \partial_t \widetilde{\boldsymbol{A}} - \frac{1}{h}Q_l \vert_{i=0} + \frac{1}{h}Q_r\vert_{i=N-1}\right)^{n+\frac{1}{2}} \label{eq:update_rho}\\\
     \delta_{t+} \boldsymbol{A_0}^{n-\frac{1}{2}} &= (\partial_t \boldsymbol{A_0})^{n+\frac{1}{2}}
 \end{align}
 $$
 
 <details><summary>Power balance (ODE discrete time)</summary>
 
-The collapsed section's content goes here
+The fully discrete power balance is slightly more challenging to get to. Indeed, the chosen scheme does not preserve a discrete equivalent to the continuous time energy, but rather a modified version of it given by:
+
+$$
+\begin{align}
+    E^{n} &= K^{n} + P^{n} 
+    -
+    \frac{1}{4} \frac{h \rho_0}{2}\vert \vert \boldsymbol{v}^{n+\frac{1}{2}} - \boldsymbol{v}^{n-\frac{1}{2}}\vert \vert^2_{\boldsymbol{A_d}}, \nonumber \\\
+    &\overset{\eqref{eq:update_v}}{=} K^{n} + P^{n} 
+    -
+    \frac{dt^2}{4} \frac{h c_0^4}{2 \rho_0 } \vert \vert D^+(\boldsymbol{\rho}^{n })\vert \vert^2_{\boldsymbol{A_d}}, \label{eq:energy_sv}
+\end{align}
+$$
+
+with 
+
+$$
+\begin{align*}
+    K^{n} = \frac{1}{2} h \rho_0 \vert\vert \mu_{t+}\boldsymbol{v}^{n-\frac{1}{2}}\vert\vert^2_{\boldsymbol{A_d}},
+		%
+		\quad P^{n} = \frac{1}{2} h \frac{c_0^2}{\rho_0}\vert\vert \boldsymbol{\rho}^{n}\vert\vert^2_{\boldsymbol{A_p}}.
+\end{align*}
+$$
+
+In addition to that, the exchanged power writes 
+$$
+ P_{\rm ext}^{n+\frac{1}{2}} = h c_0^2 \mu_{t+} \boldsymbol{\rho}^n
+ \left(\partial_t \boldsymbol{A_0} + \partial_t \widetilde{\boldsymbol{A}} - \frac{1}{h}Q_l \vert_{i=0} + \frac{1}{h}Q_r\vert_{i=N-1}\right)^{n+\frac{1}{2}},
+$$
+
+such that the discrete power balance is
+
+$$
+    E^{n+1} - E^n + dt P_{\rm ext}^{n+\frac{1}{2}} = 0.
+$$
+
+<details><summary>Proof</summary>
+Take the scalar product of \eqref{eq:update_rho} and 
+
+$$h\boldsymbol{A}_p\frac{c_0^2}{\rho_0} \mu_{t+} \boldsymbol{\rho}^n \approx (dt \; \partial_\boldsymbol{\rho} H)^{n+\frac{1}{2}}$$
+
+resulting in 
+
+$$
+\begin{align*}
+    P^{n+1} - P^{n} &= - hdt c_0^2 \left(\mu_{t+} \boldsymbol{\rho}^{n}, D^- \boldsymbol{A_d} \boldsymbol{v}_x^{n+\frac{1}{2}} \right)
+    - dt P_{ext}^{n+\frac{1}{2}}
+    , \\
+    &= h dt c_0^2 \left(D^+ \mu_{t+} \boldsymbol{\rho}^{n}, \boldsymbol{A_d}  \boldsymbol{v}_x^{n+\frac{1}{2}}\right) - dt P_{ext}^{n+\frac{1}{2}},\\
+    & = - \frac{h \rho_0}{2} \left(\boldsymbol{v}_x^{n+\frac{3}{2}} - \boldsymbol{v}_x^{n-\frac{1}{2}}, \boldsymbol{A_d}  \boldsymbol{v}_x^{n+\frac{1}{2}}\right) - dt P_{ext}^{n+\frac{1}{2}},\\
+    &= - K^{n+1} + K^{n-1} + \frac{1}{4} \frac{h \rho_0}{2} \left(\vert\vert\boldsymbol{v}_x^{n+\frac{3}{2}} - \boldsymbol{v}_x^{n+\frac{1}{2}}\vert\vert_{\boldsymbol{A_d}} -\vert\vert\boldsymbol{v}_x^{n+\frac{1}{2}} - \boldsymbol{v}_x^{n-\frac{1}{2}}\vert\vert_{\boldsymbol{A_d}} \right) - dt P_{ext}^{n+\frac{1}{2}}
+\end{align*}
+$$
+
+</details>
+
+For the algorithm to be stable, the preserved energy must be positive definite. In order to ensure that, a bound on the third term of \eqref{eq:energy_sv} has to be derived:
+
+$$
+\begin{align*}
+    \vert \vert D^+(\boldsymbol{\rho}^{n })\vert \vert^2_{\boldsymbol{A_d}} &= \frac{1}{h^2} \vert \vert \boldsymbol{\rho}^{n }_{0...N-1} - \boldsymbol{\rho}^{n }_{1...N}\vert \vert^2_{\boldsymbol{A_d}} \\\
+    & \leq \frac{2}{h^2} \left(\vert \vert \boldsymbol{\rho}^{n }_{0...N-1} \vert\vert_{\boldsymbol{A_d}}^2 +  \vert \vert \boldsymbol{\rho}^{n }_{1...N} \vert\vert_{\boldsymbol{A_d}}^2\right)\\\
+    & \leq \frac{4}{h^2} \left(\vert \vert \boldsymbol{\rho}^{n } \vert\vert_{\mu_{\xi_-}\boldsymbol{A_d}}^2\right)
+\end{align*}
+$$
+
+The stability condition reduces to
+$$
+\begin{align*}
+    P^n - \frac{dt^2}{4} \frac{h c_0^4}{2 \rho_0 } \frac{4}{h^2} \left(\vert \vert \boldsymbol{\rho}^{n } \vert\vert_{\mu_{\xi_-}\boldsymbol{A_d}}^2\right) &\geq 0, \\\
+    \vert\vert \boldsymbol{\rho}^{n}\vert\vert^2_{\boldsymbol{A_p}} - \frac{dt^2}{h^2} c_0^2 \vert \vert \boldsymbol{\rho}^{n } \vert\vert_{\mu_{\xi_-}\boldsymbol{A_d}}^2 &\geq 0, \\\
+    dt^2 c_0^2 \; \frac{\vert \vert \boldsymbol{\rho}^{n } \vert\vert_{\mu_{\xi_-}\boldsymbol{A_d}}^2}{\vert\vert \boldsymbol{\rho}^{n}\vert\vert^2_{\boldsymbol{A_p}}} &\leq h^2, \\\
+    dt^2 c_0^2 \rm{max}(\frac{\mu_{\xi_-}\boldsymbol{A_d}}{\boldsymbol{A_p}}) \leq h^2,
+\end{align*}
+$$
+meaning that under the suitable choice 
+
+$$\boldsymbol A_p = \mu_{\xi_-} \boldsymbol A_d,$$
+
+a standard-like CFL condition is recovered as
+
+$$
+    h^2 \geq dt^2 c_0^2.
+$$
+
+At the boundaries, 
+
+$$
+ \boldsymbol{A_p},
+$$
+
+can be of any value at least half the value of the boundaries of
+
+$$
+    \boldsymbol{A_d}.
+$$
+
 
 </details>
