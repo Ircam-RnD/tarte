@@ -132,11 +132,17 @@ template<typename ftype, int kMaxN>
 void WebsterFDTD<ftype, kMaxN>::ComputeDiscreteGreometry()
 {
     S_dual_.head(N_ - 1) = 0.5 * (S_direct_.head(N_ - 1) + S_direct_.segment(1, N_ - 1));
-
     S_primal_(0) = S_direct_(0);
-    S_primal_.segment(1, N_ - 2) = 0.5 * (S_dual_.head(N_ - 2) + S_dual_.segment(1, N_ - 2));
+    // The following is to ensure stability while keeping direct control of the
+    // geometry of the primal grid at the boundaries
+    if (S_primal_(0) < 0.5 * S_dual_(0)) {
+        S_dual_(0) = 2 * S_primal_(0);
+    }
     S_primal_(N_ - 1) = S_direct_(N_ - 1);
-
+    if (S_primal_(N_ - 1) < 0.5 * S_dual_(N_ - 2)) {
+        S_dual_(N_ - 2) = 2 * S_primal_(N_ - 1);
+    }
+    S_primal_.segment(1, N_ - 2) = 0.5 * (S_dual_.head(N_ - 2) + S_dual_.segment(1, N_ - 2));
     gamma_primal_.head(N_) =
         2 * S_primal_.head(N_).sqrt() * static_cast<ftype>(std::sqrt(M_PI)); // Assume circular shape
 }
