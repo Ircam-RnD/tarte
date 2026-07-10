@@ -131,14 +131,12 @@ void WebsterFDTD<ftype, kMaxN>::SetConstantSection(ftype section)
 template<typename ftype, int kMaxN>
 void WebsterFDTD<ftype, kMaxN>::ComputeDiscreteGreometry()
 {
-    S_direct_(0) = S_direct_(1);
-    S_direct_(N_) = S_direct_(N_ - 1);
+    S_dual_.head(N_ - 1) = 0.5 * (S_direct_.head(N_ - 1) + S_direct_.segment(1, N_ - 1));
 
-    // S_dual_[0 .. N-2]  = S_direct_[1 .. N-1]
-    S_dual_.head(N_ - 1) = S_direct_.segment(1, N_ - 1);
+    S_primal_(0) = S_direct_(0);
+    S_primal_.segment(1, N_ - 2) = 0.5 * (S_dual_.head(N_ - 2) + S_dual_.segment(1, N_ - 2));
+    S_primal_(N_ - 1) = S_direct_(N_ - 1);
 
-    // S_primal_[0 .. N-1] = 0.5 * (S_direct_[0..N-1] + S_direct_[1..N])
-    S_primal_.head(N_) = 0.5 * (S_direct_.head(N_) + S_direct_.segment(1, N_));
     gamma_primal_.head(N_) =
         2 * S_primal_.head(N_).sqrt() * static_cast<ftype>(std::sqrt(M_PI)); // Assume circular shape
 }
