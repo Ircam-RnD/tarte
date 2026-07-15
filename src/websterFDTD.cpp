@@ -25,7 +25,6 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
 
     vel_coeff_ = c02_ / rho0_ / h_ * dt_;
     // Spatial grids (write only into active segment)
-    x_direct_.setZero();
     x_dual_.setZero();
     x_primal_.head(N_) = Eigen::Array<ftype, -1, 1>::LinSpaced(N_, 0, l0_);
     x_dual_.head(N_ - 1) = 0.5 * (x_primal_.segment(0, N_ - 1) + x_primal_.segment(1, N_ - 1));
@@ -105,7 +104,7 @@ void WebsterFDTD<ftype, kMaxN>::SetNStability()
 template<typename ftype, int kMaxN>
 void WebsterFDTD<ftype, kMaxN>::SetTargetGeometryFromArticulation(Articulation articulation, bool force_direct)
 {
-    articulation.getAreas(x_direct_.data(), S_target_.data(), N_);
+    articulation.getAreas(x_primal_.data(), S_target_.data(), N_);
     if (!time_varying_geometry_ or force_direct) {
         S_direct_.head(N_) = S_target_.head(N_);
         ComputeDiscreteGreometry();
