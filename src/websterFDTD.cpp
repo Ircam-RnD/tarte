@@ -27,10 +27,8 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     // Spatial grids (write only into active segment)
     x_direct_.setZero();
     x_dual_.setZero();
-    x_direct_.head(N_ + 1) = Eigen::Array<ftype, -1, 1>::LinSpaced(N_ + 1, -h_ / 2, l0_ + h_ / 2);
-    // x_primal_.head(N_) = Eigen::Array<ftype, -1, 1>::LinSpaced(N_, 0, l0_);
-    // x_dual_ is a view into x_direct_[1 .. N-1]; we replicate that here:
-    x_dual_.head(N_ - 1) = x_direct_.segment(1, N_ - 1);
+    x_primal_.head(N_) = Eigen::Array<ftype, -1, 1>::LinSpaced(N_, 0, l0_);
+    x_dual_.head(N_ - 1) = 0.5 * (x_primal_.segment(0, N_ - 1) + x_primal_.segment(1, N_ - 1));
 
     // Sections
     S_target_.setZero();
@@ -43,9 +41,9 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     if (art) {
         SetTargetGeometryFromArticulation(*art, true);
     } else {
-        S_target_.head(N_ + 1).setOnes();
-        S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
-        S_direct_last_.head(N_ + 1) = S_direct_.head(N_ + 1);
+        S_target_.head(N_).setOnes();
+        S_direct_.head(N_) = S_target_.head(N_);
+        S_direct_last_.head(N_) = S_direct_.head(N_);
         ComputeDiscreteGreometry();
     }
     S_primal_last_.head(N_) = S_primal_.head(N_);
@@ -78,10 +76,10 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     UpdateCoefficients();
 
     // LFPs
-    N_lpf_ = N_ + 1; // one filter per direct-grid point
+    N_lpf_ = N_; // one filter per direct-grid point
     for (int i = 0; i < N_lpf_; ++i) {
         lp_filters_[i] = Biquad(sr_, kLowPass, lpf_frequency_, 0.0f, 0.5f);
-        if (i < N_ + 1) {
+        if (i < N_lpf_) {
             lp_filters_[i].InitializeState(static_cast<double>(S_target_[i]));
         }
     }
@@ -107,9 +105,9 @@ void WebsterFDTD<ftype, kMaxN>::SetNStability()
 template<typename ftype, int kMaxN>
 void WebsterFDTD<ftype, kMaxN>::SetTargetGeometryFromArticulation(Articulation articulation, bool force_direct)
 {
-    articulation.getAreas(x_direct_.data(), S_target_.data(), N_ + 1);
+    articulation.getAreas(x_direct_.data(), S_target_.data(), N_);
     if (!time_varying_geometry_ or force_direct) {
-        S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
+        S_direct_.head(N_) = S_target_.head(N_);
         ComputeDiscreteGreometry();
         UpdateRadiationParameters();
         UpdateCoefficients();
@@ -119,9 +117,9 @@ void WebsterFDTD<ftype, kMaxN>::SetTargetGeometryFromArticulation(Articulation a
 template<typename ftype, int kMaxN>
 void WebsterFDTD<ftype, kMaxN>::SetConstantSection(ftype section)
 {
-    S_target_.head(N_ + 1).setConstant(section);
+    S_target_.head(N_).setConstant(section);
     if (!time_varying_geometry_) {
-        S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
+        S_direct_.head(N_) = S_target_.head(N_);
         ComputeDiscreteGreometry();
         UpdateRadiationParameters();
         UpdateCoefficients();

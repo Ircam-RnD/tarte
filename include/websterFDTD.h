@@ -30,7 +30,7 @@ public:
 
 private:
     // Size N+1  →  kMaxN + 1
-    using ArrayNp1 = Eigen::Array<ftype, kMaxN + 1, 1>;
+    // using ArrayN = Eigen::Array<ftype, kMaxN + 1, 1>;
     // Size N    →  kMaxN
     using ArrayN = Eigen::Array<ftype, kMaxN, 1>;
     // Size N-1  →  kMaxN - 1
@@ -44,14 +44,13 @@ private:
     bool time_varying_geometry_{false};
 
     // Articulation
-    ArrayNp1 S_direct_, S_target_, S_direct_last_;
+    ArrayN S_direct_, S_target_, S_direct_last_;
     ArrayNm1 S_dual_;
     ArrayN S_primal_, S_primal_last_, d_S_primal_;
     ArrayN gamma_primal_; // Circumference
 
     // Discretization parameters
     ftype dt_{0}, sr_{0}, h_{0};
-    ArrayNp1 x_direct_;
     ArrayNm1 x_dual_;
     ArrayN x_primal_;
     int N_{0}; // Active number of elements; always <= kMaxN
