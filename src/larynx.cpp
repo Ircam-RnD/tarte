@@ -240,8 +240,8 @@ void Larynx<ftype>::Process(ftype Pin)
         dissipated_power_flow_ = Rk_ * pow(Psub_(idx_next_) - Psup_, 2);
         dissipated_power_folds_ = pmid.head(3).transpose() * mass_matrix_inv_left * dissipation_matrix_left_ *
                                   mass_matrix_inv_left * pmid.head(3);
-        dissipated_power_folds_ = pmid.tail(3).transpose() * mass_matrix_inv_right * dissipation_matrix_left_ *
-                                  mass_matrix_inv_right * pmid.tail(3);
+        dissipated_power_folds_ += pmid.tail(3).transpose() * mass_matrix_inv_right * dissipation_matrix_left_ *
+                                   mass_matrix_inv_right * pmid.tail(3);
         dissipated_power_ = dissipated_power_flow_ + dissipated_power_folds_;
 
         external_power_sub_ = sub_glottal_flow * Psub_(idx_next_);
@@ -277,7 +277,7 @@ void Larynx<ftype>::Process(ftype Pin)
     C1_feedback_.head(3) = 1 / (Rk_ + 1 / b_resonator_) * 0.5 * mass_matrix_inv_left * effective_surfaces_Psup_left_;
     C1_feedback_.tail(3) = 1 / (Rk_ + 1 / b_resonator_) * 0.5 * mass_matrix_inv_right * effective_surfaces_Psup_right_;
 
-    // // Step 4: solve for pnext using Woodburry
+    // Step 4: solve for pnext using Woodburry
     rhs_.head(3) =
         -stiffness_matrix_left_ * q_(idx_next_, Eigen::seq(0, 2)).transpose() +
         (1 / dt_ * Eigen::Matrix<ftype, 3, 3>::Identity() - dissipation_matrix_left_ * mass_matrix_inv_left) *
