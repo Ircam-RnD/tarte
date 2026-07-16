@@ -9,11 +9,12 @@
 namespace tarte {
 enum Gender { MALE, FEMALE };
 
+// Model from [1] "Voice simulation with a body‐cover model of the vocal folds", Story and Titze, 1995
+// Muscular control based on paper [2] "Rules for controlling low-dimensional vocal fold models with muscle
+// activation", Titze and Story, 2002
+
 template<typename T>
 class BodyCoverVF {
-    // Model from [1] "Voice simulation with a body‐cover model of the vocal folds", Story and Titze, 1995
-    // Muscular control based on paper [2] "Rules for controlling low-dimensional vocal fold models with muscle
-    // activation", Titze and Story, 2002
 
 private:
     // Muscle activity, normalized 0-1
@@ -86,6 +87,7 @@ private:
     Eigen::DiagonalMatrix<T, 4> dissipation_coefficients_;
 
 public:
+    static inline constexpr int getN() { return 3; };
     static inline const Eigen::Matrix<T, 4, 3> elongation_matrix_ =
         (Eigen::Matrix<T, 4, 3>() << 1, 0, -1, 0, 1, -1, 0, 0, 1, 1, -1, 0).finished();
     BodyCoverVF() { FillDissipationCoefficients(); };
