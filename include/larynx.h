@@ -4,9 +4,8 @@
 #include "utility/eigen_utility.h"
 #include "utility/maths.h"
 #include "utility/smoothing.h"
-#include "vocal_folds/body_cover_vf.h"
+#include "vocal_folds/body_cover_pair.h"
 #include "vocal_folds/vf_pair_model.h"
-#include "vocal_folds/vf_pair_model_example.h"
 #include "websterFDTD.h"
 
 #include <Eigen/Dense>
@@ -19,30 +18,12 @@
 
 namespace tarte {
 
-enum FoldIdentifier { kRight, kLeft, kBoth };
-
 template<VFPairModel vf_pair, typename ftype>
 class Larynx {
 private:
     // Folds physical parameters are in there
     std::shared_ptr<vf_pair> vfs_;
 
-    // std::shared_ptr<BodyCoverVF<ftype>> left_vf_, right_vf_;
-
-    // // Contact parameters
-    // ftype contact_stiffness_{15}, alpha_contact_stiffness_{1.3};
-
-    ftype rho0_{1.2}, c0_{340}, kt_{1.3};
-
-    // Matrices and intermediary quantities
-    // Eigen::DiagonalMatrix<ftype, 6> mass_matrix_inv_;                              // Both folds
-    // Eigen::Matrix<ftype, 3, 3> stiffness_matrix_left_, dissipation_matrix_left_;   // Left fold only
-    // Eigen::Matrix<ftype, 3, 3> stiffness_matrix_right_, dissipation_matrix_right_; // Right fold only
-    // Eigen::Vector<ftype, 4> elongations_;
-
-    // The following quantities need to be defined only once for both folds, as they are related to the fluid flow
-    // Eigen::Vector<ftype, 3> masses_interpenetrations_, areas_below_masses_, smoothed_is_opened_,
-    //     masses_interpenetrations_derivatives_;
     // The effective surfaces must however be fold dependant if the folds have different geometries
     Eigen::Vector<ftype, vf_pair::get_N()> effective_surfaces_Psub_, effective_surfaces_Psup_;
 
@@ -59,13 +40,13 @@ private:
     Eigen::Vector<ftype, 6> C1_feedback_;
 
     ftype A0_inv_;
+    Eigen::Vector<ftype, vf_pair::get_N()> KOp_result_;
+    Eigen::Vector<ftype, vf_pair::get_N()> ROp_result_;
     Eigen::Vector<ftype, vf_pair::get_N()> rhs_;
     Eigen::Matrix<ftype, 2, vf_pair::get_N()> v_woodburry_;
     Eigen::Matrix<ftype, vf_pair::get_N(), 2> u_woodburry_;
     Eigen::Matrix<ftype, 2, 2> woodburry_inv_;
     Eigen::Vector<ftype, vf_pair::get_N()> Minv_p_;
-
-    ftype epsilon_smooth_{1e-5};
 
     // State
     Eigen::Matrix<ftype, 2, vf_pair::get_N()> p_, q_;
@@ -91,7 +72,7 @@ private:
     ftype sr_, dt_;
 
     // Experimental noise
-    NoiseGenerator noise_generator_ = NoiseGenerator(NoiseColor::Pink);
+
     float noise_ratio_{0.f};
     ftype noise_flow_;
 
@@ -120,7 +101,7 @@ public:
     //     return areas_below_masses_;
     // };
 
-    // inline ftype ReadRadiatedPressure() { return resonator_->ReadRadiatedPressure(); }
+    inline ftype ReadRadiatedPressure() { return resonator_->ReadRadiatedPressure(); }
 
     // inline ftype ReadEpsilonSav() { return epsilon_sav_; }
 
@@ -130,6 +111,10 @@ public:
     // inline ftype ReadPressureDrop() { return Psub_(idx_now_) - Psup_; };
 
     std::shared_ptr<WebsterFDTD<ftype>> get_resonator() { return resonator_; }
+    std::shared_ptr<vf_pair> get_vocal_folds() { return vfs_; }
+
+    void set_lambda_sav(const ftype& lambda_sav) { lambda_sav_ = std::clamp(lambda_sav, ftype(0), sr_); }
+    inline ftype get_lambda_sav() { return lambda_sav_; }
 };
 
 } // namespace tarte

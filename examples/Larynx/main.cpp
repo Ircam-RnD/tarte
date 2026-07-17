@@ -3,7 +3,7 @@
 #include "larynx.h"
 #include "utility/audiowrite.h"
 #include "utility/maths.h"
-#include "vocal_folds/vf_pair_model_example.h"
+#include "vocal_folds/body_cover_pair.h"
 #include "vowels.h"
 
 #include <iostream>
@@ -13,18 +13,18 @@
 int main(int, char*[])
 {
     std::string path = "larynx.wav";
-    float samplerate = 44100;
+    float samplerate = 96000;
     float duration = 1.0;
     float subglottal_pressure = 800;
     std::size_t num_sample = static_cast<int>(samplerate * duration);
-    tarte::Larynx<tarte::VFPairExample<double>, double> proc(samplerate, true);
+    tarte::Larynx<tarte::BodyCoverPair<double>, double> proc(samplerate, true);
     tarte::Articulation art;
-    art.SetFromVowel(tarte::vowels::i);
+    art.SetFromVowel(tarte::vowels::a);
     proc.get_resonator()->set_l0(17e-2);
     proc.get_resonator()->set_time_varying_geometry(false);
     proc.get_resonator()->SetTargetGeometryFromArticulation(art);
 
-    // proc.set_lambda_sav(10);
+    proc.set_lambda_sav(1000);
     // proc.set_contact_stiffness(15);
     // proc.set_eta_stiffness(0);
     // proc.set_noise_ratio(0.3);
@@ -37,21 +37,10 @@ int main(int, char*[])
     // Run a simulation with the default parameters and a dirac impulse as input
     for (int i = 0; i < samples.size(); i++) {
         proc.Process(subglottal_pressure);
-        // samples[i] = proc.ReadRadiatedPressure();
+        samples[i] = proc.ReadRadiatedPressure();
     }
     tarte::normalize_vector(samples);
     // Write an example wav file
     tarte::WriteWav(path, samples, samplerate);
     return 0;
 }
-
-// Eigen::DiagonalMatrix<ftype, N> mass_matrix_inv_;
-// // Stiffness and dissipation matrices may not be diagonal: it is then better to store them separately for
-// // computational efficiency (we could also store a block matrix with zero upper-right and lower-left blocks)
-// Eigen::Matrix<ftype, half_N, half_N> stiffness_matrix_left_, dissipation_matrix_left_;
-// Eigen::Matrix<ftype, half_N, half_N> stiffness_matrix_right_, dissipation_matrix_right_;
-
-// // Interpenetrations
-// Eigen::Vector<ftype, half_N> masses_interpenetrations_, areas_below_masses_, smoothed_is_opened_,
-//     masses_interpenetrations_derivatives_;
-// Eigen::Vector<ftype, N> effective_surfaces_Psub_, effective_surfaces_Psup_;

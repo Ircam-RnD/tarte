@@ -22,21 +22,13 @@ public:
     VFPairExample() { };
 
     void FillIntermediary(const state_type& state_q) { };
-    std::tuple<state_type, state_type> EffectiveAreas()
-    {
-        state_type EffectiveAreaPsub;
-        state_type EffectiveAreaPsup;
-        return {EffectiveAreaPsub, EffectiveAreaPsup};
-    };
-    ftype ComputeFlow(const ftype& deltaP) { return ftype(0); };
+    void EffectiveAreas(state_type& out_area_P_sub, state_type& out_area_P_sup) { };
+    ftype ComputeFlow(const ftype& Psub, const ftype& Psup) { return ftype(0); };
     ftype Enl(const state_type& state_q, bool recompute_intermediary = false) { return ftype(0); };
-    state_type Fnl(const state_type& state_q, bool recompute_intermediary = false) { return state_q; };
-    state_type KOp(const state_type& state_q) { return state_q; };
-    state_type ROp(const state_type& state_p) { return state_p; };
+    void Fnl(const state_type& state_q, state_type& out_area_P_sup, bool recompute_intermediary = false) { };
+    void KOp(const state_type& state_q, state_type& out) { };
+    void ROp(const state_type& state_p, state_type& out) { };
     state_type MinvOp(const state_type& state_p) { return state_p; };
 };
-
-template class VFPairExample<float>;
-template class VFPairExample<double>;
 
 } // namespace tarte

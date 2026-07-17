@@ -18,7 +18,7 @@ class BodyCoverVF {
 
 private:
     // Muscle activity, normalized 0-1
-    T alpha_ct_{0.5}, alpha_ta_{0.5}, alpha_lc_{0.5}; // cricothyroid, thyroarytenoid, lateral cricoarytenoid
+    T alpha_ct_{0.}, alpha_ta_{0.}, alpha_lc_{0.49}; // cricothyroid, thyroarytenoid, lateral cricoarytenoid
 
     // Intermediary physical parameters (see section 'II. A minimal parameter set' of the paper [2])
     Gender gender_{Gender::MALE};

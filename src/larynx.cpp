@@ -49,65 +49,10 @@ void Larynx<vf_pair, ftype>::DspSetup(ftype samplerate, Articulation* art)
     potential_energy_.setZero();
 }
 
-// template<VFPairModel vf_pair, typename ftype>
-// void Larynx<vf_pair, ftype>::FillMassesInterpenetrationsAndAreas()
-// {
-//     masses_interpenetrations_ = (q_(idx_next_, Eigen::seq(0, 2)).transpose() - left_vf_->rest_positions() +
-//                                  q_(idx_next_, Eigen::seq(3, 5)).transpose() - right_vf_->rest_positions());
-
-//     areas_below_masses_ = 0.5 * (left_vf_->lengths() + right_vf_->lengths())
-//                                     .cwiseProduct(softplusMatrix(-masses_interpenetrations_, epsilon_smooth_));
-//     smoothed_is_opened_ =
-//         (-(masses_interpenetrations_ / epsilon_smooth_).array().tanh().matrix() + Eigen::Vector<ftype, 3>::Ones()) /
-//         2;
-//     masses_interpenetrations_ =
-//         (masses_interpenetrations_.array() > 0).select(masses_interpenetrations_, Eigen::Vector<ftype, 3>::Zero());
-// }
-
-// template<VFPairModel vf_pair, typename ftype>
-// void Larynx<vf_pair, ftype>::ComputeEffectiveAreas()
-// {
-//     area_ratio_ = areas_below_masses_(1) / (areas_below_masses_(0) + 1e-14);
-//     effective_surfaces_Psub_left_.setZero();
-//     effective_surfaces_Psup_left_.setZero();
-//     effective_surfaces_Psub_right_.setZero();
-//     effective_surfaces_Psup_right_.setZero();
-//     if (area_ratio_ > 1) {
-//         effective_surfaces_Psup_left_ =
-//             left_vf_->lengths().cwiseProduct(left_vf_->thicknesses()).cwiseProduct(smoothed_is_opened_);
-//         effective_surfaces_Psup_right_ =
-//             right_vf_->lengths().cwiseProduct(right_vf_->thicknesses()).cwiseProduct(smoothed_is_opened_);
-
-//         // The body mass should never be exposed to fluid pressure
-//         effective_surfaces_Psup_left_(2) = 0;
-//         effective_surfaces_Psup_right_(2) = 0;
-//     } else {
-//         effective_surfaces_Psub_left_(0) = left_vf_->lengths()(0) * left_vf_->thicknesses()(0) *
-//                                            (1 - area_ratio_ * area_ratio_) * (smoothed_is_opened_(0));
-//         effective_surfaces_Psup_left_(0) = left_vf_->lengths()(0) * left_vf_->thicknesses()(0) *
-//                                            (area_ratio_ * area_ratio_) * (smoothed_is_opened_(0));
-//         effective_surfaces_Psup_left_(1) =
-//             left_vf_->lengths()(1) * left_vf_->thicknesses()(1) * (smoothed_is_opened_(1));
-
-//         effective_surfaces_Psub_right_(0) = right_vf_->lengths()(0) * right_vf_->thicknesses()(0) *
-//                                             (1 - area_ratio_ * area_ratio_) * (smoothed_is_opened_(0));
-//         effective_surfaces_Psup_right_(0) = right_vf_->lengths()(0) * right_vf_->thicknesses()(0) *
-//                                             (area_ratio_ * area_ratio_) * (smoothed_is_opened_(0));
-//         effective_surfaces_Psup_right_(1) =
-//             right_vf_->lengths()(1) * right_vf_->thicknesses()(1) * (smoothed_is_opened_(1));
-//     }
-// }
-
 template<VFPairModel vf_pair, typename ftype>
 void Larynx<vf_pair, ftype>::ComputeNonlinearDissipationCoefficient()
 {
-    // area_min_ = areas_below_masses_(Eigen::seq(0, 1)).minCoeff();
-    // mean_flow_ = area_min_ * sqrt(2 / (kt_ * rho0_) * abs(Psub_(idx_now_) - Psup_)) * sgn(Psub_(idx_now_) - Psup_);
-
-    // // Sign coherent noise for 0 < noise_ratio_ < 1
-    // noise_flow_ = mean_flow_ * (1 + noise_ratio_ * noise_generator_.Process());
-
-    Rk_ = vfs_->ComputeFlow(Psub_(idx_now_) - Psup_) /
+    Rk_ = vfs_->ComputeFlow(Psub_(idx_now_), Psup_) /
           (Psub_(idx_now_) - Psup_ + std::copysign(1e-14, Psub_(idx_now_) - Psup_));
 }
 
@@ -115,78 +60,12 @@ template<VFPairModel vf_pair, typename ftype>
 void Larynx<vf_pair, ftype>::ComputeSavVector()
 {
     Enl_ = vfs_->Enl(q_(idx_next_, Eigen::placeholders::all));
-    Fnl_ = vfs_->Fnl(q_(idx_next_, Eigen::placeholders::all));
-
-    // // Left fold
-    // elongations_ = BodyCoverVF<ftype>::elongation_matrix_ * q_(idx_next_, Eigen::seq(0, 2)).transpose();
-
-    // Enl_ += 0.25 * left_vf_->eta_stiffness() *
-    //         (left_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
-    //          elongations_.array() * elongations_.array())
-    //             .sum();
-    // Fnl_.head(3) = left_vf_->eta_stiffness() * BodyCoverVF<ftype>::elongation_matrix_.transpose() *
-    //                (left_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
-    //                 elongations_.array())
-    //                    .matrix();
-    // // Right fold
-    // elongations_ = BodyCoverVF<ftype>::elongation_matrix_ * q_(idx_next_, Eigen::seq(3, 5)).transpose();
-
-    // Enl_ += 0.25 * right_vf_->eta_stiffness() *
-    //         (right_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
-    //          elongations_.array() * elongations_.array())
-    //             .sum();
-    // Fnl_.tail(3) = right_vf_->eta_stiffness() * BodyCoverVF<ftype>::elongation_matrix_.transpose() *
-    //                (right_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
-    //                 elongations_.array())
-    //                    .matrix();
-
-    // // Contact
-    // Enl_ += contact_stiffness_ *
-    //         (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) +
-    //          pow(masses_interpenetrations_(1), alpha_contact_stiffness_ + 1)) /
-    //         (alpha_contact_stiffness_ + 1);
-
-    // Fnl_(0) += contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_);
-    // Fnl_(1) += contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_);
-    // Fnl_(3) += contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_);
-    // Fnl_(4) += contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_);
-
+    vfs_->Fnl(q_(idx_next_, Eigen::placeholders::all), Fnl_);
     g_sav_ = Fnl_ / (sqrt(2 * Enl_) + 1e-14);
 
     if (control_term_) {
-        qmid_ = q_(idx_next_, Eigen::placeholders::all) + q_(idx_now_, Eigen::placeholders::all);
+        qmid_ = 0.5 * (q_(idx_next_, Eigen::placeholders::all) + q_(idx_now_, Eigen::placeholders::all));
         Enl_ = vfs_->Enl(qmid_, true);
-
-        // elongations_ = BodyCoverVF<ftype>::elongation_matrix_ * 0.5 *
-        //                (q_(idx_next_, Eigen::seq(0, 2)) + q_(idx_now_, Eigen::seq(0, 2))).transpose();
-
-        // Enl_ += 0.25 * left_vf_->eta_stiffness() *
-        //         (left_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
-        //          elongations_.array() * elongations_.array())
-        //             .sum();
-
-        // elongations_ = BodyCoverVF<ftype>::elongation_matrix_ * 0.5 *
-        //                (q_(idx_next_, Eigen::seq(3, 5)) + q_(idx_now_, Eigen::seq(3, 5))).transpose();
-
-        // Enl_ += 0.25 * right_vf_->eta_stiffness() *
-        //         (right_vf_->stiffnesses().diagonal().array() * elongations_.array() * elongations_.array() *
-        //          elongations_.array() * elongations_.array())
-        //             .sum();
-
-        // masses_interpenetrations_ =
-        //     0.5 * ((q_(idx_next_, Eigen::seq(0, 2)) + q_(idx_now_, Eigen::seq(0, 2))).transpose() -
-        //            left_vf_->rest_positions() +
-        //            (q_(idx_next_, Eigen::seq(3, 5)) + q_(idx_now_, Eigen::seq(3, 5))).transpose() +
-        //            -right_vf_->rest_positions());
-        // masses_interpenetrations_ =
-        //     (masses_interpenetrations_.array() > 0).select(masses_interpenetrations_, Eigen::Vector<ftype,
-        //     3>::Zero());
-
-        // Enl_ += contact_stiffness_ *
-        //         (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) + pow(masses_interpenetrations_(1),
-        //                                                                                alpha_contact_stiffness_ + 1))
-        //                                                                                /
-        //         (alpha_contact_stiffness_ + 1); // Contact
 
         epsilon_sav_ = r_(idx_now_) - sqrt(2 * Enl_);
         g_sav_ = g_sav_ - (lambda_sav_ * epsilon_sav_ *
@@ -234,7 +113,7 @@ void Larynx<vf_pair, ftype>::Process(ftype Pin)
 
     // Step 2: Rk_ and g_sav_ explicit computation
     vfs_->FillIntermediary(q_(idx_next_, Eigen::placeholders::all));
-    std::tie(effective_surfaces_Psub_, effective_surfaces_Psup_) = vfs_->EffectiveAreas();
+    vfs_->EffectiveAreas(effective_surfaces_Psub_, effective_surfaces_Psup_);
     ComputeNonlinearDissipationCoefficient();
     ComputeSavVector();
 
@@ -247,8 +126,9 @@ void Larynx<vf_pair, ftype>::Process(ftype Pin)
     C1_feedback_ = 1 / (Rk_ + 1 / b_resonator_) * 0.5 * vfs_->MinvOp(effective_surfaces_Psup_);
 
     // Step 4: solve for pnext using Woodburry
-    rhs_ = -vfs_->KOp(q_(idx_next_, Eigen::placeholders::all)) +
-           1 / dt_ * p_(idx_now_, Eigen::placeholders::all).transpose() - vfs_->ROp(Minv_p_) -
+    vfs_->KOp(q_(idx_next_, Eigen::placeholders::all), KOp_result_);
+    vfs_->ROp(Minv_p_, ROp_result_);
+    rhs_ = -KOp_result_ + 1 / dt_ * p_(idx_now_, Eigen::placeholders::all).transpose() - ROp_result_ -
            dt_ / 4 * g_sav_ * (g_sav_.transpose() * Minv_p_) - g_sav_ * r_[idx_now_] -
            effective_surfaces_Psub_ * Psub_(idx_next_) - effective_surfaces_Psup_ * C0_feedback_;
 
@@ -336,7 +216,7 @@ void Larynx<vf_pair, ftype>::Process(ftype Pin)
 
 //     return {eigen_frequencies, zeta, Phi};
 // }
-template class Larynx<VFPairExample<float>, float>;
-template class Larynx<VFPairExample<double>, double>;
+template class Larynx<BodyCoverPair<float>, float>;
+template class Larynx<BodyCoverPair<double>, double>;
 
 } // namespace tarte
