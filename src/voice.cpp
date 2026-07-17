@@ -1,9 +1,9 @@
-#include "larynx.h"
+#include "voice.h"
 
 #include <iostream>
 namespace tarte {
 template<VFPairModel vf_pair, typename ftype>
-Larynx<vf_pair, ftype>::Larynx(ftype samplerate, bool yielding_walls)
+Voice<vf_pair, ftype>::Voice(ftype samplerate, bool yielding_walls)
 {
     sr_ = samplerate;
     dt_ = 1 / sr_;
@@ -22,12 +22,15 @@ Larynx<vf_pair, ftype>::Larynx(ftype samplerate, bool yielding_walls)
     Psub_centered_.setZero();
     Psub_.setZero();
 
+    g_sav_.setZero();
+    Fnl_.setZero();
+
     kinetic_energy_.setZero();
     potential_energy_.setZero();
 };
 
 template<VFPairModel vf_pair, typename ftype>
-void Larynx<vf_pair, ftype>::DspSetup(ftype samplerate, Articulation* art)
+void Voice<vf_pair, ftype>::DspSetup(ftype samplerate, Articulation* art)
 {
     sr_ = samplerate;
     dt_ = 1 / sr_;
@@ -50,14 +53,14 @@ void Larynx<vf_pair, ftype>::DspSetup(ftype samplerate, Articulation* art)
 }
 
 template<VFPairModel vf_pair, typename ftype>
-void Larynx<vf_pair, ftype>::ComputeNonlinearDissipationCoefficient()
+void Voice<vf_pair, ftype>::ComputeNonlinearDissipationCoefficient()
 {
-    Rk_ = vfs_->ComputeFlow(Psub_(idx_now_), Psup_) /
-          (Psub_(idx_now_) - Psup_ + std::copysign(1e-14, Psub_(idx_now_) - Psup_));
+    mean_flow_ = vfs_->ComputeFlow(Psub_(idx_now_), Psup_);
+    Rk_ = mean_flow_ / (Psub_(idx_now_) - Psup_ + std::copysign(1e-14, Psub_(idx_now_) - Psup_));
 }
 
 template<VFPairModel vf_pair, typename ftype>
-void Larynx<vf_pair, ftype>::ComputeSavVector()
+void Voice<vf_pair, ftype>::ComputeSavVector()
 {
     Enl_ = vfs_->Enl(q_(idx_next_, Eigen::placeholders::all));
     vfs_->Fnl(q_(idx_next_, Eigen::placeholders::all), Fnl_);
@@ -79,7 +82,7 @@ void Larynx<vf_pair, ftype>::ComputeSavVector()
 }
 
 template<VFPairModel vf_pair, typename ftype>
-void Larynx<vf_pair, ftype>::Process(ftype Pin)
+void Voice<vf_pair, ftype>::Process(ftype Pin)
 {
     // auto mass_matrix_inv_left = mass_matrix_inv_.diagonal().head(3).asDiagonal();
     // auto mass_matrix_inv_right = mass_matrix_inv_.diagonal().tail(3).asDiagonal();
@@ -187,7 +190,7 @@ void Larynx<vf_pair, ftype>::Process(ftype Pin)
 };
 
 // template<VFPairModel vf_pair, typename ftype>
-// std::tuple<Eigen::Vector<ftype, 3>, Eigen::Vector<ftype, 3>, Eigen::Matrix<ftype, 3, 3>> Larynx<
+// std::tuple<Eigen::Vector<ftype, 3>, Eigen::Vector<ftype, 3>, Eigen::Matrix<ftype, 3, 3>> Voice<
 //     ftype>::GetModalCharacteristics()
 // {
 //     auto mass_matrix_inv_left = mass_matrix_inv_.diagonal().head(3).asDiagonal();
@@ -216,7 +219,7 @@ void Larynx<vf_pair, ftype>::Process(ftype Pin)
 
 //     return {eigen_frequencies, zeta, Phi};
 // }
-template class Larynx<BodyCoverPair<float>, float>;
-template class Larynx<BodyCoverPair<double>, double>;
+template class Voice<BodyCoverPair<float>, float>;
+template class Voice<BodyCoverPair<double>, double>;
 
 } // namespace tarte

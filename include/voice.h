@@ -19,7 +19,7 @@
 namespace tarte {
 
 template<VFPairModel vf_pair, typename ftype>
-class Larynx {
+class Voice {
 private:
     // Folds physical parameters are in there
     std::shared_ptr<vf_pair> vfs_;
@@ -27,7 +27,7 @@ private:
     // The effective surfaces must however be fold dependant if the folds have different geometries
     Eigen::Vector<ftype, vf_pair::get_N()> effective_surfaces_Psub_, effective_surfaces_Psup_;
 
-    Eigen::Vector<ftype, vf_pair::get_N()> g_sav_{0, 0, 0, 0, 0, 0}, Fnl_{0, 0, 0, 0, 0, 0};
+    Eigen::Vector<ftype, vf_pair::get_N()> g_sav_, Fnl_;
     ftype Enl_, epsilon_sav_;
     bool const control_term_{true};
     ftype lambda_sav_{10};
@@ -71,44 +71,37 @@ private:
     // Solver parameters
     ftype sr_, dt_;
 
-    // Experimental noise
-
-    float noise_ratio_{0.f};
-    ftype noise_flow_;
-
-    // Functions
-    // void FillMassesInterpenetrationsAndAreas();
-    // void ComputeEffectiveAreas();
+    // Intermediary computations
     void ComputeNonlinearDissipationCoefficient();
     void ComputeSavVector();
 
 public:
-    Larynx(ftype samplerate, bool yielding_walls = false);
+    Voice(ftype samplerate, bool yielding_walls = false);
     void DspSetup(ftype sampleRate, Articulation* art = nullptr);
 
     void Process(ftype Pin);
 
     // "Listening" functions
-    // inline Eigen::Vector<ftype, half_state> ReadFoldsDisplacement()
-    // {
-    //     // Midpoint to evaluate on the same grid as inputs and momentums.
-    //     return (q_(idx_now_, Eigen::placeholders::all) + q_(idx_next_, Eigen::placeholders::all)) * 0.5;
-    // };
+    inline Eigen::Vector<ftype, vf_pair::get_N()> ReadFoldsDisplacement()
+    {
+        // Midpoint to evaluate on the same grid as inputs and momentums.
+        return (q_(idx_now_, Eigen::placeholders::all) + q_(idx_next_, Eigen::placeholders::all)) * 0.5;
+    };
 
-    // inline Eigen::Vector<ftype, 3> ReadEffectiveOpenings()
-    // {
-    //     // Midpoint to evaluate on the same grid as inputs and momentums.
-    //     return areas_below_masses_;
-    // };
+    inline Eigen::Vector<ftype, vf_pair::get_half_N()> ReadEffectiveOpenings()
+    {
+        // Midpoint to evaluate on the same grid as inputs and momentums.
+        return vfs_->ReadEffectiveOpenings();
+    };
 
     inline ftype ReadRadiatedPressure() { return resonator_->ReadRadiatedPressure(); }
 
-    // inline ftype ReadEpsilonSav() { return epsilon_sav_; }
+    inline ftype ReadEpsilonSav() { return epsilon_sav_; }
 
     // // Flow variables
-    // inline ftype ReadSupGlottalFlow() { return sup_glottal_flow; };
-    // inline ftype ReadMeanGlottalFlow() { return mean_flow_; };
-    // inline ftype ReadPressureDrop() { return Psub_(idx_now_) - Psup_; };
+    inline ftype ReadSupGlottalFlow() { return sup_glottal_flow; };
+    inline ftype ReadMeanGlottalFlow() { return mean_flow_; };
+    inline ftype ReadPressureDrop() { return Psub_(idx_now_) - Psup_; };
 
     std::shared_ptr<WebsterFDTD<ftype>> get_resonator() { return resonator_; }
     std::shared_ptr<vf_pair> get_vocal_folds() { return vfs_; }

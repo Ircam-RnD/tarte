@@ -79,7 +79,8 @@ private:
 public:
     // Necessary interface for the solver
     using scalar_type = ftype;
-    using state_type = Eigen::Vector<ftype, N>; // Either q or p
+    using state_type = Eigen::Vector<ftype, N>;           // Either q or p
+    using half_state_type = Eigen::Vector<ftype, half_N>; // Quantities common to both folds
     static inline constexpr int get_N() { return N; };
     static inline constexpr int get_half_N() { return half_N; };
     BodyCoverPair()
@@ -99,10 +100,9 @@ public:
         areas_below_masses_ = 0.5 * (left_vf_->lengths() + right_vf_->lengths())
                                         .cwiseProduct(softplusMatrix(-masses_interpenetrations_, epsilon_smooth_));
         smoothed_is_opened_ =
-            (-(masses_interpenetrations_ / epsilon_smooth_).array().tanh().matrix() + Eigen::Vector<ftype, 3>::Ones()) /
-            2;
+            (-(masses_interpenetrations_ / epsilon_smooth_).array().tanh().matrix() + half_state_type::Ones()) / 2;
         masses_interpenetrations_ =
-            (masses_interpenetrations_.array() > 0).select(masses_interpenetrations_, Eigen::Vector<ftype, 3>::Zero());
+            (masses_interpenetrations_.array() > 0).select(masses_interpenetrations_, half_state_type::Zero());
     };
 
     void EffectiveAreas(state_type& out_area_P_sub, state_type& out_area_P_sup)
@@ -208,8 +208,10 @@ public:
     };
     state_type MinvOp(const state_type& state_p) { return mass_matrix_inv_ * state_p; };
 
+    half_state_type ReadEffectiveOpenings() { return areas_below_masses_; };
+
     /// ----------------------------------- Control functions ----------------------------------------- ///
-    void set_rest_positions(const Eigen::Vector<ftype, 3>& rest_positions, FoldIdentifier fold_id = kBoth)
+    void set_rest_positions(const half_state_type& rest_positions, FoldIdentifier fold_id = kBoth)
     {
         switch (fold_id) {
         case kLeft: left_vf_->set_rest_positions(rest_positions); break;
@@ -222,12 +224,12 @@ public:
     };
     void set_rest_positions(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
-        Eigen::Vector<ftype, 3> v;
+        half_state_type v;
         v << lower, upper, body;
         set_rest_positions(v, fold_id);
     };
 
-    void set_masses(const Eigen::Vector<ftype, 3>& masses, FoldIdentifier fold_id = kBoth)
+    void set_masses(const half_state_type& masses, FoldIdentifier fold_id = kBoth)
     {
         switch (fold_id) {
         case kLeft: left_vf_->set_masses(masses); break;
@@ -241,7 +243,7 @@ public:
     };
     void set_masses(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
-        Eigen::Vector<ftype, 3> v;
+        half_state_type v;
         v << lower, upper, body;
         set_masses(v, fold_id);
     };
@@ -258,7 +260,7 @@ public:
         }
     };
 
-    void set_thicknesses(const Eigen::Vector<ftype, 3>& thicknesses, FoldIdentifier fold_id = kBoth)
+    void set_thicknesses(const half_state_type& thicknesses, FoldIdentifier fold_id = kBoth)
     {
         switch (fold_id) {
         case kLeft: left_vf_->set_thicknesses(thicknesses); break;
@@ -272,7 +274,7 @@ public:
     };
     void set_thicknesses(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
-        Eigen::Vector<ftype, 3> v;
+        half_state_type v;
         v << lower, upper, body;
         set_thicknesses(v, fold_id);
     };
@@ -378,7 +380,7 @@ public:
     }
 
     // Getters
-    inline Eigen::Vector<ftype, 3> get_rest_positions(FoldIdentifier fold_id = kBoth)
+    inline half_state_type get_rest_positions(FoldIdentifier fold_id = kBoth)
     {
         if (fold_id == kRight) {
             return right_vf_->rest_positions();
@@ -387,7 +389,7 @@ public:
         }
     };
 
-    inline Eigen::Vector<ftype, 3> get_masses(FoldIdentifier fold_id = kBoth)
+    inline half_state_type get_masses(FoldIdentifier fold_id = kBoth)
     {
         if (fold_id == kRight) {
             return right_vf_->masses().diagonal();
@@ -396,7 +398,7 @@ public:
         }
     };
 
-    inline Eigen::Vector<ftype, 3> get_lengths(FoldIdentifier fold_id = kBoth)
+    inline half_state_type get_lengths(FoldIdentifier fold_id = kBoth)
     {
         if (fold_id == kRight) {
             return right_vf_->lengths();
@@ -404,7 +406,7 @@ public:
             return left_vf_->lengths();
         }
     };
-    inline Eigen::Vector<ftype, 3> get_thicknesses(FoldIdentifier fold_id = kBoth)
+    inline half_state_type get_thicknesses(FoldIdentifier fold_id = kBoth)
     {
         if (fold_id == kRight) {
             return right_vf_->thicknesses();

@@ -24,4 +24,6 @@ concept VFPairModel = requires(T model,
     {model.KOp(state, out_state)}->std::same_as<void>;
     {model.ROp(state, out_state)}->std::same_as<void>;
     {model.MinvOp(state)}->std::same_as<typename T::state_type>;
+
+    {model.ReadEffectiveOpenings()}->std::same_as<typename T::half_state_type>;
 };

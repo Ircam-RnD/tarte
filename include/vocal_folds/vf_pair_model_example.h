@@ -16,7 +16,8 @@ private:
 
 public:
     using scalar_type = ftype;
-    using state_type = Eigen::Vector<ftype, N>; // Either q or p
+    using state_type = Eigen::Vector<ftype, N>;           // Either q or p
+    using half_state_type = Eigen::Vector<ftype, half_N>; // Quantities common to both folds
     static inline constexpr int get_N() { return N; };
     static inline constexpr int get_half_N() { return half_N; };
     VFPairExample() { };
@@ -29,6 +30,7 @@ public:
     void KOp(const state_type& state_q, state_type& out) { };
     void ROp(const state_type& state_p, state_type& out) { };
     state_type MinvOp(const state_type& state_p) { return state_p; };
+    half_state_type ReadEffectiveOpenings() { return Eigen::Vector<ftype, half_N>::Zero(); };
 };
 
 } // namespace tarte
