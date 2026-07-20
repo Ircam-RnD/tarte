@@ -239,7 +239,7 @@ public:
             right_vf_->set_masses(masses);
             break;
         }
-        RecomputeMatrices();
+        RecomputeMatrices(false);
     };
     void set_masses(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
@@ -270,7 +270,7 @@ public:
             right_vf_->set_thicknesses(thicknesses);
             break;
         }
-        RecomputeMatrices();
+        RecomputeMatrices(false);
     };
     void set_thicknesses(const ftype& lower, const ftype& upper, const ftype& body, FoldIdentifier fold_id = kBoth)
     {
@@ -289,7 +289,7 @@ public:
             right_vf_->set_stiffnesses(stiffnesses);
             break;
         }
-        RecomputeMatrices();
+        RecomputeMatrices(false);
     };
     void set_stiffnesses(const ftype& lower,
                          const ftype& upper,
