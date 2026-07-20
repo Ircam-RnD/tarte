@@ -38,12 +38,6 @@ $$
 where $r_{\rm lips}$ is the radius of the mouth aperture. 
 
 <img src="../../../medias/radiation/radiation.svg"; width=50%; style="display: block; margin: auto;"; alt="simulated radiation impedance curves">
-<!-- \begin{figure}[hbtp]
-  \centering
-  \includegraphics{medias/voice/radiation.pdf}
-  \caption{Normalized (w.r.t. $Z_0$) radiation impedances as computed from \eqref{eq:radiation_imp_infinite} (denoted ``Reference'') and from the first order approximation \eqref{eq:imp_first_order} (denoted ``First order''). Both the resistance (real part) and reactance (imaginary part) are shown, for realistic mouth openings corresponding to vowels `o' and `a' (with values from \cite{story1996vocal}). }
-  \label{fig:radiation_imp}
-\end{figure} -->
 
 The above figure presents the impedance curves obtained from the analytical model and its first order approximation in a vocal tract like configuration. The validity range of the simplified model depends on the mouth aperture and is reduced for wide openings. For vowel 'o' with $A_{\rm lips} = 0.14$ cm$^2$, both models are nearly equivalent in the studied frequency range. However, significant deviation is visible for vowel 'a' with $A_{\rm lips} = 5.03$ cm$^2$ and frequencies above $4000$ Hz. Plane wave propagation is considered in the vocal tract to allow for the 3D to 1D reduction of the fluid model. As this approximation is expected to be valid up to $\sim 5000$ Hz (see e.g. Blandin 2015 [@blandin2015effects]), the simplified radiation model is suitable in the validity range of the approach for most of the mouth aperture values. 
 
