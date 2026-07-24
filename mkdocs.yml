@@ -43,23 +43,39 @@ copyright: Made by Thomas Risse using Mkdocs with Material theme
 plugins:
   - search
   # - jupyterlite
+  - awesome-pages
+  - include_dir_to_nav
   - bibtex:
       bib_file: "docs/refs.bib"
   - mkdoxy:
       projects:
         tarte:
-          src-dirs: src/ include/ examples/       # path to your C++ sources
+          src-dirs: src/ include/       # path to your C++ sources
           full-doc: true
           doxy-cfg:
             FILE_PATTERNS: "*.cpp *.h"
             RECURSIVE: YES
+            EXAMPLE_PATH: examples
             EXCLUDE: "include/external src/deprecated"
             EXCLUDE_PATTERNS: "*/external/* */deprecated/*"
 
-# nav:
-#   - Home: index.md
-#   - Theory: 
-#   - Examples: examples/basic-usage.md
-#   - API reference:
-#       - Classes: "tarte/annotated.md"
-#       - Files: "tarte/files.md"
+nav:
+  - Home: index.md
+  - Theory: theory
+  - API reference:
+    - Classes: "tarte/annotated.md"
+    - Files: "tarte/files.md"
+  # - Theory:
+  #   - Overview:
+  #     - theory/Overview/00-musical-instruments.md
+  #     - theory/Overview/01-port-hamiltonian.md
+  #     - theory/Overview/02-numerical-methods.md
+  #   - Physical components:
+  #     - theory/Physical-components/00-webster.md
+  #     - theory/Physical-components/01-acoustic-radiation.md
+  #     - theory/Physical-components/02-yielding-walls.md
+  #     - theory/Physical-components/03-larynx.md
+  # - Examples: examples/basic-usage.md
+  # - API reference:
+  #     - Classes: "tarte/annotated.md"
+  #     - Files: "tarte/files.md"

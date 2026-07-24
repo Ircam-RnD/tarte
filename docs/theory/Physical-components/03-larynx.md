@@ -84,12 +84,12 @@ The flow description is composed of two equations. The first relates the pressur
 
 $$
   \begin{equation}
-    Q_{\rm g} = A_{\rm min}(\boldsymbol q_{\rm f}) {\rm sign}(\Delta P) \sqrt{\frac{2 \vert \Delta P\vert}{\rho_0} },
+    Q_{\rm g} = A_{\rm flow}(\boldsymbol q_{\rm f}) {\rm sign}(\Delta P) \sqrt{\frac{2 \vert \Delta P\vert}{\rho_0} },
     \label{eq:Bernoulli_vf}
   \end{equation}
 $$
 
-where $A_{\rm min} (\boldsymbol q_{\rm f})$ is the effective open area for the flow. The second equation describes the forces applied by the fluid pressure to the vocal folds. These forces can be written as linear combinations of the sub-glottal and supra-glottal pressures:
+where $A_{\rm flow} (\boldsymbol q_{\rm f})$ is the effective open area for the flow. The second equation describes the forces applied by the fluid pressure to the vocal folds. These forces can be written as linear combinations of the sub-glottal and supra-glottal pressures:
 
 $$
 \begin{equation}
@@ -141,7 +141,7 @@ with
 
 $$
 \begin{equation}
-  R_{\rm g}(\Delta P, \boldsymbol q_{\rm f}) = \frac{Q_{\rm g}(\Delta P, A_{\rm min}(\boldsymbol q_{\rm f}))}{\Delta P}.
+  R_{\rm g}(\Delta P, \boldsymbol q_{\rm f}) = \frac{Q_{\rm g}(\Delta P, A_{\rm flow}(\boldsymbol q_{\rm f}))}{\Delta P}.
 \end{equation}
 $$
 
@@ -186,8 +186,10 @@ $$
 \boldsymbol G = \begin{bmatrix}
     {\boldsymbol S}^{\intercal}_{\rm f-} \\\
     {\boldsymbol S}^{\intercal}_{\rm f+}
-\end{bmatrix}.
+\end{bmatrix},
 $$
+
+both being functions of the state.
 
 In the previous construction, the flow model can be viewed as a dissipative transformer between fluid flow/pressure and vocal folds velocity/force.
 
@@ -196,9 +198,13 @@ In the previous construction, the flow model can be viewed as a dissipative tran
 
 ### Body-cover (Story et Titze 1995[@story1995voice])
 
+
 The body-cover model is a three mass model depicted in the following schematic.
 
 <img src="../../../medias/larynx/body_cover_scheme.svg"; width=40%; style="display: block; margin: auto;"; alt="Vocal fold schematic: body cover model.">
+
+#### Vocal folds
+
 
 The model can be fitted to the structure in \eqref{eq:dynamics_vf} quite easily, at least for the linear part of it. The state is composed of the displacements $\boldsymbol q_{\rm f} = [q_l, q_u, q_b]^\intercal$ around the rest positions and momenta $\boldsymbol p_{\rm f} = [p_l, p_u, p_b]^\intercal$ of the three masses. In the code, the convention is that higher displacement values corresponds to lower glottis opening (see remark above for implications on signs). The diagonal mass matrix writes 
 
@@ -273,4 +279,266 @@ With the above elements, the linear part of the vocal folds dynamics is fully de
     Note that for a pair of non-symmetric vocal folds, $\boldsymbol q_{c}$ is a function of the concatenated state of both vocal folds.
 
 
+#### Glottal flow
+
+From the proposed general parametrization, expressions of $A_{\rm flow}(\boldsymbol q_{\rm f})$, ${\boldsymbol S}_{\rm f-} (\boldsymbol q_{\rm f})$ and ${\boldsymbol S}_{\rm f+} (\boldsymbol q_{\rm f})$ are needed to complete the model. 
+
+In Story et Titze 1995[@story1995voice] $A_{\rm flow}(\boldsymbol q_{\rm f})$ is simply recovered as the minimum between $A_l$ and $A_u$ the areas between the lower and upper masses respectively.
+
+The effective surfaces are obtained by a rewriting of equations 21-23 of Story et Titze 1995[@story1995voice]. Their expression depend on the current glottis configuration. If the glottis is converging ($A_l > A_u$), then 
+
+$$
+    {\boldsymbol S}_{\rm f-}(\boldsymbol q_{\rm f}) = \left[L_0 l_0 \left(1 - \frac{A_u}{A_l}^2\right), L_0 l_0 \frac{A_u}{A_l}^2, 0\right],\quad {\boldsymbol S}_{\rm f+}(\boldsymbol q_{\rm f}) = [0, L_0 l_0, 0],
+$$
+
+if the glottis is diverging ($A_l < A_u$) then
+
+$$
+    {\boldsymbol S}_{\rm f-}(\boldsymbol q_{\rm f}) = {\boldsymbol S}_{\rm f+}(\boldsymbol q_{\rm f}) =  [0, L_0 l_0, 0],
+$$
+
+for vocal fold half-length and vertical thickness $L_0$ and $l_0$. With these elements, the larynx model is fully described.
+
 ### A symmetrical two mass model (Lous et. al 1998[@lous1998symmetrical])
+
+
+Lous's model is a two mass model with piecewise linear geometry depicted in the following schematic directly copied from the paper[@lous1998symmetrical].
+
+<img src="../../../medias/larynx/lous_scheme.png"; width=40%; style="display: block; margin: auto;"; alt="Vocal fold schematic: Lous's model.">
+
+#### Vocal folds
+
+The state is composed of the displacements $\boldsymbol q_{\rm f} = [q_l, q_u]^\intercal$ around the rest positions and momenta $\boldsymbol p_{\rm f} = [p_l, p_u]^\intercal$ of the two masses. In the code, the convention is that higher displacement values corresponds to lower glottis opening (see remark above for implications on signs). The diagonal mass matrix writes 
+
+$$
+    \boldsymbol{M} = \begin{bmatrix}
+        m_1 & 0 \\\
+        0 & m_2
+    \end{bmatrix}.
+$$
+
+From the two d.o.f.s, the three spring elongations $\boldsymbol e = [e_l, e_u,e_{lu}]$ can be recovered as 
+
+$$
+\boldsymbol e = 
+\underbrace{
+\begin{bmatrix}
+    1 & 0 \\\
+    0 & 1 \\\
+    1 & -1 
+\end{bmatrix}}_{\boldsymbol{W}}
+\boldsymbol{q_{\rm f}}
+$$
+
+The stiffness matrix then writes 
+
+$$
+\boldsymbol{K} = 
+\boldsymbol{W}^\intercal
+\begin{bmatrix}
+    k_1 & 0 & 0  \\\
+    0 & k_2 & 0  \\\
+    0 & 0 & k_{12}
+\end{bmatrix}
+\boldsymbol{W},
+$$
+
+which is by construction semi-positive definite under the condition that all stiffness parameters are positive. Similarly, the dissipation matrix may be built as
+
+$$
+\boldsymbol{R_0} = 
+\boldsymbol{W}^\intercal
+\begin{bmatrix}
+    r_l & 0 & 0 \\\
+    0 & r_u & 0 \\\
+    0 & 0 & r_b
+\end{bmatrix}.
+\boldsymbol{W}
+$$
+
+TO finish the mechanical model, nonlinearities can be added in the same way than for the body-cover model described above.
+
+#### Glottal flow
+
+The glottal flow law is obtained through a rewriting of equation 2 of the paper:
+
+$$
+\begin{align}
+    P(x_s, t) + \frac{\rho_0}{2}  \left(\frac{Q(t)}{h(x_s, t) L_0}\right)^2 &= P_{sub}(t)+ \frac{\rho_0}{2}  \left(\frac{Q(t)}{h_0 L_0}\right)^2 \nonumber \\\
+    \left(\frac{Q(t)}{h(x_s, t) L_0}\right)^2 - \left(\frac{Q(t)}{h_0 L_0}\right)^2 &= \frac{2}{\rho_0} \left(P_{sub}(t) - P(x_s, t)\right) \nonumber\\\
+    Q(t) &= \underbrace{L_0 h(x_s, t) \sqrt{\left(\frac{1}{1 - \frac{h^2(x_s, t)}{h_0^2} }\right)}}_{A_{\rm flow}} {\rm sign}(\Delta P) \sqrt{\frac{2}{\rho_0} \vert \Delta P\vert} ,
+    \label{eq:glottal_flow_lous}
+\end{align}
+$$
+
+which is indeed in the form of \eqref{eq:Bernoulli_vf}. $x_s$ denotes the estimated jet separation point. As the kinetic energy of the jet is assumed to be fully dissipated, zero pressure recovery is considered above the separation point, hence $\left(P_{sub}(t) - P(x_s, t)\right) = \left(P_{sub}(t) - P_{sup}( t)\right) = \Delta P$ in the third line.
+Note that $A_{\rm flow}$ may diverge for finite values of $h(x_s, t)$ if $h(x_s, t) = 0$. This should ideally not happen as it would be unphysical. However, in a real-time safe context, a solution is to further assume $\frac{h^2(x_s, t)}{h_0^2} \approx 0$. If this assumption is made, then the glottal flow equation reduces to a similar expression as for the body-cover model.
+
+In the paper, the jet separation point is evaluated such that $h(x_s) = s h_1$ or as $x_s = x_2$ if $h_2 > s h_1$. $s$ is referred to as the separation constant.
+
+The effective forces applied to the fold by the fluid are harder to get to. Following notations from the paper, the effective force on the lower mass writes:
+
+$$
+\begin{align}
+    F_{h1} &= F_{h1}^l + F_{h1}^r \\\
+    &= \int_{x_0}^{x_1} \frac{x - x_0 }{ x_1 - x_0} p(x)dx + \int_{x_1}^{x_2} \frac{x_2 - x }{ x_2 - x_1} p(x)dx,
+\end{align}
+$$
+
+and on the upper mass:
+
+$$
+\begin{align}
+    F_{h2} &= F_{h2}^l + F_{h2}^r \\\
+    &= \int_{x_1}^{x_2} \frac{x - x_1 }{ x_2 - x_1} p(x)dx + \int_{x_2}^{x_3} \frac{x_3 - x }{ x_3 - x_2} p(x)dx.
+\end{align}
+$$
+
+To solve the integrals, the explicit expression of $p(x)$ is needed. In the paper, this expression is given as a function of two quantities $P_0$ and $P_1$ which despite notations are *not* pressures at point 0 and 1. Between $x_0$ and $x_s$, one gets
+
+$$
+\begin{align}
+    p(x < x_s) &= P_{sub} + \frac{\rho_0}{2}  \left(\frac{Q(t)}{L_0}\right)^2 \left(\frac{1}{h^2_0} - \frac{1}{h^2(x)} \right) \\\
+    &= P_{sub} + \Delta P  \frac{h^2(x) - h^2_0}{h^2_0 - h^2(x_s) } \frac{h^2(x_s)}{h^2(x)}, \\\
+    &= \underbrace{P_{sub} + \Delta P  \left(\frac{h^2(x_s)}{h^2_0 - h^2(x_s)}\right)}_{A} - \underbrace{\Delta P \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)}}_{B} \frac{1}{h^2(x)},  
+\end{align}
+$$
+
+where in the last line, $A$ and $B$ correspond to terms $P_0$ and $P_1$ from the paper. In order to fit the general model proposed at the top of this page, the forces must be written as linear functions of $P_{sub}$ and $P_{sup}$:
+
+$$
+\begin{equation}
+  A = 
+  \begin{bmatrix}
+    1 + \frac{h^2(x_s)}{h^2_0 - h^2(x_s)} & \frac{h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}, 
+  \quad
+  B = 
+  \begin{bmatrix}
+    - \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)} & \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}
+\end{equation}.
+$$
+
+Above $x_s$, the pressure is equal to the supra-glottal pressure
+
+$$
+\begin{equation}
+    p(x > x_s) = P_{sup}.
+\end{equation}
+$$
+
+As a last step to fully determine the integrals, $h(x)$ needs to be replaced by its piecewise linear expression:
+
+$$
+ h(x) = \underbrace{\left(\frac{h_i - h_{i-1}}{x_i - x_{i-1}}\right)}_{H_{1, i}} x + \underbrace{\frac{x_i h_{i-1} - x_{i-1} h_i}{x_i - x_{i-1}}}_{H_{2, i}}, \quad \text{for } x_{i-1} < x \leq x_i.
+$$
+
+Note that $H_{1, i}$ and $H_{2, i}$ are defined piecewise.
+The paper gives two useful identities to compute the integrals
+
+$$
+\begin{align*}
+  \int_{x_{i-1}}^{x_i} \frac{1}{h^2(x)} dx &= \frac{1}{H_{1, i}} \left(\frac{1}{h_i} - \frac{1}{h_{i-1}}\right):=W_{1, i}, \\\
+  \int_{x_{i-1}}^{x_i} \frac{x}{h^2(x)} dx &= \frac{1}{H_{1, i}^2} \left(ln\left(\frac{h_i}{h_{i-1}}\right) + H_{2, i} \left(\frac{1}{h_i} - \frac{1}{h_{i-1}}\right)\right):= W_{2, i}.
+\end{align*}
+$$
+
+Explicit forces can then be written as
+
+$$
+\begin{align*}
+    F_{h1}^l &= \int_{x_0}^{x_1} \frac{x - x_0 }{ x_1 - x_0} p(x)dx  \\\
+    &= \frac{1 }{ x_1 - x_0} \left(\int_{x_0}^{x_1}x  p(x)dx - x_0 \int_{x_0}^{x_1} p(x)dx\right) \\\
+    &= \frac{1 }{ x_1 - x_0} \left(\int_{x_0}^{x_1}x  \left(A - \frac{B}{h^2(x)}\right)dx - x_0 \int_{x_0}^{x_1} \left(A - \frac{B}{h^2(x)}\right) dx\right) \\\
+    &= \frac{1 }{ x_1 - x_0} \left( \frac{A}{2}(x_1^2 - x_0^2) - B W_{2, 1} - x_0 \left(A (x_1 - x_0) - B W_{1, 1}\right)\right) \\\
+    &= \frac{x_1 - x_0}{2} A + \frac{x_0 W_{1, 1} - W_{2, 1}}{x_1 - x_0} B \\\
+    &= \frac{x_1 - x_0}{2} \begin{bmatrix}
+    1 + \frac{h^2(x_s)}{h^2_0 - h^2(x_s)} & \frac{h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}
+   + \frac{x_0 W_{1, 1} - W_{2, 1}}{x_1 - x_0} 
+   \begin{bmatrix}
+    - \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)} & \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}
+\end{align*}
+$$
+
+$$
+\begin{align*}
+    F_{h1}^r &= \int_{x_1}^{x_2} \frac{x_2 - x }{ x_2 - x_1} p(x)dx  \\\
+    &= \int_{x_1}^{x_s} \frac{x_2 - x }{ x_2 - x_1} p(x)dx  + \int_{x_s}^{x_2} \frac{x_2 - x }{ x_2 - x_1} P_{sup}\; dx \\\
+    &=\frac{1 }{ x_2 - x_1} \left(- \int_{x_1}^{x_s} x p(x)dx + x_2 \int_{x_1}^{x_s} p(x)dx + (x_2 (x_2 - x_s) - 0.5 (x_2^2 - x_s^2)) P_{sup} \right) \\\
+    &=\frac{1 }{ x_2 - x_1} \left( - \frac{A}{2}(x_s^2 - x_1^2) + B W_{2, s} + x_2 \left(A (x_s - x_1) - B W_{1, s}\right) + (x_2 (x_2 - x_s) - 0.5 (x_2^2 - x_s^2)) P_{sup} \right) \\\
+    &=  \frac{1 }{ x_2 - x_1} \left((x_s - x_1) (x_2 - 0.5(x_s + x_1))A   + (W_{2, s} - x_2 W_{1, s}) B + (x_2 (x_2 - x_s) - 0.5 (x_2^2 - x_s^2)) P_{sup} \right) \\\
+    &= 
+    \frac{1 }{ x_2 - x_1} \bigg((x_s - x_1) (x_2 - 0.5(x_s + x_1))
+    \begin{bmatrix}
+    1 + \frac{h^2(x_s)}{h^2_0 - h^2(x_s)} & \frac{h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}\\\
+   &\quad + (W_{2, s} - x_2 W_{1, s})
+   \begin{bmatrix}
+    - \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)} & \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}
+  +
+  (x_2 (x_2 - x_s) - 0.5 (x_2^2 - x_s^2)) P_{sup}
+  \bigg)
+\end{align*}
+$$
+
+$$
+\begin{align*}
+    F_{h2}^l &= \int_{x_1}^{x_2} \frac{x - x_1 }{ x_2 - x_1} p(x)dx  \\\
+    &= 
+    \frac{- 1 }{ x_2 - x_1} \bigg((x_s - x_1) (x_1 - 0.5(x_s + x_1))
+    \begin{bmatrix}
+    1 + \frac{h^2(x_s)}{h^2_0 - h^2(x_s)} & \frac{h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}\\\
+   &\quad + (W_{2, s} - x_1 W_{1, s})
+   \begin{bmatrix}
+    - \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)} & \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}
+  +
+  (x_1 (x_2 - x_s) - 0.5 (x_2^2 - x_s^2)) P_{sup}
+  \bigg)
+\end{align*}
+$$
+
+$$
+\begin{align*}
+    F_{h2}^r &= \int_{x_2}^{x_3} \frac{x_3 - x }{ x_3 - x_2} p(x)dx  \\\
+    &= \int_{x_2}^{x_3} \frac{x_3 - x }{ x_3 - x_2} P_{sup} dx \\\
+    &= \frac{x_3 - x_2}{2} P_{sup}
+\end{align*}
+$$
