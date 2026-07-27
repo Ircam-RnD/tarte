@@ -59,7 +59,7 @@ where $\boldsymbol u = \pm \boldsymbol{F}_{\rm f}$ is an external forcing and th
 <details><summary>Sign of input-output pair  </summary>
 
 Inputs and output signs depend on the chosen convention for the vocal folds displacement. For the model to be coherent, positive forces must open the glottis. With the above sign convention, this means that:
-if higher values of q_f result in bigger opening, then a plus must replace the above plus/minus signs, else, a minus must replace the above plus/minus signs. This propagates in the construction of the assembled model below
+if higher values of q_f result in bigger opening, then a plus must replace the above plus/minus signs, else, a minus must replace the above plus/minus signs. This propagates in the construction of the assembled model below.
 
 </details>
 
@@ -89,7 +89,50 @@ $$
   \end{equation}
 $$
 
-where $A_{\rm flow} (\boldsymbol q_{\rm f})$ is the effective open area for the flow. The second equation describes the forces applied by the fluid pressure to the vocal folds. These forces can be written as linear combinations of the sub-glottal and supra-glottal pressures:
+where $A_{\rm flow} (\boldsymbol q_{\rm f})$ is the effective open area for the flow. 
+
+<details><summary>Form of the glottal flow law  </summary>
+
+The glottal flow law is derived from the incompressible and stationary assumptions. Up to the jet separation point $x_s$, this leads to a classical Bernoulli type flow :
+
+$$
+\begin{align*}
+  \frac{P_{sub}}{\rho_0} + \frac{1}{2} v_{sub}^2 &= \frac{P_{s}}{\rho_0} + \frac{1}{2} v_{s}^2, \\\
+  \frac{P_{sub}}{\rho_0} + \frac{1}{2} \left(\frac{Q_g}{A_{sub}}\right)^2 &= \frac{P_{s}}{\rho_0} + \frac{1}{2} \left(\frac{Q_g}{A_{s}}\right)^2, \\\
+  {\rm sign}(P_{sub} - P_s)\sqrt{\frac{2 (P_{sub} - P_s)}{\rho_0} } &=  \frac{A_{sub} + A_s}{A_{sub} A_s} Q_g, \\\
+  Q_g &= \underbrace{\frac{A_{sub} A_s}{A_{sub} + A_s}}_{A_{\rm flow}} {\rm sign}(P_{sub} - P_s)\sqrt{\frac{2 (P_{sub} - P_s)}{\rho_0} }.
+\end{align*}
+$$
+
+ Usually, 
+
+$$
+  A_s \ll A_{sub},
+$$
+
+which allows to further reduce to 
+
+$$
+  A_{\rm flow} \approx A_s.
+$$
+
+
+
+ After the separation point, the kinetic energy is assumed to be partly or fully dissipated:
+
+$$
+  \frac{P_{s}}{\rho_0} + \frac{1}{2} \gamma_r v_{s}^2 = \frac{P_{sup}}{\rho_0} + \frac{1}{2} v_{sup}^2,
+$$
+
+where 
+
+$$
+  0 \leq \gamma_r \leq 1.
+$$
+
+</details>
+
+The second equation describes the forces applied by the fluid pressure to the vocal folds. These forces can be written as linear combinations of the sub-glottal and supra-glottal pressures:
 
 $$
 \begin{equation}
@@ -541,4 +584,20 @@ $$
     &= \int_{x_2}^{x_3} \frac{x_3 - x }{ x_3 - x_2} P_{sup} dx \\\
     &= \frac{x_3 - x_2}{2} P_{sup}
 \end{align*}
+$$
+
+
+## Noise model
+
+In the glottis, the flow law is based on the assumption of Bernoulli flow up to a separation point after which part or all of the kinetic energy is dissipated. The expression of the kinetic energy dissipated is 
+
+$$
+  P_{jet} = R_{\rm g} \Delta P^2 = A_{\rm flow}(\boldsymbol q_{\rm f}) {\rm sign}(\Delta P) \sqrt{\frac{2 \vert \Delta P\vert}{\rho_0} } \Delta P
+$$
+
+$$
+  \begin{equation}
+    Q_{\rm g} = A_{\rm flow}(\boldsymbol q_{\rm f}) {\rm sign}(\Delta P) \sqrt{\frac{2 \vert \Delta P\vert}{\rho_0} },
+    \label{eq:Bernoulli_vf2}
+  \end{equation}
 $$
