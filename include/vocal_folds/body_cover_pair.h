@@ -140,7 +140,7 @@ public:
     {
         area_min_ = areas_below_masses_(Eigen::seq(0, 1)).minCoeff();
         mean_flow_ = area_min_ * sqrt(2 / (kt_ * rho0_) * abs(Psub - Psup)) * sgn(Psub - Psup);
-        return mean_flow_ * (1 + noise_ratio_ * noise_generator_.Process());
+        return mean_flow_ * (1 + noise_ratio_ * (noise_generator_.Process() + 1) / 2.f);
     };
 
     ftype Enl(const state_type& state_q, bool recompute_intermediary = false)
