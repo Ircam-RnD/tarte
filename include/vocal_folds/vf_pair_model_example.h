@@ -22,6 +22,9 @@ public:
     static inline constexpr int get_half_N() { return half_N; };
     VFPairExample() { };
 
+    // The fill intermediary function should include intermediary computations (like effective oponed areas along the
+    // glottis), such that EffectiveAreas and ComputeFlow can be evaluated without q as argument. This is because
+    // EffectiveAreas and ComputeFlow usually share the q-dependent computations.
     void FillIntermediary(const state_type& state_q) { };
     void EffectiveAreas(state_type& out_area_P_sub, state_type& out_area_P_sup) { };
     ftype ComputeFlow(const ftype& Psub, const ftype& Psup) { return ftype(0); };
