@@ -37,10 +37,13 @@ private:
     using ArrayNm1 = Eigen::Array<ftype, kMaxN - 1, 1>;
 
     // Physical parameters
-    ftype c0_{340}, rho0_{1.2}, l0_{17e-2}, c02_{0.0}; // Acoustic
-    ftype lip_radius{0}, L_rad_{0}, R_rad_{0};         // Radiation
-    bool yielding_walls{false};
+    ftype c0_{340}, rho0_{1.2}, l0_{17e-2}, c02_{0.0};                               // Acoustic
+    ftype lip_radius{0}, L_rad_{0}, R_rad_{0};                                       // Radiation
     ftype wall_area_mass_{15}, wall_area_stiffness_{3e6}, wall_area_damping_{16000}; // Yielding walls, per-area values
+
+    // General settings
+    bool radiation_{true};
+    bool yielding_walls_{false};
     bool time_varying_geometry_{false};
 
     // Articulation
@@ -77,7 +80,7 @@ private:
 
     // FDTD coefficient arrays
     ArrayN intermediary_;
-    ArrayN d_plus_v_, A_, B_, D_, E_, A_rad_, B_rad_;
+    ArrayN d_plus_v_, A_, B_, D_, E_, A_walls_, B_walls_;
     ftype F_, G_;
     ftype vel_coeff_;
     ArrayNm1 C_top_, C_low_;
@@ -134,7 +137,7 @@ public:
     void set_lp_Qs(ftype Q);
 
     // DSP
-    void Process(ftype inputFlow);
+    void Process(ftype inputFlow, ftype outputFlow = 0);
 
     std::tuple<ftype, ftype> GetIOLinearDependencyCoefficients();
 
@@ -156,9 +159,14 @@ public:
     inline float get_lpf_frequency() { return lpf_frequency_; }
 
     // Setters
+    inline void set_radiation(bool isRadiating)
+    {
+        radiation_ = isRadiating;
+        UpdateCoefficients();
+    }
     inline void set_yielding_walls(bool isYielding)
     {
-        yielding_walls = isYielding;
+        yielding_walls_ = isYielding;
         UpdateCoefficients();
     }
     inline void set_time_varying_geometry(bool isVarying) { time_varying_geometry_ = isVarying; }

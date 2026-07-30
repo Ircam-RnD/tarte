@@ -59,8 +59,8 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     C_low_.setZero();
     D_.setZero();
     E_.setZero();
-    A_rad_.setZero();
-    B_rad_.setZero();
+    A_walls_.setZero();
+    B_walls_.setZero();
 
     // State reset
     flip_ = false;
@@ -166,20 +166,20 @@ void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
 
     ftype rhoc2 = rho0_ * c02_;
 
-    if (yielding_walls) {
-        intermediary_.head(N_) = 2 / dt_ + rw / mw + kw / (2 * mw) * dt_;
+    A_.head(N_) = 1 / dt_;
 
-        A_.head(N_) = 1 / dt_ + gamma * rhoc2 / (2 * mw * Sp * intermediary_.head(N_));
-        A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * 2 * h_ * R_rad_) + rhoc2 * dt_ / (Sp(N_ - 1) * 4 * h_ * L_rad_);
+    if (yielding_walls_) {
+        intermediary_.head(N_) = 2 / dt_ + rw / mw + kw / (2 * mw) * dt_;
+        A_.head(N_) += gamma * rhoc2 / (2 * mw * Sp * intermediary_.head(N_));
 
         D_.head(N_) = -2 * rho0_ * gamma / (dt_ * mw * intermediary_.head(N_) * Sp);
         E_.head(N_) = rho0_ * gamma * kw / (intermediary_.head(N_) * Sp * mw);
 
-        A_rad_.head(N_) = intermediary_.head(N_) * 0.5;
-        B_rad_.head(N_) = 2 / dt_ - A_rad_.head(N_);
+        A_walls_.head(N_) = intermediary_.head(N_) * 0.5;
+        B_walls_.head(N_) = 2 / dt_ - A_walls_.head(N_);
+    }
 
-    } else {
-        A_.head(N_) = 1 / dt_;
+    if (radiation_) {
         A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * 2 * h_ * R_rad_) + rhoc2 * dt_ / (Sp(N_ - 1) * 4 * h_ * L_rad_);
     }
 
@@ -192,7 +192,7 @@ void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
 }
 
 template<typename ftype, int kMaxN>
-void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
+void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
 {
     // These views should not have any cost
     auto rho_now = rho_now_ac().head(N_);
@@ -205,8 +205,8 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
     auto C_low = C_low_.head(N_ - 1);
     auto D = D_.head(N_);
     auto E = E_.head(N_);
-    auto A_rad = A_rad_.head(N_);
-    auto B_rad = B_rad_.head(N_);
+    auto A_walls = A_walls_.head(N_);
+    auto B_walls = B_walls_.head(N_);
 
     auto dv = d_plus_v_.head(N_);
     auto dSp = d_S_primal_.head(N_);
@@ -218,35 +218,42 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow)
     auto wp_now = wall_momentum_now_ac().head(N_);
     auto wp_next = wall_momentum_next_ac().head(N_);
 
-    if (yielding_walls) {
-        dv.head(N_ - 1) = C_top * vel;
-        dv(N_ - 1) = 0;
-        dv.tail(N_ - 1) += C_low * vel;
+    dv.head(N_ - 1) = C_top * vel;
+    dv(N_ - 1) = 0;
+    dv.tail(N_ - 1) += C_low * vel;
+
+    rho_next(0) += G_ * inputFlow / A(0);
+
+    if (yielding_walls_) {
 
         rho_next = (1 / A) * (B * rho_now + dv + D * wp_now + E * wdisp - rho0_ * (dSp / Sp));
 
         rho_next(0) += G_ * inputFlow / A(0);
-        rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
+        if (radiation_) {
+            rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
+            radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
+        } else {
+            rho_next(N_ - 1) += F_ * outputFlow / A(N_ - 1);
+        }
 
         vel = vel - vel_coeff_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
 
-        wp_next = (1 / A_rad) * (B_rad * wp_now - kw * wdisp + (c02_ * ftype(0.5)) * (rho_now + rho_next));
+        wp_next = (1 / A_walls) * (B_walls * wp_now - kw * wdisp + (c02_ * ftype(0.5)) * (rho_now + rho_next));
 
         wdisp += dt_ * ftype(0.5) / wall_area_mass_ * (wp_now + wp_next);
-        radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
 
     } else {
-        dv.head(N_ - 1) = C_top * vel;
-        dv(N_ - 1) = 0;
-        dv.tail(N_ - 1) += C_low * vel;
-
         rho_next = (1 / A) * (B * rho_now + dv - rho0_ * (1 / Sp * dSp));
+
         rho_next(0) += G_ * inputFlow / A(0);
-        rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
+        if (radiation_) {
+            rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
+            radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
+        } else {
+            rho_next(N_ - 1) += F_ * outputFlow / A(N_ - 1);
+        }
 
         vel = vel - vel_coeff_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
-
-        radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
     }
 
     // Swap buffers to advance state
@@ -311,6 +318,7 @@ void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXd& matinter
                                                        Eigen::RowVectorXd& matoutTFFlow,
                                                        Eigen::RowVectorXd& matoutTFPressure) const
 {
+    // For now, this always considers radiation to be on.
     using Cplx = std::complex<double>;
 
     const int Nx = N_;     // # pressure (Sp) states
@@ -344,7 +352,7 @@ void WebsterFDTD<ftype, kMaxN>::BuildLaplaceStateSpace(Eigen::MatrixXd& matinter
         mTF(total - 1) = 1.0 / Lrad;                       // inductive branch
     };
 
-    if (yielding_walls) {
+    if (yielding_walls_) {
         // Layout: [Nv | Nx | Nx | Nx | 1]
         const int total = Nv + 3 * Nx + 1;
         Eigen::ArrayXd perim = gamma_primal_.head(Nx).template cast<double>();
