@@ -96,38 +96,54 @@ where $A_{\rm flow} (\boldsymbol q_{\rm f})$ is the effective open area for the 
 The glottal flow law is derived from the incompressible and stationary assumptions. Up to the jet separation point $x_s$, this leads to a classical Bernoulli type flow :
 
 $$
-\begin{align*}
-  \frac{P_{sub}}{\rho_0} + \frac{1}{2} v_{sub}^2 &= \frac{P_{s}}{\rho_0} + \frac{1}{2} v_{s}^2, \\\
-  \frac{P_{sub}}{\rho_0} + \frac{1}{2} \left(\frac{Q_g}{A_{sub}}\right)^2 &= \frac{P_{s}}{\rho_0} + \frac{1}{2} \left(\frac{Q_g}{A_{s}}\right)^2, \\\
-  {\rm sign}(P_{sub} - P_s)\sqrt{\frac{2 (P_{sub} - P_s)}{\rho_0} } &=  \frac{A_{sub} + A_s}{A_{sub} A_s} Q_g, \\\
-  Q_g &= \underbrace{\frac{A_{sub} A_s}{A_{sub} + A_s}}_{A_{\rm flow}} {\rm sign}(P_{sub} - P_s)\sqrt{\frac{2 (P_{sub} - P_s)}{\rho_0} }.
-\end{align*}
+  \begin{equation*}
+    \frac{P_{ \rm sub}}{\rho_0} + \frac{1}{2} v_{ \rm sub}^2 = \frac{P_{\rm s}}{\rho_0} + \frac{1}{2} v_{\rm s}^2.
+  \end{equation*}
 $$
 
- Usually, 
+At the separation point, the kinetic energy is assumed to be partly or fully dissipated such that 
 
 $$
-  A_s \ll A_{sub},
-$$
-
-which allows to further reduce to 
-
-$$
-  A_{\rm flow} \approx A_s.
-$$
-
-
-
- After the separation point, the kinetic energy is assumed to be partly or fully dissipated:
-
-$$
-  \frac{P_{s}}{\rho_0} + \frac{1}{2} \gamma_r v_{s}^2 = \frac{P_{sup}}{\rho_0} + \frac{1}{2} v_{sup}^2,
+  \frac{P_{\rm s}}{\rho_0} + \frac{1}{2} \gamma_r v_{\rm s}^2 = \frac{P_{sup}}{\rho_0} + \frac{1}{2} v_{sup}^2,
 $$
 
 where 
 
 $$
-  0 \leq \gamma_r \leq 1.
+  0 \leq \gamma_r \leq 1,
+$$
+
+is a pressure recovery coefficient. Incompressibility leads to a constant flow $Q_g$ through the glottis, hence
+
+$$
+  Q_g = A_{\rm s} v_{\rm s} = A_{\rm sup} v_{\rm sup} = A_{\rm sub} v_{\rm sub},
+$$
+
+under the hypothesis that the flow has reattached to the tissues at
+
+$$
+  x = x_{sup}.
+$$ 
+
+Combining the previous equations, and assuming 
+
+$$
+  A_{\rm s} \ll A_{ \rm sub} \quad \text{ and } \quad A_{\rm s} \ll A_{sup},
+$$
+
+one gets
+
+$$
+  \begin{equation}
+    Q_{\rm g} = A_{\rm s} {\rm sign}(\Delta P) \sqrt{\frac{2 \vert \Delta P\vert}{(1 - \gamma_r)\rho_0} },
+    \label{eq:Bernoulli_vf_recovery}
+  \end{equation}
+$$  
+
+which is of the form of \eqref{eq:Bernoulli_vf} with 
+
+$$
+  A_{\rm flow} = A_{\rm s} \sqrt{\frac{1}{1 - \gamma_r}}.
 $$
 
 </details>
@@ -589,15 +605,23 @@ $$
 
 ## Noise model
 
-In the glottis, the flow law is based on the assumption of Bernoulli flow up to a separation point after which part or all of the kinetic energy is dissipated. The expression of the kinetic energy dissipated is 
+In the glottis, the flow law is based on the assumption of Bernoulli flow up to a separation point after which part or all of the kinetic energy is dissipated. 
+
+
+
+
+In order to introduce a power-balanced noise generator at the larynx output, we propose to modify the glottal flow law as
 
 $$
-  P_{jet} = R_{\rm g} \Delta P^2 = A_{\rm flow}(\boldsymbol q_{\rm f}) {\rm sign}(\Delta P) \sqrt{\frac{2 \vert \Delta P\vert}{\rho_0} } \Delta P
+  \tilde{Q}_{\rm g} = (1 + \kappa_N \mathcal{X}_N) Q_{\rm g},
 $$
 
+with 
+
 $$
-  \begin{equation}
-    Q_{\rm g} = A_{\rm flow}(\boldsymbol q_{\rm f}) {\rm sign}(\Delta P) \sqrt{\frac{2 \vert \Delta P\vert}{\rho_0} },
-    \label{eq:Bernoulli_vf2}
-  \end{equation}
-$$
+  0 \leq\mathcal{X}_N \leq 1
+$$ 
+
+a random variable sampled in a chosen distribution assumed to be bounded, and $\kappa_N \geq 0$ a noise ratio coefficient. This additional noise can be interpreted as a random positive variation of $\gamma_r$, the pressure recovery coefficient in \eqref{eq:Bernoulli_vf_recovery}. With this chosen parametrization, the system is ensured to be dissipative.
+
+As a first try of this method, the distribution is chosen to produce a pink noise. Later experiments should be based on optimized noise generator depending on the instantaneous geometry configuration, either based on higher order simulation results, or on measurements. 
