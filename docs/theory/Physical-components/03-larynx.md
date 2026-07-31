@@ -433,7 +433,7 @@ $$
 which is indeed in the form of \eqref{eq:Bernoulli_vf}. $x_s$ denotes the estimated jet separation point. As the kinetic energy of the jet is assumed to be fully dissipated, zero pressure recovery is considered above the separation point, hence $\left(P_{sub}(t) - P(x_s, t)\right) = \left(P_{sub}(t) - P_{sup}( t)\right) = \Delta P$ in the third line.
 Note that $A_{\rm flow}$ may diverge for finite values of $h(x_s, t)$ if $h(x_s, t) = 0$. This should ideally not happen as it would be unphysical. However, in a real-time safe context, a solution is to further assume $\frac{h^2(x_s, t)}{h_0^2} \approx 0$. If this assumption is made, then the glottal flow equation reduces to a similar expression as for the body-cover model.
 
-In the paper, the jet separation point is evaluated such that $h(x_s) = s h_1$ or as $x_s = x_2$ if $h_2 > s h_1$. $s$ is referred to as the separation constant.
+In the paper, the jet separation point is evaluated such that $h(x_s) = s h_1$ or as $x_s = x_2$ if $h_2 \textcolor{red}{>} s h_1$. $s$ is referred to as the separation constant. The condition seems to be backward, such that in the code it is implemented with $h_2 \textcolor{red}{<} s h_1$ as the condition. 
 
 The effective forces applied to the fold by the fluid are harder to get to. Following notations from the paper, the effective force on the lower mass writes:
 
