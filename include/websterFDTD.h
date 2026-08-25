@@ -158,6 +158,15 @@ public:
     inline ftype get_wall_area_damping() { return wall_area_damping_; }
     inline float get_lpf_frequency() { return lpf_frequency_; }
 
+    void getTargetGeometry(ftype* out, size_t N)
+    {
+        if (N == N_) {
+            for (size_t i = 0; i < N; ++i) {
+                out[i] = S_target_(i);
+            }
+        }
+    }
+
     // Setters
     inline void set_radiation(bool isRadiating)
     {
