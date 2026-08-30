@@ -222,8 +222,6 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
     dv(N_ - 1) = 0;
     dv.tail(N_ - 1) += C_low * vel;
 
-    rho_next(0) += G_ * inputFlow / A(0);
-
     if (yielding_walls_) {
 
         rho_next = (1 / A) * (B * rho_now + dv + D * wp_now + E * wdisp - rho0_ * (dSp / Sp));
