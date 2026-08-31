@@ -15,7 +15,7 @@ int main(int, char*[])
 {
     std::string path = "voice.wav";
     float samplerate = 48000;
-    float duration = 1000.0;
+    float duration = 2.0;
     float subglottal_pressure = 800;
     std::size_t num_sample = static_cast<int>(samplerate * duration);
     tarte::Voice<tarte::BodyCoverPair<double>, double> proc(samplerate, true);
@@ -25,6 +25,8 @@ int main(int, char*[])
     proc.get_resonator()->set_time_varying_geometry(true);
     proc.get_resonator()->set_N_update_geometry(10);
     proc.get_resonator()->SetTargetGeometryFromArticulation(art);
+    proc.get_resonator()->set_lp_frequencies(3);
+    proc.get_resonator()->initializeFilters();
 
     proc.set_lambda_sav(1000);
     // proc.set_contact_stiffness(15);
@@ -37,9 +39,12 @@ int main(int, char*[])
     samples.resize(num_sample);
 
     auto t1 = std::chrono::high_resolution_clock::now();
-    // Run a simulation with the default parameters and a dirac impulse as input
     for (int i = 0; i < samples.size(); i++) {
         proc.Process(subglottal_pressure);
+        if (i == samples.size() / 2) {
+            art.SetFromFormants(500, 1500);
+            proc.get_resonator()->SetTargetGeometryFromArticulation(art);
+        }
         samples[i] = proc.ReadRadiatedPressure();
     }
     auto t2 = std::chrono::high_resolution_clock::now();
