@@ -275,6 +275,8 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
                 for (int i = 0; i < N_ + 1 && i < N_lpf_; ++i) {
                     S_direct_[i] = static_cast<ftype>(lp_filters_[i].Process(static_cast<double>(S_target_[i])));
                 } // ~9ms
+            } else {
+                S_direct_.head(N_ + 1) = S_target_.head(N_ + 1);
             }
 
             ComputeDiscreteGreometry();
