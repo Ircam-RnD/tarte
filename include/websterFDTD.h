@@ -44,8 +44,10 @@ private:
     // General settings
     bool radiation_{true};
     bool yielding_walls_{false};
-    bool time_varying_geometry_{false};
-
+    bool time_varying_geometry_{false},
+        pumped_flow_{true}; // If pumped flow is off, then geometry can be updated once per buffer
+    int N_update_geometry_{1};
+    int update_counter_geometry_{0};
     // Articulation
     ArrayN S_direct_, S_target_, S_direct_last_;
     ArrayNm1 S_dual_;
@@ -179,10 +181,28 @@ public:
         UpdateCoefficients();
     }
     inline void set_time_varying_geometry(bool isVarying) { time_varying_geometry_ = isVarying; }
+    inline void set_N_update_geometry(int NUpdateGeometry)
+    {
+        N_update_geometry_ = std::max(NUpdateGeometry, 1);
+        if (NUpdateGeometry > 1) {
+            pumped_flow_ = false;
+        }
+    }
     void set_c0(ftype sound_velocity)
     {
         c0_ = sound_velocity;
         DspSetup(sr_);
+    }
+    inline void set_pumped_flow(bool pumpedFlow)
+    {
+        // Only sets to on if geometry is varying and updated every sample.
+        if (pumpedFlow == true) {
+            if (time_varying_geometry_ and (N_update_geometry_ == 1)) {
+                pumped_flow_ = pumpedFlow;
+            }
+        } else {
+            pumped_flow_ = pumpedFlow;
+        }
     }
     void set_l0(ftype length)
     {

@@ -224,7 +224,11 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
 
     if (yielding_walls_) {
 
-        rho_next = (1 / A) * (B * rho_now + dv + D * wp_now + E * wdisp - rho0_ * (dSp / Sp));
+        if (pumped_flow_) {
+            rho_next = (1 / A) * (B * rho_now + dv + D * wp_now + E * wdisp - rho0_ * (dSp / Sp));
+        } else {
+            rho_next = (1 / A) * (B * rho_now + dv + D * wp_now + E * wdisp);
+        }
 
         rho_next(0) += G_ * inputFlow / A(0);
         if (radiation_) {
@@ -241,7 +245,11 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
         wdisp += dt_ * ftype(0.5) / wall_area_mass_ * (wp_now + wp_next);
 
     } else {
-        rho_next = (1 / A) * (B * rho_now + dv - rho0_ * (1 / Sp * dSp));
+        if (pumped_flow_) {
+            rho_next = (1 / A) * (B * rho_now + dv - rho0_ * (1 / Sp * dSp));
+        } else {
+            rho_next = (1 / A) * (B * rho_now + dv);
+        }
 
         rho_next(0) += G_ * inputFlow / A(0);
         if (radiation_) {
@@ -258,18 +266,28 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
     flip_ = !flip_;
 
     if (time_varying_geometry_) {
-        // ~19 ms total
-        for (int i = 0; i < N_ + 1 && i < N_lpf_; ++i) {
-            S_direct_[i] = static_cast<ftype>(lp_filters_[i].Process(static_cast<double>(S_target_[i])));
-        } // ~9ms
+        update_counter_geometry_ += 1;
 
-        ComputeDiscreteGreometry();  // ~1ms
-        UpdateRadiationParameters(); // negligible
-        UpdateCoefficients();        // ~ 7 ms
+        if (update_counter_geometry_ == N_update_geometry_) {
+            // It is decided here that filters are disabled if the geometry is not updated at each sample.
+            // Doing otherwise would need to change the sampling frequencies of the filter.
+            if (N_update_geometry_ == 1) {
+                for (int i = 0; i < N_ + 1 && i < N_lpf_; ++i) {
+                    S_direct_[i] = static_cast<ftype>(lp_filters_[i].Process(static_cast<double>(S_target_[i])));
+                } // ~9ms
+            }
 
-        S_direct_last_.head(N_ + 1) = S_direct_.head(N_ + 1);
-        S_primal_last_.head(N_) = S_primal_.head(N_);
-        d_S_primal_.head(N_) = (S_primal_.head(N_) - S_primal_last_.head(N_)) / dt_;
+            ComputeDiscreteGreometry();
+            UpdateRadiationParameters();
+            UpdateCoefficients();
+
+            if (N_update_geometry_ == 1) {
+                S_direct_last_.head(N_ + 1) = S_direct_.head(N_ + 1);
+                S_primal_last_.head(N_) = S_primal_.head(N_);
+                d_S_primal_.head(N_) = (S_primal_.head(N_) - S_primal_last_.head(N_)) / dt_;
+            }
+            update_counter_geometry_ = 0;
+        }
     }
 }
 
