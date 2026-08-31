@@ -296,12 +296,20 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
 template<typename ftype, int kMaxN>
 std::tuple<ftype, ftype> WebsterFDTD<ftype, kMaxN>::GetIOLinearDependencyCoefficients()
 {
-    return {c02_ * ftype(0.5) *
-                (rho_now_ac()(0) +
-                 (1 / A_(0)) * (B_(0) * rho_now_ac()(0) - S_dual_(0) / S_primal_(0) * rho0_ / h_ * vel_(0) +
-                                D_(0) * wall_momentum_now_ac()(0) + E_(0) * wall_displacement_(0) -
-                                rho0_ * (d_S_primal_(0) / S_primal_(0)))),
-            ftype(0.5) * c02_ * (1 / A_(0)) * G_};
+    if (pumped_flow_) {
+        return {c02_ * ftype(0.5) *
+                    (rho_now_ac()(0) +
+                     (1 / A_(0)) * (B_(0) * rho_now_ac()(0) - S_dual_(0) / S_primal_(0) * rho0_ / h_ * vel_(0) +
+                                    D_(0) * wall_momentum_now_ac()(0) + E_(0) * wall_displacement_(0) -
+                                    rho0_ * (d_S_primal_(0) / S_primal_(0)))),
+                ftype(0.5) * c02_ * (1 / A_(0)) * G_};
+    } else {
+        return {c02_ * ftype(0.5) *
+                    (rho_now_ac()(0) +
+                     (1 / A_(0)) * (B_(0) * rho_now_ac()(0) - S_dual_(0) / S_primal_(0) * rho0_ / h_ * vel_(0) +
+                                    D_(0) * wall_momentum_now_ac()(0) + E_(0) * wall_displacement_(0))),
+                ftype(0.5) * c02_ * (1 / A_(0)) * G_};
+    }
 }
 
 template<typename ftype, int kMaxN>
