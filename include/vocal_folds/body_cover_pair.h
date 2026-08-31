@@ -36,6 +36,8 @@ private:
     ftype area_ratio_, area_min_;
     ftype mean_flow_;
 
+    ftype inter_0_pow_alpha_, inter_1_pow_alpha_, inter_0_pow_alpha_1_, inter_1_pow_alpha_1_;
+
     /// ----------------------------------- Class specific members ----------------------------------------- ///
     // Fluid parameters
     ftype noise_ratio_{0};
@@ -93,7 +95,6 @@ public:
 
     void FillIntermediary(const state_type& state_q)
     {
-        left_vf_->rest_positions();
         masses_interpenetrations_ =
             (state_q.head(half_N) - left_vf_->rest_positions() + state_q.tail(half_N) - right_vf_->rest_positions());
 
@@ -103,6 +104,11 @@ public:
             (-(masses_interpenetrations_ / epsilon_smooth_).array().tanh().matrix() + half_state_type::Ones()) / 2;
         masses_interpenetrations_ =
             (masses_interpenetrations_.array() > 0).select(masses_interpenetrations_, half_state_type::Zero());
+
+        inter_0_pow_alpha_ = pow(masses_interpenetrations_(0), alpha_contact_stiffness_);
+        inter_1_pow_alpha_ = pow(masses_interpenetrations_(1), alpha_contact_stiffness_);
+        inter_0_pow_alpha_1_ = masses_interpenetrations_(0) * inter_0_pow_alpha_;
+        inter_1_pow_alpha_1_ = masses_interpenetrations_(1) * inter_1_pow_alpha_;
     };
 
     void EffectiveAreas(state_type& out_area_P_sub, state_type& out_area_P_sup)
@@ -163,10 +169,12 @@ public:
                    .sum();
 
         // Contact
-        Enl += contact_stiffness_ *
-               (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) +
-                pow(masses_interpenetrations_(1), alpha_contact_stiffness_ + 1)) /
-               (alpha_contact_stiffness_ + 1);
+        // Enl += contact_stiffness_ *
+        //        (pow(masses_interpenetrations_(0), alpha_contact_stiffness_ + 1) +
+        //         pow(masses_interpenetrations_(1), alpha_contact_stiffness_ + 1)) /
+        //        (alpha_contact_stiffness_ + 1);
+        Enl += contact_stiffness_ * (inter_0_pow_alpha_1_ + inter_1_pow_alpha_1_) / (alpha_contact_stiffness_ + 1);
+
         return Enl;
     };
 
@@ -189,10 +197,14 @@ public:
                           .matrix();
 
         // Contact
-        out(0) += contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_);
-        out(1) += contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_);
-        out(3) += contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_);
-        out(4) += contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_);
+        // out(0) += contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_);
+        // out(1) += contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_);
+        // out(3) += contact_stiffness_ * pow(masses_interpenetrations_(0), alpha_contact_stiffness_);
+        // out(4) += contact_stiffness_ * pow(masses_interpenetrations_(1), alpha_contact_stiffness_);
+        out(0) += contact_stiffness_ * inter_0_pow_alpha_;
+        out(1) += contact_stiffness_ * inter_1_pow_alpha_;
+        out(3) += contact_stiffness_ * inter_0_pow_alpha_;
+        out(4) += contact_stiffness_ * inter_1_pow_alpha_;
     };
 
     void KOp(const state_type& state_q, state_type& out)
