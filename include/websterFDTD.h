@@ -63,16 +63,20 @@ private:
     // State variables, ping-pong buffer
     bool flip_ = false;
 
-    Eigen::Array<ftype, kMaxN, 1> rho_buf_[2];           // Acoustic density
-    Eigen::Array<ftype, kMaxN, 1> wall_momentum_buf_[2]; // Per-area wall momentum
+    ArrayN rho_buf_[2];               // Acoustic density
+    ArrayNm1 vel_buf_[2];             // Acoustic velocity
+    ArrayN wall_momentum_buf_[2];     // Per-area wall momentum
+    ArrayN wall_displacement_buf_[2]; // Wall radial displacement
     // accessors
     auto& rho_now_ac() { return rho_buf_[flip_]; }
     auto& rho_next_ac() { return rho_buf_[!flip_]; }
+    auto& vel_now_ac() { return vel_buf_[flip_]; }
+    auto& vel_next_ac() { return vel_buf_[!flip_]; }
     auto& wall_momentum_now_ac() { return wall_momentum_buf_[flip_]; }
     auto& wall_momentum_next_ac() { return wall_momentum_buf_[!flip_]; }
+    auto& wall_displacement_now_ac() { return wall_displacement_buf_[flip_]; }
+    auto& wall_displacement_next_ac() { return wall_displacement_buf_[!flip_]; }
 
-    ArrayN wall_displacement_;
-    ArrayNm1 vel_;           // Acoustic velocity
     ftype radiation_flow{0}; // Radiation
 
     // LPF  (N_lpf_ <= kMaxN + 1)
@@ -101,10 +105,13 @@ private:
         kinetic_energy_radiation_[2];
     ftype P_diss_walls_, P_diss_radiation_, P_diss_tot_;
     ftype P_in_;
-    ftype P_stored_fluid_, P_stored_walls_, P_stored_radiation_, P_stored_tot_;
+    ftype P_stored_fluid_, P_stored_fluid_kinetic_, P_stored_fluid_potential_;
+    ftype P_stored_walls_, P_stored_walls_kinetic_, P_stored_walls_potential_;
+    ftype P_stored_radiation_, P_stored_tot_;
     ftype P_tot_;
 
-    void ComputePowers();
+    bool compute_powers_{false};
+    void ComputePowers(ftype inputFlow, ftype outputFlow);
 
     void BuildLaplaceStateSpace(Eigen::MatrixXd& matinternal,
                                 Eigen::VectorXd& Sxu,
@@ -146,6 +153,11 @@ public:
     inline ftype ReadInputPressure() { return c0_ * c0_ * rho_now_ac()(0); }
     inline ftype ReadRadiatedPressure() { return c0_ * c0_ * rho_now_ac()(N_ - 1); }
 
+    // Power monitoring (only if compute_powers_ = True)
+    inline ftype ReadPowerTotal() { return (compute_powers_) ? P_tot_ : NAN; }
+    inline ftype ReadPowerFluidStored() { return (compute_powers_) ? P_stored_fluid_ : NAN; }
+    inline ftype ReadPowerFluidStoredKinetic() { return (compute_powers_) ? P_stored_fluid_kinetic_ : NAN; }
+    inline ftype ReadPowerFluidStoredPotential() { return (compute_powers_) ? P_stored_fluid_potential_ : NAN; }
     // Frequency response estimation
     PolesResidues ComputePolesResidues();
     std::vector<FrequencyResponse> ComputeFrequencyResponse(const std::vector<double>& frequenciesHz);
@@ -215,6 +227,7 @@ public:
         UpdateRadiationParameters();
         UpdateCoefficients();
     }
+    void set_compute_powers(const bool compute_powers) { compute_powers_ = compute_powers; }
     void initializeFilters(); //.Can be used to force geometry before begining a simulation with varying geometry
 };
 

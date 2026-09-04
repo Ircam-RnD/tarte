@@ -66,16 +66,27 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     flip_ = false;
     rho_now_ac().setZero();
     rho_next_ac().setZero();
-    vel_.setZero();
-    wall_displacement_.setZero();
+    vel_now_ac().setZero();
+    vel_next_ac().setZero();
     wall_momentum_now_ac().setZero();
     wall_momentum_next_ac().setZero();
+    wall_displacement_now_ac().setZero();
+    wall_displacement_next_ac().setZero();
     radiation_flow = 0;
 
     UpdateCoefficients();
 
     // LFPs
     initializeFilters();
+
+    // Energy resets
+    for (int i = 0; i < 2; i++) {
+        kinetic_energy_fluid_[i] = 0;
+        potential_energy_fluid_[i] = 0;
+        kinetic_energy_walls_[i] = 0;
+        potential_energy_walls_[i] = 0;
+        kinetic_energy_radiation_[i] = 0;
+    }
 }
 
 template<typename ftype, int kMaxN>
@@ -173,7 +184,8 @@ void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
     }
 
     if (radiation_) {
-        A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * 2 * h_ * R_rad_) + rhoc2 * dt_ / (Sp(N_ - 1) * 4 * h_ * L_rad_);
+        // A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * 2 * h_ * R_rad_) + rhoc2 * dt_ / (Sp(N_ - 1) * 4 * h_ * L_rad_);
+        A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * h_) * (1 / (2 * R_rad_) + dt_ / (4 * L_rad_));
     }
 
     B_.head(N_) = 2 / dt_ - A_.head(N_);
@@ -187,10 +199,12 @@ void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
 template<typename ftype, int kMaxN>
 void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
 {
+
     // These views should not have any cost
     auto rho_now = rho_now_ac().head(N_);
     auto rho_next = rho_next_ac().head(N_);
-    auto vel = vel_.head(N_ - 1);
+    auto vel_now = vel_now_ac().head(N_ - 1);
+    auto vel_next = vel_next_ac().head(N_ - 1);
 
     auto A = A_.head(N_);
     auto B = B_.head(N_);
@@ -207,20 +221,21 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
 
     auto mw = wall_area_mass_;
     auto kw = wall_area_stiffness_;
-    auto wdisp = wall_displacement_.head(N_);
+    auto wdisp_now = wall_displacement_now_ac().head(N_);
+    auto wdisp_next = wall_displacement_next_ac().head(N_);
     auto wp_now = wall_momentum_now_ac().head(N_);
     auto wp_next = wall_momentum_next_ac().head(N_);
 
-    dv.head(N_ - 1) = C_top * vel;
+    dv.head(N_ - 1) = C_top * vel_now;
     dv(N_ - 1) = 0;
-    dv.tail(N_ - 1) += C_low * vel;
+    dv.tail(N_ - 1) += C_low * vel_now;
 
     if (yielding_walls_) {
 
         if (pumped_flow_) {
-            rho_next = (1 / A) * (B * rho_now + dv + D * wp_now + E * wdisp - rho0_ * (dSp / Sp));
+            rho_next = (1 / A) * (B * rho_now + dv + D * wp_now + E * wdisp_now - rho0_ * (dSp / Sp));
         } else {
-            rho_next = (1 / A) * (B * rho_now + dv + D * wp_now + E * wdisp);
+            rho_next = (1 / A) * (B * rho_now + dv + D * wp_now + E * wdisp_now);
         }
 
         rho_next(0) += G_ * inputFlow / A(0);
@@ -231,11 +246,11 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
             rho_next(N_ - 1) += F_ * outputFlow / A(N_ - 1);
         }
 
-        vel = vel - vel_coeff_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
+        vel_next = vel_now - vel_coeff_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
 
-        wp_next = (1 / A_walls) * (B_walls * wp_now - kw * wdisp + (c02_ * ftype(0.5)) * (rho_now + rho_next));
+        wp_next = (1 / A_walls) * (B_walls * wp_now - kw * wdisp_now + (c02_ * ftype(0.5)) * (rho_now + rho_next));
 
-        wdisp += dt_ * ftype(0.5) / wall_area_mass_ * (wp_now + wp_next);
+        wdisp_next = wdisp_now + dt_ * ftype(0.5) / wall_area_mass_ * (wp_now + wp_next);
 
     } else {
         if (pumped_flow_) {
@@ -252,9 +267,12 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
             rho_next(N_ - 1) += F_ * outputFlow / A(N_ - 1);
         }
 
-        vel = vel - vel_coeff_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
+        vel_next = vel_now - vel_coeff_ * (rho_next.tail(N_ - 1) - rho_next.head(N_ - 1));
     }
 
+    if (compute_powers_) {
+        ComputePowers(inputFlow, outputFlow);
+    }
     // Swap buffers to advance state
     flip_ = !flip_;
 
@@ -286,41 +304,60 @@ std::tuple<ftype, ftype> WebsterFDTD<ftype, kMaxN>::GetIOLinearDependencyCoeffic
     if (pumped_flow_) {
         return {c02_ * ftype(0.5) *
                     (rho_now_ac()(0) +
-                     (1 / A_(0)) * (B_(0) * rho_now_ac()(0) - S_dual_(0) / S_primal_(0) * rho0_ / h_ * vel_(0) +
-                                    D_(0) * wall_momentum_now_ac()(0) + E_(0) * wall_displacement_(0) -
+                     (1 / A_(0)) * (B_(0) * rho_now_ac()(0) - S_dual_(0) / S_primal_(0) * rho0_ / h_ * vel_now_ac()(0) +
+                                    D_(0) * wall_momentum_now_ac()(0) + E_(0) * wall_displacement_now_ac()(0) -
                                     rho0_ * (d_S_primal_(0) / S_primal_(0)))),
                 ftype(0.5) * c02_ * (1 / A_(0)) * G_};
     } else {
         return {c02_ * ftype(0.5) *
                     (rho_now_ac()(0) +
-                     (1 / A_(0)) * (B_(0) * rho_now_ac()(0) - S_dual_(0) / S_primal_(0) * rho0_ / h_ * vel_(0) +
-                                    D_(0) * wall_momentum_now_ac()(0) + E_(0) * wall_displacement_(0))),
+                     (1 / A_(0)) * (B_(0) * rho_now_ac()(0) - S_dual_(0) / S_primal_(0) * rho0_ / h_ * vel_now_ac()(0) +
+                                    D_(0) * wall_momentum_now_ac()(0) + E_(0) * wall_displacement_now_ac()(0))),
                 ftype(0.5) * c02_ * (1 / A_(0)) * G_};
     }
 }
 
 template<typename ftype, int kMaxN>
-void WebsterFDTD<ftype, kMaxN>::ComputePowers()
+void WebsterFDTD<ftype, kMaxN>::ComputePowers(ftype inputFlow, ftype outputFlow)
 {
-    kinetic_energy_fluid_[!flip_] = 0;
-    potential_energy_fluid_[!flip_] = 0;
-    kinetic_energy_walls_[!flip_] = 0;
-    potential_energy_walls_[!flip_] = 0;
-    kinetic_energy_radiation_[!flip_] = 0;
+    kinetic_energy_fluid_[!flip_] = 0.125 * h_ * rho0_ *
+                                    ((vel_next_ac() + vel_now_ac()) * S_dual_ * (vel_next_ac() + vel_now_ac()) -
+                                     (vel_next_ac() - vel_now_ac()) * S_dual_ * (vel_next_ac() - vel_now_ac()))
+                                        .sum();
+    potential_energy_fluid_[!flip_] = 0.5 * h_ * c02_ / rho0_ * (rho_next_ac() * S_primal_ * rho_next_ac()).sum();
+    kinetic_energy_walls_[!flip_] =
+        0.5 * h_ * (gamma_primal_ / wall_area_mass_ * wall_momentum_next_ac() * wall_momentum_next_ac()).sum();
+    potential_energy_walls_[!flip_] =
+        0.5 * h_ *
+        (gamma_primal_ * wall_area_stiffness_ * wall_displacement_next_ac() * wall_displacement_next_ac()).sum();
 
-    P_stored_fluid_ = (kinetic_energy_fluid_[!flip_] - kinetic_energy_fluid_[flip_] + potential_energy_fluid_[!flip_] -
-                       potential_energy_fluid_[flip_]) /
-                      dt_;
+    P_stored_fluid_kinetic_ = (kinetic_energy_fluid_[!flip_] - kinetic_energy_fluid_[flip_]) / dt_;
+    P_stored_fluid_potential_ = (potential_energy_fluid_[!flip_] - potential_energy_fluid_[flip_]) / dt_;
+    P_stored_fluid_ = P_stored_fluid_kinetic_ + P_stored_fluid_potential_;
     P_stored_walls_ = (kinetic_energy_walls_[!flip_] - kinetic_energy_walls_[flip_] + potential_energy_walls_[!flip_] -
                        potential_energy_walls_[flip_]) /
                       dt_;
-    P_stored_radiation_ = (kinetic_energy_radiation_[!flip_] - kinetic_energy_radiation_[flip_]) / dt_;
-    P_stored_tot_ = P_stored_fluid_ + P_stored_walls_ + P_stored_radiation_;
 
-    P_diss_walls_ = 0;
-    P_diss_radiation_ = 0;
+    P_diss_walls_ = 0.25 * h_ *
+                    (gamma_primal_ * wall_area_damping_ * (wall_momentum_next_ac() + wall_momentum_now_ac()) /
+                     wall_area_mass_ * (wall_momentum_next_ac() + wall_momentum_now_ac()) / wall_area_mass_)
+                        .sum();
+
+    P_in_ = -0.5 * c02_ * (rho_now_ac()(0) + rho_next_ac()(0)) * inputFlow;
+    if (radiation_) {
+        kinetic_energy_radiation_[!flip_] = 0;
+        P_stored_radiation_ = (kinetic_energy_radiation_[!flip_] - kinetic_energy_radiation_[flip_]) / dt_;
+        P_diss_radiation_ = 0;
+    } else {
+        kinetic_energy_radiation_[!flip_] = 0;
+        P_stored_radiation_ = 0;
+        P_diss_radiation_ = 0;
+
+        P_in_ += 0.5 * c02_ * (rho_now_ac()(N_ - 1) + rho_next_ac()(N_ - 1)) * outputFlow;
+    }
+
+    P_stored_tot_ = P_stored_fluid_ + P_stored_walls_ + P_stored_radiation_;
     P_diss_tot_ = P_diss_walls_ + P_diss_radiation_;
-    P_in_ = 0;
     P_tot_ = P_in_ + P_diss_tot_ + P_stored_tot_;
 }
 
