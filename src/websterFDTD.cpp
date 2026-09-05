@@ -72,7 +72,8 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
     wall_momentum_next_ac().setZero();
     wall_displacement_now_ac().setZero();
     wall_displacement_next_ac().setZero();
-    radiation_flow = 0;
+    radiation_flow_now_ac() = 0;
+    radiation_flow_next_ac() = 0;
 
     UpdateCoefficients();
 
@@ -240,8 +241,9 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
 
         rho_next(0) += G_ * inputFlow / A(0);
         if (radiation_) {
-            rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
-            radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
+            rho_next(N_ - 1) += F_ * radiation_flow_now_ac() / A(N_ - 1);
+            radiation_flow_next_ac() =
+                radiation_flow_now_ac() + dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
         } else {
             rho_next(N_ - 1) += F_ * outputFlow / A(N_ - 1);
         }
@@ -261,8 +263,9 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
 
         rho_next(0) += G_ * inputFlow / A(0);
         if (radiation_) {
-            rho_next(N_ - 1) += F_ * radiation_flow / A(N_ - 1);
-            radiation_flow += dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
+            rho_next(N_ - 1) += F_ * radiation_flow_now_ac() / A(N_ - 1);
+            radiation_flow_next_ac() =
+                radiation_flow_now_ac() + dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
         } else {
             rho_next(N_ - 1) += F_ * outputFlow / A(N_ - 1);
         }
@@ -345,9 +348,10 @@ void WebsterFDTD<ftype, kMaxN>::ComputePowers(ftype inputFlow, ftype outputFlow)
 
     P_in_ = -0.5 * c02_ * (rho_now_ac()(0) + rho_next_ac()(0)) * inputFlow;
     if (radiation_) {
-        kinetic_energy_radiation_[!flip_] = 0;
+        kinetic_energy_radiation_[!flip_] = 0.5 * L_rad_ * (radiation_flow_next_ac() * radiation_flow_next_ac());
         P_stored_radiation_ = (kinetic_energy_radiation_[!flip_] - kinetic_energy_radiation_[flip_]) / dt_;
-        P_diss_radiation_ = 0;
+        P_diss_radiation_ = c02_ * c02_ / R_rad_ * 0.25 * (rho_next_ac()(N_ - 1) + rho_now_ac()(N_ - 1)) *
+                            (rho_next_ac()(N_ - 1) + rho_now_ac()(N_ - 1));
     } else {
         kinetic_energy_radiation_[!flip_] = 0;
         P_stored_radiation_ = 0;

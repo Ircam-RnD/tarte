@@ -67,6 +67,7 @@ private:
     ArrayNm1 vel_buf_[2];             // Acoustic velocity
     ArrayN wall_momentum_buf_[2];     // Per-area wall momentum
     ArrayN wall_displacement_buf_[2]; // Wall radial displacement
+    ftype radiation_flow_buf_[2];     // Radiation flow
     // accessors
     auto& rho_now_ac() { return rho_buf_[flip_]; }
     auto& rho_next_ac() { return rho_buf_[!flip_]; }
@@ -76,8 +77,8 @@ private:
     auto& wall_momentum_next_ac() { return wall_momentum_buf_[!flip_]; }
     auto& wall_displacement_now_ac() { return wall_displacement_buf_[flip_]; }
     auto& wall_displacement_next_ac() { return wall_displacement_buf_[!flip_]; }
-
-    ftype radiation_flow{0}; // Radiation
+    auto& radiation_flow_now_ac() { return radiation_flow_buf_[flip_]; }
+    auto& radiation_flow_next_ac() { return radiation_flow_buf_[!flip_]; }
 
     // LPF  (N_lpf_ <= kMaxN + 1)
     std::array<Biquad, kMaxN + 1> lp_filters_;
