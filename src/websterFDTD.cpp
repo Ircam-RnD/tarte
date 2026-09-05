@@ -185,7 +185,6 @@ void WebsterFDTD<ftype, kMaxN>::UpdateCoefficients()
     }
 
     if (radiation_) {
-        // A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * 2 * h_ * R_rad_) + rhoc2 * dt_ / (Sp(N_ - 1) * 4 * h_ * L_rad_);
         A_(N_ - 1) += rhoc2 / (Sp(N_ - 1) * h_) * (1 / (2 * R_rad_) + dt_ / (4 * L_rad_));
     }
 
