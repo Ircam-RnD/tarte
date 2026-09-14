@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.30)
-project(tarte-add LANGUAGES CXX)
+project(tarte LANGUAGES CXX)
 
 include("../../cmake/utils.cmake")
 string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}" is_top_level)
