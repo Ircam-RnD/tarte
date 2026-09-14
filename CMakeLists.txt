@@ -20,7 +20,8 @@ add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=ON)
 option(TARTE_BUILD_TESTS "Build tarte tests" OFF)
 option(TARTE_BUILD_EXAMPLES "Build tarte examples" ON)
 option(TARTE_INSTALL "Generate target for installing tarte" ${is_top_level})
-option(TARTE_USE_HDF5 "Enable HDF5 support" ON)
+option(TARTE_USE_HDF5 "Enable HDF5 support" OFF)
+option(TARTE_USE_MATPLOT "Enable matplotplusplus support" OFF)
 set_if_undefined(TARTE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/tarte" CACHE STRING
     "Install path for tarte package-related CMake files")
 
@@ -93,6 +94,12 @@ if(TARTE_USE_HDF5)
     find_package(HDF5 REQUIRED COMPONENTS C CXX)
     target_link_libraries(tarte PUBLIC ${HDF5_LIBRARIES})
     target_compile_definitions(tarte PUBLIC TARTE_HDF5_ENABLED)
+endif()
+
+if(TARTE_USE_MATPLOT)
+    find_package(Matplot++ REQUIRED)
+    target_link_libraries(tarte PUBLIC Matplot++::matplot)
+    target_compile_definitions(tarte PUBLIC TARTE_MAPTLOT_ENABLED)
 endif()
 
 
