@@ -454,3 +454,83 @@ TEST(WebsterFDTD_Double, DefaultPhysicalParameters)
     EXPECT_DOUBLE_EQ(wt.get_rho0(), 1.2);
     EXPECT_DOUBLE_EQ(wt.get_l0(), 17e-2);
 }
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 16. Numerical energy conservation
+// ──────────────────────────────────────────────────────────────────────────────
+
+TEST(WebsterFDTD_Double, PowerBalance)
+{
+    WebsterFDTD<double> wt(kSR, kLen);
+    Articulation art;
+    // Arbitrary geometry
+    wt.SetTargetGeometryFromArticulation(art);
+    art.SetFromVowel(tarte::vowels::u);
+    // Wall movement is not taken into account for now in the power balance computation
+    wt.set_time_varying_geometry(false);
+    wt.set_compute_powers(true);
+    wt.set_radiation(false);
+    wt.set_yielding_walls(false);
+
+    double max_power_error = 0;
+    double max_power_exchanged = 0;
+    for (int i = 0; i < kSR; i++) {
+        if (i == 0) {
+            wt.Process(1e-3);
+        } else {
+            wt.Process(0);
+        }
+
+        if (abs(wt.ReadPowerTotal()) > max_power_error) {
+            max_power_error = abs(wt.ReadPowerTotal());
+        }
+
+        if (abs(wt.ReadPowerFluidStored()) > max_power_exchanged) {
+            max_power_exchanged = abs(wt.ReadPowerFluidStored());
+        }
+    }
+    EXPECT_LT(max_power_error / max_power_exchanged, 1e-15)
+        << "No numerical power balance for radiation = 0, walls = 0";
+
+    wt.set_radiation(true);
+    max_power_error = 0;
+    max_power_exchanged = 0;
+    for (int i = 0; i < kSR; i++) {
+        if (i == 0) {
+            wt.Process(1e-3);
+        } else {
+            wt.Process(0);
+        }
+
+        if (abs(wt.ReadPowerTotal()) > max_power_error) {
+            max_power_error = abs(wt.ReadPowerTotal());
+        }
+
+        if (abs(wt.ReadPowerFluidStored()) > max_power_exchanged) {
+            max_power_exchanged = abs(wt.ReadPowerFluidStored());
+        }
+    }
+    EXPECT_LT(max_power_error / max_power_exchanged, 1e-15)
+        << "No numerical power balance for radiation = 1, walls = 0";
+
+    wt.set_yielding_walls(true);
+    max_power_error = 0;
+    max_power_exchanged = 0;
+    for (int i = 0; i < kSR; i++) {
+        if (i == 0) {
+            wt.Process(1e-3);
+        } else {
+            wt.Process(0);
+        }
+
+        if (abs(wt.ReadPowerTotal()) > max_power_error) {
+            max_power_error = abs(wt.ReadPowerTotal());
+        }
+
+        if (abs(wt.ReadPowerFluidStored()) > max_power_exchanged) {
+            max_power_exchanged = abs(wt.ReadPowerFluidStored());
+        }
+    }
+    EXPECT_LT(max_power_error / max_power_exchanged, 1e-15)
+        << "No numerical power balance for radiation = 1, walls = 1";
+}
