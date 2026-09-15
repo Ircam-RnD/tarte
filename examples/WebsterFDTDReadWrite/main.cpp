@@ -79,11 +79,15 @@ int main(int argc, char const* argv[])
         break;
     }
 
+    /*
+        2. Prepare storage
+    */
+
     std::vector<float> radiated_pressure;
     radiated_pressure.resize(N_samples);
 
     /*
-        2. Run the simulation
+        3. Run the simulation
     */
 
     // Run a simulation with the default parameters and a dirac impulse as input
@@ -93,7 +97,7 @@ int main(int argc, char const* argv[])
     }
 
     /*
-        3. Write results to the file
+        4. Write results to the file
     */
 
     storage.writeVector("radiatedPressure", radiated_pressure);
