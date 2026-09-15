@@ -41,8 +41,8 @@ int main(int, char*[])
             max_power_error = abs(resonator.ReadPowerTotal());
         }
 
-        if (abs(resonator.ReadPowerFluidStored()) > max_power_exchanged) {
-            max_power_exchanged = abs(resonator.ReadPowerFluidStored());
+        if (abs(resonator.ReadPowerStoredFluid()) > max_power_exchanged) {
+            max_power_exchanged = abs(resonator.ReadPowerStoredFluid());
         }
     }
     std::cout << "Maximum relative error on power balance: " << max_power_error / max_power_exchanged << std::endl;

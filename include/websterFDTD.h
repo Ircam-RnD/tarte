@@ -151,14 +151,23 @@ public:
     std::tuple<ftype, ftype> GetIOLinearDependencyCoefficients();
 
     // Listeners
-    inline ftype ReadInputPressure() { return c0_ * c0_ * rho_now_ac()(0); }
-    inline ftype ReadRadiatedPressure() { return c0_ * c0_ * rho_now_ac()(N_ - 1); }
+    inline ftype ReadInputPressure() { return c0_ * c0_ * (rho_now_ac()(0) + rho_next_ac()(0)) * 0.5; }
+    inline ftype ReadRadiatedPressure() { return c0_ * c0_ * (rho_now_ac()(N_ - 1) + rho_next_ac()(N_ - 1)) * 0.5; }
+
+    inline ArrayN ReadCurrentDensityDistribution() { return (rho_now_ac() + rho_next_ac()) / 2; }
+    inline ArrayNm1 ReadCurrentVelocityDistribution() { return (vel_now_ac() + vel_next_ac()) / 2; }
 
     // Power monitoring (only if compute_powers_ = True)
     inline ftype ReadPowerTotal() { return (compute_powers_) ? P_tot_ : NAN; }
-    inline ftype ReadPowerFluidStored() { return (compute_powers_) ? P_stored_fluid_ : NAN; }
-    inline ftype ReadPowerFluidStoredKinetic() { return (compute_powers_) ? P_stored_fluid_kinetic_ : NAN; }
-    inline ftype ReadPowerFluidStoredPotential() { return (compute_powers_) ? P_stored_fluid_potential_ : NAN; }
+    inline ftype ReadPowerStoredFluid() { return (compute_powers_) ? P_stored_fluid_ : NAN; }
+    inline ftype ReadPowerStoredFluidKinetic() { return (compute_powers_) ? P_stored_fluid_kinetic_ : NAN; }
+    inline ftype ReadPowerStoredFluidPotential() { return (compute_powers_) ? P_stored_fluid_potential_ : NAN; }
+    inline ftype ReadPowerStoredWalls() { return (compute_powers_) ? P_stored_walls_ : NAN; }
+    inline ftype ReadPowerStoredRadiation() { return (compute_powers_) ? P_stored_radiation_ : NAN; }
+    inline ftype ReadPowerDissipatedWalls() { return (compute_powers_) ? P_diss_walls_ : NAN; }
+    inline ftype ReadPowerDissipatedRadiation() { return (compute_powers_) ? P_diss_radiation_ : NAN; }
+    inline ftype ReadPowerExchanged() { return (compute_powers_) ? P_in_ : NAN; }
+
     // Frequency response estimation
     PolesResidues ComputePolesResidues();
     std::vector<FrequencyResponse> ComputeFrequencyResponse(const std::vector<double>& frequenciesHz);
