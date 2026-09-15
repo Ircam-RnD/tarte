@@ -32,8 +32,8 @@ class WebsterFDTDReadWrite:
         # Overwrite this function to change the input flow rate
         return np.zeros_like(t)
 
-    def run_simulation(self, fname: str) -> dict:
-        """Write inputs, run the C++ solver, and return the relevant arrays."""
+    def run_simulation(self, fname: str, mute=False) -> dict:
+        """Write inputs, run the C++ solver, and return the relevant arrays. if mute==True, the C++ code stdout output is ignored."""
         self.N_samples = int(self.sr * self.duration)
         self.t = np.linspace(0, self.duration, self.N_samples)
         self.QinVec = self.Qin(self.t)
@@ -53,12 +53,20 @@ class WebsterFDTDReadWrite:
             f.attrs["F1"] = self.F1
             f.attrs["F2"] = self.F2
 
-        subprocess.run(
-            [self.program_directory, f"{path.realpath(fname)}"],
-            check=True,
-            # stdout=subprocess.DEVNULL,
-            # stderr=subprocess.DEVNULL,
-        )
+        if (mute == False):
+            subprocess.run(
+                [self.program_directory, f"{path.realpath(fname)}"],
+                check=True,
+                # stdout=subprocess.DEVNULL,
+                # stderr=subprocess.DEVNULL,
+            )
+        else:
+            subprocess.run(
+                [self.program_directory, f"{path.realpath(fname)}"],
+                check=True,
+                stdout=subprocess.DEVNULL,
+                # stderr=subprocess.DEVNULL,
+            )
 
         with h5py.File(fname, "r") as f:
             return {
@@ -69,4 +77,5 @@ class WebsterFDTDReadWrite:
 if __name__ == "__main__":
     runner = WebsterFDTDReadWrite(
         "../build/examples/WebsterFDTDReadWrite/tarte-websterFDTDReadWrite")
-    results = runner.run_simulation("ReadWriteExample.hdf5")
+    mute = False
+    results = runner.run_simulation("ReadWriteExample.hdf5", mute)
