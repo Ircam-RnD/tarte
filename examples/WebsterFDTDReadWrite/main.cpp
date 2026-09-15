@@ -2,6 +2,7 @@
 #include "utility/audiowrite.h"
 #include "utility/maths.h"
 
+#include <chrono>
 #include <iostream>
 #include <string>
 #include <utility/ResultsStorage.h>
@@ -10,6 +11,7 @@
 
 int main(int argc, char const* argv[])
 {
+    auto t1 = std::chrono::high_resolution_clock::now();
     std::string path = "websterFDTDReadWrite.hdf5";
     if (argc > 1) {
         path = argv[1];
@@ -101,6 +103,10 @@ int main(int argc, char const* argv[])
     */
 
     storage.writeVector("radiatedPressure", radiated_pressure);
+
+    auto t2 = std::chrono::high_resolution_clock::now();
+    auto elapsed_time = std::chrono::duration<double>(t2 - t1).count();
+    storage.writeAttribute("elapsedTime", elapsed_time);
     storage.close();
     return 0;
 }
