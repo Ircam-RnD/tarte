@@ -36,61 +36,6 @@ ResultsStorage::~ResultsStorage()
     close();
 }
 
-void ResultsStorage::setStorageConfig(bool energy,
-                                      bool power,
-                                      bool drift,
-                                      bool sav,
-                                      bool solver_setting,
-                                      bool model_setting)
-{
-    storage_config_["Energy"] = energy;
-    storage_config_["Power"] = power;
-    storage_config_["Drift"] = drift;
-    storage_config_["SAV"] = sav;
-    storage_config_["SolverSetting"] = solver_setting;
-    storage_config_["ModelSetting"] = model_setting;
-}
-
-void ResultsStorage::setSolverSettings(const json& settings)
-{
-    if (is_open_ && file_) {
-        try {
-            H5::StrType str_type(H5::PredType::C_S1, settings.dump().size());
-            H5::Attribute attr = file_->createAttribute("solver_dict", str_type, H5S_SCALAR);
-            attr.write(str_type, settings.dump());
-        } catch (const H5::Exception& e) {
-            std::cerr << "Error writing solver_dict: " << e.getCDetailMsg() << std::endl;
-        }
-    }
-}
-
-void ResultsStorage::setModelSettings(const json& settings)
-{
-    if (is_open_ && file_) {
-        try {
-            H5::StrType str_type(H5::PredType::C_S1, settings.dump().size());
-            H5::Attribute attr = file_->createAttribute("model_dict", str_type, H5S_SCALAR);
-            attr.write(str_type, settings.dump());
-        } catch (const H5::Exception& e) {
-            std::cerr << "Error writing model_dict: " << e.getCDetailMsg() << std::endl;
-        }
-    }
-}
-
-void ResultsStorage::setSuccess(bool success)
-{
-    if (is_open_ && file_) {
-        try {
-            std::string success_str = json(success).dump();
-            H5::StrType str_type(H5::PredType::C_S1, success_str.size());
-            H5::Attribute attr = file_->createAttribute("success", str_type, H5S_SCALAR);
-            attr.write(str_type, success_str);
-        } catch (const H5::Exception& e) {
-            std::cerr << "Error writing success: " << e.getCDetailMsg() << std::endl;
-        }
-    }
-}
-
 void ResultsStorage::writeVector(const std::string& name, const Eigen::VectorXd& vec)
 {
     if (!is_open_ || !file_)
@@ -252,21 +197,6 @@ void ResultsStorage::writeAttribute(const std::string& name, int value)
     }
 }
 
-void ResultsStorage::writeAttribute(const std::string& name, bool value)
-{
-    if (!is_open_ || !file_)
-        return;
-
-    try {
-        std::string bool_str = json(value).dump();
-        H5::StrType str_type(H5::PredType::C_S1, bool_str.size());
-        H5::Attribute attr = file_->createAttribute(name, str_type, H5S_SCALAR);
-        attr.write(str_type, bool_str);
-    } catch (const H5::Exception& e) {
-        std::cerr << "Error writing attribute '" << name << "': " << e.getCDetailMsg() << std::endl;
-    }
-}
-
 void ResultsStorage::writeAttribute(const std::string& name, const std::string& value)
 {
     if (!is_open_ || !file_)
@@ -281,32 +211,10 @@ void ResultsStorage::writeAttribute(const std::string& name, const std::string& 
     }
 }
 
-void ResultsStorage::writeAttribute(const std::string& name, const json& value)
-{
-    if (!is_open_ || !file_)
-        return;
-
-    try {
-        std::string json_str = value.dump();
-        H5::StrType str_type(H5::PredType::C_S1, json_str.size());
-        H5::Attribute attr = file_->createAttribute(name, str_type, H5S_SCALAR);
-        attr.write(str_type, json_str);
-    } catch (const H5::Exception& e) {
-        std::cerr << "Error writing attribute '" << name << "': " << e.getCDetailMsg() << std::endl;
-    }
-}
-
 void ResultsStorage::close()
 {
     if (is_open_ && file_) {
         try {
-            // Write storage configuration if set
-            if (!storage_config_.empty()) {
-                std::string config_str = storage_config_.dump();
-                H5::StrType str_type(H5::PredType::C_S1, config_str.size());
-                H5::Attribute attr = file_->createAttribute("storage_config", str_type, H5S_SCALAR);
-                attr.write(str_type, config_str);
-            }
 
             file_->close();
             delete file_;
@@ -401,25 +309,14 @@ bool ResultsStorage::readAttribute(const std::string& name, int& value)
 
 bool ResultsStorage::readAttribute(const std::string& name, bool& value)
 {
-    if (!is_open_ || !file_)
-        return false;
-
-    try {
-        H5::Attribute attr = file_->openAttribute(name);
-        H5::StrType str_type = attr.getStrType();
-        std::string str_val;
-        char* buf = new char[attr.getStorageSize() + 1];
-        attr.read(str_type, buf);
-        str_val = std::string(buf);
-        delete[] buf;
-
-        json j = json::parse(str_val);
-        value = j.get<bool>();
-        return true;
-    } catch (const H5::Exception& e) {
-        std::cerr << "Error reading attribute '" << name << "': " << e.getCDetailMsg() << std::endl;
-        return false;
+    int temp;
+    readAttribute(name, temp);
+    if (temp != 0) {
+        value = true;
+    } else {
+        value = false;
     }
+    return true;
 }
 
 bool ResultsStorage::readAttribute(const std::string& name, std::string& value)
@@ -439,25 +336,6 @@ bool ResultsStorage::readAttribute(const std::string& name, std::string& value)
         return false;
     }
 }
-
-bool ResultsStorage::readAttribute(const std::string& name, json& value)
-{
-    if (!is_open_ || !file_)
-        return false;
-
-    try {
-        H5::Attribute attr = file_->openAttribute(name);
-        H5::StrType str_type = attr.getStrType();
-        std::string str_val(attr.getStorageSize(), '\0');
-        attr.read(str_type, &str_val[0]);
-        value = json::parse(str_val);
-        return true;
-    } catch (const H5::Exception& e) {
-        std::cerr << "Error reading attribute '" << name << "': " << e.getCDetailMsg() << std::endl;
-        return false;
-    }
-}
-
 // Read vector methods
 bool ResultsStorage::readVector(const std::string& name, Eigen::VectorXd& vec)
 {
