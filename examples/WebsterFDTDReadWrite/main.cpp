@@ -47,7 +47,7 @@ int main(int argc, char const* argv[])
     storage.readAttribute("storeSpatialDistributions", store_spatial_distributions);
 
     // Initialize model
-    tarte::WebsterFDTD<double> proc(sr);
+    tarte::WebsterFDTD<double, 300> proc(sr);
     proc.set_l0(l0);
     proc.set_yielding_walls(yielding_walls);
     proc.set_radiation(radiation);
@@ -88,8 +88,9 @@ int main(int argc, char const* argv[])
     using Vector = Eigen::VectorXd;
     using Matrix = Eigen::MatrixXd;
 
-    Vector radiated_pressure;
+    Vector radiated_pressure, input_pressure;
     radiated_pressure = Vector::Zero(N_samples);
+    input_pressure = Vector::Zero(N_samples);
 
     Matrix density_distribution, velocity_distribution;
     if (store_spatial_distributions) {
@@ -123,6 +124,7 @@ int main(int argc, char const* argv[])
     for (int i = 0; i < N_samples; i++) {
         proc.Process(Qin[i]);
         radiated_pressure(i) = proc.ReadRadiatedPressure();
+        input_pressure(i) = proc.ReadInputPressure();
 
         if (store_spatial_distributions) {
             density_distribution.col(i) = proc.ReadCurrentDensityDistribution();
@@ -142,10 +144,13 @@ int main(int argc, char const* argv[])
     }
 
     /*
-        4. Write results to the file
+        4. Write results to the file (as well as some attributes)
     */
+    storage.writeAttribute("rho0", proc.get_rho0());
+    storage.writeAttribute("c0", proc.get_c0());
 
     storage.writeVector("radiatedPressure", radiated_pressure);
+    storage.writeVector("inputPressure", input_pressure);
     if (store_spatial_distributions) {
         storage.writeMatrix("densityDistribution", density_distribution);
         storage.writeMatrix("velocityDistribution", velocity_distribution);

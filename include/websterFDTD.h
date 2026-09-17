@@ -151,8 +151,8 @@ public:
     std::tuple<ftype, ftype> GetIOLinearDependencyCoefficients();
 
     // Listeners
-    inline ftype ReadInputPressure() { return c0_ * c0_ * (rho_now_ac()(0) + rho_next_ac()(0)) * 0.5; }
-    inline ftype ReadRadiatedPressure() { return c0_ * c0_ * (rho_now_ac()(N_ - 1) + rho_next_ac()(N_ - 1)) * 0.5; }
+    inline ftype ReadInputPressure() { return c02_ * (rho_now_ac()(0) + rho_next_ac()(0)) * 0.5; }
+    inline ftype ReadRadiatedPressure() { return c02_ * (rho_now_ac()(N_ - 1) + rho_next_ac()(N_ - 1)) * 0.5; }
 
     inline ArrayN ReadCurrentDensityDistribution() { return (rho_now_ac() + rho_next_ac()) / 2; }
     inline ArrayNm1 ReadCurrentVelocityDistribution() { return (vel_now_ac() + vel_next_ac()) / 2; }

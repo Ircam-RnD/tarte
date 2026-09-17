@@ -21,6 +21,7 @@ class WebsterFDTDReadWrite:
         self.yielding_walls = True
         self.radiation = True
         self.compute_powers = False
+        # Storing spatial data makes the files big: caution
         self.store_spatial_distributions = False
 
         # Geometry articulation parameters
@@ -43,6 +44,7 @@ class WebsterFDTDReadWrite:
             f.attrs["sr"] = self.sr
             f.attrs["duration"] = self.duration
             f["Qin"] = self.QinVec
+            f["t"] = self.t
             f.attrs["l0"] = self.l0
 
             f.attrs["yieldingWalls"] = self.yielding_walls
@@ -72,7 +74,10 @@ class WebsterFDTDReadWrite:
 
         with h5py.File(fname, "r") as f:
             results = {}
+            results["rho0"] = f.attrs["rho0"]
+            results["c0"] = f.attrs["c0"]
             results["radiatedPressure"] = f["radiatedPressure"][:]
+            results["inputPressure"] = f["inputPressure"][:]
             if (self.store_spatial_distributions):
                 results["densityDistribution"] = f["densityDistribution"][:]
                 results["velocityDistribution"] = f["velocityDistribution"][:]
