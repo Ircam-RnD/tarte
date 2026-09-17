@@ -45,7 +45,7 @@ class VoiceReadWrite:
         self.store_glottal_flow = False
         self.store_epsilon_sav = False
 
-    def Pin(self, t):
+    def Psub(self, t):
         # Overwrite this function to change the subglottal pressure
         return np.zeros_like(t)
 
@@ -53,12 +53,12 @@ class VoiceReadWrite:
         """Write inputs, run the C++ solver, and return the relevant arrays. if mute==True, the C++ code stdout output is ignored."""
         self.N_samples = int(self.sr * self.duration)
         self.t = np.linspace(0, self.duration, self.N_samples)
-        self.PinVec = self.Pin(self.t)
+        self.PinVec = self.Psub(self.t)
 
         with h5py.File(fname, "w") as f:
             f.attrs["sr"] = self.sr
             f.attrs["duration"] = self.duration
-            f["Pin"] = self.PinVec
+            f["Psub"] = self.PinVec
             f["t"] = self.t
 
             f.attrs["l0"] = self.l0
@@ -107,6 +107,7 @@ class VoiceReadWrite:
             results = {}
             results["rho0"] = f.attrs["rho0"]
             results["c0"] = f.attrs["c0"]
+            results["Psub"] = self.PinVec
             results["radiatedPressure"] = f["radiatedPressure"][:]
             results["inputPressure"] = f["inputPressure"][:]
             if (self.store_spatial_distributions_vt):
@@ -142,7 +143,7 @@ if __name__ == "__main__":
     Pmax = 400
     trise = 0.05
 
-    def Pin(t):
+    def Psub(t):
         return Pmax * (t >= trise) + Pmax * (t/trise) * (t < trise)
     runner.duration = 1
     runner.store_spatial_distributions = True
@@ -151,5 +152,5 @@ if __name__ == "__main__":
     runner.store_glottal_flow = True
     runner.store_larynx_state = True
     runner.store_epsilon_sav = True
-    runner.Pin = Pin
+    runner.Psub = Psub
     results = runner.run_simulation("VoiceReadWriteExample2.hdf5", mute)

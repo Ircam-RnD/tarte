@@ -46,3 +46,6 @@ build/
 .cache
 
 xcode/
+
+# Ignore all folders whose name starts with results
+*/results*/

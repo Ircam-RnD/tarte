@@ -29,8 +29,8 @@ int main(int argc, char const* argv[])
     std::size_t N_samples = static_cast<int>(sr * duration);
 
     // Input pressure vector
-    Eigen::VectorXd Pin = Eigen::VectorXd::Zero(N_samples);
-    storage.readVector("Pin", Pin);
+    Eigen::VectorXd Psub = Eigen::VectorXd::Zero(N_samples);
+    storage.readVector("Psub", Psub);
 
     // General flag
     bool compute_powers;
@@ -180,7 +180,7 @@ int main(int argc, char const* argv[])
 
     // Run a simulation with the default parameters and a dirac impulse as input
     for (int i = 0; i < N_samples; i++) {
-        proc.Process(Pin[i]);
+        proc.Process(Psub[i]);
         radiated_pressure(i) = proc.ReadRadiatedPressure();
         input_pressure(i) = proc.get_resonator()->ReadInputPressure();
 
