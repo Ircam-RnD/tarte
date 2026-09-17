@@ -9,7 +9,6 @@ import numpy as np
 from librosa import pyin
 import scipy.io.wavfile
 import json
-import h5py
 from VoiceReadWrite import VoiceReadWrite
 
 """
