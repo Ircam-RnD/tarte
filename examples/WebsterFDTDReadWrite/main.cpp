@@ -1,12 +1,7 @@
-#define MINIAUDIO_IMPLEMENTATION
-#include "utility/audiowrite.h"
-#include "utility/maths.h"
-
 #include <chrono>
 #include <iostream>
 #include <string>
 #include <utility/ResultsStorage.h>
-#include <vector>
 #include <websterFDTD.h>
 
 int main(int argc, char const* argv[])

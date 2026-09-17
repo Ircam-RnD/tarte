@@ -1,6 +1,5 @@
 #define MINIAUDIO_IMPLEMENTATION
 #include "utility/audiowrite.h"
-#include "utility/maths.h"
 
 #include <iostream>
 #include <string>
