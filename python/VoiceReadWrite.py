@@ -43,6 +43,7 @@ class VoiceReadWrite:
         self.store_larynx_state = False
         self.store_pressure_drop = False
         self.store_glottal_flow = False
+        self.store_epsilon_sav = False
 
     def Pin(self, t):
         # Overwrite this function to change the subglottal pressure
@@ -85,6 +86,7 @@ class VoiceReadWrite:
             f.attrs["storeLarynxState"] = self.store_larynx_state
             f.attrs["storePressureDrop"] = self.store_pressure_drop
             f.attrs["storeGlottalFlow"] = self.store_glottal_flow
+            f.attrs["storeEpsilonSav"] = self.store_epsilon_sav
 
         if (mute == False):
             subprocess.run(
@@ -135,6 +137,7 @@ if __name__ == "__main__":
     runner = VoiceReadWrite(
         "../build/examples/VoiceReadWrite/tarte-VoiceReadWrite")
     mute = False
+    runner.lambda_sav = 1000
 
     Pmax = 400
     trise = 0.05
@@ -142,10 +145,11 @@ if __name__ == "__main__":
     def Pin(t):
         return Pmax * (t >= trise) + Pmax * (t/trise) * (t < trise)
     runner.duration = 1
-    runner.store_spatial_distributions = False
-    runner.compute_powers = False
-    runner.store_pressure_drop = False
+    runner.store_spatial_distributions = True
+    runner.compute_powers = True
+    runner.store_pressure_drop = True
     runner.store_glottal_flow = True
     runner.store_larynx_state = True
+    runner.store_epsilon_sav = True
     runner.Pin = Pin
-    results = runner.run_simulation("VoiceReadWriteExample.hdf5", mute)
+    results = runner.run_simulation("VoiceReadWriteExample2.hdf5", mute)

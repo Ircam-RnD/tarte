@@ -71,10 +71,11 @@ int main(int argc, char const* argv[])
     storage.readAttribute("lambdaSav", lambda_sav);
 
     // Storage flags
-    bool store_larynx_state, store_pressure_drop, store_glottal_flow;
+    bool store_larynx_state, store_pressure_drop, store_glottal_flow, store_epsilon_sav;
     storage.readAttribute("storeLarynxState", store_larynx_state);
     storage.readAttribute("storePressureDrop", store_pressure_drop);
     storage.readAttribute("storeGlottalFlow", store_glottal_flow);
+    storage.readAttribute("storeEpsilonSav", store_epsilon_sav);
 
     // ------------- Model initialization --------------- //
     tarte::Voice<tarte::BodyCoverPair<double>, double> proc(sr, true);
@@ -139,7 +140,7 @@ int main(int argc, char const* argv[])
 
     // Larynx
     Matrix folds_displacement, effective_openings;
-    Vector pressure_drop, glottal_flow;
+    Vector pressure_drop, glottal_flow, epsilon_sav;
     if (store_larynx_state) {
         folds_displacement = Matrix::Zero(proc.get_vocal_folds()->get_N(), N_samples);
         effective_openings = Matrix::Zero(proc.get_vocal_folds()->get_half_N(), N_samples);
@@ -149,6 +150,9 @@ int main(int argc, char const* argv[])
     }
     if (store_glottal_flow) {
         glottal_flow = Vector::Zero(N_samples);
+    }
+    if (store_epsilon_sav) {
+        epsilon_sav = Vector::Zero(N_samples);
     }
 
     // Powers (only for resonator)
@@ -195,6 +199,9 @@ int main(int argc, char const* argv[])
         if (store_glottal_flow) {
             glottal_flow(i) = proc.ReadMeanGlottalFlow();
         }
+        if (store_epsilon_sav) {
+            epsilon_sav(i) = proc.ReadEpsilonSav();
+        }
 
         if (compute_powers) {
             P_stored_fluid(i) = proc.get_resonator()->ReadPowerStoredFluid();
@@ -232,6 +239,9 @@ int main(int argc, char const* argv[])
     }
     if (store_glottal_flow) {
         storage.writeVector("glottalFlow", glottal_flow);
+    }
+    if (store_epsilon_sav) {
+        storage.writeVector("epsilonSav", epsilon_sav);
     }
 
     if (compute_powers) {
