@@ -3,6 +3,7 @@ import pandas as pd
 from dash import Dash, dcc, html, Input, Output, ALL
 import plotly.express as px
 import dash_bootstrap_components as dbc
+# import sounddevice as sd
 
 
 class ProcessedDataVisualisation():
@@ -20,7 +21,6 @@ class ProcessedDataVisualisation():
             include="number").columns.tolist()
         self.numeric_cols = [
             s for s in self.numeric_cols if not s.startswith("Unnamed")]
-        print(self.numeric_cols)
         self.categorical_cols = self.data.select_dtypes(
             exclude="number").columns.tolist()
         self.all_cols = self.data.columns.tolist()
@@ -134,7 +134,7 @@ class ProcessedDataVisualisation():
                                  style={"marginBottom": "10px", "color": "#555"}),
                         dcc.Graph(id="scatter-plot", style={"height": "85vh"}),
                     ],
-                ),
+                )
             ],
         )
 
@@ -156,7 +156,8 @@ class ProcessedDataVisualisation():
             numeric_filter_cols = [
                 c for c in self.all_cols if c in self.numeric_cols]
             for col, (lo, hi) in zip(numeric_filter_cols, numeric_values):
-                dff = dff[(dff[col] >= lo) & (dff[col] <= hi)]
+                if lo > dff[col].min() or hi < dff[col].max():
+                    dff = dff[(dff[col] >= lo) & (dff[col] <= hi)]
 
             # Apply categorical filters.
             categorical_filter_cols = [
@@ -176,12 +177,25 @@ class ProcessedDataVisualisation():
             if dff.empty:
                 fig = px.scatter(title="No data matches the current filters")
             else:
-                fig = px.scatter(dff, **scatter_kwargs, opacity=0.75)
+                fig = px.scatter(dff, **scatter_kwargs,
+                                 opacity=0.75, custom_data=["Unnamed: 0"])
                 fig.update_layout(template="plotly_white",
                                   margin=dict(l=40, r=20, t=40, b=40))
-
+            print(dff.dtypes["Unnamed: 0"])
             count_text = f"Showing {len(dff)} of {len(self.data)} rows"
             return fig, count_text
+
+        @self.app.callback(
+            Input('scatter-plot', 'clickData'),
+            prevent_initial_call=True,
+        )
+        def listen(clickData):
+            if not clickData:
+                return ""
+            print(clickData)
+            # fname = clickData['points'][0]['customdata'][0]
+            # sr, data = read(join(result_dir, fname))
+            # sd.play(data, samplerate=sr)
 
     def run(self):
         self.app.run(debug=True)
