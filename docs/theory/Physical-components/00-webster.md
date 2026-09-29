@@ -160,6 +160,30 @@ As the interconnection operators is formally skew-symmetric, no dissipation term
 
 </details>
 
+### Flow dissipations
+
+Several mechanisms may be responsible for dissipations in the flow. This section follows Birkholz and Hasner 2026[@birkholz2026viscous]. 
+In the paper, the author propose models for each of these losses and optimize the parameters with respect to measurements on two different experimental setups described in the following figures (reproduced form the paper):
+
+<img src="../../../medias/birkholz2026/Acoustic_setup.png"; width=50%; style="display: block; margin: auto;"; alt="Birkholz acoustic experimental setup">
+for acoustic measurments, and
+
+<img src="../../../medias/birkholz2026/Aerodynamic_setup.png"; width=50%; style="display: block; margin: auto;"; alt="Birkholz acoustic experimental setup">
+
+for aerodynamic measurements.
+
+Equations are given in a pressure drop form:
+
+$$
+    \frac{\partial P}{\partial x} = R' Q,
+$$
+
+where $R'= R'_{\rm ac} + R'_{\rm flow} + R'_{\rm k}$ is a per-unit-length resistance. Losses are separated into three main components: 
+
+- A viscous boundary layer loss for acoustic wave propagation $R'_{\rm ac} = R_{\rm ac} \left(\frac{A_{\rm ref}}{A}\right)^\alpha \sqrt{f_{\rm ac}}$,
+- A visous resistance to steady airflow $R'_{\rm flow} = R_{\rm flow} \left(\frac{A_{\rm ref}}{A}\right)^\beta$,
+- Kinetic losses, mainly occuring after sudden expansions of the geometry, assuming the formation of a jet dissipating into turbulences $R'_{\rm k} =$.
+
 ## Spatial discretization (finite differences)
 
 Finite differences on staggered grids are used for spatial discretization (see e.g. Trenchant 2018[@Tre18]). The presentation is made here for volume flow input on both end of the tube. 
@@ -255,6 +279,70 @@ $$
 Elements of $\boldymbol u$ and $\boldymbol y$ are direct counterparts to the PDE case.
 
 </details>
+
+### Alternate boundary condition: half segment
+
+Alternatively, the grid can be altered at the boundary to yield aligned grid ends for velocity and density. Using the same input-output causality as before (volume flow inputs), the density segments on both ends have to be of half-size. A similar system than before can be written directly by replacing the **scalar** spatial step $h$ by a **vector** spatial step 
+
+$$
+    \mathbf{h} = h \begin{bmatrix}
+        0.5 &
+        1 &
+        \dots&
+        1 &
+        0.5
+    \end{bmatrix}^\intercal
+$$
+
+Accordingly, the finite difference matrix rewrites
+$$
+		\mathbf D^- = \frac{1}{h}
+		\begin{bmatrix}
+			2 & 0 & 0  \\\
+			-1 & 1 & 0 \\\
+			0 & \ddots & \ddots \\\
+			0 & 0 &  -2\\
+		\end{bmatrix} \in \mathbb R^{N, N-1},
+$$
+
+and the dynamics
+
+$$
+\begin{align}
+    \begin{bmatrix}
+        \dot{\boldsymbol{v}} \\\
+        \dot{\boldsymbol{\rho}} \\\
+        \dot{\boldsymbol{A_p}}
+    \end{bmatrix}
+    =&
+    \frac{1}{h}
+    \begin{bmatrix}
+        0 &- \mathbf D^+ \boldsymbol{A_p}^{-1}& 0 \\\
+        - \boldsymbol{A_p}^{-1}  \mathbf D^- & 0 & 0 \\\
+        0 & 0 & 0
+    \end{bmatrix}
+    \underbrace{
+    \begin{bmatrix}
+        h\boldsymbol{A_d} \rho_0 \boldsymbol{v} \\\
+        \mathbf h\boldsymbol{A_p} \frac{c_0^2}{\rho_0} \boldsymbol{\rho} \\\
+        \mathbf h\frac{1}{2} \left(\rho_0 \boldsymbol{v}^2 + \frac{c_0^2 \boldsymbol{\rho}^2}{\rho_0}\right)
+    \end{bmatrix}
+    }_{\nabla H}\nonumber\\\
+    &+
+    \begin{bmatrix}
+        0 & 0 & 0 & 0\\\
+        - \rho_0  \boldsymbol{A_p}^{-1} & - \rho_0  \boldsymbol{A_p}^{-1} & \frac{2}{h} \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0}& - \frac{2}{h}\rho_0 \boldsymbol{A_p}^{-1}\vert_{i=N-1}\\\
+        1 & 0 & 0 & 0
+    \end{bmatrix}
+    \underbrace{
+    \begin{bmatrix}
+        \partial_t \boldsymbol{A_0} \\\
+        \partial_t \widetilde{\boldsymbol{A}}\\\
+        Q_{l} \\\
+        Q_{r}
+    \end{bmatrix}}_{\boldsymbol{u}},
+\end{align}
+$$
 
 ## Time discretization (Störmer-Verlet)
 
