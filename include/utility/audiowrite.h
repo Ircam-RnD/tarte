@@ -1,5 +1,6 @@
 #pragma once
 #include "external/miniaudio.h"
+#include <stdexcept>
 #include <string>
 #include <vector>
 
