@@ -40,7 +40,7 @@ This choice appropriately represents the vocal apparatus from lungs to lips with
 
 ### Specific density
 
-The expression of the __specific density__ (i.e. per-unit mass) of internal energy of the fluid $u(\rho)$ is derived using Gibbs equation and hypothesis (H1) and (H2). The specific enthalpy $\mathfrak h = u(\rho) + \frac{P}{\rho}$ is also introduced. The Gibbs equation in its mass specific form writes
+The expression of the __specific energy__ (i.e. per-unit mass density of internal energy) of the fluid $u(\rho)$ is derived using Gibbs equation and hypothesis (H1) and (H2). The specific enthalpy $\mathfrak h = u(\rho) + \frac{P}{\rho}$ is also introduced. The Gibbs equation in its mass specific form writes
 $$
 \begin{equation}
   (a): d u = T\; {\rm d} s - P\; {\rm d}\frac{1}{\rho} 
@@ -261,7 +261,7 @@ $$
 and equations of motion
 
 $$
-  \begin{align*}
+  \begin{align}
     \begin{bmatrix}
       \partial_t v_x \\
       \partial_t \rho \\
@@ -277,12 +277,12 @@ $$
   \end{array}\right]
     \begin{bmatrix}
       \delta_{v_x}\mathcal H(\alpha) = (\rho_0 + \tilde \rho )A v_x =: q_x \\
-      \delta_{\rho}\mathcal H(\alpha) = A\left(\frac{1}{2} v_x^2 + \frac{c_0^2}{\rho_0} \tilde \rho\right) =: A \mathfrak{h}_{tot} \\
+      \delta_{\tilde \rho}\mathcal H(\alpha) = A\left(\frac{1}{2} v_x^2 + \frac{c_0^2}{\rho_0} \tilde \rho\right) =: A \mathfrak{h}_{tot} \\
       \delta_A\mathcal H(\alpha) = \frac{1}{2} \left(  (\rho_0 + \tilde \rho) v_x^2 + c_0^2 \frac{\tilde \rho^2}{\rho_0}\right) \\
       u_{dis} = \partial_t A
+  \label{eq:quadratic_pot_euler}
     \end{bmatrix}.
-    \label{eq:pH_1D_rho}
-  \end{align*}
+  \end{align}
 $$
 
 ### With quadratic kinetic energy
@@ -314,9 +314,168 @@ $$
   \end{array}\right]
     \begin{bmatrix}
       \delta_{v_x}\mathcal H(\alpha) = \rho_0 A v_x =: q_x \\
-      \delta_{\rho}\mathcal H(\alpha) = A \frac{c_0^2}{\rho_0} \tilde \rho =: A  \frac{\tilde P}{\rho_0}\\
+      \delta_{\tilde \rho}\mathcal H(\alpha) = A \frac{c_0^2}{\rho_0} \tilde \rho =: A  \frac{\tilde P}{\rho_0}\\
       \delta_A\mathcal H(\alpha) = \frac{1}{2} \left(  \rho_0 v_x^2 + c_0^2 \frac{\tilde \rho^2}{\rho_0}\right) \\
       u_{dis} = \partial_t A
     \end{bmatrix}.
   \end{align*}
 $$
+
+### With decomposition of small and big area variations
+
+
+
+After this first step, \Rth{note that} the Hamiltonian of the one dimensional model is not quadratic in the state variables, as $A$ is included in the state. Two mechanisms are responsible for area variations in the vocal tract:
+
+- (i): Articulation of vowels and consonants, which may be of great amplitude, but usually known as they result from a provided input to the system.
+- (ii): Vibrations of the surrounding soft tissues, which are assumed to be small but are unknown a priori, as they result from coupling with a tissue model. 
+
+In order to ease the design of efficient stable numerical scheme, an additional step is useful to separate these two contributions. The cross-section area is written as the sum of an externally controlled area $A_0$ (for addressing (i)) and a small perturbation $\tilde A$ (for addressing (ii)):
+
+$$
+\begin{equation}
+  A(x, t) = A_0(x, t) + \tilde A(x, t).
+  \label{eq:area_var}
+\end{equation} 
+$$
+
+In the following, $A_0$ is included in the state vector \Rth{(and controlled by an input devoted to articulation)}, whereas $\tilde A$ is considered as a port variable only (to be connected to the soft tissue model). The Hamiltonian is modified into
+
+$$
+\begin{equation}
+  \mathcal H(\alpha) = \int_{0}^{l_0} \frac{1}{2} A_0  \left(\rho_0 v_x^2 + c_0^2 \frac{\tilde \rho^2}{\rho_0}\right) dx,
+\end{equation}
+$$
+
+The mass conservation equation is modified accordingly, yielding the pHs
+
+$$
+\begin{equation}
+  \partial_t
+  \begin{bmatrix}
+    v_x \\
+    \tilde{\rho} \\
+    A_0 \\
+    y_{dis} = P_{mod}\\
+    y_{dis2} = P_{mod2}
+  \end{bmatrix}
+  =  
+  \left[\begin{array}{ccc|cc}
+    0 & -\partial_x\left(\frac{\bullet}{A_0}\right) & 0 & 0 &0\\[.5ex]
+    -\frac{1}{A_0}\partial_x & 0 &0 & -\frac{\rho_0}{A_0} & -\frac{\rho_0}{A_0}\\[.5ex]
+    0 & 0 & 0 & 1 & 0\\[.5ex]\hline
+    0 & \frac{\rho_0}{A_0} & -1 & 0 & 0\\[.5ex]
+    0 & \frac{\rho_0}{A_0} & 0 & 0 & 0
+  \end{array}\right]
+  \begin{bmatrix}
+    \delta_{v_x}\mathcal H(\alpha) = \rho_0 A_0 v_x =: q_x \\
+    \delta_{\tilde \rho}\mathcal H(\alpha) = A \frac{c_0^2}{\rho_0} \tilde \rho =: A  \frac{\tilde P}{\rho_0} \\
+    \delta_{A_0}\mathcal H(\alpha) = \frac{1}{2} \left(  \rho_0 v_x^2 + c_0^2 \frac{\tilde \rho^2}{\rho_0}\right) \\
+    u_{dis} = \partial_t A_0 \\
+    u_{dis2} = \partial_t \tilde A
+  \end{bmatrix},
+  \label{eq:pH_1D_linA}
+\end{equation}
+$$
+
+When connected to a linear soft tissue model representing the dynamics of $\tilde A$, efficient and stable integration schemes are available. Indeed, considering $A_0$ as a known signal (forced by the control port $u_{dis} = \partial_t A_0$), we can benefit from the linearity of \eqref{eq:pH_1D_linA} with respect to the other state variables in the design of a power-balanced numerical scheme.
+
+### Adding visous dissipations
+
+Several mechanisms may be responsible for dissipations in the flow. This section follows Birkholz and Hasner 2026[@birkholz2026viscous], tailored for the vocal tract. 
+In the paper, the author propose models for each of these losses and optimize the parameters with respect to measurements on two different experimental setups described in the following figures (reproduced form the paper):
+
+<img src="../../../medias/birkholz2026/Acoustic_setup.png"; width=50%; style="display: block; margin: auto;"; alt="Birkholz acoustic experimental setup">
+for acoustic measurments, and
+
+<img src="../../../medias/birkholz2026/Aerodynamic_setup.png"; width=50%; style="display: block; margin: auto;"; alt="Birkholz acoustic experimental setup">
+
+for aerodynamic measurements.
+
+Equations are given in a pressure drop form:
+
+$$
+    \frac{\partial P}{\partial x} = R' Q,
+$$
+
+where $R'= {\rm max}(R'_{\rm ac}, R'_{\rm flow})$ is a per-unit-length resistance. Losses are separated into two main components: 
+
+- A viscous boundary layer loss for acoustic wave propagation $R'_{\rm ac} = R_{\rm ac} \left(\frac{A_{\rm ref}}{A}\right)^\alpha \sqrt{f_{\rm ac}}$,
+- A visous resistance to steady airflow $R'_{\rm flow} = R_{\rm flow} \left(\frac{A_{\rm ref}}{A}\right)^\beta$,
+
+for which the reference area is set to $A_{ref} = 1{\rm cm}^2$. $R_{\rm ac}$, $R_{\rm flow}$, $\alpha$ and $\beta$ are optimized parameters. Note that the point-wise maximum bewtween the two losses is taken instead of the sum, as the sum overstimates losses for small channels.
+
+Adapting these dissipations law to the previous system is done directly by including an symmetric dissipation matrix to the velocity equation:
+
+$$
+\begin{equation}
+  \partial_t
+  \begin{bmatrix}
+    v_x \\
+    \tilde{\rho} \\
+    A_0 \\
+    y_{dis} = P_{mod}\\
+    y_{dis2} = P_{mod2}
+  \end{bmatrix}
+  =  
+  \left[\begin{array}{ccc|cc}
+    -\frac{R'(A_0)}{\rho_0^2} & -\partial_x\left(\frac{\bullet}{A_0}\right) & 0 & 0 &0\\[.5ex]
+    -\frac{1}{A_0}\partial_x & 0 &0 & -\frac{\rho_0}{A_0} & -\frac{\rho_0}{A_0}\\[.5ex]
+    0 & 0 & 0 & 1 & 0\\[.5ex]\hline
+    0 & \frac{\rho_0}{A_0} & -1 & 0 & 0\\[.5ex]
+    0 & \frac{\rho_0}{A_0} & 0 & 0 & 0
+  \end{array}\right]
+  \begin{bmatrix}
+    \delta_{v_x}\mathcal H(\alpha) = \rho_0 A_0 v_x =: q_x \\
+    \delta_{\tilde \rho}\mathcal H(\alpha) = A \frac{c_0^2}{\rho_0} \tilde \rho =: A  \frac{\tilde P}{\rho_0} \\
+    \delta_{A_0}\mathcal H(\alpha) = \frac{1}{2} \left(  \rho_0 v_x^2 + c_0^2 \frac{\tilde \rho^2}{\rho_0}\right) \\
+    u_{dis} = \partial_t A_0 \\
+    u_{dis2} = \partial_t \tilde A
+  \end{bmatrix},
+  \label{eq:pH_1D_dissip}
+\end{equation}
+$$
+
+
+<details><summary>Kinetic energy losses</summary>
+
+A thrid type of loss is included in the paper, namely kinetic energy losses at sudden expansions of the channel. However, this loss is represented in a non-passive way in the paper. More to be said on that later.
+
+</details>
+
+
+<!-- ### Nonlinear propagation in the quasi-steady, incompressible case
+
+In the incompressible quasi-steady case, equation \eqref{eq:quadratic_pot_euler} reduces to a Bernoulli equation. Indeed, setting $\partial_t \rho = 0$ and $\partial_t v_x = 0$ gives
+
+$$
+\begin{equation*}
+  \partial_x q_x = 0, \quad \partial_x \left(\frac{1}{2} v_x^2 + \frac{P}{\rho_0}\right) = 0.
+\end{equation*}
+$$
+
+The state is reduced to $\alpha = [A]$ and the Hamiltonian is identically zero: $\mathcal H(A) = 0$.
+
+$$
+\begin{equation*}
+  \begin{bmatrix}
+    \partial_t A \\
+    y_{dis} = P \\
+    y_1 = \frac{P_{tot, L}}{\rho_0} \\
+    y_2 = -q_{x, R} \\
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    0 & 1 & 0 & 0 \\
+    -1 & 0 & -\frac{1}{2}\frac{q_{x, L}}{\rho_0A^2} & \rho_0 \\
+    0 & \frac{1}{2}\frac{q_{x, L}}{\rho_0A^2} & 0 & 1 \\
+    0 & -\rho_0 & -1 & 0 
+  \end{bmatrix}
+  \begin{bmatrix}
+    0 \\
+    u_{dis} = \partial_t A \\
+    u_1 = q_{x, L} \\
+    u_2 = \frac{P_{tot, R}}{\rho_0}
+  \end{bmatrix}
+\end{equation*}
+$$ -->

@@ -160,30 +160,6 @@ As the interconnection operators is formally skew-symmetric, no dissipation term
 
 </details>
 
-### Flow dissipations
-
-Several mechanisms may be responsible for dissipations in the flow. This section follows Birkholz and Hasner 2026[@birkholz2026viscous]. 
-In the paper, the author propose models for each of these losses and optimize the parameters with respect to measurements on two different experimental setups described in the following figures (reproduced form the paper):
-
-<img src="../../../medias/birkholz2026/Acoustic_setup.png"; width=50%; style="display: block; margin: auto;"; alt="Birkholz acoustic experimental setup">
-for acoustic measurments, and
-
-<img src="../../../medias/birkholz2026/Aerodynamic_setup.png"; width=50%; style="display: block; margin: auto;"; alt="Birkholz acoustic experimental setup">
-
-for aerodynamic measurements.
-
-Equations are given in a pressure drop form:
-
-$$
-    \frac{\partial P}{\partial x} = R' Q,
-$$
-
-where $R'= R'_{\rm ac} + R'_{\rm flow} + R'_{\rm k}$ is a per-unit-length resistance. Losses are separated into three main components: 
-
-- A viscous boundary layer loss for acoustic wave propagation $R'_{\rm ac} = R_{\rm ac} \left(\frac{A_{\rm ref}}{A}\right)^\alpha \sqrt{f_{\rm ac}}$,
-- A visous resistance to steady airflow $R'_{\rm flow} = R_{\rm flow} \left(\frac{A_{\rm ref}}{A}\right)^\beta$,
-- Kinetic losses, mainly occuring after sudden expansions of the geometry, assuming the formation of a jet dissipating into turbulences $R'_{\rm k} =$.
-
 ## Spatial discretization (finite differences)
 
 Finite differences on staggered grids are used for spatial discretization (see e.g. Trenchant 2018[@Tre18]). The presentation is made here for volume flow input on both end of the tube. 
