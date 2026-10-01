@@ -79,7 +79,7 @@ public:
     Voice(ftype samplerate, bool yielding_walls = false);
     void DspSetup(ftype sampleRate, Articulation* art = nullptr);
 
-    void Process(ftype Pin);
+    void Process(ftype Pin, ftype Q_chirp = 0);
 
     // "Listening" functions
     inline Eigen::Vector<ftype, vf_pair::get_N()> ReadFoldsDisplacement()

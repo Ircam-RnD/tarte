@@ -82,7 +82,7 @@ void Voice<vf_pair, ftype>::ComputeSavVector()
 }
 
 template<VFPairModel vf_pair, typename ftype>
-void Voice<vf_pair, ftype>::Process(ftype Pin)
+void Voice<vf_pair, ftype>::Process(ftype Pin, ftype Q_chirp)
 {
     // auto mass_matrix_inv_left = mass_matrix_inv_.diagonal().head(3).asDiagonal();
     // auto mass_matrix_inv_right = mass_matrix_inv_.diagonal().tail(3).asDiagonal();
@@ -158,7 +158,7 @@ void Voice<vf_pair, ftype>::Process(ftype Pin)
     //     = Rk_ * (Psub_(idx_next_) - Psup_)
     //       + 0.5 * effective_surfaces_Psup_.transpose() * mass_matrix_inv_
     //             * (p_(idx_now_, Eigen::placeholders::all) + p_(idx_next_, Eigen::placeholders::all)).transpose();
-    resonator_->Process(sup_glottal_flow);
+    resonator_->Process(sup_glottal_flow, Q_chirp);
 
     // if (compute_powers_) {
     //     // Optional computations needed for power balance variables
