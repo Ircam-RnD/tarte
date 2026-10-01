@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues" kind="struct" language="C++" prot="public">
+    <compoundname>tarte::WebsterFDTD::PolesResidues</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues_1afe07cac8a1fa7cd58da93d789e284e4b" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; std::complex&lt; double &gt; &gt;</type>
+        <definition>std::vector&lt;std::complex&lt;double&gt; &gt; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::PolesResidues::poles</definition>
+        <argsstring></argsstring>
+        <name>poles</name>
+        <qualifiedname>tarte::WebsterFDTD::PolesResidues::poles</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="25" column="21" bodyfile="include/websterFDTD.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues_1ab5c40ce808c0027a99ca3dace43e73b1" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; std::complex&lt; double &gt; &gt;</type>
+        <definition>std::vector&lt;std::complex&lt;double&gt; &gt; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::PolesResidues::impedanceResidues</definition>
+        <argsstring></argsstring>
+        <name>impedanceResidues</name>
+        <qualifiedname>tarte::WebsterFDTD::PolesResidues::impedanceResidues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="26" column="21" bodyfile="include/websterFDTD.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues_1abb2f56c2fae6934f4569ce97fbebbfc1" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; std::complex&lt; double &gt; &gt;</type>
+        <definition>std::vector&lt;std::complex&lt;double&gt; &gt; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::PolesResidues::tranferFunctionFlowResidues</definition>
+        <argsstring></argsstring>
+        <name>tranferFunctionFlowResidues</name>
+        <qualifiedname>tarte::WebsterFDTD::PolesResidues::tranferFunctionFlowResidues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="27" column="21" bodyfile="include/websterFDTD.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues_1a751d2424da82031d8b9fddaffe1a5b25" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; std::complex&lt; double &gt; &gt;</type>
+        <definition>std::vector&lt;std::complex&lt;double&gt; &gt; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::PolesResidues::tranferFunctionPressureResidues</definition>
+        <argsstring></argsstring>
+        <name>tranferFunctionPressureResidues</name>
+        <qualifiedname>tarte::WebsterFDTD::PolesResidues::tranferFunctionPressureResidues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="28" column="21" bodyfile="include/websterFDTD.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/websterFDTD.h" line="24" column="5" bodyfile="include/websterFDTD.h" bodystart="24" bodyend="29"/>
+    <listofallmembers>
+      <member refid="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues_1ab5c40ce808c0027a99ca3dace43e73b1" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD::PolesResidues</scope><name>impedanceResidues</name></member>
+      <member refid="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues_1afe07cac8a1fa7cd58da93d789e284e4b" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD::PolesResidues</scope><name>poles</name></member>
+      <member refid="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues_1abb2f56c2fae6934f4569ce97fbebbfc1" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD::PolesResidues</scope><name>tranferFunctionFlowResidues</name></member>
+      <member refid="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues_1a751d2424da82031d8b9fddaffe1a5b25" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD::PolesResidues</scope><name>tranferFunctionPressureResidues</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

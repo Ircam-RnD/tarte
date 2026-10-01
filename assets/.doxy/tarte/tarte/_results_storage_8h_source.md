@@ -1,0 +1,87 @@
+
+
+# File ResultsStorage.h
+
+[**File List**](files.md) **>** [**include**](dir_d44c64559bbebec7f509842c48db8b23.md) **>** [**utility**](dir_3a4d35156996fb70540e167b84a39bd1.md) **>** [**ResultsStorage.h**](_results_storage_8h.md)
+
+[Go to the documentation of this file](_results_storage_8h.md)
+
+
+```C++
+#ifdef TARTE_HDF5_ENABLED
+
+#    ifndef RESULTS_STORAGE_H
+#        define RESULTS_STORAGE_H
+
+#        include <Eigen/Dense>
+#        include <H5Cpp.h>
+#        include <string>
+#        include <vector>
+
+class ResultsStorage {
+public:
+    ResultsStorage(const std::string& filename, bool overwrite = false);
+
+    ~ResultsStorage();
+
+    static ResultsStorage openForReading(const std::string& filename);
+
+    // Methods to write 1D arrays (vectors)
+    void writeVector(const std::string& name, const Eigen::VectorXd& vec);
+    void writeVector(const std::string& name, const Eigen::VectorXf& vec);
+    void writeVector(const std::string& name, const std::vector<double>& vec);
+    void writeVector(const std::string& name, const std::vector<float>& vec);
+
+    // Methods to write 2D arrays (matrices)
+    void writeMatrix(const std::string& name, const Eigen::MatrixXd& mat);
+    void writeMatrix(const std::string& name, const Eigen::MatrixXf& mat);
+
+    // Methods to write scalar values as attributes
+    void writeAttribute(const std::string& name, double value);
+    void writeAttribute(const std::string& name, float value);
+    void writeAttribute(const std::string& name, int value);
+    void writeAttribute(const std::string& name, const std::string& value);
+
+    // Convenience method to write indices
+    void writeIndices(const std::string& name, const Eigen::VectorXi& indices);
+    void writeIndices(const std::string& name, const std::vector<int>& indices);
+
+    // Methods to read attributes
+    bool readAttribute(const std::string& name, double& value);
+    bool readAttribute(const std::string& name, float& value);
+    bool readAttribute(const std::string& name, int& value);
+    bool readAttribute(const std::string& name, bool& value);
+    bool readAttribute(const std::string& name, std::string& value);
+
+    // Methods to read 1D arrays (vectors)
+    bool readVector(const std::string& name, Eigen::VectorXd& vec);
+    bool readVector(const std::string& name, Eigen::VectorXf& vec);
+    bool readVector(const std::string& name, std::vector<double>& vec);
+    bool readVector(const std::string& name, std::vector<float>& vec);
+
+    // Methods to read 2D arrays (matrices)
+    bool readMatrix(const std::string& name, Eigen::MatrixXd& mat);
+    bool readMatrix(const std::string& name, Eigen::MatrixXf& mat);
+
+    // Methods to read indices
+    bool readIndices(const std::string& name, Eigen::VectorXi& indices);
+    bool readIndices(const std::string& name, std::vector<int>& indices);
+
+    // Check if a dataset or attribute exists
+    bool exists(const std::string& name);
+
+    // Close and finalize the file
+    void close();
+
+private:
+    std::string filename_;
+    H5::H5File* file_;
+    bool is_open_;
+};
+
+#    endif // RESULTS_STORAGE_H
+
+#endif
+```
+
+

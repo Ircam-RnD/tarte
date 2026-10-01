@@ -1,0 +1,1505 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="classtarte_1_1_single_reed" kind="class" language="C++" prot="public">
+    <compoundname>tarte::SingleReed</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename ftype</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a21baced4ff9141a4213f61a83385ace8" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::mass_</definition>
+        <argsstring></argsstring>
+        <name>mass_</name>
+        <qualifiedname>tarte::SingleReed::mass_</qualifiedname>
+        <initializer>{3.37e-6}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="22" column="11" bodyfile="include/single_reed.h" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1abc2e9aabff4aab9d30e7e6700e6bf72a" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::stiffness_</definition>
+        <argsstring></argsstring>
+        <name>stiffness_</name>
+        <qualifiedname>tarte::SingleReed::stiffness_</qualifiedname>
+        <initializer>{1821}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="22" column="17" bodyfile="include/single_reed.h" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1af0fb143a8d205c6accd403561d458c35" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::damping_</definition>
+        <argsstring></argsstring>
+        <name>damping_</name>
+        <qualifiedname>tarte::SingleReed::damping_</qualifiedname>
+        <initializer>{1500}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="22" column="28" bodyfile="include/single_reed.h" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1afb5630fb657683a55fee529d8b5fc942" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::width_</definition>
+        <argsstring></argsstring>
+        <name>width_</name>
+        <qualifiedname>tarte::SingleReed::width_</qualifiedname>
+        <initializer>{1e-2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="22" column="37" bodyfile="include/single_reed.h" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a6f175bf3c8cecce311200f14767912e3" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::surface_</definition>
+        <argsstring></argsstring>
+        <name>surface_</name>
+        <qualifiedname>tarte::SingleReed::surface_</qualifiedname>
+        <initializer>{1.46e-4}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="22" column="44" bodyfile="include/single_reed.h" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1acbebb107a64fb255a70a2a52719af918" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::lay_position_</definition>
+        <argsstring></argsstring>
+        <name>lay_position_</name>
+        <qualifiedname>tarte::SingleReed::lay_position_</qualifiedname>
+        <initializer>{4e-4}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="23" column="9" bodyfile="include/single_reed.h" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1af68fb62a1cfd1aebb1831518180592b1" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::contact_stiffness_</definition>
+        <argsstring></argsstring>
+        <name>contact_stiffness_</name>
+        <qualifiedname>tarte::SingleReed::contact_stiffness_</qualifiedname>
+        <initializer>{1e13}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="24" column="11" bodyfile="include/single_reed.h" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a1a0c67558af39d5931697fcf967cfc27" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::alpha_contact_stiffness_</definition>
+        <argsstring></argsstring>
+        <name>alpha_contact_stiffness_</name>
+        <qualifiedname>tarte::SingleReed::alpha_contact_stiffness_</qualifiedname>
+        <initializer>{1.3}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="24" column="30" bodyfile="include/single_reed.h" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a6197bb122e2eb55e24830d907eaed1cf" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::rho_0_</definition>
+        <argsstring></argsstring>
+        <name>rho_0_</name>
+        <qualifiedname>tarte::SingleReed::rho_0_</qualifiedname>
+        <initializer>{1.2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="25" column="11" bodyfile="include/single_reed.h" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1aa021af560f73c9249eb4006cbff5f153" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::c_0_</definition>
+        <argsstring></argsstring>
+        <name>c_0_</name>
+        <qualifiedname>tarte::SingleReed::c_0_</qualifiedname>
+        <initializer>{340}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="25" column="18" bodyfile="include/single_reed.h" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a70249e3fb74e959896f5c7eb388c332c" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::kt_</definition>
+        <argsstring></argsstring>
+        <name>kt_</name>
+        <qualifiedname>tarte::SingleReed::kt_</qualifiedname>
+        <initializer>{1.3}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="25" column="23" bodyfile="include/single_reed.h" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a403743e57d00f22e9ce367247e2e901b" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::dissipation_coefficient_</definition>
+        <argsstring></argsstring>
+        <name>dissipation_coefficient_</name>
+        <qualifiedname>tarte::SingleReed::dissipation_coefficient_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="28" column="11" bodyfile="include/single_reed.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a35897fdb2267114f20bab7a83ab0312e" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::opening_</definition>
+        <argsstring></argsstring>
+        <name>opening_</name>
+        <qualifiedname>tarte::SingleReed::opening_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="29" column="11" bodyfile="include/single_reed.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1ae72aa62aa4bb8f1b8ee5161b246337cb" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::interpenetration_</definition>
+        <argsstring></argsstring>
+        <name>interpenetration_</name>
+        <qualifiedname>tarte::SingleReed::interpenetration_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="29" column="20" bodyfile="include/single_reed.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a8e4266aa627883d85cc492411df17a2c" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::interpenetration_derivative_</definition>
+        <argsstring></argsstring>
+        <name>interpenetration_derivative_</name>
+        <qualifiedname>tarte::SingleReed::interpenetration_derivative_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="30" column="11" bodyfile="include/single_reed.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1aa5dda0fd51cb8150a3dbf69fd8109f96" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::g_sav_</definition>
+        <argsstring></argsstring>
+        <name>g_sav_</name>
+        <qualifiedname>tarte::SingleReed::g_sav_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="32" column="11" bodyfile="include/single_reed.h" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a5856e8d75aa2c561c882694fa2bb4c7b" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::E_nl_</definition>
+        <argsstring></argsstring>
+        <name>E_nl_</name>
+        <qualifiedname>tarte::SingleReed::E_nl_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="32" column="18" bodyfile="include/single_reed.h" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1ac5127d7231d90e68924c2b17120bd130" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::F_nl_</definition>
+        <argsstring></argsstring>
+        <name>F_nl_</name>
+        <qualifiedname>tarte::SingleReed::F_nl_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="32" column="24" bodyfile="include/single_reed.h" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a09e318ec3b006460c54e0955cbe3fad8" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::mean_flow_</definition>
+        <argsstring></argsstring>
+        <name>mean_flow_</name>
+        <qualifiedname>tarte::SingleReed::mean_flow_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="34" column="11" bodyfile="include/single_reed.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1af33366dfa95ed70af8e38961a5c03ea3" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::R_k_</definition>
+        <argsstring></argsstring>
+        <name>R_k_</name>
+        <qualifiedname>tarte::SingleReed::R_k_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="34" column="22" bodyfile="include/single_reed.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a240c1cf3886676b398902d568101dce3" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::a_resonator_</definition>
+        <argsstring></argsstring>
+        <name>a_resonator_</name>
+        <qualifiedname>tarte::SingleReed::a_resonator_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="36" column="11" bodyfile="include/single_reed.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1ae36853932ed821da1b2f269a056b3b56" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::b_resonator_</definition>
+        <argsstring></argsstring>
+        <name>b_resonator_</name>
+        <qualifiedname>tarte::SingleReed::b_resonator_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="36" column="24" bodyfile="include/single_reed.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a9e6f2767fac636209c79e0757fba69ba" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::C0_feedback_</definition>
+        <argsstring></argsstring>
+        <name>C0_feedback_</name>
+        <qualifiedname>tarte::SingleReed::C0_feedback_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="37" column="11" bodyfile="include/single_reed.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a1dd987204a52a0bc7a26cb74bfc85b88" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::C1_feedback_</definition>
+        <argsstring></argsstring>
+        <name>C1_feedback_</name>
+        <qualifiedname>tarte::SingleReed::C1_feedback_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="37" column="24" bodyfile="include/single_reed.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a05cfd967ed443580ba3077c1303bb798" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::rhs_</definition>
+        <argsstring></argsstring>
+        <name>rhs_</name>
+        <qualifiedname>tarte::SingleReed::rhs_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="39" column="11" bodyfile="include/single_reed.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a976e4a9597dfd9f2cbd9a32fa4c70d32" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::smoothed_is_opened_</definition>
+        <argsstring></argsstring>
+        <name>smoothed_is_opened_</name>
+        <qualifiedname>tarte::SingleReed::smoothed_is_opened_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="41" column="11" bodyfile="include/single_reed.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a1d33323da62fcf5a550c772037043466" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::SingleReed&lt; ftype &gt;::p_</definition>
+        <argsstring></argsstring>
+        <name>p_</name>
+        <qualifiedname>tarte::SingleReed::p_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="44" column="19" bodyfile="include/single_reed.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1ab21dbf98e2ef5be1dd0e6cca13520365" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::SingleReed&lt; ftype &gt;::q_</definition>
+        <argsstring></argsstring>
+        <name>q_</name>
+        <qualifiedname>tarte::SingleReed::q_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="44" column="22" bodyfile="include/single_reed.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a3adf3aaeb2bd993d459c25dfd077afb3" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::SingleReed&lt; ftype &gt;::r_</definition>
+        <argsstring></argsstring>
+        <name>r_</name>
+        <qualifiedname>tarte::SingleReed::r_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="44" column="25" bodyfile="include/single_reed.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a7777d7d78f13d4722ef4e9a0f7a36f30" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::p_inter_</definition>
+        <argsstring></argsstring>
+        <name>p_inter_</name>
+        <qualifiedname>tarte::SingleReed::p_inter_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="45" column="11" bodyfile="include/single_reed.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a4b38cc9c9b9d80478e682610b871be33" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::q_inter_</definition>
+        <argsstring></argsstring>
+        <name>q_inter_</name>
+        <qualifiedname>tarte::SingleReed::q_inter_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="45" column="20" bodyfile="include/single_reed.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1ac6854889525b9eee6da3783bb0dbfda7" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t tarte::SingleReed&lt; ftype &gt;::idx_now_</definition>
+        <argsstring></argsstring>
+        <name>idx_now_</name>
+        <qualifiedname>tarte::SingleReed::idx_now_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="46" column="17" bodyfile="include/single_reed.h" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a82ffd1779857d0f83d6834491b12b079" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t tarte::SingleReed&lt; ftype &gt;::idx_next_</definition>
+        <argsstring></argsstring>
+        <name>idx_next_</name>
+        <qualifiedname>tarte::SingleReed::idx_next_</qualifiedname>
+        <initializer>{1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="46" column="26" bodyfile="include/single_reed.h" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1af13c1bfa9e5c4d170e1e22e3c7e21f01" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::SingleReed&lt; ftype &gt;::Psub_</definition>
+        <argsstring></argsstring>
+        <name>Psub_</name>
+        <qualifiedname>tarte::SingleReed::Psub_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="48" column="19" bodyfile="include/single_reed.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a8bfaf0a45ff7afdc2e13de44cc5be8fb" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::SingleReed&lt; ftype &gt;::Psub_centered_</definition>
+        <argsstring></argsstring>
+        <name>Psub_centered_</name>
+        <qualifiedname>tarte::SingleReed::Psub_centered_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="48" column="25" bodyfile="include/single_reed.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a996a7a5341553bedd16c9c156b7995c2" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::Psup_</definition>
+        <argsstring></argsstring>
+        <name>Psup_</name>
+        <qualifiedname>tarte::SingleReed::Psup_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="49" column="11" bodyfile="include/single_reed.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1af41f401bdc32c1ebc0d264502cd00a88" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tarte::SingleReed&lt; ftype &gt;::compute_powers_</definition>
+        <argsstring></argsstring>
+        <name>compute_powers_</name>
+        <qualifiedname>tarte::SingleReed::compute_powers_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="52" column="10" bodyfile="include/single_reed.h" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a156f28a7aa753cd0c3a094250bf7f4fd" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::SingleReed&lt; ftype &gt;::kinetic_energy_</definition>
+        <argsstring></argsstring>
+        <name>kinetic_energy_</name>
+        <qualifiedname>tarte::SingleReed::kinetic_energy_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="53" column="19" bodyfile="include/single_reed.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1ac93326a845eccabf493f978b8f2632e3" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::SingleReed&lt; ftype &gt;::potential_energy_</definition>
+        <argsstring></argsstring>
+        <name>potential_energy_</name>
+        <qualifiedname>tarte::SingleReed::potential_energy_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="53" column="35" bodyfile="include/single_reed.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a51e8893565f19c11b8e4f694aba46866" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::dissipated_power_</definition>
+        <argsstring></argsstring>
+        <name>dissipated_power_</name>
+        <qualifiedname>tarte::SingleReed::dissipated_power_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="54" column="11" bodyfile="include/single_reed.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a2c9f414023614c5809293768a938d118" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::dissipated_power_flow_</definition>
+        <argsstring></argsstring>
+        <name>dissipated_power_flow_</name>
+        <qualifiedname>tarte::SingleReed::dissipated_power_flow_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="54" column="29" bodyfile="include/single_reed.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a17414afcdc6d7c52ae3881b0e9e7c858" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::dissipated_power_reed_</definition>
+        <argsstring></argsstring>
+        <name>dissipated_power_reed_</name>
+        <qualifiedname>tarte::SingleReed::dissipated_power_reed_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="54" column="52" bodyfile="include/single_reed.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a3fddeb93607e859f1efb3bdb524aefb1" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::external_power_</definition>
+        <argsstring></argsstring>
+        <name>external_power_</name>
+        <qualifiedname>tarte::SingleReed::external_power_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="55" column="11" bodyfile="include/single_reed.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1addb4995d3ee2d55289b44beb9d2114f4" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::external_power_sub_</definition>
+        <argsstring></argsstring>
+        <name>external_power_sub_</name>
+        <qualifiedname>tarte::SingleReed::external_power_sub_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="55" column="27" bodyfile="include/single_reed.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a6f929cc563e049e531f540f42f514f24" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::external_power_sup_</definition>
+        <argsstring></argsstring>
+        <name>external_power_sup_</name>
+        <qualifiedname>tarte::SingleReed::external_power_sup_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="55" column="47" bodyfile="include/single_reed.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a9344bf4a2db492f5239760ca42a7677c" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::stored_power_</definition>
+        <argsstring></argsstring>
+        <name>stored_power_</name>
+        <qualifiedname>tarte::SingleReed::stored_power_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="56" column="11" bodyfile="include/single_reed.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a5baf1d46464d3c2dfaed8fb0a5506ea9" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::stored_power_potential_</definition>
+        <argsstring></argsstring>
+        <name>stored_power_potential_</name>
+        <qualifiedname>tarte::SingleReed::stored_power_potential_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="56" column="25" bodyfile="include/single_reed.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1aeea52fdc5c370110abc3da2909a36f8b" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::stored_power_kinetic_</definition>
+        <argsstring></argsstring>
+        <name>stored_power_kinetic_</name>
+        <qualifiedname>tarte::SingleReed::stored_power_kinetic_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="56" column="49" bodyfile="include/single_reed.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a7307684bb778d431b50422c12c96851f" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::mouth_flow_</definition>
+        <argsstring></argsstring>
+        <name>mouth_flow_</name>
+        <qualifiedname>tarte::SingleReed::mouth_flow_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="59" column="11" bodyfile="include/single_reed.h" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a569a9299706de012564c0fdc2ac387ff" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::resonator_flow_</definition>
+        <argsstring></argsstring>
+        <name>resonator_flow_</name>
+        <qualifiedname>tarte::SingleReed::resonator_flow_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="59" column="23" bodyfile="include/single_reed.h" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1adab0da8c9defe4e6a3e125c4ca9ff003" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classtarte_1_1_webster_f_d_t_d" kindref="compound">WebsterFDTD</ref>&lt; ftype, 300 &gt; &gt;</type>
+        <definition>std::shared_ptr&lt;WebsterFDTD&lt;ftype, 300&gt; &gt; tarte::SingleReed&lt; ftype &gt;::resonator_</definition>
+        <argsstring></argsstring>
+        <name>resonator_</name>
+        <qualifiedname>tarte::SingleReed::resonator_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="60" column="21" bodyfile="include/single_reed.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a99fa0a3ab8779979c2b6c3fb27e97611" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::sr_</definition>
+        <argsstring></argsstring>
+        <name>sr_</name>
+        <qualifiedname>tarte::SingleReed::sr_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="63" column="11" bodyfile="include/single_reed.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1ae7f75e5de16add1e4aba2bca63fcd54d" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::dt_</definition>
+        <argsstring></argsstring>
+        <name>dt_</name>
+        <qualifiedname>tarte::SingleReed::dt_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="63" column="15" bodyfile="include/single_reed.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a71ab23f31c5490cf9ec25bda666e8bcd" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::epsilon_smooth_</definition>
+        <argsstring></argsstring>
+        <name>epsilon_smooth_</name>
+        <qualifiedname>tarte::SingleReed::epsilon_smooth_</qualifiedname>
+        <initializer>{1e-7}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="64" column="11" bodyfile="include/single_reed.h" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1ab796f6d6570ef64bdb06d961452b0ee4" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::epsilon_smooth_P_</definition>
+        <argsstring></argsstring>
+        <name>epsilon_smooth_P_</name>
+        <qualifiedname>tarte::SingleReed::epsilon_smooth_P_</qualifiedname>
+        <initializer>{10}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="64" column="27" bodyfile="include/single_reed.h" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a7bab48f6d619c0b6d6468ebdec08028b" prot="private" static="no" mutable="no">
+        <type><ref refid="classtarte_1_1_noise_generator" kindref="compound">NoiseGenerator</ref></type>
+        <definition>NoiseGenerator tarte::SingleReed&lt; ftype &gt;::noise_generator_</definition>
+        <argsstring></argsstring>
+        <name>noise_generator_</name>
+        <qualifiedname>tarte::SingleReed::noise_generator_</qualifiedname>
+        <initializer>= <ref refid="classtarte_1_1_noise_generator" kindref="compound">NoiseGenerator</ref>(NoiseColor::Pink)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="72" column="20" bodyfile="include/single_reed.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a59efdb93acc1ccab58e77c69337067f4" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tarte::SingleReed&lt; ftype &gt;::noise_ratio_</definition>
+        <argsstring></argsstring>
+        <name>noise_ratio_</name>
+        <qualifiedname>tarte::SingleReed::noise_ratio_</qualifiedname>
+        <initializer>{0.f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="73" column="11" bodyfile="include/single_reed.h" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_single_reed_1a47d9f5694641dea22b2c42de0e72f72d" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::noise_flow_</definition>
+        <argsstring></argsstring>
+        <name>noise_flow_</name>
+        <qualifiedname>tarte::SingleReed::noise_flow_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="74" column="11" bodyfile="include/single_reed.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a4113cf9f01e0c222409338cbe80b79a5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::fillOpeningAndInterpenetration</definition>
+        <argsstring>()</argsstring>
+        <name>fillOpeningAndInterpenetration</name>
+        <qualifiedname>tarte::SingleReed::fillOpeningAndInterpenetration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="67" column="10" bodyfile="src/single_reed.cpp" bodystart="47" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a61c8f3da89c668809b5b00bc49ebedeb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::computeRk</definition>
+        <argsstring>()</argsstring>
+        <name>computeRk</name>
+        <qualifiedname>tarte::SingleReed::computeRk</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="68" column="10" bodyfile="src/single_reed.cpp" bodystart="67" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a3098f58f9f4f8f3c88e3061293f14b5a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::computegSAV</definition>
+        <argsstring>()</argsstring>
+        <name>computegSAV</name>
+        <qualifiedname>tarte::SingleReed::computegSAV</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="69" column="10" bodyfile="src/single_reed.cpp" bodystart="80" bodyend="125"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1ae821205ee307e5c6a9933f66ab4ec53c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tarte::SingleReed&lt; ftype &gt;::SingleReed</definition>
+        <argsstring>(float samplerate)</argsstring>
+        <name>SingleReed</name>
+        <qualifiedname>tarte::SingleReed::SingleReed</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>samplerate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="77" column="5" bodyfile="src/single_reed.cpp" bodystart="8" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a71c933ed9ab11b5a7160b378ddfebb4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::DspSetup</definition>
+        <argsstring>(float samplerate)</argsstring>
+        <name>DspSetup</name>
+        <qualifiedname>tarte::SingleReed::DspSetup</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>samplerate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="79" column="10" bodyfile="src/single_reed.cpp" bodystart="28" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a23c149dd17b264d6f9eab959a571fa01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::Process</definition>
+        <argsstring>(float Pin)</argsstring>
+        <name>Process</name>
+        <qualifiedname>tarte::SingleReed::Process</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>Pin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="81" column="10" bodyfile="src/single_reed.cpp" bodystart="128" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1ab086984c92a1e9ca5db86cb75bd08d27" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::ReadDisplacement</definition>
+        <argsstring>()</argsstring>
+        <name>ReadDisplacement</name>
+        <qualifiedname>tarte::SingleReed::ReadDisplacement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="83" column="18" bodyfile="include/single_reed.h" bodystart="83" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1ab12398c4ac5c5e342d82ecbd5d2a07de" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::ReadEffectiveOpening</definition>
+        <argsstring>()</argsstring>
+        <name>ReadEffectiveOpening</name>
+        <qualifiedname>tarte::SingleReed::ReadEffectiveOpening</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="89" column="18" bodyfile="include/single_reed.h" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a45c45a5d708f140faf24bce35ad823b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::ReadRadiatedPressure</definition>
+        <argsstring>()</argsstring>
+        <name>ReadRadiatedPressure</name>
+        <qualifiedname>tarte::SingleReed::ReadRadiatedPressure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="91" column="18" bodyfile="include/single_reed.h" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a9b9e56b9d448bc3756eb77312d47ea61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::ReadAuxiliaryVariable</definition>
+        <argsstring>()</argsstring>
+        <name>ReadAuxiliaryVariable</name>
+        <qualifiedname>tarte::SingleReed::ReadAuxiliaryVariable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="92" column="18" bodyfile="include/single_reed.h" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1afffe65e77cf6c0696201d5cab3b50e0a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::ReadMeanMouthpieceFlow</definition>
+        <argsstring>()</argsstring>
+        <name>ReadMeanMouthpieceFlow</name>
+        <qualifiedname>tarte::SingleReed::ReadMeanMouthpieceFlow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="95" column="18" bodyfile="include/single_reed.h" bodystart="95" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a7ebefdc8f35ab9a1f4f8c0f67e7e4af6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::ReadMouthpieceFlow</definition>
+        <argsstring>()</argsstring>
+        <name>ReadMouthpieceFlow</name>
+        <qualifiedname>tarte::SingleReed::ReadMouthpieceFlow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="96" column="18" bodyfile="include/single_reed.h" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1aefe10e8c146ad2be12016ed3299c15ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::ReadPressureDrop</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPressureDrop</name>
+        <qualifiedname>tarte::SingleReed::ReadPressureDrop</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="97" column="18" bodyfile="include/single_reed.h" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a8db446feff6885860fe7fd402b510ba7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::getCurrentState</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentState</name>
+        <qualifiedname>tarte::SingleReed::getCurrentState</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="98" column="18" bodyfile="include/single_reed.h" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a0c2b9ef03af142d1e9c52d5ccf82449d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::tuple&lt; ftype, ftype, ftype &gt;</type>
+        <definition>std::tuple&lt; ftype, ftype, ftype &gt; tarte::SingleReed&lt; ftype &gt;::getCurrentDissipatedPowers</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentDissipatedPowers</name>
+        <qualifiedname>tarte::SingleReed::getCurrentDissipatedPowers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="101" column="16" bodyfile="include/single_reed.h" bodystart="101" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a6785af77981e81fded0139f27ce7e1ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::tuple&lt; ftype, ftype, ftype &gt;</type>
+        <definition>std::tuple&lt; ftype, ftype, ftype &gt; tarte::SingleReed&lt; ftype &gt;::getCurrentExchangedPowers</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentExchangedPowers</name>
+        <qualifiedname>tarte::SingleReed::getCurrentExchangedPowers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="105" column="16" bodyfile="include/single_reed.h" bodystart="105" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1ae71e556796233ea1f78235244beb308f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::tuple&lt; ftype, ftype, ftype &gt;</type>
+        <definition>std::tuple&lt; ftype, ftype, ftype &gt; tarte::SingleReed&lt; ftype &gt;::getCurrentStoredPowers</definition>
+        <argsstring>()</argsstring>
+        <name>getCurrentStoredPowers</name>
+        <qualifiedname>tarte::SingleReed::getCurrentStoredPowers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="109" column="16" bodyfile="include/single_reed.h" bodystart="109" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a2ff2f02458100eac17e58836c9263c86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::set_mass</definition>
+        <argsstring>(const ftype &amp;mass)</argsstring>
+        <name>set_mass</name>
+        <qualifiedname>tarte::SingleReed::set_mass</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>mass</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="115" column="10" bodyfile="include/single_reed.h" bodystart="115" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a5c75b5b0b925eb5e657415a704a0e5a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::set_stiffness</definition>
+        <argsstring>(const ftype &amp;stiffness)</argsstring>
+        <name>set_stiffness</name>
+        <qualifiedname>tarte::SingleReed::set_stiffness</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>stiffness</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="120" column="10" bodyfile="include/single_reed.h" bodystart="120" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a5b54777c1bafa831180e4e4d993a731c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::set_damping</definition>
+        <argsstring>(const ftype &amp;damping)</argsstring>
+        <name>set_damping</name>
+        <qualifiedname>tarte::SingleReed::set_damping</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>damping</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="121" column="10" bodyfile="include/single_reed.h" bodystart="121" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a4cb78b5d2c9b653bdf7646f54cdfaa84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::set_lay_position</definition>
+        <argsstring>(const ftype &amp;lay_position)</argsstring>
+        <name>set_lay_position</name>
+        <qualifiedname>tarte::SingleReed::set_lay_position</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>lay_position</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="126" column="10" bodyfile="include/single_reed.h" bodystart="126" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1aaef78ef438118e987cd4c458306268a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::set_width</definition>
+        <argsstring>(const ftype &amp;width)</argsstring>
+        <name>set_width</name>
+        <qualifiedname>tarte::SingleReed::set_width</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="130" column="10" bodyfile="include/single_reed.h" bodystart="130" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a01c36cd6cb9420182b7905f57bdb06a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::set_surface</definition>
+        <argsstring>(const ftype &amp;surface)</argsstring>
+        <name>set_surface</name>
+        <qualifiedname>tarte::SingleReed::set_surface</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>surface</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="131" column="10" bodyfile="include/single_reed.h" bodystart="131" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a51291b50aaa17d3de2603b8f73d75039" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::set_contact_stiffness</definition>
+        <argsstring>(const ftype &amp;contact_stiffness)</argsstring>
+        <name>set_contact_stiffness</name>
+        <qualifiedname>tarte::SingleReed::set_contact_stiffness</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>contact_stiffness</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="132" column="10" bodyfile="include/single_reed.h" bodystart="132" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1af73b85e713140abe0e184a9ec82c7995" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::set_epsilon_smooth</definition>
+        <argsstring>(const ftype &amp;epsilon_smooth)</argsstring>
+        <name>set_epsilon_smooth</name>
+        <qualifiedname>tarte::SingleReed::set_epsilon_smooth</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>epsilon_smooth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="136" column="10" bodyfile="include/single_reed.h" bodystart="136" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a8240fdec18133394a03fe6729606cae7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::SingleReed&lt; ftype &gt;::set_noise_ratio</definition>
+        <argsstring>(const ftype &amp;noise_ratio)</argsstring>
+        <name>set_noise_ratio</name>
+        <qualifiedname>tarte::SingleReed::set_noise_ratio</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>noise_ratio</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="140" column="10" bodyfile="include/single_reed.h" bodystart="140" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1aced867a61672ea031f5062d4d43f5830" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::get_mass</definition>
+        <argsstring>()</argsstring>
+        <name>get_mass</name>
+        <qualifiedname>tarte::SingleReed::get_mass</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="143" column="11" bodyfile="include/single_reed.h" bodystart="143" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a061c8d6d0ecabe5793bbf0776e25efe3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::get_stiffness</definition>
+        <argsstring>()</argsstring>
+        <name>get_stiffness</name>
+        <qualifiedname>tarte::SingleReed::get_stiffness</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="144" column="11" bodyfile="include/single_reed.h" bodystart="144" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a883a63c1262982f046f48bb9c902ae47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::get_damping</definition>
+        <argsstring>()</argsstring>
+        <name>get_damping</name>
+        <qualifiedname>tarte::SingleReed::get_damping</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="145" column="11" bodyfile="include/single_reed.h" bodystart="145" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a4108deeaa31e451e5253ef23d2e05347" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::get_width</definition>
+        <argsstring>()</argsstring>
+        <name>get_width</name>
+        <qualifiedname>tarte::SingleReed::get_width</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="146" column="11" bodyfile="include/single_reed.h" bodystart="146" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a5d696308db1f45e52bab11ea7ec04d9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::get_surface</definition>
+        <argsstring>()</argsstring>
+        <name>get_surface</name>
+        <qualifiedname>tarte::SingleReed::get_surface</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="147" column="11" bodyfile="include/single_reed.h" bodystart="147" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1adb057ccddd107e1b7b64df0b22eb15c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::get_lay_position</definition>
+        <argsstring>()</argsstring>
+        <name>get_lay_position</name>
+        <qualifiedname>tarte::SingleReed::get_lay_position</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="148" column="11" bodyfile="include/single_reed.h" bodystart="148" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1aadfbfd77b9fd419a7c50040bce44335d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::get_contact_stiffness</definition>
+        <argsstring>()</argsstring>
+        <name>get_contact_stiffness</name>
+        <qualifiedname>tarte::SingleReed::get_contact_stiffness</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="149" column="11" bodyfile="include/single_reed.h" bodystart="149" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a699427b2b01f8fa418213584585b8cec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::get_epsilon_smooth</definition>
+        <argsstring>()</argsstring>
+        <name>get_epsilon_smooth</name>
+        <qualifiedname>tarte::SingleReed::get_epsilon_smooth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="150" column="11" bodyfile="include/single_reed.h" bodystart="150" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1aa9fb0704cdd04b5dfca00e16d9de270e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::SingleReed&lt; ftype &gt;::get_noise_ratio</definition>
+        <argsstring>()</argsstring>
+        <name>get_noise_ratio</name>
+        <qualifiedname>tarte::SingleReed::get_noise_ratio</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="151" column="11" bodyfile="include/single_reed.h" bodystart="151" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_single_reed_1a44d4a9764e75488785271a538d0eb406" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classtarte_1_1_webster_f_d_t_d" kindref="compound">WebsterFDTD</ref>&lt; ftype, 300 &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; WebsterFDTD&lt; ftype, 300 &gt; &gt; tarte::SingleReed&lt; ftype &gt;::get_resonator</definition>
+        <argsstring>()</argsstring>
+        <name>get_resonator</name>
+        <qualifiedname>tarte::SingleReed::get_resonator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/single_reed.h" line="153" column="21" bodyfile="include/single_reed.h" bodystart="153" bodyend="153"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/single_reed.h" line="19" column="1" bodyfile="include/single_reed.h" bodystart="19" bodyend="154"/>
+    <listofallmembers>
+      <member refid="classtarte_1_1_single_reed_1a240c1cf3886676b398902d568101dce3" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>a_resonator_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a1a0c67558af39d5931697fcf967cfc27" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>alpha_contact_stiffness_</name></member>
+      <member refid="classtarte_1_1_single_reed_1ae36853932ed821da1b2f269a056b3b56" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>b_resonator_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a9e6f2767fac636209c79e0757fba69ba" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>C0_feedback_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a1dd987204a52a0bc7a26cb74bfc85b88" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>C1_feedback_</name></member>
+      <member refid="classtarte_1_1_single_reed_1aa021af560f73c9249eb4006cbff5f153" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>c_0_</name></member>
+      <member refid="classtarte_1_1_single_reed_1af41f401bdc32c1ebc0d264502cd00a88" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>compute_powers_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a3098f58f9f4f8f3c88e3061293f14b5a" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>computegSAV</name></member>
+      <member refid="classtarte_1_1_single_reed_1a61c8f3da89c668809b5b00bc49ebedeb" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>computeRk</name></member>
+      <member refid="classtarte_1_1_single_reed_1af68fb62a1cfd1aebb1831518180592b1" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>contact_stiffness_</name></member>
+      <member refid="classtarte_1_1_single_reed_1af0fb143a8d205c6accd403561d458c35" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>damping_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a51e8893565f19c11b8e4f694aba46866" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>dissipated_power_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a2c9f414023614c5809293768a938d118" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>dissipated_power_flow_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a17414afcdc6d7c52ae3881b0e9e7c858" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>dissipated_power_reed_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a403743e57d00f22e9ce367247e2e901b" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>dissipation_coefficient_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a71c933ed9ab11b5a7160b378ddfebb4d" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>DspSetup</name></member>
+      <member refid="classtarte_1_1_single_reed_1ae7f75e5de16add1e4aba2bca63fcd54d" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>dt_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a5856e8d75aa2c561c882694fa2bb4c7b" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>E_nl_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a71ab23f31c5490cf9ec25bda666e8bcd" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>epsilon_smooth_</name></member>
+      <member refid="classtarte_1_1_single_reed_1ab796f6d6570ef64bdb06d961452b0ee4" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>epsilon_smooth_P_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a3fddeb93607e859f1efb3bdb524aefb1" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>external_power_</name></member>
+      <member refid="classtarte_1_1_single_reed_1addb4995d3ee2d55289b44beb9d2114f4" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>external_power_sub_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a6f929cc563e049e531f540f42f514f24" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>external_power_sup_</name></member>
+      <member refid="classtarte_1_1_single_reed_1ac5127d7231d90e68924c2b17120bd130" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>F_nl_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a4113cf9f01e0c222409338cbe80b79a5" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>fillOpeningAndInterpenetration</name></member>
+      <member refid="classtarte_1_1_single_reed_1aa5dda0fd51cb8150a3dbf69fd8109f96" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>g_sav_</name></member>
+      <member refid="classtarte_1_1_single_reed_1aadfbfd77b9fd419a7c50040bce44335d" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>get_contact_stiffness</name></member>
+      <member refid="classtarte_1_1_single_reed_1a883a63c1262982f046f48bb9c902ae47" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>get_damping</name></member>
+      <member refid="classtarte_1_1_single_reed_1a699427b2b01f8fa418213584585b8cec" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>get_epsilon_smooth</name></member>
+      <member refid="classtarte_1_1_single_reed_1adb057ccddd107e1b7b64df0b22eb15c5" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>get_lay_position</name></member>
+      <member refid="classtarte_1_1_single_reed_1aced867a61672ea031f5062d4d43f5830" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>get_mass</name></member>
+      <member refid="classtarte_1_1_single_reed_1aa9fb0704cdd04b5dfca00e16d9de270e" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>get_noise_ratio</name></member>
+      <member refid="classtarte_1_1_single_reed_1a44d4a9764e75488785271a538d0eb406" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>get_resonator</name></member>
+      <member refid="classtarte_1_1_single_reed_1a061c8d6d0ecabe5793bbf0776e25efe3" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>get_stiffness</name></member>
+      <member refid="classtarte_1_1_single_reed_1a5d696308db1f45e52bab11ea7ec04d9b" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>get_surface</name></member>
+      <member refid="classtarte_1_1_single_reed_1a4108deeaa31e451e5253ef23d2e05347" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>get_width</name></member>
+      <member refid="classtarte_1_1_single_reed_1a0c2b9ef03af142d1e9c52d5ccf82449d" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>getCurrentDissipatedPowers</name></member>
+      <member refid="classtarte_1_1_single_reed_1a6785af77981e81fded0139f27ce7e1ea" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>getCurrentExchangedPowers</name></member>
+      <member refid="classtarte_1_1_single_reed_1a8db446feff6885860fe7fd402b510ba7" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>getCurrentState</name></member>
+      <member refid="classtarte_1_1_single_reed_1ae71e556796233ea1f78235244beb308f" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>getCurrentStoredPowers</name></member>
+      <member refid="classtarte_1_1_single_reed_1a82ffd1779857d0f83d6834491b12b079" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>idx_next_</name></member>
+      <member refid="classtarte_1_1_single_reed_1ac6854889525b9eee6da3783bb0dbfda7" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>idx_now_</name></member>
+      <member refid="classtarte_1_1_single_reed_1ae72aa62aa4bb8f1b8ee5161b246337cb" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>interpenetration_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a8e4266aa627883d85cc492411df17a2c" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>interpenetration_derivative_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a156f28a7aa753cd0c3a094250bf7f4fd" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>kinetic_energy_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a70249e3fb74e959896f5c7eb388c332c" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>kt_</name></member>
+      <member refid="classtarte_1_1_single_reed_1acbebb107a64fb255a70a2a52719af918" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>lay_position_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a21baced4ff9141a4213f61a83385ace8" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>mass_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a09e318ec3b006460c54e0955cbe3fad8" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>mean_flow_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a7307684bb778d431b50422c12c96851f" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>mouth_flow_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a47d9f5694641dea22b2c42de0e72f72d" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>noise_flow_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a7bab48f6d619c0b6d6468ebdec08028b" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>noise_generator_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a59efdb93acc1ccab58e77c69337067f4" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>noise_ratio_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a35897fdb2267114f20bab7a83ab0312e" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>opening_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a1d33323da62fcf5a550c772037043466" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>p_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a7777d7d78f13d4722ef4e9a0f7a36f30" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>p_inter_</name></member>
+      <member refid="classtarte_1_1_single_reed_1ac93326a845eccabf493f978b8f2632e3" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>potential_energy_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a23c149dd17b264d6f9eab959a571fa01" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>Process</name></member>
+      <member refid="classtarte_1_1_single_reed_1af13c1bfa9e5c4d170e1e22e3c7e21f01" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>Psub_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a8bfaf0a45ff7afdc2e13de44cc5be8fb" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>Psub_centered_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a996a7a5341553bedd16c9c156b7995c2" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>Psup_</name></member>
+      <member refid="classtarte_1_1_single_reed_1ab21dbf98e2ef5be1dd0e6cca13520365" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>q_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a4b38cc9c9b9d80478e682610b871be33" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>q_inter_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a3adf3aaeb2bd993d459c25dfd077afb3" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>r_</name></member>
+      <member refid="classtarte_1_1_single_reed_1af33366dfa95ed70af8e38961a5c03ea3" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>R_k_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a9b9e56b9d448bc3756eb77312d47ea61" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>ReadAuxiliaryVariable</name></member>
+      <member refid="classtarte_1_1_single_reed_1ab086984c92a1e9ca5db86cb75bd08d27" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>ReadDisplacement</name></member>
+      <member refid="classtarte_1_1_single_reed_1ab12398c4ac5c5e342d82ecbd5d2a07de" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>ReadEffectiveOpening</name></member>
+      <member refid="classtarte_1_1_single_reed_1afffe65e77cf6c0696201d5cab3b50e0a" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>ReadMeanMouthpieceFlow</name></member>
+      <member refid="classtarte_1_1_single_reed_1a7ebefdc8f35ab9a1f4f8c0f67e7e4af6" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>ReadMouthpieceFlow</name></member>
+      <member refid="classtarte_1_1_single_reed_1aefe10e8c146ad2be12016ed3299c15ce" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>ReadPressureDrop</name></member>
+      <member refid="classtarte_1_1_single_reed_1a45c45a5d708f140faf24bce35ad823b5" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>ReadRadiatedPressure</name></member>
+      <member refid="classtarte_1_1_single_reed_1adab0da8c9defe4e6a3e125c4ca9ff003" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>resonator_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a569a9299706de012564c0fdc2ac387ff" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>resonator_flow_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a6197bb122e2eb55e24830d907eaed1cf" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>rho_0_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a05cfd967ed443580ba3077c1303bb798" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>rhs_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a51291b50aaa17d3de2603b8f73d75039" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>set_contact_stiffness</name></member>
+      <member refid="classtarte_1_1_single_reed_1a5b54777c1bafa831180e4e4d993a731c" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>set_damping</name></member>
+      <member refid="classtarte_1_1_single_reed_1af73b85e713140abe0e184a9ec82c7995" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>set_epsilon_smooth</name></member>
+      <member refid="classtarte_1_1_single_reed_1a4cb78b5d2c9b653bdf7646f54cdfaa84" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>set_lay_position</name></member>
+      <member refid="classtarte_1_1_single_reed_1a2ff2f02458100eac17e58836c9263c86" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>set_mass</name></member>
+      <member refid="classtarte_1_1_single_reed_1a8240fdec18133394a03fe6729606cae7" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>set_noise_ratio</name></member>
+      <member refid="classtarte_1_1_single_reed_1a5c75b5b0b925eb5e657415a704a0e5a9" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>set_stiffness</name></member>
+      <member refid="classtarte_1_1_single_reed_1a01c36cd6cb9420182b7905f57bdb06a1" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>set_surface</name></member>
+      <member refid="classtarte_1_1_single_reed_1aaef78ef438118e987cd4c458306268a0" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>set_width</name></member>
+      <member refid="classtarte_1_1_single_reed_1ae821205ee307e5c6a9933f66ab4ec53c" prot="public" virt="non-virtual"><scope>tarte::SingleReed</scope><name>SingleReed</name></member>
+      <member refid="classtarte_1_1_single_reed_1a976e4a9597dfd9f2cbd9a32fa4c70d32" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>smoothed_is_opened_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a99fa0a3ab8779979c2b6c3fb27e97611" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>sr_</name></member>
+      <member refid="classtarte_1_1_single_reed_1abc2e9aabff4aab9d30e7e6700e6bf72a" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>stiffness_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a9344bf4a2db492f5239760ca42a7677c" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>stored_power_</name></member>
+      <member refid="classtarte_1_1_single_reed_1aeea52fdc5c370110abc3da2909a36f8b" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>stored_power_kinetic_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a5baf1d46464d3c2dfaed8fb0a5506ea9" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>stored_power_potential_</name></member>
+      <member refid="classtarte_1_1_single_reed_1a6f175bf3c8cecce311200f14767912e3" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>surface_</name></member>
+      <member refid="classtarte_1_1_single_reed_1afb5630fb657683a55fee529d8b5fc942" prot="private" virt="non-virtual"><scope>tarte::SingleReed</scope><name>width_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

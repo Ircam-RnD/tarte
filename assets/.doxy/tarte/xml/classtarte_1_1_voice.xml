@@ -1,0 +1,1057 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="classtarte_1_1_voice" kind="class" language="C++" prot="public">
+    <compoundname>tarte::Voice</compoundname>
+    <templateparamlist>
+      <param>
+        <type><ref refid="concept_v_f_pair_model" kindref="compound">VFPairModel</ref></type>
+        <declname>vf_pair</declname>
+        <defname>vf_pair</defname>
+      </param>
+      <param>
+        <type>typename ftype</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a6d5620f3cc335f907c54b990777b4ced" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; vf_pair &gt;</type>
+        <definition>std::shared_ptr&lt;vf_pair&gt; tarte::Voice&lt; vf_pair, ftype &gt;::vfs_</definition>
+        <argsstring></argsstring>
+        <name>vfs_</name>
+        <qualifiedname>tarte::Voice::vfs_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="25" column="21" bodyfile="include/voice.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a26d932382a950f42cfd555a9eff1e5f3" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt;ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::effective_surfaces_Psub_</definition>
+        <argsstring></argsstring>
+        <name>effective_surfaces_Psub_</name>
+        <qualifiedname>tarte::Voice::effective_surfaces_Psub_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="28" column="19" bodyfile="include/voice.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1aee4ec46b6424b1afa340d5c1f3f23ec3" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt;ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::effective_surfaces_Psup_</definition>
+        <argsstring></argsstring>
+        <name>effective_surfaces_Psup_</name>
+        <qualifiedname>tarte::Voice::effective_surfaces_Psup_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="28" column="44" bodyfile="include/voice.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1ad7a3973e78da65c6994c0f8c913adb27" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt;ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::g_sav_</definition>
+        <argsstring></argsstring>
+        <name>g_sav_</name>
+        <qualifiedname>tarte::Voice::g_sav_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="30" column="19" bodyfile="include/voice.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1ae989a8a55b306995d8ee1979fa5e3572" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt;ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::Fnl_</definition>
+        <argsstring></argsstring>
+        <name>Fnl_</name>
+        <qualifiedname>tarte::Voice::Fnl_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="30" column="26" bodyfile="include/voice.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1aea1023e1fb88df88eac423266474ea45" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::Enl_</definition>
+        <argsstring></argsstring>
+        <name>Enl_</name>
+        <qualifiedname>tarte::Voice::Enl_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="31" column="11" bodyfile="include/voice.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1af29b0c7f8cc3e0b1f6581515177b0315" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::epsilon_sav_</definition>
+        <argsstring></argsstring>
+        <name>epsilon_sav_</name>
+        <qualifiedname>tarte::Voice::epsilon_sav_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="31" column="16" bodyfile="include/voice.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a3ec0747b0c919098b07b9b5956b62dfa" prot="private" static="no" mutable="no">
+        <type>bool const</type>
+        <definition>bool const tarte::Voice&lt; vf_pair, ftype &gt;::control_term_</definition>
+        <argsstring></argsstring>
+        <name>control_term_</name>
+        <qualifiedname>tarte::Voice::control_term_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="32" column="16" bodyfile="include/voice.h" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1ad8968bedc4ba5defe7a9fc1c09d86830" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::lambda_sav_</definition>
+        <argsstring></argsstring>
+        <name>lambda_sav_</name>
+        <qualifiedname>tarte::Voice::lambda_sav_</qualifiedname>
+        <initializer>{10}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="33" column="11" bodyfile="include/voice.h" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1aa9362356eff3d7458419ae5c6ac580a6" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::mean_flow_</definition>
+        <argsstring></argsstring>
+        <name>mean_flow_</name>
+        <qualifiedname>tarte::Voice::mean_flow_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="36" column="11" bodyfile="include/voice.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1abb5306aa815abd017ccae044f5b53cf6" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::Rk_</definition>
+        <argsstring></argsstring>
+        <name>Rk_</name>
+        <qualifiedname>tarte::Voice::Rk_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="36" column="22" bodyfile="include/voice.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a132d3a008b14dce1bdc2bf6632ded366" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::a_resonator_</definition>
+        <argsstring></argsstring>
+        <name>a_resonator_</name>
+        <qualifiedname>tarte::Voice::a_resonator_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="38" column="11" bodyfile="include/voice.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a91e9527b6df13dd8c68755edaa6fdd87" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::b_resonator_</definition>
+        <argsstring></argsstring>
+        <name>b_resonator_</name>
+        <qualifiedname>tarte::Voice::b_resonator_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="38" column="24" bodyfile="include/voice.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1aa20b42276fb027b8cf1a59d5652dfb0a" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::C0_feedback_</definition>
+        <argsstring></argsstring>
+        <name>C0_feedback_</name>
+        <qualifiedname>tarte::Voice::C0_feedback_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="39" column="11" bodyfile="include/voice.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a9b1f3d113f4336dc532cf5a499863785" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 6 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 6&gt; tarte::Voice&lt; vf_pair, ftype &gt;::C1_feedback_</definition>
+        <argsstring></argsstring>
+        <name>C1_feedback_</name>
+        <qualifiedname>tarte::Voice::C1_feedback_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="40" column="19" bodyfile="include/voice.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1ac8a7e228338edd1faad59970e612f262" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::A0_inv_</definition>
+        <argsstring></argsstring>
+        <name>A0_inv_</name>
+        <qualifiedname>tarte::Voice::A0_inv_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="42" column="11" bodyfile="include/voice.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a588fe1f800892919e7907b304d68617d" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt;ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::KOp_result_</definition>
+        <argsstring></argsstring>
+        <name>KOp_result_</name>
+        <qualifiedname>tarte::Voice::KOp_result_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="43" column="19" bodyfile="include/voice.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a80139f28974f69ce52251c086fe66aab" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt;ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::ROp_result_</definition>
+        <argsstring></argsstring>
+        <name>ROp_result_</name>
+        <qualifiedname>tarte::Voice::ROp_result_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="44" column="19" bodyfile="include/voice.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a3ec921e06a1ea867e2b66082da7ab490" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt;ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::rhs_</definition>
+        <argsstring></argsstring>
+        <name>rhs_</name>
+        <qualifiedname>tarte::Voice::rhs_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="45" column="19" bodyfile="include/voice.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a228f0d67fe313f3ac50e1917901035b7" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix&lt; ftype, 2, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Matrix&lt;ftype, 2, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::v_woodburry_</definition>
+        <argsstring></argsstring>
+        <name>v_woodburry_</name>
+        <qualifiedname>tarte::Voice::v_woodburry_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="46" column="19" bodyfile="include/voice.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1af15d507c9064c4bde2e1dbe65f831349" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix&lt; ftype, vf_pair::get_N(), 2 &gt;</type>
+        <definition>Eigen::Matrix&lt;ftype, vf_pair::get_N(), 2&gt; tarte::Voice&lt; vf_pair, ftype &gt;::u_woodburry_</definition>
+        <argsstring></argsstring>
+        <name>u_woodburry_</name>
+        <qualifiedname>tarte::Voice::u_woodburry_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="47" column="19" bodyfile="include/voice.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a76bdaa7134511315d201a19dab677cd5" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix&lt; ftype, 2, 2 &gt;</type>
+        <definition>Eigen::Matrix&lt;ftype, 2, 2&gt; tarte::Voice&lt; vf_pair, ftype &gt;::woodburry_inv_</definition>
+        <argsstring></argsstring>
+        <name>woodburry_inv_</name>
+        <qualifiedname>tarte::Voice::woodburry_inv_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="48" column="19" bodyfile="include/voice.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a9b0070a1f5fbcd482062c39ba0ff8da7" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt;ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::Minv_p_</definition>
+        <argsstring></argsstring>
+        <name>Minv_p_</name>
+        <qualifiedname>tarte::Voice::Minv_p_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="49" column="19" bodyfile="include/voice.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a484eac777b703efed8652c37915b366a" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix&lt; ftype, 2, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Matrix&lt;ftype, 2, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::p_</definition>
+        <argsstring></argsstring>
+        <name>p_</name>
+        <qualifiedname>tarte::Voice::p_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="52" column="19" bodyfile="include/voice.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a83c2fed2142f2fc3f564ecfbc3ed657f" prot="private" static="no" mutable="no">
+        <type>Eigen::Matrix&lt; ftype, 2, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Matrix&lt;ftype, 2, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::q_</definition>
+        <argsstring></argsstring>
+        <name>q_</name>
+        <qualifiedname>tarte::Voice::q_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="52" column="22" bodyfile="include/voice.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a3324b9ff3e857d3db629433de9e1fecb" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt;ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::pmid_</definition>
+        <argsstring></argsstring>
+        <name>pmid_</name>
+        <qualifiedname>tarte::Voice::pmid_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="53" column="19" bodyfile="include/voice.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a48931ffcc9b2fda5704ccb59e8b2a456" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt;ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::qmid_</definition>
+        <argsstring></argsstring>
+        <name>qmid_</name>
+        <qualifiedname>tarte::Voice::qmid_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="53" column="25" bodyfile="include/voice.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1adaf146494693c872a32da9f09172a320" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::Voice&lt; vf_pair, ftype &gt;::r_</definition>
+        <argsstring></argsstring>
+        <name>r_</name>
+        <qualifiedname>tarte::Voice::r_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="54" column="19" bodyfile="include/voice.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a1c889132cf3d324b1579fd8686bf5780" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t tarte::Voice&lt; vf_pair, ftype &gt;::idx_now_</definition>
+        <argsstring></argsstring>
+        <name>idx_now_</name>
+        <qualifiedname>tarte::Voice::idx_now_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="55" column="17" bodyfile="include/voice.h" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a5b0c7fa7025687d674d854a11ac5df39" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t tarte::Voice&lt; vf_pair, ftype &gt;::idx_next_</definition>
+        <argsstring></argsstring>
+        <name>idx_next_</name>
+        <qualifiedname>tarte::Voice::idx_next_</qualifiedname>
+        <initializer>{1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="55" column="26" bodyfile="include/voice.h" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a4f875d04d57a980ffb6e4cea0018a3b1" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::Voice&lt; vf_pair, ftype &gt;::Psub_</definition>
+        <argsstring></argsstring>
+        <name>Psub_</name>
+        <qualifiedname>tarte::Voice::Psub_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="57" column="19" bodyfile="include/voice.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1ab2daef2fe878067585185b218415cfb9" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::Voice&lt; vf_pair, ftype &gt;::Psub_centered_</definition>
+        <argsstring></argsstring>
+        <name>Psub_centered_</name>
+        <qualifiedname>tarte::Voice::Psub_centered_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="57" column="25" bodyfile="include/voice.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a53ebf208f04bbef67f14ede22d90a621" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::Psup_</definition>
+        <argsstring></argsstring>
+        <name>Psup_</name>
+        <qualifiedname>tarte::Voice::Psup_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="58" column="11" bodyfile="include/voice.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a52f6e87a08110da218f4c57bb0c8b441" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tarte::Voice&lt; vf_pair, ftype &gt;::compute_powers_</definition>
+        <argsstring></argsstring>
+        <name>compute_powers_</name>
+        <qualifiedname>tarte::Voice::compute_powers_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="61" column="10" bodyfile="include/voice.h" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1aa1c5f667ef12c0c1153e630507bac211" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::Voice&lt; vf_pair, ftype &gt;::kinetic_energy_</definition>
+        <argsstring></argsstring>
+        <name>kinetic_energy_</name>
+        <qualifiedname>tarte::Voice::kinetic_energy_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="62" column="19" bodyfile="include/voice.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a875dc1fa8fa333a33cedc00ce80e3b0e" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; ftype, 2 &gt;</type>
+        <definition>Eigen::Vector&lt;ftype, 2&gt; tarte::Voice&lt; vf_pair, ftype &gt;::potential_energy_</definition>
+        <argsstring></argsstring>
+        <name>potential_energy_</name>
+        <qualifiedname>tarte::Voice::potential_energy_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="62" column="35" bodyfile="include/voice.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a7b2e0989be92aa12a5e7b7ddb688caef" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::dissipated_power_</definition>
+        <argsstring></argsstring>
+        <name>dissipated_power_</name>
+        <qualifiedname>tarte::Voice::dissipated_power_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="63" column="11" bodyfile="include/voice.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1ac42d6407386e63c5b4b0b0c335f3e325" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::dissipated_power_flow_</definition>
+        <argsstring></argsstring>
+        <name>dissipated_power_flow_</name>
+        <qualifiedname>tarte::Voice::dissipated_power_flow_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="63" column="29" bodyfile="include/voice.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a69f74635f0fa3d07d0106e28327b112b" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::dissipated_power_folds_</definition>
+        <argsstring></argsstring>
+        <name>dissipated_power_folds_</name>
+        <qualifiedname>tarte::Voice::dissipated_power_folds_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="63" column="52" bodyfile="include/voice.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1ad8672c8ebd8aa529e2b3e2a02e5f8cfc" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::external_power_</definition>
+        <argsstring></argsstring>
+        <name>external_power_</name>
+        <qualifiedname>tarte::Voice::external_power_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="64" column="11" bodyfile="include/voice.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a5e224020ff29555c7d69972338eacf2c" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::external_power_sub_</definition>
+        <argsstring></argsstring>
+        <name>external_power_sub_</name>
+        <qualifiedname>tarte::Voice::external_power_sub_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="64" column="27" bodyfile="include/voice.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a7c813a73c4166922214819707f363b82" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::external_power_sup_</definition>
+        <argsstring></argsstring>
+        <name>external_power_sup_</name>
+        <qualifiedname>tarte::Voice::external_power_sup_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="64" column="47" bodyfile="include/voice.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a5020818a68f69f9e4022c20c75f68270" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::stored_power_</definition>
+        <argsstring></argsstring>
+        <name>stored_power_</name>
+        <qualifiedname>tarte::Voice::stored_power_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="65" column="11" bodyfile="include/voice.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a9c8e3120c074a0372ea09fec901656b4" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::stored_power_potential_</definition>
+        <argsstring></argsstring>
+        <name>stored_power_potential_</name>
+        <qualifiedname>tarte::Voice::stored_power_potential_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="65" column="25" bodyfile="include/voice.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1ac7bd2890b060cbe573fa806af2930d3b" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::stored_power_kinetic_</definition>
+        <argsstring></argsstring>
+        <name>stored_power_kinetic_</name>
+        <qualifiedname>tarte::Voice::stored_power_kinetic_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="65" column="49" bodyfile="include/voice.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1ac44122f78f0ea7f19e99fff6385cd3f9" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::sub_glottal_flow</definition>
+        <argsstring></argsstring>
+        <name>sub_glottal_flow</name>
+        <qualifiedname>tarte::Voice::sub_glottal_flow</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="68" column="11" bodyfile="include/voice.h" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a8ca6a7dc87aa7c8801d783822a11ff4c" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::sup_glottal_flow</definition>
+        <argsstring></argsstring>
+        <name>sup_glottal_flow</name>
+        <qualifiedname>tarte::Voice::sup_glottal_flow</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="68" column="28" bodyfile="include/voice.h" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a900aeb1045a7b2d2eee599fba075fb8b" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classtarte_1_1_webster_f_d_t_d" kindref="compound">WebsterFDTD</ref>&lt; ftype &gt; &gt;</type>
+        <definition>std::shared_ptr&lt;WebsterFDTD&lt;ftype&gt; &gt; tarte::Voice&lt; vf_pair, ftype &gt;::resonator_</definition>
+        <argsstring></argsstring>
+        <name>resonator_</name>
+        <qualifiedname>tarte::Voice::resonator_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="69" column="21" bodyfile="include/voice.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a3d9578c8661b05fb943aaf2dca700927" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::sr_</definition>
+        <argsstring></argsstring>
+        <name>sr_</name>
+        <qualifiedname>tarte::Voice::sr_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="72" column="11" bodyfile="include/voice.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_voice_1a124359a095be54bf18f62aae85649ab3" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::dt_</definition>
+        <argsstring></argsstring>
+        <name>dt_</name>
+        <qualifiedname>tarte::Voice::dt_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="72" column="15" bodyfile="include/voice.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtarte_1_1_voice_1ac026945ac1384cb2ae6d421a7296a70c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Voice&lt; vf_pair, ftype &gt;::ComputeNonlinearDissipationCoefficient</definition>
+        <argsstring>()</argsstring>
+        <name>ComputeNonlinearDissipationCoefficient</name>
+        <qualifiedname>tarte::Voice::ComputeNonlinearDissipationCoefficient</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="75" column="10" bodyfile="src/voice.cpp" bodystart="56" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a6632be576eba5f86e69c612f172d6e86" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Voice&lt; vf_pair, ftype &gt;::ComputeSavVector</definition>
+        <argsstring>()</argsstring>
+        <name>ComputeSavVector</name>
+        <qualifiedname>tarte::Voice::ComputeSavVector</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="76" column="10" bodyfile="src/voice.cpp" bodystart="63" bodyend="82"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtarte_1_1_voice_1ad5d0ac71f1c2ed666b55a53768691c8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tarte::Voice&lt; vf_pair, ftype &gt;::Voice</definition>
+        <argsstring>(ftype samplerate, bool yielding_walls=false)</argsstring>
+        <name>Voice</name>
+        <qualifiedname>tarte::Voice::Voice</qualifiedname>
+        <param>
+          <type>ftype</type>
+          <declname>samplerate</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>yielding_walls</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="79" column="5" bodyfile="src/voice.cpp" bodystart="6" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a09a64d1149ae7bd94095e1bfca6022e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Voice&lt; vf_pair, ftype &gt;::DspSetup</definition>
+        <argsstring>(ftype sampleRate, Articulation *art=nullptr)</argsstring>
+        <name>DspSetup</name>
+        <qualifiedname>tarte::Voice::DspSetup</qualifiedname>
+        <param>
+          <type>ftype</type>
+          <declname>sampleRate</declname>
+        </param>
+        <param>
+          <type><ref refid="classtarte_1_1_articulation" kindref="compound">Articulation</ref> *</type>
+          <declname>art</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="80" column="10" bodyfile="src/voice.cpp" bodystart="33" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1ac73b0258b928c33f690abb4e79e47924" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Voice&lt; vf_pair, ftype &gt;::Process</definition>
+        <argsstring>(ftype Pin, ftype Q_chirp=0)</argsstring>
+        <name>Process</name>
+        <qualifiedname>tarte::Voice::Process</qualifiedname>
+        <param>
+          <type>ftype</type>
+          <declname>Pin</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>Q_chirp</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="82" column="10" bodyfile="src/voice.cpp" bodystart="85" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a6f4a42bbf5c0fadcc800e282236597f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt;</type>
+        <definition>Eigen::Vector&lt; ftype, vf_pair::get_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::ReadFoldsDisplacement</definition>
+        <argsstring>()</argsstring>
+        <name>ReadFoldsDisplacement</name>
+        <qualifiedname>tarte::Voice::ReadFoldsDisplacement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="85" column="26" bodyfile="include/voice.h" bodystart="85" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a357d8e0587e2dbaf4feda8d650f70f09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::Vector&lt; ftype, vf_pair::get_half_N()&gt;</type>
+        <definition>Eigen::Vector&lt; ftype, vf_pair::get_half_N()&gt; tarte::Voice&lt; vf_pair, ftype &gt;::ReadEffectiveOpenings</definition>
+        <argsstring>()</argsstring>
+        <name>ReadEffectiveOpenings</name>
+        <qualifiedname>tarte::Voice::ReadEffectiveOpenings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="91" column="26" bodyfile="include/voice.h" bodystart="91" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a43b49eed044085e1915fa9d23bdde169" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::ReadRadiatedPressure</definition>
+        <argsstring>()</argsstring>
+        <name>ReadRadiatedPressure</name>
+        <qualifiedname>tarte::Voice::ReadRadiatedPressure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="97" column="18" bodyfile="include/voice.h" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a793b0e34f57d2bdc76c4a8629ffcdbfd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::ReadEpsilonSav</definition>
+        <argsstring>()</argsstring>
+        <name>ReadEpsilonSav</name>
+        <qualifiedname>tarte::Voice::ReadEpsilonSav</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="99" column="18" bodyfile="include/voice.h" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a76bd918a1ace505ae9d80a51c800e1b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::ReadSupGlottalFlow</definition>
+        <argsstring>()</argsstring>
+        <name>ReadSupGlottalFlow</name>
+        <qualifiedname>tarte::Voice::ReadSupGlottalFlow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="102" column="18" bodyfile="include/voice.h" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a95ceda50fa5b8b4389272a42e9a4343a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::ReadMeanGlottalFlow</definition>
+        <argsstring>()</argsstring>
+        <name>ReadMeanGlottalFlow</name>
+        <qualifiedname>tarte::Voice::ReadMeanGlottalFlow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="103" column="18" bodyfile="include/voice.h" bodystart="103" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a8f29e1cede26a1187323a06971955b91" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::ReadPressureDrop</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPressureDrop</name>
+        <qualifiedname>tarte::Voice::ReadPressureDrop</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="104" column="18" bodyfile="include/voice.h" bodystart="104" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a76590309a322d63476c1051a69fd7384" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classtarte_1_1_webster_f_d_t_d" kindref="compound">WebsterFDTD</ref>&lt; ftype &gt; &gt;</type>
+        <definition>std::shared_ptr&lt; WebsterFDTD&lt; ftype &gt; &gt; tarte::Voice&lt; vf_pair, ftype &gt;::get_resonator</definition>
+        <argsstring>()</argsstring>
+        <name>get_resonator</name>
+        <qualifiedname>tarte::Voice::get_resonator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="106" column="21" bodyfile="include/voice.h" bodystart="106" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a8d1549e2b6ef3023947479e99b63cffc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::shared_ptr&lt; vf_pair &gt;</type>
+        <definition>std::shared_ptr&lt; vf_pair &gt; tarte::Voice&lt; vf_pair, ftype &gt;::get_vocal_folds</definition>
+        <argsstring>()</argsstring>
+        <name>get_vocal_folds</name>
+        <qualifiedname>tarte::Voice::get_vocal_folds</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="107" column="21" bodyfile="include/voice.h" bodystart="107" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1a877c91cb8ee0cf645c9747049e627b31" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Voice&lt; vf_pair, ftype &gt;::set_lambda_sav</definition>
+        <argsstring>(const ftype &amp;lambda_sav)</argsstring>
+        <name>set_lambda_sav</name>
+        <qualifiedname>tarte::Voice::set_lambda_sav</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>lambda_sav</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="109" column="10" bodyfile="include/voice.h" bodystart="109" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_voice_1aecda9e5ca88e230686c14a488034f090" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::Voice&lt; vf_pair, ftype &gt;::get_lambda_sav</definition>
+        <argsstring>()</argsstring>
+        <name>get_lambda_sav</name>
+        <qualifiedname>tarte::Voice::get_lambda_sav</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/voice.h" line="110" column="18" bodyfile="include/voice.h" bodystart="110" bodyend="110"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/voice.h" line="22" column="1" bodyfile="include/voice.h" bodystart="22" bodyend="111"/>
+    <listofallmembers>
+      <member refid="classtarte_1_1_voice_1ac8a7e228338edd1faad59970e612f262" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>A0_inv_</name></member>
+      <member refid="classtarte_1_1_voice_1a132d3a008b14dce1bdc2bf6632ded366" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>a_resonator_</name></member>
+      <member refid="classtarte_1_1_voice_1a91e9527b6df13dd8c68755edaa6fdd87" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>b_resonator_</name></member>
+      <member refid="classtarte_1_1_voice_1aa20b42276fb027b8cf1a59d5652dfb0a" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>C0_feedback_</name></member>
+      <member refid="classtarte_1_1_voice_1a9b1f3d113f4336dc532cf5a499863785" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>C1_feedback_</name></member>
+      <member refid="classtarte_1_1_voice_1a52f6e87a08110da218f4c57bb0c8b441" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>compute_powers_</name></member>
+      <member refid="classtarte_1_1_voice_1ac026945ac1384cb2ae6d421a7296a70c" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>ComputeNonlinearDissipationCoefficient</name></member>
+      <member refid="classtarte_1_1_voice_1a6632be576eba5f86e69c612f172d6e86" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>ComputeSavVector</name></member>
+      <member refid="classtarte_1_1_voice_1a3ec0747b0c919098b07b9b5956b62dfa" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>control_term_</name></member>
+      <member refid="classtarte_1_1_voice_1a7b2e0989be92aa12a5e7b7ddb688caef" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>dissipated_power_</name></member>
+      <member refid="classtarte_1_1_voice_1ac42d6407386e63c5b4b0b0c335f3e325" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>dissipated_power_flow_</name></member>
+      <member refid="classtarte_1_1_voice_1a69f74635f0fa3d07d0106e28327b112b" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>dissipated_power_folds_</name></member>
+      <member refid="classtarte_1_1_voice_1a09a64d1149ae7bd94095e1bfca6022e9" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>DspSetup</name></member>
+      <member refid="classtarte_1_1_voice_1a124359a095be54bf18f62aae85649ab3" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>dt_</name></member>
+      <member refid="classtarte_1_1_voice_1a26d932382a950f42cfd555a9eff1e5f3" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>effective_surfaces_Psub_</name></member>
+      <member refid="classtarte_1_1_voice_1aee4ec46b6424b1afa340d5c1f3f23ec3" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>effective_surfaces_Psup_</name></member>
+      <member refid="classtarte_1_1_voice_1aea1023e1fb88df88eac423266474ea45" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>Enl_</name></member>
+      <member refid="classtarte_1_1_voice_1af29b0c7f8cc3e0b1f6581515177b0315" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>epsilon_sav_</name></member>
+      <member refid="classtarte_1_1_voice_1ad8672c8ebd8aa529e2b3e2a02e5f8cfc" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>external_power_</name></member>
+      <member refid="classtarte_1_1_voice_1a5e224020ff29555c7d69972338eacf2c" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>external_power_sub_</name></member>
+      <member refid="classtarte_1_1_voice_1a7c813a73c4166922214819707f363b82" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>external_power_sup_</name></member>
+      <member refid="classtarte_1_1_voice_1ae989a8a55b306995d8ee1979fa5e3572" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>Fnl_</name></member>
+      <member refid="classtarte_1_1_voice_1ad7a3973e78da65c6994c0f8c913adb27" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>g_sav_</name></member>
+      <member refid="classtarte_1_1_voice_1aecda9e5ca88e230686c14a488034f090" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>get_lambda_sav</name></member>
+      <member refid="classtarte_1_1_voice_1a76590309a322d63476c1051a69fd7384" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>get_resonator</name></member>
+      <member refid="classtarte_1_1_voice_1a8d1549e2b6ef3023947479e99b63cffc" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>get_vocal_folds</name></member>
+      <member refid="classtarte_1_1_voice_1a5b0c7fa7025687d674d854a11ac5df39" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>idx_next_</name></member>
+      <member refid="classtarte_1_1_voice_1a1c889132cf3d324b1579fd8686bf5780" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>idx_now_</name></member>
+      <member refid="classtarte_1_1_voice_1aa1c5f667ef12c0c1153e630507bac211" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>kinetic_energy_</name></member>
+      <member refid="classtarte_1_1_voice_1a588fe1f800892919e7907b304d68617d" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>KOp_result_</name></member>
+      <member refid="classtarte_1_1_voice_1ad8968bedc4ba5defe7a9fc1c09d86830" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>lambda_sav_</name></member>
+      <member refid="classtarte_1_1_voice_1aa9362356eff3d7458419ae5c6ac580a6" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>mean_flow_</name></member>
+      <member refid="classtarte_1_1_voice_1a9b0070a1f5fbcd482062c39ba0ff8da7" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>Minv_p_</name></member>
+      <member refid="classtarte_1_1_voice_1a484eac777b703efed8652c37915b366a" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>p_</name></member>
+      <member refid="classtarte_1_1_voice_1a3324b9ff3e857d3db629433de9e1fecb" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>pmid_</name></member>
+      <member refid="classtarte_1_1_voice_1a875dc1fa8fa333a33cedc00ce80e3b0e" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>potential_energy_</name></member>
+      <member refid="classtarte_1_1_voice_1ac73b0258b928c33f690abb4e79e47924" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>Process</name></member>
+      <member refid="classtarte_1_1_voice_1a4f875d04d57a980ffb6e4cea0018a3b1" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>Psub_</name></member>
+      <member refid="classtarte_1_1_voice_1ab2daef2fe878067585185b218415cfb9" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>Psub_centered_</name></member>
+      <member refid="classtarte_1_1_voice_1a53ebf208f04bbef67f14ede22d90a621" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>Psup_</name></member>
+      <member refid="classtarte_1_1_voice_1a83c2fed2142f2fc3f564ecfbc3ed657f" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>q_</name></member>
+      <member refid="classtarte_1_1_voice_1a48931ffcc9b2fda5704ccb59e8b2a456" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>qmid_</name></member>
+      <member refid="classtarte_1_1_voice_1adaf146494693c872a32da9f09172a320" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>r_</name></member>
+      <member refid="classtarte_1_1_voice_1a357d8e0587e2dbaf4feda8d650f70f09" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>ReadEffectiveOpenings</name></member>
+      <member refid="classtarte_1_1_voice_1a793b0e34f57d2bdc76c4a8629ffcdbfd" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>ReadEpsilonSav</name></member>
+      <member refid="classtarte_1_1_voice_1a6f4a42bbf5c0fadcc800e282236597f8" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>ReadFoldsDisplacement</name></member>
+      <member refid="classtarte_1_1_voice_1a95ceda50fa5b8b4389272a42e9a4343a" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>ReadMeanGlottalFlow</name></member>
+      <member refid="classtarte_1_1_voice_1a8f29e1cede26a1187323a06971955b91" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>ReadPressureDrop</name></member>
+      <member refid="classtarte_1_1_voice_1a43b49eed044085e1915fa9d23bdde169" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>ReadRadiatedPressure</name></member>
+      <member refid="classtarte_1_1_voice_1a76bd918a1ace505ae9d80a51c800e1b4" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>ReadSupGlottalFlow</name></member>
+      <member refid="classtarte_1_1_voice_1a900aeb1045a7b2d2eee599fba075fb8b" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>resonator_</name></member>
+      <member refid="classtarte_1_1_voice_1a3ec921e06a1ea867e2b66082da7ab490" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>rhs_</name></member>
+      <member refid="classtarte_1_1_voice_1abb5306aa815abd017ccae044f5b53cf6" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>Rk_</name></member>
+      <member refid="classtarte_1_1_voice_1a80139f28974f69ce52251c086fe66aab" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>ROp_result_</name></member>
+      <member refid="classtarte_1_1_voice_1a877c91cb8ee0cf645c9747049e627b31" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>set_lambda_sav</name></member>
+      <member refid="classtarte_1_1_voice_1a3d9578c8661b05fb943aaf2dca700927" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>sr_</name></member>
+      <member refid="classtarte_1_1_voice_1a5020818a68f69f9e4022c20c75f68270" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>stored_power_</name></member>
+      <member refid="classtarte_1_1_voice_1ac7bd2890b060cbe573fa806af2930d3b" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>stored_power_kinetic_</name></member>
+      <member refid="classtarte_1_1_voice_1a9c8e3120c074a0372ea09fec901656b4" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>stored_power_potential_</name></member>
+      <member refid="classtarte_1_1_voice_1ac44122f78f0ea7f19e99fff6385cd3f9" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>sub_glottal_flow</name></member>
+      <member refid="classtarte_1_1_voice_1a8ca6a7dc87aa7c8801d783822a11ff4c" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>sup_glottal_flow</name></member>
+      <member refid="classtarte_1_1_voice_1af15d507c9064c4bde2e1dbe65f831349" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>u_woodburry_</name></member>
+      <member refid="classtarte_1_1_voice_1a228f0d67fe313f3ac50e1917901035b7" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>v_woodburry_</name></member>
+      <member refid="classtarte_1_1_voice_1a6d5620f3cc335f907c54b990777b4ced" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>vfs_</name></member>
+      <member refid="classtarte_1_1_voice_1ad5d0ac71f1c2ed666b55a53768691c8a" prot="public" virt="non-virtual"><scope>tarte::Voice</scope><name>Voice</name></member>
+      <member refid="classtarte_1_1_voice_1a76bdaa7134511315d201a19dab677cd5" prot="private" virt="non-virtual"><scope>tarte::Voice</scope><name>woodburry_inv_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

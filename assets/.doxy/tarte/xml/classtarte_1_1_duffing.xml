@@ -1,0 +1,686 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="classtarte_1_1_duffing" kind="class" language="C++" prot="public">
+    <compoundname>tarte::Duffing</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1ad5c99c77833ecc951e3fa98131fce130" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::kNumEps</definition>
+        <argsstring></argsstring>
+        <name>kNumEps</name>
+        <qualifiedname>tarte::Duffing::kNumEps</qualifiedname>
+        <initializer>{1e-14}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="16" column="24" bodyfile="include/duffing.h" bodystart="16" bodyend="16"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a92fe64d100853cc429eaa5c65e0aa384" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::mass_</definition>
+        <argsstring></argsstring>
+        <name>mass_</name>
+        <qualifiedname>tarte::Duffing::mass_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="19" column="7" bodyfile="include/duffing.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a70cecf988aa2e79df7277a7844adf25b" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::stiffness_</definition>
+        <argsstring></argsstring>
+        <name>stiffness_</name>
+        <qualifiedname>tarte::Duffing::stiffness_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="19" column="13" bodyfile="include/duffing.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1aeff69ea2e991be45bb7d428eabb8f878" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::dissipation_</definition>
+        <argsstring></argsstring>
+        <name>dissipation_</name>
+        <qualifiedname>tarte::Duffing::dissipation_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="19" column="24" bodyfile="include/duffing.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a0239373595813fe397fe7fa2a01adc94" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::amplitude_</definition>
+        <argsstring></argsstring>
+        <name>amplitude_</name>
+        <qualifiedname>tarte::Duffing::amplitude_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="21" column="7" bodyfile="include/duffing.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1aa450dabb809b1eed2a2bd37c1473af15" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::pulsation_</definition>
+        <argsstring></argsstring>
+        <name>pulsation_</name>
+        <qualifiedname>tarte::Duffing::pulsation_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="21" column="18" bodyfile="include/duffing.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a0879f33b583cf0119e7436f5c7c87ad7" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::decay_time_</definition>
+        <argsstring></argsstring>
+        <name>decay_time_</name>
+        <qualifiedname>tarte::Duffing::decay_time_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="21" column="29" bodyfile="include/duffing.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a49e7f01b16a4ec4975b60943d31ed015" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::eta_</definition>
+        <argsstring></argsstring>
+        <name>eta_</name>
+        <qualifiedname>tarte::Duffing::eta_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="24" column="7" bodyfile="include/duffing.h" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a4d1c5465042b69bcecfacf142310aa12" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::sr_</definition>
+        <argsstring></argsstring>
+        <name>sr_</name>
+        <qualifiedname>tarte::Duffing::sr_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="27" column="7" bodyfile="include/duffing.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a567766e6eff73973e5ac43bc246712dd" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::dt_</definition>
+        <argsstring></argsstring>
+        <name>dt_</name>
+        <qualifiedname>tarte::Duffing::dt_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="28" column="7" bodyfile="include/duffing.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1aa943a31b23db66dbb2a67729103189df" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tarte::Duffing&lt; T &gt;::ctrl_term_</definition>
+        <argsstring></argsstring>
+        <name>ctrl_term_</name>
+        <qualifiedname>tarte::Duffing::ctrl_term_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="29" column="10" bodyfile="include/duffing.h" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a155fd7aa3c5fa84bc9bcf148c01d2bdb" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::lambda_ctrl_</definition>
+        <argsstring></argsstring>
+        <name>lambda_ctrl_</name>
+        <qualifiedname>tarte::Duffing::lambda_ctrl_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="30" column="7" bodyfile="include/duffing.h" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a05ea35ca803778bbb09ab60a7ba860f0" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::q_last_</definition>
+        <argsstring></argsstring>
+        <name>q_last_</name>
+        <qualifiedname>tarte::Duffing::q_last_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="33" column="7" bodyfile="include/duffing.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1aad254c846f4867b32001e55c897238d4" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::q_now_</definition>
+        <argsstring></argsstring>
+        <name>q_now_</name>
+        <qualifiedname>tarte::Duffing::q_now_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="33" column="15" bodyfile="include/duffing.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a5e6f57843c37e2cc1052f71ed0cd9ad7" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::q_next_</definition>
+        <argsstring></argsstring>
+        <name>q_next_</name>
+        <qualifiedname>tarte::Duffing::q_next_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="33" column="22" bodyfile="include/duffing.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1ab1166febefca65ef382e9c3b3f36da75" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::r_now_</definition>
+        <argsstring></argsstring>
+        <name>r_now_</name>
+        <qualifiedname>tarte::Duffing::r_now_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="34" column="7" bodyfile="include/duffing.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a693be04d393639dc87c7695bb430f40e" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::r_last_</definition>
+        <argsstring></argsstring>
+        <name>r_last_</name>
+        <qualifiedname>tarte::Duffing::r_last_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="34" column="14" bodyfile="include/duffing.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1aee956147d9f9df7646417eb6b3056634" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::rhs_</definition>
+        <argsstring></argsstring>
+        <name>rhs_</name>
+        <qualifiedname>tarte::Duffing::rhs_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="37" column="7" bodyfile="include/duffing.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a7e76986a04f19702f65f24f3d7456579" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::lhs_</definition>
+        <argsstring></argsstring>
+        <name>lhs_</name>
+        <qualifiedname>tarte::Duffing::lhs_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="37" column="12" bodyfile="include/duffing.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1aff3bae8dde1d87b2669d232cb836cb9e" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::g_</definition>
+        <argsstring></argsstring>
+        <name>g_</name>
+        <qualifiedname>tarte::Duffing::g_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="40" column="7" bodyfile="include/duffing.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1af4b236acd62a50155902db132cada94e" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::f_nl_</definition>
+        <argsstring></argsstring>
+        <name>f_nl_</name>
+        <qualifiedname>tarte::Duffing::f_nl_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="40" column="10" bodyfile="include/duffing.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a852bedadb7c32ecedb5f30b200ca1f46" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::E_nl_</definition>
+        <argsstring></argsstring>
+        <name>E_nl_</name>
+        <qualifiedname>tarte::Duffing::E_nl_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="41" column="7" bodyfile="include/duffing.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1ae53be655fb4d9cc45661f7d4c57150b3" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::epsilon_</definition>
+        <argsstring></argsstring>
+        <name>epsilon_</name>
+        <qualifiedname>tarte::Duffing::epsilon_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="44" column="7" bodyfile="include/duffing.h" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_duffing_1a2fe6b006ac759e66f2b688fb73835e78" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::max_E_nl_</definition>
+        <argsstring></argsstring>
+        <name>max_E_nl_</name>
+        <qualifiedname>tarte::Duffing::max_E_nl_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="44" column="16" bodyfile="include/duffing.h" bodystart="44" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a5e2f7b377e060da1f5dfa6136fe0cdd7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::ComputePhysicalParameters</definition>
+        <argsstring>()</argsstring>
+        <name>ComputePhysicalParameters</name>
+        <qualifiedname>tarte::Duffing::ComputePhysicalParameters</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="46" column="10" bodyfile="src/duffing.cpp" bodystart="68" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1aa8f9a4bb3aea080449ab2900cba31958" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::ComputeVAndVprime</definition>
+        <argsstring>(T q)</argsstring>
+        <name>ComputeVAndVprime</name>
+        <qualifiedname>tarte::Duffing::ComputeVAndVprime</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="48" column="10" bodyfile="src/duffing.cpp" bodystart="76" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a7213362ba6fcd3815d396597f6aa9fb3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::ComputeV</definition>
+        <argsstring>(T q)</argsstring>
+        <name>ComputeV</name>
+        <qualifiedname>tarte::Duffing::ComputeV</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>q</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="50" column="10" bodyfile="src/duffing.cpp" bodystart="83" bodyend="86"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a43c3770e979cbdf356f806152b4ff0ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tarte::Duffing&lt; T &gt;::Duffing</definition>
+        <argsstring>(float sample_rate)</argsstring>
+        <name>Duffing</name>
+        <qualifiedname>tarte::Duffing::Duffing</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>sample_rate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="53" column="5" bodyfile="src/duffing.cpp" bodystart="6" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a66eba44f6254c0e0647abde1745e8854" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::ReinitDsp</definition>
+        <argsstring>(float sample_rate)</argsstring>
+        <name>ReinitDsp</name>
+        <qualifiedname>tarte::Duffing::ReinitDsp</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>sample_rate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="55" column="10" bodyfile="src/duffing.cpp" bodystart="13" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a96adf93f30049dbe5d89c23d48568585" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::Process</definition>
+        <argsstring>(T input_force)</argsstring>
+        <name>Process</name>
+        <qualifiedname>tarte::Duffing::Process</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>input_force</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="57" column="10" bodyfile="src/duffing.cpp" bodystart="32" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a304470b29839658ded61bcbed06273bb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::ReadDisplacement</definition>
+        <argsstring>()</argsstring>
+        <name>ReadDisplacement</name>
+        <qualifiedname>tarte::Duffing::ReadDisplacement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="60" column="7" bodyfile="include/duffing.h" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a5afd326811672fa2c3591040c4770bf1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Duffing&lt; T &gt;::ReadVelocity</definition>
+        <argsstring>()</argsstring>
+        <name>ReadVelocity</name>
+        <qualifiedname>tarte::Duffing::ReadVelocity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="61" column="7" bodyfile="include/duffing.h" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1aeb9febf4ead98d3ba653577490386217" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::set_physical_parameters</definition>
+        <argsstring>(T mass, T stiffness, T dissipation, T eta_nl=0)</argsstring>
+        <name>set_physical_parameters</name>
+        <qualifiedname>tarte::Duffing::set_physical_parameters</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>mass</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>stiffness</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>dissipation</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>eta_nl</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="65" column="10" bodyfile="src/duffing.cpp" bodystart="90" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1af8dc0eefacb816f7ce3352d7aa1f2833" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::set_linear_parameters</definition>
+        <argsstring>(T amplitude, T pulsation, T decay_time)</argsstring>
+        <name>set_linear_parameters</name>
+        <qualifiedname>tarte::Duffing::set_linear_parameters</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>amplitude</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>pulsation</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>decay_time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="67" column="10" bodyfile="src/duffing.cpp" bodystart="99" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a13964295a677b0773fa3186986ca8132" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::set_amplitude</definition>
+        <argsstring>(T amplitude)</argsstring>
+        <name>set_amplitude</name>
+        <qualifiedname>tarte::Duffing::set_amplitude</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>amplitude</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="68" column="10" bodyfile="src/duffing.cpp" bodystart="109" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a90e6ee6ba1cd1fb5f93e7d9f40b62192" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::set_frequency</definition>
+        <argsstring>(T frequency)</argsstring>
+        <name>set_frequency</name>
+        <qualifiedname>tarte::Duffing::set_frequency</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>frequency</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="69" column="10" bodyfile="src/duffing.cpp" bodystart="116" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a17e75cae243d00553398becd1ffb830b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::set_decay_time</definition>
+        <argsstring>(T decay_time)</argsstring>
+        <name>set_decay_time</name>
+        <qualifiedname>tarte::Duffing::set_decay_time</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>decay_time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="70" column="10" bodyfile="src/duffing.cpp" bodystart="123" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1a78a5597f242810b96c4735d00894ccd6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::set_nonlinearity</definition>
+        <argsstring>(T eta)</argsstring>
+        <name>set_nonlinearity</name>
+        <qualifiedname>tarte::Duffing::set_nonlinearity</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>eta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="71" column="10" bodyfile="include/duffing.h" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_duffing_1accf7bd29eef66eafd08b02d76d31815f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Duffing&lt; T &gt;::set_lambda_ctrl</definition>
+        <argsstring>(T lambda_ctrl)</argsstring>
+        <name>set_lambda_ctrl</name>
+        <qualifiedname>tarte::Duffing::set_lambda_ctrl</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>lambda_ctrl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/duffing.h" line="73" column="10" bodyfile="include/duffing.h" bodystart="73" bodyend="73"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/duffing.h" line="13" column="1" bodyfile="include/duffing.h" bodystart="13" bodyend="74"/>
+    <listofallmembers>
+      <member refid="classtarte_1_1_duffing_1a0239373595813fe397fe7fa2a01adc94" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>amplitude_</name></member>
+      <member refid="classtarte_1_1_duffing_1a5e2f7b377e060da1f5dfa6136fe0cdd7" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>ComputePhysicalParameters</name></member>
+      <member refid="classtarte_1_1_duffing_1a7213362ba6fcd3815d396597f6aa9fb3" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>ComputeV</name></member>
+      <member refid="classtarte_1_1_duffing_1aa8f9a4bb3aea080449ab2900cba31958" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>ComputeVAndVprime</name></member>
+      <member refid="classtarte_1_1_duffing_1aa943a31b23db66dbb2a67729103189df" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>ctrl_term_</name></member>
+      <member refid="classtarte_1_1_duffing_1a0879f33b583cf0119e7436f5c7c87ad7" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>decay_time_</name></member>
+      <member refid="classtarte_1_1_duffing_1aeff69ea2e991be45bb7d428eabb8f878" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>dissipation_</name></member>
+      <member refid="classtarte_1_1_duffing_1a567766e6eff73973e5ac43bc246712dd" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>dt_</name></member>
+      <member refid="classtarte_1_1_duffing_1a43c3770e979cbdf356f806152b4ff0ff" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>Duffing</name></member>
+      <member refid="classtarte_1_1_duffing_1a852bedadb7c32ecedb5f30b200ca1f46" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>E_nl_</name></member>
+      <member refid="classtarte_1_1_duffing_1ae53be655fb4d9cc45661f7d4c57150b3" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>epsilon_</name></member>
+      <member refid="classtarte_1_1_duffing_1a49e7f01b16a4ec4975b60943d31ed015" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>eta_</name></member>
+      <member refid="classtarte_1_1_duffing_1af4b236acd62a50155902db132cada94e" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>f_nl_</name></member>
+      <member refid="classtarte_1_1_duffing_1aff3bae8dde1d87b2669d232cb836cb9e" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>g_</name></member>
+      <member refid="classtarte_1_1_duffing_1ad5c99c77833ecc951e3fa98131fce130" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>kNumEps</name></member>
+      <member refid="classtarte_1_1_duffing_1a155fd7aa3c5fa84bc9bcf148c01d2bdb" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>lambda_ctrl_</name></member>
+      <member refid="classtarte_1_1_duffing_1a7e76986a04f19702f65f24f3d7456579" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>lhs_</name></member>
+      <member refid="classtarte_1_1_duffing_1a92fe64d100853cc429eaa5c65e0aa384" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>mass_</name></member>
+      <member refid="classtarte_1_1_duffing_1a2fe6b006ac759e66f2b688fb73835e78" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>max_E_nl_</name></member>
+      <member refid="classtarte_1_1_duffing_1a96adf93f30049dbe5d89c23d48568585" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>Process</name></member>
+      <member refid="classtarte_1_1_duffing_1aa450dabb809b1eed2a2bd37c1473af15" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>pulsation_</name></member>
+      <member refid="classtarte_1_1_duffing_1a05ea35ca803778bbb09ab60a7ba860f0" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>q_last_</name></member>
+      <member refid="classtarte_1_1_duffing_1a5e6f57843c37e2cc1052f71ed0cd9ad7" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>q_next_</name></member>
+      <member refid="classtarte_1_1_duffing_1aad254c846f4867b32001e55c897238d4" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>q_now_</name></member>
+      <member refid="classtarte_1_1_duffing_1a693be04d393639dc87c7695bb430f40e" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>r_last_</name></member>
+      <member refid="classtarte_1_1_duffing_1ab1166febefca65ef382e9c3b3f36da75" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>r_now_</name></member>
+      <member refid="classtarte_1_1_duffing_1a304470b29839658ded61bcbed06273bb" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>ReadDisplacement</name></member>
+      <member refid="classtarte_1_1_duffing_1a5afd326811672fa2c3591040c4770bf1" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>ReadVelocity</name></member>
+      <member refid="classtarte_1_1_duffing_1a66eba44f6254c0e0647abde1745e8854" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>ReinitDsp</name></member>
+      <member refid="classtarte_1_1_duffing_1aee956147d9f9df7646417eb6b3056634" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>rhs_</name></member>
+      <member refid="classtarte_1_1_duffing_1a13964295a677b0773fa3186986ca8132" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>set_amplitude</name></member>
+      <member refid="classtarte_1_1_duffing_1a17e75cae243d00553398becd1ffb830b" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>set_decay_time</name></member>
+      <member refid="classtarte_1_1_duffing_1a90e6ee6ba1cd1fb5f93e7d9f40b62192" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>set_frequency</name></member>
+      <member refid="classtarte_1_1_duffing_1accf7bd29eef66eafd08b02d76d31815f" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>set_lambda_ctrl</name></member>
+      <member refid="classtarte_1_1_duffing_1af8dc0eefacb816f7ce3352d7aa1f2833" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>set_linear_parameters</name></member>
+      <member refid="classtarte_1_1_duffing_1a78a5597f242810b96c4735d00894ccd6" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>set_nonlinearity</name></member>
+      <member refid="classtarte_1_1_duffing_1aeb9febf4ead98d3ba653577490386217" prot="public" virt="non-virtual"><scope>tarte::Duffing</scope><name>set_physical_parameters</name></member>
+      <member refid="classtarte_1_1_duffing_1a4d1c5465042b69bcecfacf142310aa12" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>sr_</name></member>
+      <member refid="classtarte_1_1_duffing_1a70cecf988aa2e79df7277a7844adf25b" prot="private" virt="non-virtual"><scope>tarte::Duffing</scope><name>stiffness_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="dir_3a4d35156996fb70540e167b84a39bd1" kind="dir">
+    <compoundname>include/utility</compoundname>
+    <innerfile refid="audiowrite_8h">audiowrite.h</innerfile>
+    <innerfile refid="biquad_8h">biquad.h</innerfile>
+    <innerfile refid="eigen__utility_8h">eigen_utility.h</innerfile>
+    <innerfile refid="maths_8h">maths.h</innerfile>
+    <innerfile refid="_results_storage_8h">ResultsStorage.h</innerfile>
+    <innerfile refid="smoothing_8h">smoothing.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/utility/"/>
+  </compounddef>
+</doxygen>

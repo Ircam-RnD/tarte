@@ -1,0 +1,565 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="classtarte_1_1_biquad" kind="class" language="C++" prot="public">
+    <compoundname>tarte::Biquad</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a8ab5ec3bf0fb4da6e02ea12a0e0e6727" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::x0_</definition>
+        <argsstring></argsstring>
+        <name>x0_</name>
+        <qualifiedname>tarte::Biquad::x0_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="12" column="12" bodyfile="include/utility/biquad.h" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1ab70c744e2c4f25d9c01b06881a53fadc" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::x1_</definition>
+        <argsstring></argsstring>
+        <name>x1_</name>
+        <qualifiedname>tarte::Biquad::x1_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="12" column="16" bodyfile="include/utility/biquad.h" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a1bf7f38bac9ab10b601681905523fd51" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::x2_</definition>
+        <argsstring></argsstring>
+        <name>x2_</name>
+        <qualifiedname>tarte::Biquad::x2_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="12" column="20" bodyfile="include/utility/biquad.h" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1adc17ef7434cb3fc26a3eb389945693b2" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::y0_</definition>
+        <argsstring></argsstring>
+        <name>y0_</name>
+        <qualifiedname>tarte::Biquad::y0_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="12" column="24" bodyfile="include/utility/biquad.h" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1af79018526296200848688b9eea711395" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::y1_</definition>
+        <argsstring></argsstring>
+        <name>y1_</name>
+        <qualifiedname>tarte::Biquad::y1_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="12" column="28" bodyfile="include/utility/biquad.h" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1acc0d8ae2abd2a9cc3395d4ff2d08c560" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::y2_</definition>
+        <argsstring></argsstring>
+        <name>y2_</name>
+        <qualifiedname>tarte::Biquad::y2_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="12" column="32" bodyfile="include/utility/biquad.h" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a21006ae4eb5fc1064e459ddfa9aed969" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tarte::Biquad::sr_</definition>
+        <argsstring></argsstring>
+        <name>sr_</name>
+        <qualifiedname>tarte::Biquad::sr_</qualifiedname>
+        <initializer>{44100}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="13" column="11" bodyfile="include/utility/biquad.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1ab9d7a14e7f8c0c6f4be4337e5103b80a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tarte::Biquad::freq_</definition>
+        <argsstring></argsstring>
+        <name>freq_</name>
+        <qualifiedname>tarte::Biquad::freq_</qualifiedname>
+        <initializer>{100}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="15" column="11" bodyfile="include/utility/biquad.h" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a202dfbbf69a307c88a02619eae88b79a" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tarte::Biquad::dB_gain_</definition>
+        <argsstring></argsstring>
+        <name>dB_gain_</name>
+        <qualifiedname>tarte::Biquad::dB_gain_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="15" column="17" bodyfile="include/utility/biquad.h" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a7a7cdfe167c796da9fdcde1fc76e706c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tarte::Biquad::Q_</definition>
+        <argsstring></argsstring>
+        <name>Q_</name>
+        <qualifiedname>tarte::Biquad::Q_</qualifiedname>
+        <initializer>{0.7}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="15" column="26" bodyfile="include/utility/biquad.h" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a118a1f853e6a579fa0fd211ef36ca9b0" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::A_</definition>
+        <argsstring></argsstring>
+        <name>A_</name>
+        <qualifiedname>tarte::Biquad::A_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="17" column="12" bodyfile="include/utility/biquad.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1ac1fe2bcbb21b0c3f03b19665c412f87a" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::omega_</definition>
+        <argsstring></argsstring>
+        <name>omega_</name>
+        <qualifiedname>tarte::Biquad::omega_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="17" column="15" bodyfile="include/utility/biquad.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a2000f2b9f82c7cb85392e3798bcfae46" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::sin_omega_</definition>
+        <argsstring></argsstring>
+        <name>sin_omega_</name>
+        <qualifiedname>tarte::Biquad::sin_omega_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="17" column="22" bodyfile="include/utility/biquad.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1aaa450f647edaf275d892712109ec0b4b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::cos_omega_</definition>
+        <argsstring></argsstring>
+        <name>cos_omega_</name>
+        <qualifiedname>tarte::Biquad::cos_omega_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="17" column="33" bodyfile="include/utility/biquad.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1ae42d59ba773d769341fc6dd7010d99a6" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::alpha_</definition>
+        <argsstring></argsstring>
+        <name>alpha_</name>
+        <qualifiedname>tarte::Biquad::alpha_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="17" column="44" bodyfile="include/utility/biquad.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1abe991991402921a8bde4c862bf495b68" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::beta_</definition>
+        <argsstring></argsstring>
+        <name>beta_</name>
+        <qualifiedname>tarte::Biquad::beta_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="17" column="51" bodyfile="include/utility/biquad.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a50dd65b9da6844c5fab68f0995b79268" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::b0_</definition>
+        <argsstring></argsstring>
+        <name>b0_</name>
+        <qualifiedname>tarte::Biquad::b0_</qualifiedname>
+        <initializer>{1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="19" column="12" bodyfile="include/utility/biquad.h" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1aad9869e6754b4552f3e4bc323a83a5e9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::b1_</definition>
+        <argsstring></argsstring>
+        <name>b1_</name>
+        <qualifiedname>tarte::Biquad::b1_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="19" column="16" bodyfile="include/utility/biquad.h" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1ac1e387bddae6e3e366749ad49c150a69" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::b2_</definition>
+        <argsstring></argsstring>
+        <name>b2_</name>
+        <qualifiedname>tarte::Biquad::b2_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="19" column="20" bodyfile="include/utility/biquad.h" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a5a5deabb7f8e7b95a120293411e9a4a9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::a0_</definition>
+        <argsstring></argsstring>
+        <name>a0_</name>
+        <qualifiedname>tarte::Biquad::a0_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="19" column="24" bodyfile="include/utility/biquad.h" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a658250eb64eb7ac582a4a4d3902029c7" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::a1_</definition>
+        <argsstring></argsstring>
+        <name>a1_</name>
+        <qualifiedname>tarte::Biquad::a1_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="19" column="28" bodyfile="include/utility/biquad.h" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1a50375352ac7b40612029a5d69c10efcc" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double tarte::Biquad::a2_</definition>
+        <argsstring></argsstring>
+        <name>a2_</name>
+        <qualifiedname>tarte::Biquad::a2_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="19" column="32" bodyfile="include/utility/biquad.h" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_biquad_1aaf714f199d814244386060b3e6b35fc1" prot="private" static="no" mutable="no">
+        <type>BiquadMode</type>
+        <definition>BiquadMode tarte::Biquad::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <qualifiedname>tarte::Biquad::mode</qualifiedname>
+        <initializer>{kLowPass}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="21" column="16" bodyfile="include/utility/biquad.h" bodystart="21" bodyend="21"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtarte_1_1_biquad_1a3a816396f93a3dbdc69bfbda121e1a28" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Biquad::ComputeInter</definition>
+        <argsstring>()</argsstring>
+        <name>ComputeInter</name>
+        <qualifiedname>tarte::Biquad::ComputeInter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="23" column="10" bodyfile="include/utility/biquad.h" bodystart="23" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_biquad_1aad91208255b25b284d5ed15ea59b1174" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Biquad::ComputeCoeffs</definition>
+        <argsstring>()</argsstring>
+        <name>ComputeCoeffs</name>
+        <qualifiedname>tarte::Biquad::ComputeCoeffs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="37" column="10" bodyfile="include/utility/biquad.h" bodystart="37" bodyend="97"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtarte_1_1_biquad_1a618f6c260f4e587d75dfd99b29410c2e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tarte::Biquad::Biquad</definition>
+        <argsstring>(float sample_rate=44100, BiquadMode mode=kLowPass, float frequency=100, float dB_gain=0, float Q=0.7)</argsstring>
+        <name>Biquad</name>
+        <qualifiedname>tarte::Biquad::Biquad</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>sample_rate</declname>
+          <defval>44100</defval>
+        </param>
+        <param>
+          <type>BiquadMode</type>
+          <declname>mode</declname>
+          <defval>kLowPass</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>frequency</declname>
+          <defval>100</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>dB_gain</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>Q</declname>
+          <defval>0.7</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="100" column="5" bodyfile="include/utility/biquad.h" bodystart="100" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_biquad_1aae9c6749456653605f2cc564e24bef9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Biquad::set_freq</definition>
+        <argsstring>(float freq_)</argsstring>
+        <name>set_freq</name>
+        <qualifiedname>tarte::Biquad::set_freq</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>freq_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="115" column="10" bodyfile="include/utility/biquad.h" bodystart="115" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_biquad_1a2af9320166586b00d2f0845a6532a360" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Biquad::set_gain</definition>
+        <argsstring>(float dB_gain_)</argsstring>
+        <name>set_gain</name>
+        <qualifiedname>tarte::Biquad::set_gain</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>dB_gain_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="122" column="10" bodyfile="include/utility/biquad.h" bodystart="122" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_biquad_1a4c238f58723f5ae8af84ab93ac9f75c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Biquad::set_Q</definition>
+        <argsstring>(float Q_)</argsstring>
+        <name>set_Q</name>
+        <qualifiedname>tarte::Biquad::set_Q</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>Q_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="129" column="10" bodyfile="include/utility/biquad.h" bodystart="129" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_biquad_1a6edcd61b78dda23decd200f68614de3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Biquad::set_mode</definition>
+        <argsstring>(BiquadMode mode)</argsstring>
+        <name>set_mode</name>
+        <qualifiedname>tarte::Biquad::set_mode</qualifiedname>
+        <param>
+          <type>BiquadMode</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="136" column="10" bodyfile="include/utility/biquad.h" bodystart="136" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_biquad_1a2f1d06ad3cd78380db27855cd371d998" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Biquad::InitializeState</definition>
+        <argsstring>(double initial_value)</argsstring>
+        <name>InitializeState</name>
+        <qualifiedname>tarte::Biquad::InitializeState</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>initial_value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="143" column="10" bodyfile="include/utility/biquad.h" bodystart="143" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_biquad_1a809fae60f40b7516e1a5e25a8f48cbf5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double tarte::Biquad::Process</definition>
+        <argsstring>(double input)</argsstring>
+        <name>Process</name>
+        <qualifiedname>tarte::Biquad::Process</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="154" column="12" bodyfile="include/utility/biquad.h" bodystart="154" bodyend="165"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/utility/biquad.h" line="10" column="1" bodyfile="include/utility/biquad.h" bodystart="10" bodyend="166"/>
+    <listofallmembers>
+      <member refid="classtarte_1_1_biquad_1a5a5deabb7f8e7b95a120293411e9a4a9" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>a0_</name></member>
+      <member refid="classtarte_1_1_biquad_1a658250eb64eb7ac582a4a4d3902029c7" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>a1_</name></member>
+      <member refid="classtarte_1_1_biquad_1a50375352ac7b40612029a5d69c10efcc" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>a2_</name></member>
+      <member refid="classtarte_1_1_biquad_1a118a1f853e6a579fa0fd211ef36ca9b0" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>A_</name></member>
+      <member refid="classtarte_1_1_biquad_1ae42d59ba773d769341fc6dd7010d99a6" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>alpha_</name></member>
+      <member refid="classtarte_1_1_biquad_1a50dd65b9da6844c5fab68f0995b79268" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>b0_</name></member>
+      <member refid="classtarte_1_1_biquad_1aad9869e6754b4552f3e4bc323a83a5e9" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>b1_</name></member>
+      <member refid="classtarte_1_1_biquad_1ac1e387bddae6e3e366749ad49c150a69" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>b2_</name></member>
+      <member refid="classtarte_1_1_biquad_1abe991991402921a8bde4c862bf495b68" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>beta_</name></member>
+      <member refid="classtarte_1_1_biquad_1a618f6c260f4e587d75dfd99b29410c2e" prot="public" virt="non-virtual"><scope>tarte::Biquad</scope><name>Biquad</name></member>
+      <member refid="classtarte_1_1_biquad_1aad91208255b25b284d5ed15ea59b1174" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>ComputeCoeffs</name></member>
+      <member refid="classtarte_1_1_biquad_1a3a816396f93a3dbdc69bfbda121e1a28" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>ComputeInter</name></member>
+      <member refid="classtarte_1_1_biquad_1aaa450f647edaf275d892712109ec0b4b" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>cos_omega_</name></member>
+      <member refid="classtarte_1_1_biquad_1a202dfbbf69a307c88a02619eae88b79a" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>dB_gain_</name></member>
+      <member refid="classtarte_1_1_biquad_1ab9d7a14e7f8c0c6f4be4337e5103b80a" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>freq_</name></member>
+      <member refid="classtarte_1_1_biquad_1a2f1d06ad3cd78380db27855cd371d998" prot="public" virt="non-virtual"><scope>tarte::Biquad</scope><name>InitializeState</name></member>
+      <member refid="classtarte_1_1_biquad_1aaf714f199d814244386060b3e6b35fc1" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>mode</name></member>
+      <member refid="classtarte_1_1_biquad_1ac1fe2bcbb21b0c3f03b19665c412f87a" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>omega_</name></member>
+      <member refid="classtarte_1_1_biquad_1a809fae60f40b7516e1a5e25a8f48cbf5" prot="public" virt="non-virtual"><scope>tarte::Biquad</scope><name>Process</name></member>
+      <member refid="classtarte_1_1_biquad_1a7a7cdfe167c796da9fdcde1fc76e706c" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>Q_</name></member>
+      <member refid="classtarte_1_1_biquad_1aae9c6749456653605f2cc564e24bef9d" prot="public" virt="non-virtual"><scope>tarte::Biquad</scope><name>set_freq</name></member>
+      <member refid="classtarte_1_1_biquad_1a2af9320166586b00d2f0845a6532a360" prot="public" virt="non-virtual"><scope>tarte::Biquad</scope><name>set_gain</name></member>
+      <member refid="classtarte_1_1_biquad_1a6edcd61b78dda23decd200f68614de3b" prot="public" virt="non-virtual"><scope>tarte::Biquad</scope><name>set_mode</name></member>
+      <member refid="classtarte_1_1_biquad_1a4c238f58723f5ae8af84ab93ac9f75c4" prot="public" virt="non-virtual"><scope>tarte::Biquad</scope><name>set_Q</name></member>
+      <member refid="classtarte_1_1_biquad_1a2000f2b9f82c7cb85392e3798bcfae46" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>sin_omega_</name></member>
+      <member refid="classtarte_1_1_biquad_1a21006ae4eb5fc1064e459ddfa9aed969" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>sr_</name></member>
+      <member refid="classtarte_1_1_biquad_1a8ab5ec3bf0fb4da6e02ea12a0e0e6727" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>x0_</name></member>
+      <member refid="classtarte_1_1_biquad_1ab70c744e2c4f25d9c01b06881a53fadc" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>x1_</name></member>
+      <member refid="classtarte_1_1_biquad_1a1bf7f38bac9ab10b601681905523fd51" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>x2_</name></member>
+      <member refid="classtarte_1_1_biquad_1adc17ef7434cb3fc26a3eb389945693b2" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>y0_</name></member>
+      <member refid="classtarte_1_1_biquad_1af79018526296200848688b9eea711395" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>y1_</name></member>
+      <member refid="classtarte_1_1_biquad_1acc0d8ae2abd2a9cc3395d4ff2d08c560" prot="private" virt="non-virtual"><scope>tarte::Biquad</scope><name>y2_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

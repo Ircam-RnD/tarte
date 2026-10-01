@@ -1,0 +1,1924 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Physical audio synthesis engine">
+      
+      
+        <meta name="author" content="Thomas Risse">
+      
+      
+      
+        <link rel="prev" href="../../Overview/02-numerical-methods/">
+      
+      
+        <link rel="next" href="../01-acoustic-radiation/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Webster equation: pH formulation and discretization - Tarte - physical audio synthesis</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#notations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Tarte - physical audio synthesis" class="md-header__button md-logo" aria-label="Tarte - physical audio synthesis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Tarte - physical audio synthesis
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Webster equation: pH formulation and discretization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../Analysis/00-Z_transform_state_space/" class="md-tabs__link">
+          
+  
+  
+  Theory
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../examples/Getting-started/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../tarte/annotated/" class="md-tabs__link">
+          
+  
+  
+  API reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Tarte - physical audio synthesis" class="md-nav__button md-logo" aria-label="Tarte - physical audio synthesis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Tarte - physical audio synthesis
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analysis/00-Z_transform_state_space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z transform of a state space model in discrete time
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analysis/01-state_diagonalisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagonalisation of a state space model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/00-musical-instruments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles of musical instruments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/01-port-hamiltonian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Port-Hamiltonian systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/02-numerical-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numerical methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physical-components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Physical-components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webster equation: pH formulation and discretization
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webster equation: pH formulation and discretization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#notations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pde-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDE formulation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PDE formulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separation-of-small-area-variations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separation of small area variations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatial-discretization-finite-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial discretization (finite differences)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spatial discretization (finite differences)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alternate-boundary-condition-half-segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternate boundary condition: half segment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-discretization-stormer-verlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time discretization (Störmer-Verlet)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-acoustic-radiation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simple radiation model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-yielding-walls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed surface impedance (yielding walls)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-larynx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Larynx (vocal folds + flow) models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-pH-fluid-pdes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Port-Hamiltonian fluid PDEs for 1D propagation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/Getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tarte/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tarte/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#notations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pde-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDE formulation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PDE formulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separation-of-small-area-variations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separation of small area variations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spatial-discretization-finite-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial discretization (finite differences)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spatial discretization (finite differences)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alternate-boundary-condition-half-segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternate boundary condition: half segment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-discretization-stormer-verlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time discretization (Störmer-Verlet)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../Analysis/00-Z_transform_state_space/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Theory
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Physical-components
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Webster equation: pH formulation and discretization</h1>
+
+<p>The Webster's equation (or horn equation) describes the plane-wave propagation in acoustic ducts of space-dependent section. A time-varying geometry is also considered in this work, mainly for use in articulations of the vocal tract.</p>
+<p>As this component is built mainly to be used in the vocal tract, visco-thermal losses are ignored. Combined with the plane wave assumption, the validity range of the model should be ~0-6000 Hz for the vocal tract.</p>
+<h2 id="notations">Notations</h2>
+<table>
+<thead>
+<tr>
+<th>Constant</th>
+<th>Notation</th>
+<th>Dimension</th>
+<th>Typical value (in air)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rest density</td>
+<td><span class="arithmatex">\(\rho_0\)</span></td>
+<td><span class="arithmatex">\(M.L^{-3}\)</span></td>
+<td><span class="arithmatex">\(1.2\ kg.m^{-3}\)</span></td>
+</tr>
+<tr>
+<td>Speed of sound</td>
+<td><span class="arithmatex">\(c_0\)</span></td>
+<td><span class="arithmatex">\(L.T^{-1}\)</span></td>
+<td><span class="arithmatex">\(340\ m.s^{-1}\)</span></td>
+</tr>
+<tr>
+<td>Tube length</td>
+<td><span class="arithmatex">\(l_0\)</span></td>
+<td><span class="arithmatex">\(L\)</span></td>
+<td><span class="arithmatex">\(17\ cm\)</span> (vocal tract)</td>
+</tr>
+</tbody>
+</table>
+<p>The tube length is considered here to be constant. This hypothesis can be somewhat relaxed for the vocal tract by modulating the length in a non-power preserving way, but still stable under slow variations. The axial variable is named <span class="arithmatex">\(\xi\)</span>.</p>
+<table>
+<thead>
+<tr>
+<th>Time-space dependent variable</th>
+<th>Notation</th>
+<th>Dimension</th>
+<th>S.I.unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Density</td>
+<td><span class="arithmatex">\(\rho\)</span></td>
+<td><span class="arithmatex">\(M.L^{-3}\)</span></td>
+<td><span class="arithmatex">\(kg.m^{-3}\)</span></td>
+</tr>
+<tr>
+<td>Pressure</td>
+<td><span class="arithmatex">\(P\)</span></td>
+<td><span class="arithmatex">\(M.L^{-1}.T^{-2}\)</span></td>
+<td><span class="arithmatex">\(Pa\)</span></td>
+</tr>
+<tr>
+<td>Velocity (axial)</td>
+<td><span class="arithmatex">\(v\)</span></td>
+<td><span class="arithmatex">\(L.T^{-1}\)</span></td>
+<td><span class="arithmatex">\(m.s^{-1}\)</span></td>
+</tr>
+<tr>
+<td>Cross-section area</td>
+<td><span class="arithmatex">\(A\)</span></td>
+<td><span class="arithmatex">\(L^2\)</span></td>
+<td><span class="arithmatex">\(m^2\)</span></td>
+</tr>
+<tr>
+<td>Perimeter</td>
+<td><span class="arithmatex">\(\Gamma\)</span></td>
+<td><span class="arithmatex">\(L\)</span></td>
+<td><span class="arithmatex">\(m\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="pde-formulation">PDE formulation</h2>
+<p>The system considered directly follow from the reduction of Euler equations to 1D by considering homogenous fields on cross-sections and normal velocity continuity at the tube closed boundaries. The kinetic energy associated with the non-axial velocity is neglected and the system partially linearized.</p>
+<p>The state reduces to <span class="arithmatex">\(x = [v, \rho, A]^\intercal\)</span>, associated with Hamiltonian
+$$
+    \mathcal H (x) = \frac{1}{2} \left(\rho_0 \vert v \vert^2_A + \frac{c_0^2}{\rho_0} \vert \rho \vert_A^2\right),
+$$
+with norms meant over the length of the tube and weighted by the cross section area <span class="arithmatex">\(A\)</span>.</p>
+<p>Dynamics are
+$$
+\begin{equation}
+    \begin{bmatrix}
+        \partial_t v \\
+        \partial_t \rho \\
+        \partial_t A
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 &amp;-\partial_{\xi}\left(\frac{\bullet}{A}\right) &amp; 0 \\
+        -\frac{1}{A} \partial_{\xi} &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0
+    \end{bmatrix}
+    \underbrace{
+    \begin{bmatrix}
+        A \rho_0 v \\
+        A \frac{c_0^2}{\rho_0} \rho \\
+        \frac{1}{2} \left(\rho_0 v^2 + \frac{c_0^2 \rho^2}{\rho_0}\right)
+    \end{bmatrix}
+    }_{\nabla \mathcal H}
+    +
+    \begin{bmatrix}
+        0 \\
+        - \frac{\rho_0}{A} \\
+        1
+    \end{bmatrix}
+    \underbrace{\partial_t A}_u,
+    \label{base_webster}
+\end{equation}
+$$
+with cross-section area variations as a distributed input to the system. 
+The effective pressure applied to the walls is the power-conjugated output retrieved by skew-symmetry:</p>
+<div class="arithmatex">\[
+\underbrace{P}_y =  
+-
+\begin{bmatrix}
+    0 &amp;
+    - \frac{\rho_0}{A} &amp;
+    1
+\end{bmatrix}
+\underbrace{
+\begin{bmatrix}
+    A \rho_0 v \\\
+    A \frac{c_0^2}{\rho_0} \rho \\\
+    \frac{1}{2} \left(\rho_0 v^2 + \frac{c_0^2 \rho^2}{\rho_0}\right)
+\end{bmatrix}
+}_{\nabla \mathcal H}.
+\]</div>
+<p>Note that the pressure here includes an unexpected term related to the last element of the Hamiltonian gradient. This follows from the linearization process: it is a second order perturbation to the received pressure by the walls, non-physical but structurally obtained to preserve the power balance. </p>
+<p>Boundary conditions at <span class="arithmatex">\(\xi=0\)</span> and <span class="arithmatex">\(\xi=l_0\)</span> are considered to be either of the from of a volume flow or pressure control (with the other as the power conjugated output).</p>
+<h3 id="separation-of-small-area-variations">Separation of small area variations</h3>
+<p>The above formulation results in linearity of the internal dynamics but still makes appear a nonlinear term corresponding to <span class="arithmatex">\(\delta_A \mathcal H\)</span> (a.k.a. the spurious pressure term from before). In view of numerical simulation, this is not relevant while <span class="arithmatex">\(A\)</span> is treated as a parameter externally forced with no dynamics associated to it. For the vocal tract, it is indeed practical to consider <span class="arithmatex">\(A\)</span> as such and directly set its value to corresponds to articulations. However, vibrations of the surrounding tissues around the vocal tract are known to have a significant impact on the effective damping at low frequencies. To represent this effect, the acoustic propagation equation must be coupled to a mechanical model of the tissues. The coupled system would then be internally nonlinear and require additional care in the solver design. In order to prevent that, the area is decomposed as
+$$
+ A(x, t) = A_0(x, t) + \widetilde{A}(x, t),
+$$
+where <span class="arithmatex">\(A_0\)</span> is a controlled geometry variation representing articulations and <span class="arithmatex">\(\widetilde{A}\)</span> is a small amplitude area variation due to wall vibrations (he wall mechanical model being define independently). After replacement of <span class="arithmatex">\(A\)</span> in \eqref{base_webster}, the dynamics are further linearized with respect to <span class="arithmatex">\(\widetilde{A}\)</span>, yielding
+$$
+\begin{equation}
+    \begin{bmatrix}
+        \partial_t v \\
+        \partial_t \rho \\
+        \partial_t A_0
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 &amp;-\partial_{\xi}\left(\frac{\bullet}{A_0}\right) &amp; 0 \\
+        -\frac{1}{A_0} \partial_{\xi} &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0
+    \end{bmatrix}
+    \underbrace{
+    \begin{bmatrix}
+        A_0 \rho_0 v \\
+        A_0 \frac{c_0^2}{\rho_0} \rho \\
+        \frac{1}{2} \left(\rho_0 v^2 + \frac{c_0^2 \rho^2}{\rho_0}\right)
+    \end{bmatrix}
+    }_{\nabla \mathcal H}
+    +
+    \begin{bmatrix}
+        0 &amp; 0\\
+        - \frac{\rho_0}{A_0} &amp; - \frac{\rho_0}{A_0}\\
+        1 &amp; 0
+    \end{bmatrix}
+    \underbrace{
+    \begin{bmatrix}
+        \partial_t A_0 \\
+        \partial_t \widetilde{A}
+    \end{bmatrix}}_u,
+    \label{base_webster_lin}
+\end{equation}
+$$
+associated to state <span class="arithmatex">\(x = [v, \rho, A_0]^\intercal\)</span> and Hamiltonian </p>
+<div class="arithmatex">\[
+    \mathcal H (x) = \frac{1}{2} \left(\rho_0 \vert v \vert^2_{A_0} + \frac{c_0^2}{\rho_0} \vert \rho \vert_{A_0}^2\right).
+\]</div>
+<details><summary>Power balance (EDP)</summary>
+
+The power balance is obtained directly by using the formula
+
+$$
+\begin{align*}
+    \frac{d}{dt} \mathcal H &= \int_{\xi=0}^{\xi = l_0} \nabla \mathcal H^\intercal \partial_t \boldsymbol{x} \; d\xi, \\\
+    &= \int_{\xi=0}^{\xi = l_0} - \partial_{\xi} \left( A_0 v c_0^2 \rho\right) - c_0^2 \rho (\partial_t A_0 + \partial_t \widetilde{A})+ 
+    \frac{1}{2} \left(\rho_0 v^2 + \frac{c_0^2 \rho^2}{\rho_0}\right) \partial_t A_0 \; d\xi,\\\
+    &= -[QP]_{\xi = 0}^{\xi=l_0} + 
+    \int_{\xi=0}^{\xi = l_0} - c_0^2 \rho (\partial_t A_0 + \partial_t \widetilde{A})+ 
+    \frac{1}{2} \left(\rho_0 v^2 + \frac{c_0^2 \rho^2}{\rho_0}\right) \partial_t A_0 \; d\xi.
+
+\end{align*}
+$$
+
+As the interconnection operators is formally skew-symmetric, no dissipation terms are present. The energy exchanged with the walls, due to variations of $A_0$ and $\widetilde A$ includes the integral of the product of area variations and pressure along the tube. Is also includes the spurious second order pressure term. Energy exchanged at the tube boundaries writes as the product of volume flow and pressure at $\xi = 0$ and $\xi = l_0$.
+
+</details>
+
+<h2 id="spatial-discretization-finite-differences">Spatial discretization (finite differences)</h2>
+<p>Finite differences on staggered grids are used for spatial discretization (see e.g. Trenchant 2018<sup id="fnref:Tre18"><a class="footnote-ref" href="#fn:Tre18">1</a></sup>). The presentation is made here for volume flow input on both end of the tube. </p>
+<p><span class="arithmatex">\(\rho\)</span>, <span class="arithmatex">\(A_0\)</span> and <span class="arithmatex">\(\widetilde A\)</span> are discretized on a primal grid with constant spatial step <span class="arithmatex">\(h\)</span> and <span class="arithmatex">\(N\)</span> edges. <span class="arithmatex">\(v\)</span> is discretized on the dual (interleaved) grid with <span class="arithmatex">\(N-1\)</span> edges. The finite difference matrix 
+$$
+        \mathbf D^- = \frac{1}{h}
+        \begin{bmatrix}
+            1 &amp; 0 &amp; 0  \\
+            -1 &amp; 1 &amp; 0 \\
+            0 &amp; \ddots &amp; \ddots \\
+            0 &amp; 0 &amp;  -1\
+        \end{bmatrix} \in \mathbb R^{N, N-1},
+$$
+builds on the dual grid the derivative of a quantity defined on the primal grid. <span class="arithmatex">\(\mathbf D^+ = - (\mathbf D^-)^\intercal\)</span> does the opposite (derivative from dual to primal). Considering piecewise constant values of the field variables on segments of their respective grids, a discrete equivalent to \eqref{base_webster_lin} is obtained as (in the following equation, <span class="arithmatex">\(\boldsymbol{A_p}\)</span> and <span class="arithmatex">\(\boldsymbol{A_p}\)</span> are vectors but are used as diagonal matrices in multiplicative expressions to simplify notations)</p>
+<div class="arithmatex">\[
+\begin{align}
+    \begin{bmatrix}
+        \dot{\boldsymbol{v}} \\\
+        \dot{\boldsymbol{\rho}} \\\
+        \dot{\boldsymbol{A_p}}
+    \end{bmatrix}
+    =&amp;
+    \frac{1}{h}
+    \begin{bmatrix}
+        0 &amp;- \mathbf D^+ \boldsymbol{A_p}^{-1} &amp; 0 \\\
+        -\boldsymbol{A_p}^{-1}  \mathbf D^- &amp; 0 &amp; 0 \\\
+        0 &amp; 0 &amp; 0
+    \end{bmatrix}
+    \underbrace{
+    \begin{bmatrix}
+        h\boldsymbol{A_d} \rho_0 \boldsymbol{v} \\\
+        h\boldsymbol{A_p} \frac{c_0^2}{\rho_0} \boldsymbol{\rho} \\\
+        h\frac{1}{2} \left(\rho_0 \boldsymbol{v}^2 + \frac{c_0^2 \boldsymbol{\rho}^2}{\rho_0}\right)
+    \end{bmatrix}
+    }_{\nabla H}\nonumber\\\
+    &amp;+
+    \begin{bmatrix}
+        0 &amp; 0 &amp; 0 &amp; 0\\\
+        - \rho_0  \boldsymbol{A_p}^{-1} &amp; - \rho_0  \boldsymbol{A_p}^{-1} &amp; \frac{1}{h} \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0}&amp; - \frac{1}{h}\rho_0 \boldsymbol{A_p}^{-1}\vert_{i=N-1}\\\
+        1 &amp; 0 &amp; 0 &amp; 0
+    \end{bmatrix}
+    \underbrace{
+    \begin{bmatrix}
+        \partial_t \boldsymbol{A_0} \\\
+        \partial_t \widetilde{\boldsymbol{A}}\\\
+        Q_{l} \\\
+        Q_{r}
+    \end{bmatrix}}_{\boldsymbol{u}},
+    \label{semi_discrete_webster}
+\end{align}
+\]</div>
+<p>with state <span class="arithmatex">\(\mathbf x = [\boldsymbol{v}, \boldsymbol{\rho}, \boldsymbol{A}_p]^\intercal\)</span> and Hamiltonian</p>
+<div class="arithmatex">\[
+    H (\mathbf x) = \frac{1}{2} h \left(\rho_0 \vert \boldsymbol{v} \vert^2_{\boldsymbol{A_d}} + \frac{c_0^2}{\rho_0} \vert \boldsymbol{\rho} \vert_{\boldsymbol{A_p}}^2\right).
+\]</div>
+<p><span class="arithmatex">\(\boldsymbol{A_p}\)</span> and <span class="arithmatex">\(\boldsymbol{A_d}\)</span> are linked by an averaging operator to be specified later, as one choice is better with the chosen time discretization scheme. The notation <span class="arithmatex">\(\rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0}\)</span> indicates that all values expect the one at index 0 are null (multiplication with a discrete Dirac function).</p>
+<p>The conjugated output vector, including both the linear force density applied on the walls and the boundaries pressure writes
+$$
+    \boldsymbol{y} = 
+    \begin{bmatrix}
+        \boldsymbol{P_w} \\
+        \widetilde{\boldsymbol{P_w}} \\
+        - P_l \\
+        P_r
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 &amp;  \rho_0 \boldsymbol{A_p}^{-1} &amp; -1 \\ 
+        0 &amp;  \rho_0 \boldsymbol{A_p}^{-1} &amp; 0 \\ 
+        0 &amp; - \frac{1}{h} \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0} &amp; 0  \\ 
+        0 &amp; \frac{1}{h} \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=N-1} &amp;0 
+    \end{bmatrix}
+    \begin{bmatrix}
+        h \boldsymbol{A_d} \rho_0 \boldsymbol{v} \\
+        h \boldsymbol{A_p} \frac{c_0^2}{\rho_0} \boldsymbol{\rho} \\
+        h \frac{1}{2} \left(\rho_0 \boldsymbol{v}^2 + \frac{c_0^2 \boldsymbol{\rho}^2}{\rho_0}\right)
+    \end{bmatrix}.
+$$</p>
+<details><summary>Power balance (ODE continuous time)</summary>
+
+In the finite dimensional case, the power balance is easier to compute. Direct application of port-Hamiltonian theory yields:
+$$
+\frac{d}{dt} H  + \boldsymbol{y}^\intercal \boldsymbol{u} = 0.
+$$
+Elements of $\boldymbol u$ and $\boldymbol y$ are direct counterparts to the PDE case.
+
+</details>
+
+<h3 id="alternate-boundary-condition-half-segment">Alternate boundary condition: half segment</h3>
+<p>Alternatively, the grid can be altered at the boundary to yield aligned grid ends for velocity and density. Using the same input-output causality as before (volume flow inputs), the density segments on both ends have to be of half-size. A similar system than before can be written directly by replacing the <strong>scalar</strong> spatial step <span class="arithmatex">\(h\)</span> by a <strong>vector</strong> spatial step </p>
+<div class="arithmatex">\[
+    \mathbf{h} = h \begin{bmatrix}
+        0.5 &amp;
+        1 &amp;
+        \dots&amp;
+        1 &amp;
+        0.5
+    \end{bmatrix}^\intercal
+\]</div>
+<p>Accordingly, the finite difference matrix rewrites
+$$
+        \mathbf D^- = \frac{1}{h}
+        \begin{bmatrix}
+            2 &amp; 0 &amp; 0  \\
+            -1 &amp; 1 &amp; 0 \\
+            0 &amp; \ddots &amp; \ddots \\
+            0 &amp; 0 &amp;  -2\
+        \end{bmatrix} \in \mathbb R^{N, N-1},
+$$</p>
+<p>and the dynamics</p>
+<div class="arithmatex">\[
+\begin{align}
+    \begin{bmatrix}
+        \dot{\boldsymbol{v}} \\\
+        \dot{\boldsymbol{\rho}} \\\
+        \dot{\boldsymbol{A_p}}
+    \end{bmatrix}
+    =&amp;
+    \frac{1}{h}
+    \begin{bmatrix}
+        0 &amp;- \mathbf D^+ \boldsymbol{A_p}^{-1}&amp; 0 \\\
+        - \boldsymbol{A_p}^{-1}  \mathbf D^- &amp; 0 &amp; 0 \\\
+        0 &amp; 0 &amp; 0
+    \end{bmatrix}
+    \underbrace{
+    \begin{bmatrix}
+        h\boldsymbol{A_d} \rho_0 \boldsymbol{v} \\\
+        \mathbf h\boldsymbol{A_p} \frac{c_0^2}{\rho_0} \boldsymbol{\rho} \\\
+        \mathbf h\frac{1}{2} \left(\rho_0 \boldsymbol{v}^2 + \frac{c_0^2 \boldsymbol{\rho}^2}{\rho_0}\right)
+    \end{bmatrix}
+    }_{\nabla H}\nonumber\\\
+    &amp;+
+    \begin{bmatrix}
+        0 &amp; 0 &amp; 0 &amp; 0\\\
+        - \rho_0  \boldsymbol{A_p}^{-1} &amp; - \rho_0  \boldsymbol{A_p}^{-1} &amp; \frac{2}{h} \rho_0 \boldsymbol{A_p}^{-1}\vert_{i=0}&amp; - \frac{2}{h}\rho_0 \boldsymbol{A_p}^{-1}\vert_{i=N-1}\\\
+        1 &amp; 0 &amp; 0 &amp; 0
+    \end{bmatrix}
+    \underbrace{
+    \begin{bmatrix}
+        \partial_t \boldsymbol{A_0} \\\
+        \partial_t \widetilde{\boldsymbol{A}}\\\
+        Q_{l} \\\
+        Q_{r}
+    \end{bmatrix}}_{\boldsymbol{u}},
+\end{align}
+\]</div>
+<h2 id="time-discretization-stormer-verlet">Time discretization (Störmer-Verlet)</h2>
+<p>Time discretization is made using a Störmer-Verlet scheme. It writes:
+$$
+\begin{align}
+    \delta_{t+} \boldsymbol{v}^{n-\frac{1}{2}} &amp;= - \mathbf D^+ \frac{c_0^2}{\rho_0} \boldsymbol{\rho}^n \label{eq:update_v} \\
+    \delta_{t+} \boldsymbol{\rho}^n &amp;= - \boldsymbol{A_p}^{-1} \boldsymbol{D}^{-} \boldsymbol{A_d} \rho_0 \boldsymbol{v^{n+\frac{1}{2}}} \nonumber \\
+    &amp; \quad  - \rho_0 \boldsymbol{A_p}^{-1} \left(\partial_t \boldsymbol{A_0} + \partial_t \widetilde{\boldsymbol{A}} - \frac{1}{h}Q_l \vert_{i=0} + \frac{1}{h}Q_r\vert_{i=N-1}\right)^{n+\frac{1}{2}} \label{eq:update_rho}\\
+    \delta_{t+} \boldsymbol{A_0}^{n-\frac{1}{2}} &amp;= (\partial_t \boldsymbol{A_0})^{n+\frac{1}{2}}
+\end{align}
+$$</p>
+<details><summary>Power balance (ODE discrete time)</summary>
+
+The fully discrete power balance is slightly more challenging to get to. Indeed, the chosen scheme does not preserve a discrete equivalent to the continuous time energy, but rather a modified version of it given by:
+
+$$
+\begin{align}
+    E^{n} &= K^{n} + P^{n} 
+    -
+    \frac{1}{4} \frac{h \rho_0}{2}\vert \vert \boldsymbol{v}^{n+\frac{1}{2}} - \boldsymbol{v}^{n-\frac{1}{2}}\vert \vert^2_{\boldsymbol{A_d}}, \nonumber \\\
+    &\overset{\eqref{eq:update_v}}{=} K^{n} + P^{n} 
+    -
+    \frac{dt^2}{4} \frac{h c_0^4}{2 \rho_0 } \vert \vert D^+(\boldsymbol{\rho}^{n })\vert \vert^2_{\boldsymbol{A_d}}, \label{eq:energy_sv}
+\end{align}
+$$
+
+with 
+
+$$
+\begin{align*}
+    K^{n} = \frac{1}{2} h \rho_0 \vert\vert \mu_{t+}\boldsymbol{v}^{n-\frac{1}{2}}\vert\vert^2_{\boldsymbol{A_d}},
+        %
+        \quad P^{n} = \frac{1}{2} h \frac{c_0^2}{\rho_0}\vert\vert \boldsymbol{\rho}^{n}\vert\vert^2_{\boldsymbol{A_p}}.
+\end{align*}
+$$
+
+In addition to that, the exchanged power writes 
+$$
+ P_{\rm ext}^{n+\frac{1}{2}} = h c_0^2 \mu_{t+} \boldsymbol{\rho}^n
+ \left(\partial_t \boldsymbol{A_0} + \partial_t \widetilde{\boldsymbol{A}} - \frac{1}{h}Q_l \vert_{i=0} + \frac{1}{h}Q_r\vert_{i=N-1}\right)^{n+\frac{1}{2}},
+$$
+
+such that the discrete power balance is
+
+$$
+    E^{n+1} - E^n + dt P_{\rm ext}^{n+\frac{1}{2}} = 0.
+$$
+
+<details><summary>Proof</summary>
+Take the scalar product of \eqref{eq:update_rho} and 
+
+$$h\boldsymbol{A}_p\frac{c_0^2}{\rho_0} \mu_{t+} \boldsymbol{\rho}^n \approx (dt \; \partial_\boldsymbol{\rho} H)^{n+\frac{1}{2}}$$
+
+resulting in 
+
+$$
+\begin{align*}
+    P^{n+1} - P^{n} &= - hdt c_0^2 \left(\mu_{t+} \boldsymbol{\rho}^{n}, D^- \boldsymbol{A_d} \boldsymbol{v}_x^{n+\frac{1}{2}} \right)
+    - dt P_{ext}^{n+\frac{1}{2}}
+    , \\
+    &= h dt c_0^2 \left(D^+ \mu_{t+} \boldsymbol{\rho}^{n}, \boldsymbol{A_d}  \boldsymbol{v}_x^{n+\frac{1}{2}}\right) - dt P_{ext}^{n+\frac{1}{2}},\\
+    & = - \frac{h \rho_0}{2} \left(\boldsymbol{v}_x^{n+\frac{3}{2}} - \boldsymbol{v}_x^{n-\frac{1}{2}}, \boldsymbol{A_d}  \boldsymbol{v}_x^{n+\frac{1}{2}}\right) - dt P_{ext}^{n+\frac{1}{2}},\\
+    &= - K^{n+1} + K^{n-1} + \frac{1}{4} \frac{h \rho_0}{2} \left(\vert\vert\boldsymbol{v}_x^{n+\frac{3}{2}} - \boldsymbol{v}_x^{n+\frac{1}{2}}\vert\vert_{\boldsymbol{A_d}} -\vert\vert\boldsymbol{v}_x^{n+\frac{1}{2}} - \boldsymbol{v}_x^{n-\frac{1}{2}}\vert\vert_{\boldsymbol{A_d}} \right) - dt P_{ext}^{n+\frac{1}{2}}
+\end{align*}
+$$
+
+</details>
+
+For the algorithm to be stable, the preserved energy must be positive definite. In order to ensure that, a bound on the third term of \eqref{eq:energy_sv} has to be derived:
+
+$$
+\begin{align*}
+    \vert \vert D^+(\boldsymbol{\rho}^{n })\vert \vert^2_{\boldsymbol{A_d}} &= \frac{1}{h^2} \vert \vert \boldsymbol{\rho}^{n }_{0...N-1} - \boldsymbol{\rho}^{n }_{1...N}\vert \vert^2_{\boldsymbol{A_d}} \\\
+    & \leq \frac{2}{h^2} \left(\vert \vert \boldsymbol{\rho}^{n }_{0...N-1} \vert\vert_{\boldsymbol{A_d}}^2 +  \vert \vert \boldsymbol{\rho}^{n }_{1...N} \vert\vert_{\boldsymbol{A_d}}^2\right)\\\
+    & \leq \frac{4}{h^2} \left(\vert \vert \boldsymbol{\rho}^{n } \vert\vert_{\mu_{\xi_-}\boldsymbol{A_d}}^2\right)
+\end{align*}
+$$
+
+The stability condition reduces to
+$$
+\begin{align*}
+    P^n - \frac{dt^2}{4} \frac{h c_0^4}{2 \rho_0 } \frac{4}{h^2} \left(\vert \vert \boldsymbol{\rho}^{n } \vert\vert_{\mu_{\xi_-}\boldsymbol{A_d}}^2\right) &\geq 0, \\\
+    \vert\vert \boldsymbol{\rho}^{n}\vert\vert^2_{\boldsymbol{A_p}} - \frac{dt^2}{h^2} c_0^2 \vert \vert \boldsymbol{\rho}^{n } \vert\vert_{\mu_{\xi_-}\boldsymbol{A_d}}^2 &\geq 0, \\\
+    dt^2 c_0^2 \; \frac{\vert \vert \boldsymbol{\rho}^{n } \vert\vert_{\mu_{\xi_-}\boldsymbol{A_d}}^2}{\vert\vert \boldsymbol{\rho}^{n}\vert\vert^2_{\boldsymbol{A_p}}} &\leq h^2, \\\
+    dt^2 c_0^2 \rm{max}(\frac{\mu_{\xi_-}\boldsymbol{A_d}}{\boldsymbol{A_p}}) \leq h^2,
+\end{align*}
+$$
+meaning that under the suitable choice 
+
+$$\boldsymbol A_p = \mu_{\xi_-} \boldsymbol A_d,$$
+
+a standard-like CFL condition is recovered as
+
+$$
+    h^2 \geq dt^2 c_0^2.
+$$
+
+At the boundaries, 
+
+$$
+ \boldsymbol{A_p},
+$$
+
+can be of any value at least half the value of the boundaries of
+
+$$
+    \boldsymbol{A_d}.
+$$
+
+
+</details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:Tre18">
+<p>Vincent Trenchant, Hector Ramirez, Yann Le Gorrec, and Paul Kotyczka. Finite differences on staggered grids preserving the port-hamiltonian structure with application to an acoustic duct. <em>Journal of Computational Physics</em>, 373:673–697, 2018.&#160;<a class="footnote-backref" href="#fnref:Tre18" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made by Thomas Risse using Mkdocs with Material theme
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.path", "navigation.top"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

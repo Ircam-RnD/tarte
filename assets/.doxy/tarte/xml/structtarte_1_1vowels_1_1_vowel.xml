@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="structtarte_1_1vowels_1_1_vowel" kind="struct" language="C++" prot="public">
+    <compoundname>tarte::vowels::Vowel</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtarte_1_1vowels_1_1_vowel_1aadec1d96dbb149f40ba156c7c4c71d4f" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string tarte::vowels::Vowel::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>tarte::vowels::Vowel::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="12" column="17" bodyfile="include/vowels.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtarte_1_1vowels_1_1_vowel_1a0f7775455085355e8df0c762c8f05521" prot="public" static="no" mutable="no">
+        <type>std::array&lt; float, 6 &gt;</type>
+        <definition>std::array&lt;float, 6&gt; tarte::vowels::Vowel::areas</definition>
+        <argsstring></argsstring>
+        <name>areas</name>
+        <qualifiedname>tarte::vowels::Vowel::areas</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="13" column="16" bodyfile="include/vowels.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtarte_1_1vowels_1_1_vowel_1aa148663c5b841071d11b31644dfa6abc" prot="public" static="no" mutable="no">
+        <type>std::array&lt; float, 6 &gt;</type>
+        <definition>std::array&lt;float, 6&gt; tarte::vowels::Vowel::positions</definition>
+        <argsstring></argsstring>
+        <name>positions</name>
+        <qualifiedname>tarte::vowels::Vowel::positions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="14" column="16" bodyfile="include/vowels.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtarte_1_1vowels_1_1_vowel_1a702e2e086e49572259d010c21103b0ef" prot="public" static="no" mutable="no">
+        <type>std::array&lt; float, 4 &gt;</type>
+        <definition>std::array&lt;float, 4&gt; tarte::vowels::Vowel::etas</definition>
+        <argsstring></argsstring>
+        <name>etas</name>
+        <qualifiedname>tarte::vowels::Vowel::etas</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="15" column="16" bodyfile="include/vowels.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtarte_1_1vowels_1_1_vowel_1a1c63cd686235921e8b0997393481961c" prot="public" static="no" mutable="no">
+        <type>std::array&lt; float, 2 &gt;</type>
+        <definition>std::array&lt;float, 2&gt; tarte::vowels::Vowel::formant_frequencies</definition>
+        <argsstring></argsstring>
+        <name>formant_frequencies</name>
+        <qualifiedname>tarte::vowels::Vowel::formant_frequencies</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="16" column="16" bodyfile="include/vowels.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/vowels.h" line="11" column="1" bodyfile="include/vowels.h" bodystart="11" bodyend="17"/>
+    <listofallmembers>
+      <member refid="structtarte_1_1vowels_1_1_vowel_1a0f7775455085355e8df0c762c8f05521" prot="public" virt="non-virtual"><scope>tarte::vowels::Vowel</scope><name>areas</name></member>
+      <member refid="structtarte_1_1vowels_1_1_vowel_1a702e2e086e49572259d010c21103b0ef" prot="public" virt="non-virtual"><scope>tarte::vowels::Vowel</scope><name>etas</name></member>
+      <member refid="structtarte_1_1vowels_1_1_vowel_1a1c63cd686235921e8b0997393481961c" prot="public" virt="non-virtual"><scope>tarte::vowels::Vowel</scope><name>formant_frequencies</name></member>
+      <member refid="structtarte_1_1vowels_1_1_vowel_1aadec1d96dbb149f40ba156c7c4c71d4f" prot="public" virt="non-virtual"><scope>tarte::vowels::Vowel</scope><name>name</name></member>
+      <member refid="structtarte_1_1vowels_1_1_vowel_1aa148663c5b841071d11b31644dfa6abc" prot="public" virt="non-virtual"><scope>tarte::vowels::Vowel</scope><name>positions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

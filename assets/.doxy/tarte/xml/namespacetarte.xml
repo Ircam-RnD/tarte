@@ -1,0 +1,575 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="namespacetarte" kind="namespace" language="C++">
+    <compoundname>tarte</compoundname>
+    <innerclass refid="classtarte_1_1_articulation" prot="public">tarte::Articulation</innerclass>
+    <innerclass refid="classtarte_1_1_bow" prot="public">tarte::Bow</innerclass>
+    <innerclass refid="classtarte_1_1_duffing" prot="public">tarte::Duffing</innerclass>
+    <innerclass refid="classtarte_1_1_noise_generator" prot="public">tarte::NoiseGenerator</innerclass>
+    <innerclass refid="classtarte_1_1_single_reed" prot="public">tarte::SingleReed</innerclass>
+    <innerclass refid="classtarte_1_1_biquad" prot="public">tarte::Biquad</innerclass>
+    <innerclass refid="classtarte_1_1_body_cover_pair" prot="public">tarte::BodyCoverPair</innerclass>
+    <innerclass refid="classtarte_1_1_body_cover_v_f" prot="public">tarte::BodyCoverVF</innerclass>
+    <innerclass refid="classtarte_1_1_v_f_pair_example" prot="public">tarte::VFPairExample</innerclass>
+    <innerclass refid="classtarte_1_1_voice" prot="public">tarte::Voice</innerclass>
+    <innerclass refid="classtarte_1_1_webster_f_d_t_d" prot="public">tarte::WebsterFDTD</innerclass>
+    <innernamespace refid="namespacetarte_1_1vowels">tarte::vowels</innernamespace>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="bow_8h_1a93493db427fe2ff1b80645628ce45f7b" prot="public" static="no" strong="no">
+        <type></type>
+        <name>BowMode</name>
+        <qualifiedname>tarte::BowMode</qualifiedname>
+        <enumvalue id="bow_8h_1a93493db427fe2ff1b80645628ce45f7ba54a629cb0053aafba0c53167ff08699d" prot="public">
+          <name>kMatusiak</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="bow_8h_1a93493db427fe2ff1b80645628ce45f7bafdf49d0641fe4411fd9e7f90a1208950" prot="public">
+          <name>kVigue</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="bow_8h_1a93493db427fe2ff1b80645628ce45f7bacfc2a10e81f47de0b456fb77162f7305" prot="public">
+          <name>kTerrien</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="7" column="1" bodyfile="include/bow.h" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="enum" id="noise__generator_8h_1aa691f7484afda1619b168910f3701815" prot="public" static="no" strong="no">
+        <type></type>
+        <name>NoiseColor</name>
+        <qualifiedname>tarte::NoiseColor</qualifiedname>
+        <enumvalue id="noise__generator_8h_1aa691f7484afda1619b168910f3701815ac02f15fb9a122009fcd539492d4e8d5f" prot="public">
+          <name>White</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="noise__generator_8h_1aa691f7484afda1619b168910f3701815a66f4e9f26cb0b9c7283ee77e474dc209" prot="public">
+          <name>Pink</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/noise_generator.h" line="10" column="1" bodyfile="include/noise_generator.h" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="enum" id="biquad_8h_1a5fa222b9c64c430197226fb792992ef4" prot="public" static="no" strong="no">
+        <type></type>
+        <name>BiquadMode</name>
+        <qualifiedname>tarte::BiquadMode</qualifiedname>
+        <enumvalue id="biquad_8h_1a5fa222b9c64c430197226fb792992ef4a80014134473f33ba7ac09c5fd57cb8fe" prot="public">
+          <name>kLowPass</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="biquad_8h_1a5fa222b9c64c430197226fb792992ef4a2f2b671e2d7f71d9035ebb303b603600" prot="public">
+          <name>kHighPass</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="biquad_8h_1a5fa222b9c64c430197226fb792992ef4a32959259669dabaa4d4aa3ee489dee39" prot="public">
+          <name>kBandPass</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="biquad_8h_1a5fa222b9c64c430197226fb792992ef4a4374e2973ea1e1335f9d0062d6e98d6b" prot="public">
+          <name>kNotch</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="biquad_8h_1a5fa222b9c64c430197226fb792992ef4affba92b819b255291f2c5025c8c1fda6" prot="public">
+          <name>kPeak</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="biquad_8h_1a5fa222b9c64c430197226fb792992ef4ac0ac4dbdb477812e3e4140c131072cbf" prot="public">
+          <name>kLowShelf</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="biquad_8h_1a5fa222b9c64c430197226fb792992ef4a40d8fb7fb9cc7019c4474bf762ee489a" prot="public">
+          <name>kHighShelf</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/biquad.h" line="8" column="1" bodyfile="include/utility/biquad.h" bodystart="8" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="enum" id="body__cover__pair_8h_1a3eb0db03b4683b9aaacddd527a046f4c" prot="public" static="no" strong="no">
+        <type></type>
+        <name>FoldIdentifier</name>
+        <qualifiedname>tarte::FoldIdentifier</qualifiedname>
+        <enumvalue id="body__cover__pair_8h_1a3eb0db03b4683b9aaacddd527a046f4ca58874ff14211f811b57f2f024ddc7e0f" prot="public">
+          <name>kRight</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="body__cover__pair_8h_1a3eb0db03b4683b9aaacddd527a046f4ca5bd76a3178109292e45379753cd821e2" prot="public">
+          <name>kLeft</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="body__cover__pair_8h_1a3eb0db03b4683b9aaacddd527a046f4cacc06f1804d2a3cfb3313cdc1de45c384" prot="public">
+          <name>kBoth</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_pair.h" line="14" column="1" bodyfile="include/vocal_folds/body_cover_pair.h" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="enum" id="body__cover__vf_8h_1a2d42d168379b4fb56310d7804f294ff5" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Gender</name>
+        <qualifiedname>tarte::Gender</qualifiedname>
+        <enumvalue id="body__cover__vf_8h_1a2d42d168379b4fb56310d7804f294ff5adf69977fd010faa3386d1a78eed6a330" prot="public">
+          <name>MALE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="body__cover__vf_8h_1a2d42d168379b4fb56310d7804f294ff5a14f13df61d75b8aed0806c401fbf7a18" prot="public">
+          <name>FEMALE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="10" column="1" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="10" bodyend="10"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="audiowrite_8h_1a6d0fb974aed0b9ac6bc3b07ad48bb60a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WriteWav</definition>
+        <argsstring>(const std::string &amp;path, const std::vector&lt; float &gt; &amp;samples, int sampleRate)</argsstring>
+        <name>WriteWav</name>
+        <qualifiedname>tarte::WriteWav</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>samples</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sampleRate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/audiowrite.h" line="9" column="6" bodyfile="include/utility/audiowrite.h" bodystart="9" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="eigen__utility_8h_1ac3824b7d25a1a60c08f057014cfcb61b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Derived</type>
+          </param>
+          <param>
+            <type>typename ftype</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto tarte::ClipEigen</definition>
+        <argsstring>(Eigen::Ref&lt; const Eigen::ArrayX&lt; Derived &gt; &gt; array, const ftype &amp;min, const ftype &amp;max)</argsstring>
+        <name>ClipEigen</name>
+        <qualifiedname>tarte::ClipEigen</qualifiedname>
+        <param>
+          <type>Eigen::Ref&lt; const Eigen::ArrayX&lt; Derived &gt; &gt;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/eigen_utility.h" line="8" column="6" bodyfile="include/utility/eigen_utility.h" bodystart="8" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="eigen__utility_8h_1a1dbe4fa3f8aaec0979629c553d292518" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Derived</type>
+          </param>
+          <param>
+            <type>typename ftype</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto tarte::ClipEigen</definition>
+        <argsstring>(const Eigen::ArrayBase&lt; Derived &gt; &amp;array, const ftype &amp;min, const ftype &amp;max)</argsstring>
+        <name>ClipEigen</name>
+        <qualifiedname>tarte::ClipEigen</qualifiedname>
+        <param>
+          <type>const Eigen::ArrayBase&lt; Derived &gt; &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/eigen_utility.h" line="14" column="6" bodyfile="include/utility/eigen_utility.h" bodystart="14" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="eigen__utility_8h_1a404da879de0966556f595868f0a4c811" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Derived1</type>
+          </param>
+          <param>
+            <type>typename Derived2</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto tarte::SafeSetEigen</definition>
+        <argsstring>(Eigen::ArrayBase&lt; Derived1 &gt; &amp;array, Eigen::Ref&lt; const Eigen::ArrayX&lt; Derived2 &gt; &gt; array2)</argsstring>
+        <name>SafeSetEigen</name>
+        <qualifiedname>tarte::SafeSetEigen</qualifiedname>
+        <param>
+          <type>Eigen::ArrayBase&lt; Derived1 &gt; &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>Eigen::Ref&lt; const Eigen::ArrayX&lt; Derived2 &gt; &gt;</type>
+          <declname>array2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/eigen_utility.h" line="20" column="6" bodyfile="include/utility/eigen_utility.h" bodystart="20" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="eigen__utility_8h_1ad942760ce9ffb2595e3ebc9d60a52619" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Derived1</type>
+          </param>
+          <param>
+            <type>typename Derived2</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto tarte::SafeSetEigen</definition>
+        <argsstring>(Eigen::ArrayBase&lt; Derived1 &gt; &amp;array, const Eigen::ArrayBase&lt; Derived2 &gt; &amp;array2)</argsstring>
+        <name>SafeSetEigen</name>
+        <qualifiedname>tarte::SafeSetEigen</qualifiedname>
+        <param>
+          <type>Eigen::ArrayBase&lt; Derived1 &gt; &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>const Eigen::ArrayBase&lt; Derived2 &gt; &amp;</type>
+          <declname>array2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/eigen_utility.h" line="27" column="6" bodyfile="include/utility/eigen_utility.h" bodystart="27" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="maths_8h_1a6698c21564786c477b4649e818d565ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tarte::normalize_vector</definition>
+        <argsstring>(std::vector&lt; T &gt; &amp;vec)</argsstring>
+        <name>normalize_vector</name>
+        <qualifiedname>tarte::normalize_vector</qualifiedname>
+        <param>
+          <type>std::vector&lt; T &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/maths.h" line="6" column="6" bodyfile="include/utility/maths.h" bodystart="6" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="maths_8h_1a6abfbc6a31c170859a49013a0e0f68d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>int</type>
+        <definition>int tarte::sgn</definition>
+        <argsstring>(T val)</argsstring>
+        <name>sgn</name>
+        <qualifiedname>tarte::sgn</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/maths.h" line="20" column="5" bodyfile="include/utility/maths.h" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="smoothing_8h_1a68a42dcc92d8924cb49bcb67c84c8778" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename derived</type>
+          </param>
+          <param>
+            <type>typename ftype</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto tarte::smoothRampMatrix</definition>
+        <argsstring>(const Eigen::MatrixBase&lt; derived &gt; &amp;x, ftype epsilon=1)</argsstring>
+        <name>smoothRampMatrix</name>
+        <qualifiedname>tarte::smoothRampMatrix</qualifiedname>
+        <param>
+          <type>const Eigen::MatrixBase&lt; derived &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>epsilon</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/smoothing.h" line="8" column="6" bodyfile="include/utility/smoothing.h" bodystart="8" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="smoothing_8h_1aa5b4e986ed520097cd115644b15d0f6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ftype</type>
+          </param>
+        </templateparamlist>
+        <type>ftype</type>
+        <definition>ftype tarte::softplus</definition>
+        <argsstring>(const ftype &amp;x, ftype epsilon=1, ftype threshold=40)</argsstring>
+        <name>softplus</name>
+        <qualifiedname>tarte::softplus</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>epsilon</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>threshold</declname>
+          <defval>40</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/smoothing.h" line="15" column="7" bodyfile="include/utility/smoothing.h" bodystart="15" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="smoothing_8h_1a37d236a611df2b837623b881f4a8e36a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ftype</type>
+          </param>
+        </templateparamlist>
+        <type>ftype</type>
+        <definition>ftype tarte::softplusDerivative</definition>
+        <argsstring>(const ftype &amp;x, ftype epsilon=1, ftype threshold=40)</argsstring>
+        <name>softplusDerivative</name>
+        <qualifiedname>tarte::softplusDerivative</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>epsilon</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>threshold</declname>
+          <defval>40</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/smoothing.h" line="25" column="7" bodyfile="include/utility/smoothing.h" bodystart="25" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="smoothing_8h_1a092945e3c144f10d55e0b99109837a65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename derived</type>
+          </param>
+          <param>
+            <type>typename ftype</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto tarte::softplusMatrix</definition>
+        <argsstring>(const Eigen::MatrixBase&lt; derived &gt; &amp;x, ftype epsilon=1, ftype threshold=40)</argsstring>
+        <name>softplusMatrix</name>
+        <qualifiedname>tarte::softplusMatrix</qualifiedname>
+        <param>
+          <type>const Eigen::MatrixBase&lt; derived &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>epsilon</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>threshold</declname>
+          <defval>40</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/smoothing.h" line="35" column="6" bodyfile="include/utility/smoothing.h" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="smoothing_8h_1ab7e30eade4de26bb960ff6af7f1a5334" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename derived</type>
+          </param>
+          <param>
+            <type>typename ftype</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto tarte::softplusDerivativeMatrix</definition>
+        <argsstring>(const Eigen::MatrixBase&lt; derived &gt; &amp;x, ftype epsilon=1, ftype threshold=40)</argsstring>
+        <name>softplusDerivativeMatrix</name>
+        <qualifiedname>tarte::softplusDerivativeMatrix</qualifiedname>
+        <param>
+          <type>const Eigen::MatrixBase&lt; derived &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>epsilon</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>threshold</declname>
+          <defval>40</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/utility/smoothing.h" line="41" column="6" bodyfile="include/utility/smoothing.h" bodystart="41" bodyend="46"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/duffing.cpp" line="3" column="1"/>
+  </compounddef>
+</doxygen>

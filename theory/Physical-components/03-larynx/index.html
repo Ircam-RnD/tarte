@@ -1,0 +1,2144 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Physical audio synthesis engine">
+      
+      
+        <meta name="author" content="Thomas Risse">
+      
+      
+      
+        <link rel="prev" href="../02-yielding-walls/">
+      
+      
+        <link rel="next" href="../04-pH-fluid-pdes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Larynx (vocal folds + flow) models - Tarte - physical audio synthesis</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#general-model-class" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Tarte - physical audio synthesis" class="md-header__button md-logo" aria-label="Tarte - physical audio synthesis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Tarte - physical audio synthesis
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Larynx (vocal folds + flow) models
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../Analysis/00-Z_transform_state_space/" class="md-tabs__link">
+          
+  
+  
+  Theory
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../examples/Getting-started/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../tarte/annotated/" class="md-tabs__link">
+          
+  
+  
+  API reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Tarte - physical audio synthesis" class="md-nav__button md-logo" aria-label="Tarte - physical audio synthesis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Tarte - physical audio synthesis
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analysis/00-Z_transform_state_space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z transform of a state space model in discrete time
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Analysis/01-state_diagonalisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagonalisation of a state space model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/00-musical-instruments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles of musical instruments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/01-port-hamiltonian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Port-Hamiltonian systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Overview/02-numerical-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numerical methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physical-components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Physical-components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-webster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webster equation: pH formulation and discretization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-acoustic-radiation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simple radiation model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-yielding-walls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed surface impedance (yielding walls)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Larynx (vocal folds + flow) models
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Larynx (vocal folds + flow) models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-model-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General model class
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General model class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vocal-folds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocal folds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glottal-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glottal flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#body-cover-story-et-titze-1995" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Body-cover (Story et Titze 1995)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Body-cover (Story et Titze 1995)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vocal-folds_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocal folds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glottal-flow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glottal flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-symmetrical-two-mass-model-lous-et-al-1998" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A symmetrical two mass model (Lous et. al 1998)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A symmetrical two mass model (Lous et. al 1998)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vocal-folds_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocal folds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glottal-flow_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glottal flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#noise-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Noise model
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-pH-fluid-pdes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Port-Hamiltonian fluid PDEs for 1D propagation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/Getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tarte/annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tarte/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-model-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General model class
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General model class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vocal-folds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocal folds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glottal-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glottal flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#body-cover-story-et-titze-1995" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Body-cover (Story et Titze 1995)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Body-cover (Story et Titze 1995)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vocal-folds_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocal folds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glottal-flow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glottal flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-symmetrical-two-mass-model-lous-et-al-1998" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A symmetrical two mass model (Lous et. al 1998)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A symmetrical two mass model (Lous et. al 1998)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vocal-folds_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vocal folds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#glottal-flow_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Glottal flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#noise-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Noise model
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../Analysis/00-Z_transform_state_space/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Theory
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../00-webster/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Physical-components
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Larynx (vocal folds + flow) models</h1>
+
+<p>Models of the larynx include two components and their coupling:</p>
+<ul>
+<li>The vocal folds mechanical model,</li>
+<li>The fluid flow model.</li>
+</ul>
+<p>These two components are responsible for self-oscillation, and ultimately of sound production (at least for `voiced' sounds). </p>
+<p>The vocal folds are a complex assembly of tissues with various mechanical properties, which can to a certain extent be described by constitutive laws. Their dynamics can therefore be derived from the fundamental laws of mechanics, resulting in three dimensional PDEs models. From these, discretization can be made using high-fidelity methods like the finite element method, or using lumped parameter modeling. The two approaches are quite distinct in their objectives and computational complexity. In this work, low dimensional models are used to keep compute time low. As a rule of thumb, the real-time barrier should become a problem for vocal folds models with ~100 degrees of freedom with the current simulation method and code. The low dimensional models are known to be able to reproduce several qualitative properties of voice production. Large-scale parameter studies are also easier to perform than with larger models, due to the reduced computational cost. However, one needs to be extra cautious when interpreting simulation results as validation is generally hard, especially when comparing with in-vivo data.</p>
+<p>Fluid flow between the vocal folds is also complex to represent accurately due to the time-varying domain and to the presence of turbulences. In this work, the classical reduced-order way of representing the glottal flow is used. It consists in a one-dimensional model, assuming incompressible, quasi-stationary flow that separates from the folds to form a jet at the exit of the larynx. </p>
+<h2 id="general-model-class">General model class</h2>
+<h3 id="vocal-folds">Vocal folds</h3>
+<p>The dynamics are assumed to be written in terms of a state <span class="arithmatex">\(\boldsymbol x_{\rm f} = [\boldsymbol p_{\rm f}, \boldsymbol q_{\rm f}]^\intercal\)</span>, including vectors of generalized coordinates <span class="arithmatex">\(\boldsymbol q_{\rm f}\)</span> and momenta <span class="arithmatex">\(\boldsymbol p_{\rm f}\)</span>. The Hamiltonian (total energy) writes as a function of the state</p>
+<div class="arithmatex">\[
+\begin{equation}
+  H (\boldsymbol x_{\rm f}) = \frac{1}{2} \boldsymbol p_{\rm f}^\intercal \boldsymbol M^{-1} \boldsymbol p_{\rm f} + \underbrace{\frac{1}{2} \boldsymbol q_{\rm f}^\intercal \boldsymbol K \boldsymbol q_{\rm f}  + E_{\rm nl}(\boldsymbol q_{\rm f})}_{V(\boldsymbol q_{\rm f})},
+  \label{eq:Hamiltonian}
+\end{equation}
+\]</div>
+<p>with diagonal mass matrix <span class="arithmatex">\(\boldsymbol M\)</span>, and symmetric stiffness matrix <span class="arithmatex">\(\boldsymbol K\)</span>, both assumed positive definite. The potential energy <span class="arithmatex">\(V(\boldsymbol q_{\rm f})\)</span> is the sum of a quadratic term and of a general positive function of the generalized coordinates <span class="arithmatex">\(E_{\rm nl}(\boldsymbol q_{\rm f})\)</span>, with <span class="arithmatex">\(E_{\rm nl}(\boldsymbol 0) = 0\)</span>.</p>
+<p>The vocal folds dynamics, including dissipation, evolve according to</p>
+<div class="arithmatex">\[
+\begin{equation}
+  \underbrace{
+    \begin{bmatrix}
+      \dot{\boldsymbol q_{\rm f}} \\
+      \dot{\boldsymbol p_{\rm f}} \\
+      \boldsymbol y
+    \end{bmatrix}}_{\boldsymbol f}
+  =
+  \begin{bmatrix}
+    \boldsymbol 0              &amp; \boldsymbol I          &amp; \boldsymbol 0           \\
+    -\boldsymbol I &amp; - \boldsymbol R_{0}      &amp; \boldsymbol I           \\
+    \boldsymbol 0              &amp; -\boldsymbol I &amp; \boldsymbol{0}
+  \end{bmatrix}
+  \underbrace{
+    \begin{bmatrix}
+      \nabla V           \\
+      \boldsymbol M^{-1} \boldsymbol p_{\rm f} \\
+      \boldsymbol u
+    \end{bmatrix}}_{\boldsymbol e},
+  \label{eq:dynamics_vf}
+\end{equation}
+\]</div>
+<p>where <span class="arithmatex">\(\boldsymbol u = \pm \boldsymbol{F}_{\rm f}\)</span> is an external forcing and the associated output <span class="arithmatex">\(\boldsymbol y = \pm -\boldsymbol{v}_{\rm f}\)</span> is the velocity corresponding to generalized momentum <span class="arithmatex">\(\boldsymbol p_{\rm f}\)</span>. </p>
+<details><summary>Sign of input-output pair  </summary>
+
+Inputs and output signs depend on the chosen convention for the vocal folds displacement. For the model to be coherent, positive forces must open the glottis. With the above sign convention, this means that:
+if higher values of q_f result in bigger opening, then a plus must replace the above plus/minus signs, else, a minus must replace the above plus/minus signs. This propagates in the construction of the assembled model below.
+
+</details>
+
+<p>By construction of the flow <span class="arithmatex">\(\boldsymbol f\)</span> and power-conjugated effort <span class="arithmatex">\(\boldsymbol e\)</span> vectors, one gets the power balance, using the chain rule and \eqref{eq:dynamics_vf}:</p>
+<div class="arithmatex">\[
+\begin{align}
+      \frac{d}{dt} H + \boldsymbol u^\intercal \boldsymbol y \overset{(\boldsymbol e^\intercal \boldsymbol f)}{=}
+      -(\boldsymbol M^{-1} \boldsymbol p_{\rm f})^\intercal 
+      \boldsymbol{R_0}
+        \boldsymbol M^{-1} \boldsymbol p_{\rm f}.
+  \label{eq:power_balance}
+\end{align}
+\]</div>
+<p>In the absence of an input (<span class="arithmatex">\(\boldsymbol u = 0\)</span>), the energy is preserved (for <span class="arithmatex">\(\boldsymbol R_0 = \boldsymbol R_{\rm uu} = 0\)</span>) or decreases owing to dissipation.</p>
+<h3 id="glottal-flow">Glottal flow</h3>
+<p>The flow description is composed of two equations. The first relates the pressure drop <span class="arithmatex">\(\Delta P = P_{-} - P_{+}\)</span> (where <span class="arithmatex">\(P_-\)</span> is the sub-glottal pressure and <span class="arithmatex">\(P_+\)</span> the supra-glottal pressure) to a resulting mean flow <span class="arithmatex">\(Q_{\rm g}\)</span> in the glottis</p>
+<div class="arithmatex">\[
+  \begin{equation}
+    Q_{\rm g} = A_{\rm flow}(\boldsymbol q_{\rm f}) {\rm sign}(\Delta P) \sqrt{\frac{2 \vert \Delta P\vert}{\rho_0} },
+    \label{eq:Bernoulli_vf}
+  \end{equation}
+\]</div>
+<p>where <span class="arithmatex">\(A_{\rm flow} (\boldsymbol q_{\rm f})\)</span> is the effective open area for the flow. </p>
+<details><summary>Form of the glottal flow law  </summary>
+
+The glottal flow law is derived from the incompressible and stationary assumptions. Up to the jet separation point $x_s$, this leads to a classical Bernoulli type flow :
+
+$$
+  \begin{equation*}
+    \frac{P_{ \rm sub}}{\rho_0} + \frac{1}{2} v_{ \rm sub}^2 = \frac{P_{\rm s}}{\rho_0} + \frac{1}{2} v_{\rm s}^2.
+  \end{equation*}
+$$
+
+At the separation point, the kinetic energy is assumed to be partly or fully dissipated such that 
+
+$$
+  \frac{P_{\rm s}}{\rho_0} + \frac{1}{2} \gamma_r v_{\rm s}^2 = \frac{P_{sup}}{\rho_0} + \frac{1}{2} v_{sup}^2,
+$$
+
+where 
+
+$$
+  0 \leq \gamma_r \leq 1,
+$$
+
+is a pressure recovery coefficient. Incompressibility leads to a constant flow $Q_g$ through the glottis, hence
+
+$$
+  Q_g = A_{\rm s} v_{\rm s} = A_{\rm sup} v_{\rm sup} = A_{\rm sub} v_{\rm sub},
+$$
+
+under the hypothesis that the flow has reattached to the tissues at
+
+$$
+  x = x_{sup}.
+$$ 
+
+Combining the previous equations, and assuming 
+
+$$
+  A_{\rm s} \ll A_{ \rm sub} \quad \text{ and } \quad A_{\rm s} \ll A_{sup},
+$$
+
+one gets
+
+$$
+  \begin{equation}
+    Q_{\rm g} = A_{\rm s} {\rm sign}(\Delta P) \sqrt{\frac{2 \vert \Delta P\vert}{(1 - \gamma_r)\rho_0} },
+    \label{eq:Bernoulli_vf_recovery}
+  \end{equation}
+$$  
+
+which is of the form of \eqref{eq:Bernoulli_vf} with 
+
+$$
+  A_{\rm flow} = A_{\rm s} \sqrt{\frac{1}{1 - \gamma_r}}.
+$$
+
+</details>
+
+<p>The second equation describes the forces applied by the fluid pressure to the vocal folds. These forces can be written as linear combinations of the sub-glottal and supra-glottal pressures:</p>
+<div class="arithmatex">\[
+\begin{equation}
+\boldsymbol F_{\rm f} =  {\boldsymbol S}_{\rm f-} (\boldsymbol q_{\rm f}) P_- +  {\boldsymbol S}_{\rm f+} (\boldsymbol q_{\rm f}) P_+,
+\label{eq:forces_vf}
+\end{equation}
+\]</div>
+<p>where <span class="arithmatex">\({\boldsymbol S}_{\rm f-} (\boldsymbol q_{\rm f})\)</span> and <span class="arithmatex">\({\boldsymbol S}_{\rm f+} (\boldsymbol q_{\rm f})\)</span> are vectors of effective surfaces depending on the current geometry of the glottis. </p>
+<p>In most lumped models of the literature, the flow pumped by the vocal folds displacement is not included, as it is mostly negligible in front of the mean flow <span class="arithmatex">\(Q_g\)</span> in the glottis owing to the low range of oscillation frequencies. However, this choice results in non-power preserving and non-mass preserving models. Hence, it is not directly compatible with the port-Hamiltonian framework. In this work, we propose to minimally modify the model to include power conjugated flows induced by the vocal fold velocity vector <span class="arithmatex">\(\boldsymbol v_{\rm f} = \boldsymbol M_{\rm f}^{-1} \boldsymbol p_{\rm f}\)</span> as</p>
+<div class="arithmatex">\[
+\begin{equation}
+Q_{-} =  -Q_g -{\boldsymbol S}_{\rm f-}^\intercal (\boldsymbol q_{\rm f}) \boldsymbol v_{\rm f}, \quad Q_{+} =  Q_g - {\boldsymbol S}_{\rm f+}^\intercal (\boldsymbol q_{\rm f}) \boldsymbol v_{\rm f},
+\label{eq:fold_flow}
+\end{equation}
+\]</div>
+<p>with outgoing lower and upper flows <span class="arithmatex">\(Q_{-}, Q_{+}\)</span>.
+This writing effectively restores both the mass and power balances of the model.</p>
+<p>The flow component may be written in a compact form as</p>
+<div class="arithmatex">\[
+\begin{equation}
+      \begin{bmatrix}
+        y_0 = Q_{-} \\
+        y_1 = Q_{+} \\
+        \boldsymbol y_{2, 3} = \boldsymbol F_{\rm f}
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+        -R_{\rm g}         &amp; R_{\rm g}          &amp; -{\boldsymbol S}^{\intercal}_{\rm f-} \\
+        R_{\rm g}          &amp; -R_{\rm g}         &amp; -{\boldsymbol S}^{\intercal}_{\rm f+} \\
+        {\boldsymbol S}_{\rm f-} &amp; {\boldsymbol S}_{\rm f+} &amp; \boldsymbol 0
+      \end{bmatrix}
+      \begin{bmatrix}
+        u_0 = P_{-} \\
+        u_1 = P_{+} \\
+        \boldsymbol u_{2, 3} = \boldsymbol v_{\rm f}
+      \end{bmatrix},
+  \label{eq:glottis}
+\end{equation}
+\]</div>
+<p>with</p>
+<div class="arithmatex">\[
+\begin{equation}
+  R_{\rm g}(\Delta P, \boldsymbol q_{\rm f}) = \frac{Q_{\rm g}(\Delta P, A_{\rm flow}(\boldsymbol q_{\rm f}))}{\Delta P}.
+\end{equation}
+\]</div>
+<p>Note that the previous system has the vocal fold configuration <span class="arithmatex">\(\boldsymbol q_{\rm f}\)</span> as a parameter, making in non-autonomous. When connecting to the vocal fold model (see next section) <span class="arithmatex">\(\boldsymbol q_{\rm f}\)</span> is recovered as a state of the assembly, therefore closing the system. The first presentation as two separated sub-systems </p>
+<h3 id="assembly">Assembly</h3>
+<p>Assembly of the vocal folds and fluid flow models is done through the power ports by imposing forces and velocities equalities (<span class="arithmatex">\(\boldsymbol{F}_{\rm f} = \boldsymbol{F}_{\rm f}\)</span> and <span class="arithmatex">\(\boldsymbol{v}_{\rm f} = \boldsymbol{v}_{\rm f}\)</span>). The assembled system then writes</p>
+<div class="arithmatex">\[
+\begin{equation}
+  \underbrace{
+    \begin{bmatrix}
+      \dot{\boldsymbol q_{\rm f}} \\
+      \dot{\boldsymbol p_{\rm f}} \\
+      \boldsymbol y
+    \end{bmatrix}}_{\boldsymbol f}
+  =
+  \begin{bmatrix}
+    \boldsymbol 0              &amp; \boldsymbol I          &amp; \boldsymbol 0           \\
+    -\boldsymbol I &amp; - \boldsymbol R_{0}      &amp; \boldsymbol G           \\
+    \boldsymbol 0              &amp; -\boldsymbol G^\intercal &amp; -\boldsymbol R_{\rm uu}
+  \end{bmatrix}
+  \underbrace{
+    \begin{bmatrix}
+      \nabla V           \\
+      \boldsymbol M^{-1} \boldsymbol p_{\rm f} \\
+      \boldsymbol u
+    \end{bmatrix}}_{\boldsymbol e},
+  \label{eq:dynamics_assembly}
+\end{equation}
+\]</div>
+<p>with </p>
+<div class="arithmatex">\[
+\boldsymbol R_{\rm uu} = \begin{bmatrix}
+        -R_{\rm g}         &amp; R_{\rm g}  \\
+        R_{\rm g}          &amp; -R_{\rm g}         
+      \end{bmatrix}, 
+      \quad
+\boldsymbol G = \begin{bmatrix}
+    {\boldsymbol S}^{\intercal}_{\rm f-} \\\
+    {\boldsymbol S}^{\intercal}_{\rm f+}
+\end{bmatrix},
+\]</div>
+<p>both being functions of the state.</p>
+<p>In the previous construction, the flow model can be viewed as a dissipative transformer between fluid flow/pressure and vocal folds velocity/force.</p>
+<h2 id="example-models">Example models</h2>
+<h3 id="body-cover-story-et-titze-1995">Body-cover (Story et Titze 1995<sup id="fnref:story1995voice"><a class="footnote-ref" href="#fn:story1995voice">1</a></sup>)</h3>
+<p>The body-cover model is a three mass model depicted in the following schematic.</p>
+<p><img src="../../../medias/larynx/body_cover_scheme.svg"; width=40%; style="display: block; margin: auto;"; alt="Vocal fold schematic: body cover model."></p>
+<h4 id="vocal-folds_1">Vocal folds</h4>
+<p>The model can be fitted to the structure in \eqref{eq:dynamics_vf} quite easily, at least for the linear part of it. The state is composed of the displacements <span class="arithmatex">\(\boldsymbol q_{\rm f} = [q_l, q_u, q_b]^\intercal\)</span> around the rest positions and momenta <span class="arithmatex">\(\boldsymbol p_{\rm f} = [p_l, p_u, p_b]^\intercal\)</span> of the three masses. In the code, the convention is that higher displacement values corresponds to lower glottis opening (see remark above for implications on signs). The diagonal mass matrix writes </p>
+<div class="arithmatex">\[
+    \boldsymbol{M} = \begin{bmatrix}
+        m_l &amp; 0 &amp; 0 \\\
+        0 &amp; m_u &amp; 0 \\\
+        0 &amp; 0 &amp; m_b 
+    \end{bmatrix}.
+\]</div>
+<p>From the three d.o.f.s, the four spring elongations <span class="arithmatex">\(\boldsymbol e = [e_l, e_u, e_b, e_{lu}]\)</span> can be recovered as </p>
+<div class="arithmatex">\[
+\boldsymbol e = 
+\underbrace{
+\begin{bmatrix}
+    1 &amp; 0 &amp; -1 \\\
+    0 &amp; 1 &amp; -1 \\\
+    0 &amp; 0 &amp; 1 \\\
+    1 &amp; -1 &amp; 0 
+\end{bmatrix}}_{\boldsymbol{W}}
+\boldsymbol{q_{\rm f}}
+\]</div>
+<p>The stiffness matrix then writes </p>
+<div class="arithmatex">\[
+\boldsymbol{K} = 
+\boldsymbol{W}^\intercal
+\begin{bmatrix}
+    k_l &amp; 0 &amp; 0 &amp; 0 \\\
+    0 &amp; k_u &amp; 0 &amp; 0 \\\
+    0 &amp; 0 &amp; k_b &amp; 0\\\
+    0 &amp; 0 &amp; 0 &amp; k_{lu}
+\end{bmatrix}
+\boldsymbol{W},
+\]</div>
+<p>which is by construction semi-positive definite under the condition that all stiffness parameters are positive. Similarly, the dissipation matrix may be built as</p>
+<p>$$
+\boldsymbol{R_0} = 
+\boldsymbol{W}^\intercal
+\begin{bmatrix}
+    r_l &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; r_u &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; r_b &amp; 0\\
+    0 &amp; 0 &amp; 0 &amp; r_{lu}
+\end{bmatrix}
+\boldsymbol{W}
+$$
+Note however than in the original model, and in this implementation, <span class="arithmatex">\(r_{lu}\)</span> is set to zero.</p>
+<details><summary>State dependent dissipation matrix  </summary>
+
+The mechanical dissipation matrix is in fact state dependent, in a switching manner, as it should increase at contact. In the current state of the code, this is accounted for in a non power preserving manner at the discrete time level. In view of the relatively low values of the vocal fold model eigenvalue, this has no impact on stability. However, for bigger models, this may not be the case. The scheme can be slightly modified to allow for the dissipation matrix to be the sum of a fixed arbitrary part and of a state-dependent diagonal part, without reducing the computational efficiency. We used a similar trick for string simulations in Risse et. al 2025[^risse2025power].
+
+</details>
+
+<p>With the above elements, the linear part of the vocal folds dynamics is fully described. In addition to that, <span class="arithmatex">\(E_{\rm nl}(\boldsymbol q_{\rm f})\)</span> encodes the mechanical nonlinearity. For a pair of vocal folds, this nonlinearity includes two elements:</p>
+<ul>
+<li>A cubic spring nonlinearity, which derives from a function of the elongations 
+    $$
+        E_{\rm material}(\boldsymbol e(\boldsymbol q_{\rm f})) = \frac{1}{4} [k_l, k_u, k_b, k_{lu}]^\intercal \left(\left(\frac{\boldsymbol e}{e_{\rm ref}}\right)^2  \odot \boldsymbol e^2 \right),
+    $$
+    where <span class="arithmatex">\(e_{\rm ref}\)</span> is a reference elongations such that the effective stiffness of the system is 4 times higher than around the rest position for <span class="arithmatex">\(e = e_{\rm ref}\)</span>.</li>
+<li>A contact nonlinearity, consisting of an asymmetric power law, active only for interpenetrating vocal folds. Considering <span class="arithmatex">\(\boldsymbol q_{c}(\boldsymbol{q}_{\rm f})\)</span> to be a measure of the vocal fold interpenetration, the contact restoring force writes
+    $$
+        E_{\rm c}(\boldsymbol q_{c}(\boldsymbol{q}_{\rm f})) = \frac{1}{\alpha_c + 1} k_c  q_c^{\alpha_c} * (q_c &gt; 0).
+    $$
+    Note that for a pair of non-symmetric vocal folds, <span class="arithmatex">\(\boldsymbol q_{c}\)</span> is a function of the concatenated state of both vocal folds.</li>
+</ul>
+<h4 id="glottal-flow_1">Glottal flow</h4>
+<p>From the proposed general parametrization, expressions of <span class="arithmatex">\(A_{\rm flow}(\boldsymbol q_{\rm f})\)</span>, <span class="arithmatex">\({\boldsymbol S}_{\rm f-} (\boldsymbol q_{\rm f})\)</span> and <span class="arithmatex">\({\boldsymbol S}_{\rm f+} (\boldsymbol q_{\rm f})\)</span> are needed to complete the model. </p>
+<p>In Story et Titze 1995<sup id="fnref2:story1995voice"><a class="footnote-ref" href="#fn:story1995voice">1</a></sup> <span class="arithmatex">\(A_{\rm flow}(\boldsymbol q_{\rm f})\)</span> is simply recovered as the minimum between <span class="arithmatex">\(A_l\)</span> and <span class="arithmatex">\(A_u\)</span> the areas between the lower and upper masses respectively.</p>
+<p>The effective surfaces are obtained by a rewriting of equations 21-23 of Story et Titze 1995<sup id="fnref3:story1995voice"><a class="footnote-ref" href="#fn:story1995voice">1</a></sup>. Their expression depend on the current glottis configuration. If the glottis is converging (<span class="arithmatex">\(A_l &gt; A_u\)</span>), then </p>
+<div class="arithmatex">\[
+    {\boldsymbol S}_{\rm f-}(\boldsymbol q_{\rm f}) = \left[L_0 l_0 \left(1 - \frac{A_u}{A_l}^2\right), L_0 l_0 \frac{A_u}{A_l}^2, 0\right],\quad {\boldsymbol S}_{\rm f+}(\boldsymbol q_{\rm f}) = [0, L_0 l_0, 0],
+\]</div>
+<p>if the glottis is diverging (<span class="arithmatex">\(A_l &lt; A_u\)</span>) then</p>
+<div class="arithmatex">\[
+    {\boldsymbol S}_{\rm f-}(\boldsymbol q_{\rm f}) = {\boldsymbol S}_{\rm f+}(\boldsymbol q_{\rm f}) =  [0, L_0 l_0, 0],
+\]</div>
+<p>for vocal fold half-length and vertical thickness <span class="arithmatex">\(L_0\)</span> and <span class="arithmatex">\(l_0\)</span>. With these elements, the larynx model is fully described.</p>
+<h3 id="a-symmetrical-two-mass-model-lous-et-al-1998">A symmetrical two mass model (Lous et. al 1998<sup id="fnref:lous1998symmetrical"><a class="footnote-ref" href="#fn:lous1998symmetrical">2</a></sup>)</h3>
+<p>Lous's model is a two mass model with piecewise linear geometry depicted in the following schematic directly copied from the paper<sup id="fnref2:lous1998symmetrical"><a class="footnote-ref" href="#fn:lous1998symmetrical">2</a></sup>.</p>
+<p><img src="../../../medias/larynx/lous_scheme.png"; width=40%; style="display: block; margin: auto;"; alt="Vocal fold schematic: Lous's model."></p>
+<h4 id="vocal-folds_2">Vocal folds</h4>
+<p>The state is composed of the displacements <span class="arithmatex">\(\boldsymbol q_{\rm f} = [q_l, q_u]^\intercal\)</span> around the rest positions and momenta <span class="arithmatex">\(\boldsymbol p_{\rm f} = [p_l, p_u]^\intercal\)</span> of the two masses. In the code, the convention is that higher displacement values corresponds to lower glottis opening (see remark above for implications on signs). The diagonal mass matrix writes </p>
+<div class="arithmatex">\[
+    \boldsymbol{M} = \begin{bmatrix}
+        m_1 &amp; 0 \\\
+        0 &amp; m_2
+    \end{bmatrix}.
+\]</div>
+<p>From the two d.o.f.s, the three spring elongations <span class="arithmatex">\(\boldsymbol e = [e_l, e_u,e_{lu}]\)</span> can be recovered as </p>
+<div class="arithmatex">\[
+\boldsymbol e = 
+\underbrace{
+\begin{bmatrix}
+    1 &amp; 0 \\\
+    0 &amp; 1 \\\
+    1 &amp; -1 
+\end{bmatrix}}_{\boldsymbol{W}}
+\boldsymbol{q_{\rm f}}
+\]</div>
+<p>The stiffness matrix then writes </p>
+<div class="arithmatex">\[
+\boldsymbol{K} = 
+\boldsymbol{W}^\intercal
+\begin{bmatrix}
+    k_1 &amp; 0 &amp; 0  \\\
+    0 &amp; k_2 &amp; 0  \\\
+    0 &amp; 0 &amp; k_{12}
+\end{bmatrix}
+\boldsymbol{W},
+\]</div>
+<p>which is by construction semi-positive definite under the condition that all stiffness parameters are positive. Similarly, the dissipation matrix may be built as</p>
+<div class="arithmatex">\[
+\boldsymbol{R_0} = 
+\boldsymbol{W}^\intercal
+\begin{bmatrix}
+    r_l &amp; 0 &amp; 0 \\\
+    0 &amp; r_u &amp; 0 \\\
+    0 &amp; 0 &amp; r_b
+\end{bmatrix}.
+\boldsymbol{W}
+\]</div>
+<p>TO finish the mechanical model, nonlinearities can be added in the same way than for the body-cover model described above.</p>
+<h4 id="glottal-flow_2">Glottal flow</h4>
+<p>The glottal flow law is obtained through a rewriting of equation 2 of the paper:</p>
+<div class="arithmatex">\[
+\begin{align}
+    P(x_s, t) + \frac{\rho_0}{2}  \left(\frac{Q(t)}{h(x_s, t) L_0}\right)^2 &amp;= P_{sub}(t)+ \frac{\rho_0}{2}  \left(\frac{Q(t)}{h_0 L_0}\right)^2 \nonumber \\\
+    \left(\frac{Q(t)}{h(x_s, t) L_0}\right)^2 - \left(\frac{Q(t)}{h_0 L_0}\right)^2 &amp;= \frac{2}{\rho_0} \left(P_{sub}(t) - P(x_s, t)\right) \nonumber\\\
+    Q(t) &amp;= \underbrace{L_0 h(x_s, t) \sqrt{\left(\frac{1}{1 - \frac{h^2(x_s, t)}{h_0^2} }\right)}}_{A_{\rm flow}} {\rm sign}(\Delta P) \sqrt{\frac{2}{\rho_0} \vert \Delta P\vert} ,
+    \label{eq:glottal_flow_lous}
+\end{align}
+\]</div>
+<p>which is indeed in the form of \eqref{eq:Bernoulli_vf}. <span class="arithmatex">\(x_s\)</span> denotes the estimated jet separation point. As the kinetic energy of the jet is assumed to be fully dissipated, zero pressure recovery is considered above the separation point, hence <span class="arithmatex">\(\left(P_{sub}(t) - P(x_s, t)\right) = \left(P_{sub}(t) - P_{sup}( t)\right) = \Delta P\)</span> in the third line.
+Note that <span class="arithmatex">\(A_{\rm flow}\)</span> may diverge for finite values of <span class="arithmatex">\(h(x_s, t)\)</span> if <span class="arithmatex">\(h(x_s, t) = 0\)</span>. This should ideally not happen as it would be unphysical. However, in a real-time safe context, a solution is to further assume <span class="arithmatex">\(\frac{h^2(x_s, t)}{h_0^2} \approx 0\)</span>. If this assumption is made, then the glottal flow equation reduces to a similar expression as for the body-cover model.</p>
+<p>In the paper, the jet separation point is evaluated such that <span class="arithmatex">\(h(x_s) = s h_1\)</span> or as <span class="arithmatex">\(x_s = x_2\)</span> if <span class="arithmatex">\(h_2 \textcolor{red}{&gt;} s h_1\)</span>. <span class="arithmatex">\(s\)</span> is referred to as the separation constant. The condition seems to be backward, such that in the code it is implemented with <span class="arithmatex">\(h_2 \textcolor{red}{&lt;} s h_1\)</span> as the condition. </p>
+<p>The effective forces applied to the fold by the fluid are harder to get to. Following notations from the paper, the effective force on the lower mass writes:</p>
+<div class="arithmatex">\[
+\begin{align}
+    F_{h1} &amp;= F_{h1}^l + F_{h1}^r \\\
+    &amp;= \int_{x_0}^{x_1} \frac{x - x_0 }{ x_1 - x_0} p(x)dx + \int_{x_1}^{x_2} \frac{x_2 - x }{ x_2 - x_1} p(x)dx,
+\end{align}
+\]</div>
+<p>and on the upper mass:</p>
+<div class="arithmatex">\[
+\begin{align}
+    F_{h2} &amp;= F_{h2}^l + F_{h2}^r \\\
+    &amp;= \int_{x_1}^{x_2} \frac{x - x_1 }{ x_2 - x_1} p(x)dx + \int_{x_2}^{x_3} \frac{x_3 - x }{ x_3 - x_2} p(x)dx.
+\end{align}
+\]</div>
+<p>To solve the integrals, the explicit expression of <span class="arithmatex">\(p(x)\)</span> is needed. In the paper, this expression is given as a function of two quantities <span class="arithmatex">\(P_0\)</span> and <span class="arithmatex">\(P_1\)</span> which despite notations are <em>not</em> pressures at point 0 and 1. Between <span class="arithmatex">\(x_0\)</span> and <span class="arithmatex">\(x_s\)</span>, one gets</p>
+<div class="arithmatex">\[
+\begin{align}
+    p(x &lt; x_s) &amp;= P_{sub} + \frac{\rho_0}{2}  \left(\frac{Q(t)}{L_0}\right)^2 \left(\frac{1}{h^2_0} - \frac{1}{h^2(x)} \right) \\\
+    &amp;= P_{sub} + \Delta P  \frac{h^2(x) - h^2_0}{h^2_0 - h^2(x_s) } \frac{h^2(x_s)}{h^2(x)}, \\\
+    &amp;= \underbrace{P_{sub} + \Delta P  \left(\frac{h^2(x_s)}{h^2_0 - h^2(x_s)}\right)}_{A} - \underbrace{\Delta P \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)}}_{B} \frac{1}{h^2(x)},  
+\end{align}
+\]</div>
+<p>where in the last line, <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> correspond to terms <span class="arithmatex">\(P_0\)</span> and <span class="arithmatex">\(P_1\)</span> from the paper. In order to fit the general model proposed at the top of this page, the forces must be written as linear functions of <span class="arithmatex">\(P_{sub}\)</span> and <span class="arithmatex">\(P_{sup}\)</span>:</p>
+<div class="arithmatex">\[
+\begin{equation}
+  A = 
+  \begin{bmatrix}
+    1 + \frac{h^2(x_s)}{h^2_0 - h^2(x_s)} &amp; \frac{h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}, 
+  \quad
+  B = 
+  \begin{bmatrix}
+    - \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)} &amp; \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}
+\end{equation}.
+\]</div>
+<p>Above <span class="arithmatex">\(x_s\)</span>, the pressure is equal to the supra-glottal pressure</p>
+<div class="arithmatex">\[
+\begin{equation}
+    p(x &gt; x_s) = P_{sup}.
+\end{equation}
+\]</div>
+<p>As a last step to fully determine the integrals, <span class="arithmatex">\(h(x)\)</span> needs to be replaced by its piecewise linear expression:</p>
+<div class="arithmatex">\[
+ h(x) = \underbrace{\left(\frac{h_i - h_{i-1}}{x_i - x_{i-1}}\right)}_{H_{1, i}} x + \underbrace{\frac{x_i h_{i-1} - x_{i-1} h_i}{x_i - x_{i-1}}}_{H_{2, i}}, \quad \text{for } x_{i-1} &lt; x \leq x_i.
+\]</div>
+<p>Note that <span class="arithmatex">\(H_{1, i}\)</span> and <span class="arithmatex">\(H_{2, i}\)</span> are defined piecewise.
+The paper gives two useful identities to compute the integrals</p>
+<div class="arithmatex">\[
+\begin{align*}
+  \int_{x_{i-1}}^{x_i} \frac{1}{h^2(x)} dx &amp;= \frac{1}{H_{1, i}} \left(\frac{1}{h_i} - \frac{1}{h_{i-1}}\right):=W_{1, i}, \\\
+  \int_{x_{i-1}}^{x_i} \frac{x}{h^2(x)} dx &amp;= \frac{1}{H_{1, i}^2} \left(ln\left(\frac{h_i}{h_{i-1}}\right) + H_{2, i} \left(\frac{1}{h_i} - \frac{1}{h_{i-1}}\right)\right):= W_{2, i}.
+\end{align*}
+\]</div>
+<p>Explicit forces can then be written as</p>
+<div class="arithmatex">\[
+\begin{align*}
+    F_{h1}^l &amp;= \int_{x_0}^{x_1} \frac{x - x_0 }{ x_1 - x_0} p(x)dx  \\\
+    &amp;= \frac{1 }{ x_1 - x_0} \left(\int_{x_0}^{x_1}x  p(x)dx - x_0 \int_{x_0}^{x_1} p(x)dx\right) \\\
+    &amp;= \frac{1 }{ x_1 - x_0} \left(\int_{x_0}^{x_1}x  \left(A - \frac{B}{h^2(x)}\right)dx - x_0 \int_{x_0}^{x_1} \left(A - \frac{B}{h^2(x)}\right) dx\right) \\\
+    &amp;= \frac{1 }{ x_1 - x_0} \left( \frac{A}{2}(x_1^2 - x_0^2) - B W_{2, 1} - x_0 \left(A (x_1 - x_0) - B W_{1, 1}\right)\right) \\\
+    &amp;= \frac{x_1 - x_0}{2} A + \frac{x_0 W_{1, 1} - W_{2, 1}}{x_1 - x_0} B \\\
+    &amp;= \frac{x_1 - x_0}{2} \begin{bmatrix}
+    1 + \frac{h^2(x_s)}{h^2_0 - h^2(x_s)} &amp; \frac{h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}
+   + \frac{x_0 W_{1, 1} - W_{2, 1}}{x_1 - x_0} 
+   \begin{bmatrix}
+    - \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)} &amp; \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}
+\end{align*}
+\]</div>
+<div class="arithmatex">\[
+\begin{align*}
+    F_{h1}^r &amp;= \int_{x_1}^{x_2} \frac{x_2 - x }{ x_2 - x_1} p(x)dx  \\\
+    &amp;= \int_{x_1}^{x_s} \frac{x_2 - x }{ x_2 - x_1} p(x)dx  + \int_{x_s}^{x_2} \frac{x_2 - x }{ x_2 - x_1} P_{sup}\; dx \\\
+    &amp;=\frac{1 }{ x_2 - x_1} \left(- \int_{x_1}^{x_s} x p(x)dx + x_2 \int_{x_1}^{x_s} p(x)dx + (x_2 (x_2 - x_s) - 0.5 (x_2^2 - x_s^2)) P_{sup} \right) \\\
+    &amp;=\frac{1 }{ x_2 - x_1} \left( - \frac{A}{2}(x_s^2 - x_1^2) + B W_{2, s} + x_2 \left(A (x_s - x_1) - B W_{1, s}\right) + (x_2 (x_2 - x_s) - 0.5 (x_2^2 - x_s^2)) P_{sup} \right) \\\
+    &amp;=  \frac{1 }{ x_2 - x_1} \left((x_s - x_1) (x_2 - 0.5(x_s + x_1))A   + (W_{2, s} - x_2 W_{1, s}) B + (x_2 (x_2 - x_s) - 0.5 (x_2^2 - x_s^2)) P_{sup} \right) \\\
+    &amp;= 
+    \frac{1 }{ x_2 - x_1} \bigg((x_s - x_1) (x_2 - 0.5(x_s + x_1))
+    \begin{bmatrix}
+    1 + \frac{h^2(x_s)}{h^2_0 - h^2(x_s)} &amp; \frac{h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}\\\
+   &amp;\quad + (W_{2, s} - x_2 W_{1, s})
+   \begin{bmatrix}
+    - \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)} &amp; \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}
+  +
+  (x_2 (x_2 - x_s) - 0.5 (x_2^2 - x_s^2)) P_{sup}
+  \bigg)
+\end{align*}
+\]</div>
+<div class="arithmatex">\[
+\begin{align*}
+    F_{h2}^l &amp;= \int_{x_1}^{x_2} \frac{x - x_1 }{ x_2 - x_1} p(x)dx  \\\
+    &amp;= 
+    \frac{- 1 }{ x_2 - x_1} \bigg((x_s - x_1) (x_1 - 0.5(x_s + x_1))
+    \begin{bmatrix}
+    1 + \frac{h^2(x_s)}{h^2_0 - h^2(x_s)} &amp; \frac{h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}\\\
+   &amp;\quad + (W_{2, s} - x_1 W_{1, s})
+   \begin{bmatrix}
+    - \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)} &amp; \frac{h^2_0 h^2(x_s)}{h^2_0 - h^2(x_s)}
+  \end{bmatrix} 
+  \begin{bmatrix}
+    P_{sub} \\\
+    P_{sup}
+  \end{bmatrix}
+  +
+  (x_1 (x_2 - x_s) - 0.5 (x_2^2 - x_s^2)) P_{sup}
+  \bigg)
+\end{align*}
+\]</div>
+<div class="arithmatex">\[
+\begin{align*}
+    F_{h2}^r &amp;= \int_{x_2}^{x_3} \frac{x_3 - x }{ x_3 - x_2} p(x)dx  \\\
+    &amp;= \int_{x_2}^{x_3} \frac{x_3 - x }{ x_3 - x_2} P_{sup} dx \\\
+    &amp;= \frac{x_3 - x_2}{2} P_{sup}
+\end{align*}
+\]</div>
+<h2 id="noise-model">Noise model</h2>
+<p>In the glottis, the flow law is based on the assumption of Bernoulli flow up to a separation point after which part or all of the kinetic energy is dissipated. </p>
+<p>In order to introduce a power-balanced noise generator at the larynx output, we propose to modify the glottal flow law as</p>
+<div class="arithmatex">\[
+  \tilde{Q}_{\rm g} = (1 + \kappa_N \mathcal{X}_N) Q_{\rm g},
+\]</div>
+<p>with </p>
+<div class="arithmatex">\[
+  0 \leq\mathcal{X}_N \leq 1
+\]</div>
+<p>a random variable sampled in a chosen distribution assumed to be bounded, and <span class="arithmatex">\(\kappa_N \geq 0\)</span> a noise ratio coefficient. This additional noise can be interpreted as a random positive variation of <span class="arithmatex">\(\gamma_r\)</span>, the pressure recovery coefficient in \eqref{eq:Bernoulli_vf_recovery}. With this chosen parametrization, the system is ensured to be dissipative.</p>
+<p>As a first try of this method, the distribution is chosen to produce a pink noise. Later experiments should be based on optimized noise generator depending on the instantaneous geometry configuration, either based on higher order simulation results, or on measurements. </p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:story1995voice">
+<p>Brad H Story and Ingo R Titze. Voice simulation with a body-cover model of the vocal folds. <em>The Journal of the Acoustical Society of America</em>, 97(2):1249–1260, 1995.&#160;<a class="footnote-backref" href="#fnref:story1995voice" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:story1995voice" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:story1995voice" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:lous1998symmetrical">
+<p>NJC Lous, GCJ Hofmans, RNJ Veldhuis, and A Hirschberg. A symmetrical two-mass vocal-fold model coupled to vocal tract and trachea, with application to prosthesis design. <em>Acustica</em>, 84(6):1135–1150, 1998.&#160;<a class="footnote-backref" href="#fnref:lous1998symmetrical" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:lous1998symmetrical" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:risse2025power">
+<p>Thomas Risse, Thomas Helie, and Stefan Bilbao. Power-balanced drift regulation for scalar auxiliary variable methods: application to real-time simulation of nonlinear string vibrations. In <em>28th International Conference on Digital Audio Effects</em>, 126–133. DAFx, 2025.&#160;<a class="footnote-backref" href="#fnref:risse2025power" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made by Thomas Risse using Mkdocs with Material theme
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.path", "navigation.top"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

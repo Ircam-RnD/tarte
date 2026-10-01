@@ -1,0 +1,1810 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Physical audio synthesis engine">
+      
+      
+        <meta name="author" content="Thomas Risse">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Class Member Variables - Tarte - physical audio synthesis</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#class-member-variables" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Tarte - physical audio synthesis" class="md-header__button md-logo" aria-label="Tarte - physical audio synthesis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Tarte - physical audio synthesis
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Class Member Variables
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../theory/Analysis/00-Z_transform_state_space/" class="md-tabs__link">
+          
+  
+  
+  Theory
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/Getting-started/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../annotated/" class="md-tabs__link">
+          
+  
+  
+  API reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Tarte - physical audio synthesis" class="md-nav__button md-logo" aria-label="Tarte - physical audio synthesis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Tarte - physical audio synthesis
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Analysis/00-Z_transform_state_space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Z transform of a state space model in discrete time
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Analysis/01-state_diagonalisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagonalisation of a state space model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Overview/00-musical-instruments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Principles of musical instruments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Overview/01-port-hamiltonian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Port-Hamiltonian systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Overview/02-numerical-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numerical methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physical-components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Physical-components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Physical-components/00-webster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webster equation: pH formulation and discretization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Physical-components/01-acoustic-radiation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simple radiation model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Physical-components/02-yielding-walls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distributed surface impedance (yielding walls)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Physical-components/03-larynx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Larynx (vocal folds + flow) models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/Physical-components/04-pH-fluid-pdes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Port-Hamiltonian fluid PDEs for 1D propagation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/Getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annotated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        c
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        d
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        e
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        f
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        g
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        h
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        i
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        k
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        l
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        m
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        n
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        o
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        p
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        q
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        r
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        s
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        t
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        u
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        w
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        x
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        y
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="class-member-variables">Class Member Variables</h1>
+<h2 id="a">a</h2>
+<ul>
+<li><strong>areas_</strong> (<a href="../classtarte_1_1_articulation/"><strong>tarte::Articulation</strong></a>)</li>
+<li><strong>A_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>, <a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>a0_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>a1_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>a2_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>alpha_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>alpha_contact_stiffness_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>area_min_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>area_ratio_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>areas_below_masses_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>alpha_ct_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>alpha_lc_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>alpha_ta_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>a_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>)</li>
+<li><strong>amplitude_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>a_resonator_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>A0_inv_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>A_walls_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>areas</strong> (<a href="../structtarte_1_1vowels_1_1_vowel/"><strong>tarte::vowels::Vowel</strong></a>)</li>
+</ul>
+<h2 id="b">b</h2>
+<ul>
+<li><strong>b0_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>b1_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>b2_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>beta_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>b_ta_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>base_length_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>base_thickness_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>bow_mode_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>)</li>
+<li><strong>b_resonator_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>B_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>B_walls_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="c">c</h2>
+<ul>
+<li><strong>cos_omega_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>c0_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>contact_stiffness_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>C_ligament_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>C_mucosa_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>C_ta_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>comp_striffness_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>ctrl_term_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>color_</strong> (<a href="../classtarte_1_1_noise_generator/"><strong>tarte::NoiseGenerator</strong></a>)</li>
+<li><strong>counter_</strong> (<a href="../classtarte_1_1_noise_generator/"><strong>tarte::NoiseGenerator</strong></a>)</li>
+<li><strong>C0_feedback_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>C1_feedback_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>c_0_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>compute_powers_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>, <a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>control_term_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>C_low_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>C_top_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>c02_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="d">d</h2>
+<ul>
+<li><strong>dB_gain_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>dissipation_matrix_left_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>dissipation_matrix_right_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>density_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>depth_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>depth_body_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>depth_cover_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>depth_ligament_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>depth_mucosa_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>depth_muscle_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>dissipation_coefficients_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>decay_time_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>dissipation_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>dt_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>, <a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>dist_</strong> (<a href="../classtarte_1_1_noise_generator/"><strong>tarte::NoiseGenerator</strong></a>)</li>
+<li><strong>damping_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>dissipated_power_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>dissipated_power_flow_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>dissipated_power_reed_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>dissipation_coefficient_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>dissipated_power_folds_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>D_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>d_S_primal_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>d_plus_v_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="e">e</h2>
+<ul>
+<li><strong>etas_</strong> (<a href="../classtarte_1_1_articulation/"><strong>tarte::Articulation</strong></a>)</li>
+<li><strong>elongations_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>epsilon_smooth_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>e1_ligament_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>e1_mucosa_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>e1_ta_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>e2_ligament_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>e2_mucosa_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>e2_ta_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>e_gain_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>e_strain_factor</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>e_ta_opt_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>e_torque_ratio_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>elongation_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>elongation_matrix_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>eta_stiffness_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>epsilon_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>, <a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>E_nl_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>eta_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>epsilon_smooth_P_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>external_power_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>external_power_sub_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>external_power_sup_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>Enl_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>effective_surfaces_Psub_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>effective_surfaces_Psup_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>epsilon_sav_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>E_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>etas</strong> (<a href="../structtarte_1_1vowels_1_1_vowel/"><strong>tarte::vowels::Vowel</strong></a>)</li>
+</ul>
+<h2 id="f">f</h2>
+<ul>
+<li><strong>freq_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>f_nl_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>F_nl_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>Fnl_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>F_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>flip_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>formant_frequencies</strong> (<a href="../structtarte_1_1vowels_1_1_vowel/"><strong>tarte::vowels::Vowel</strong></a>)</li>
+</ul>
+<h2 id="g">g</h2>
+<ul>
+<li><strong>gender_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>g_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>g_sav_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>G_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>gamma_primal_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="h">h</h2>
+<ul>
+<li><strong>half_N</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_v_f_pair_example/"><strong>tarte::VFPairExample</strong></a>)</li>
+<li><strong>h_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="i">i</h2>
+<ul>
+<li><strong>inter_0_pow_alpha_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>inter_0_pow_alpha_1_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>inter_1_pow_alpha_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>inter_1_pow_alpha_1_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>idx_next_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>idx_now_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>interpenetration_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>interpenetration_derivative_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>intermediary_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>impedance</strong> (<a href="../structtarte_1_1_webster_f_d_t_d_1_1_frequency_response/"><strong>tarte::WebsterFDTD::FrequencyResponse</strong></a>)</li>
+<li><strong>impedanceResidues</strong> (<a href="../structtarte_1_1_webster_f_d_t_d_1_1_poles_residues/"><strong>tarte::WebsterFDTD::PolesResidues</strong></a>)</li>
+</ul>
+<h2 id="k">k</h2>
+<ul>
+<li><strong>kt_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>kNumEps</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>kNumStreams</strong> (<a href="../classtarte_1_1_noise_generator/"><strong>tarte::NoiseGenerator</strong></a>)</li>
+<li><strong>kinetic_energy_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>KOp_result_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>kinetic_energy_fluid_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>kinetic_energy_radiation_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>kinetic_energy_walls_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="l">l</h2>
+<ul>
+<li><strong>left_vf_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>lengths_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>lambda_ctrl_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>lhs_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>lay_position_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>lambda_sav_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>L_rad_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>l0_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>lip_radius</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>lp_filters_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>lpf_frequency_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="m">m</h2>
+<ul>
+<li><strong>mode</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>mass_matrix_inv_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>masses_interpenetrations_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>masses_interpenetrations_derivatives_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>mean_flow_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>masses_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>mu_c_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>)</li>
+<li><strong>mu_d_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>)</li>
+<li><strong>mu_s_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>)</li>
+<li><strong>mu_v_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>)</li>
+<li><strong>mass_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>max_E_nl_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>mouth_flow_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>Minv_p_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+</ul>
+<h2 id="n">n</h2>
+<ul>
+<li><strong>N</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_v_f_pair_example/"><strong>tarte::VFPairExample</strong></a>)</li>
+<li><strong>noise_generator_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>noise_ratio_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>n_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>)</li>
+<li><strong>noise_flow_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>N_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>N_lpf_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>N_update_geometry_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>name</strong> (<a href="../structtarte_1_1vowels_1_1_vowel/"><strong>tarte::vowels::Vowel</strong></a>)</li>
+</ul>
+<h2 id="o">o</h2>
+<ul>
+<li><strong>omega_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>opening_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+</ul>
+<h2 id="p">p</h2>
+<ul>
+<li><strong>positions_</strong> (<a href="../classtarte_1_1_articulation/"><strong>tarte::Articulation</strong></a>)</li>
+<li><strong>pulsation_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>Psub_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>Psub_centered_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>Psup_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>p_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>p_inter_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>potential_energy_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>pmid_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>P_diss_radiation_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_diss_tot_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_diss_walls_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_in_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_stored_fluid_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_stored_fluid_kinetic_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_stored_fluid_potential_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_stored_radiation_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_stored_tot_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_stored_walls_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_stored_walls_kinetic_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_stored_walls_potential_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>P_tot_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>potential_energy_fluid_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>potential_energy_walls_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>pumped_flow_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>poles</strong> (<a href="../structtarte_1_1_webster_f_d_t_d_1_1_poles_residues/"><strong>tarte::WebsterFDTD::PolesResidues</strong></a>)</li>
+<li><strong>positions</strong> (<a href="../structtarte_1_1vowels_1_1_vowel/"><strong>tarte::vowels::Vowel</strong></a>)</li>
+</ul>
+<h2 id="q">q</h2>
+<ul>
+<li><strong>Q_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>q_last_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>q_next_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>q_now_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>q_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>q_inter_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>qmid_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+</ul>
+<h2 id="r">r</h2>
+<ul>
+<li><strong>rho0_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>right_vf_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>rest_positions_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>r_last_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>r_now_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>)</li>
+<li><strong>rhs_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>rng_</strong> (<a href="../classtarte_1_1_noise_generator/"><strong>tarte::NoiseGenerator</strong></a>)</li>
+<li><strong>running_sum_</strong> (<a href="../classtarte_1_1_noise_generator/"><strong>tarte::NoiseGenerator</strong></a>)</li>
+<li><strong>R_k_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>r_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>resonator_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>resonator_flow_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>rho_0_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>ROp_result_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>Rk_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>R_rad_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>radiation_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>radiation_flow_buf_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>rho_buf_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="s">s</h2>
+<ul>
+<li><strong>sin_omega_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>sr_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>, <a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>, <a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>smoothed_is_opened_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>stiffness_matrix_left_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>stiffness_matrix_right_</strong> (<a href="../classtarte_1_1_body_cover_pair/"><strong>tarte::BodyCoverPair</strong></a>)</li>
+<li><strong>shear_mode_nodal_point_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>shear_modulus_cover_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>shear_modulus_muscle_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>shear_stiffness_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_0_ligament_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_0_mucosa_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_0_ta_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_2_ligament_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_2_mucosa_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_2_ta_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_body_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_cover_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_ligament_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_max_ta_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_mucosa_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_muscle_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>sigma_muscle_passive_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>stiffnesses_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>stiffness_</strong> (<a href="../classtarte_1_1_duffing/"><strong>tarte::Duffing</strong></a>, <a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>state_</strong> (<a href="../classtarte_1_1_noise_generator/"><strong>tarte::NoiseGenerator</strong></a>)</li>
+<li><strong>stored_power_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>stored_power_kinetic_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>stored_power_potential_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>, <a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>surface_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>sub_glottal_flow</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>sup_glottal_flow</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>S_direct_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>S_direct_last_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>S_dual_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>S_primal_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>S_primal_last_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>S_target_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="t">t</h2>
+<ul>
+<li><strong>thickness_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>thicknesses_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>transferFunctionFlow</strong> (<a href="../structtarte_1_1_webster_f_d_t_d_1_1_frequency_response/"><strong>tarte::WebsterFDTD::FrequencyResponse</strong></a>)</li>
+<li><strong>transferFunctionPressure</strong> (<a href="../structtarte_1_1_webster_f_d_t_d_1_1_frequency_response/"><strong>tarte::WebsterFDTD::FrequencyResponse</strong></a>)</li>
+<li><strong>tranferFunctionFlowResidues</strong> (<a href="../structtarte_1_1_webster_f_d_t_d_1_1_poles_residues/"><strong>tarte::WebsterFDTD::PolesResidues</strong></a>)</li>
+<li><strong>tranferFunctionPressureResidues</strong> (<a href="../structtarte_1_1_webster_f_d_t_d_1_1_poles_residues/"><strong>tarte::WebsterFDTD::PolesResidues</strong></a>)</li>
+<li><strong>time_varying_geometry_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="u">u</h2>
+<ul>
+<li><strong>u_woodburry_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>update_counter_geometry_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="v">v</h2>
+<ul>
+<li><strong>v_c_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>)</li>
+<li><strong>v_s_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>)</li>
+<li><strong>vt_</strong> (<a href="../classtarte_1_1_bow/"><strong>tarte::Bow</strong></a>)</li>
+<li><strong>v_woodburry_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>vfs_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>vel_buf_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>vel_coeff_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="w">w</h2>
+<ul>
+<li><strong>width_</strong> (<a href="../classtarte_1_1_single_reed/"><strong>tarte::SingleReed</strong></a>)</li>
+<li><strong>woodburry_inv_</strong> (<a href="../classtarte_1_1_voice/"><strong>tarte::Voice</strong></a>)</li>
+<li><strong>wall_area_damping_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>wall_area_mass_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>wall_area_stiffness_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>wall_displacement_buf_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>wall_momentum_buf_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="x">x</h2>
+<ul>
+<li><strong>x0_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>x1_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>x2_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>xi_</strong> (<a href="../classtarte_1_1_body_cover_v_f/"><strong>tarte::BodyCoverVF</strong></a>)</li>
+<li><strong>x_dual_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+<li><strong>x_primal_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+<h2 id="y">y</h2>
+<ul>
+<li><strong>y0_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>y1_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>y2_</strong> (<a href="../classtarte_1_1_biquad/"><strong>tarte::Biquad</strong></a>)</li>
+<li><strong>yielding_walls_</strong> (<a href="../classtarte_1_1_webster_f_d_t_d/"><strong>tarte::WebsterFDTD</strong></a>)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made by Thomas Risse using Mkdocs with Material theme
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.path", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

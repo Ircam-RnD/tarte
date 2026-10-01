@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="structtarte_1_1_webster_f_d_t_d_1_1_frequency_response" kind="struct" language="C++" prot="public">
+    <compoundname>tarte::WebsterFDTD::FrequencyResponse</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtarte_1_1_webster_f_d_t_d_1_1_frequency_response_1a12cbdfea897997734ae9fd782ce9066b" prot="public" static="no" mutable="no">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt;double&gt; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::FrequencyResponse::impedance</definition>
+        <argsstring></argsstring>
+        <name>impedance</name>
+        <qualifiedname>tarte::WebsterFDTD::FrequencyResponse::impedance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="20" column="22" bodyfile="include/websterFDTD.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtarte_1_1_webster_f_d_t_d_1_1_frequency_response_1aa6d0ffc3bc653a254bbf8c74ed1e3f6b" prot="public" static="no" mutable="no">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt;double&gt; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::FrequencyResponse::transferFunctionFlow</definition>
+        <argsstring></argsstring>
+        <name>transferFunctionFlow</name>
+        <qualifiedname>tarte::WebsterFDTD::FrequencyResponse::transferFunctionFlow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="21" column="22" bodyfile="include/websterFDTD.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtarte_1_1_webster_f_d_t_d_1_1_frequency_response_1a79e930c804b652d77b787eea9d28bf1f" prot="public" static="no" mutable="no">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt;double&gt; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::FrequencyResponse::transferFunctionPressure</definition>
+        <argsstring></argsstring>
+        <name>transferFunctionPressure</name>
+        <qualifiedname>tarte::WebsterFDTD::FrequencyResponse::transferFunctionPressure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="22" column="22" bodyfile="include/websterFDTD.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/websterFDTD.h" line="19" column="5" bodyfile="include/websterFDTD.h" bodystart="19" bodyend="23"/>
+    <listofallmembers>
+      <member refid="structtarte_1_1_webster_f_d_t_d_1_1_frequency_response_1a12cbdfea897997734ae9fd782ce9066b" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD::FrequencyResponse</scope><name>impedance</name></member>
+      <member refid="structtarte_1_1_webster_f_d_t_d_1_1_frequency_response_1aa6d0ffc3bc653a254bbf8c74ed1e3f6b" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD::FrequencyResponse</scope><name>transferFunctionFlow</name></member>
+      <member refid="structtarte_1_1_webster_f_d_t_d_1_1_frequency_response_1a79e930c804b652d77b787eea9d28bf1f" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD::FrequencyResponse</scope><name>transferFunctionPressure</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="concept_v_f_pair_model" kind="concept">
+    <compoundname>VFPairModel</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename T&gt;
+concept <ref refid="concept_v_f_pair_model" kindref="compound">VFPairModel</ref> =  requires(T model,
+                               const typename T::state_type&amp; state,
+                               typename T::state_type&amp; out_state,
+                               const typename T::scalar_type&amp; P,
+                               bool recompute)
+{
+    typename T::scalar_type;
+    typename T::state_type;
+
+    {T::get_N()}-&gt;std::convertible_to&lt;int&gt;;
+    {T::get_half_N()}-&gt;std::convertible_to&lt;int&gt;;
+
+    {model.FillIntermediary(state)}-&gt;std::same_as&lt;void&gt;;
+    {model.EffectiveAreas(out_state, out_state)}-&gt;std::same_as&lt;void&gt;;
+    {model.ComputeFlow(P, P)}-&gt;std::same_as&lt;typename T::scalar_type&gt;;
+
+    {model.Enl(state)}-&gt;std::same_as&lt;typename T::scalar_type&gt;;
+    {model.Enl(state, recompute)}-&gt;std::same_as&lt;typename T::scalar_type&gt;;
+
+    {model.Fnl(state, out_state)}-&gt;std::same_as&lt;void&gt;;
+    {model.Fnl(state, out_state, recompute)}-&gt;std::same_as&lt;void&gt;;
+
+    {model.KOp(state, out_state)}-&gt;std::same_as&lt;void&gt;;
+    {model.ROp(state, out_state)}-&gt;std::same_as&lt;void&gt;;
+    {model.MinvOp(state)}-&gt;std::same_as&lt;typename T::state_type&gt;;
+
+    {model.ReadEffectiveOpenings()}-&gt;std::same_as&lt;typename T::half_state_type&gt;;
+}</initializer>
+    <conceptparts>
+      <codepart line="2">    <programlisting>
+<codeline><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">concept<sp/></highlight><highlight class="normal">VFPairModel<sp/>=<sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">(T<sp/>model,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T::state_type&amp;<sp/>state,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T::state_type&amp;<sp/>out_state,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T::scalar_type&amp;<sp/>P,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>recompute)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T::scalar_type;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T::state_type;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{T::get_N()}-&gt;std::convertible_to&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{T::get_half_N()}-&gt;std::convertible_to&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.FillIntermediary(state)}-&gt;std::same_as&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.EffectiveAreas(out_state,<sp/>out_state)}-&gt;std::same_as&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.ComputeFlow(P,<sp/>P)}-&gt;std::same_as&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T::scalar_type&gt;;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.Enl(state)}-&gt;std::same_as&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T::scalar_type&gt;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.Enl(state,<sp/>recompute)}-&gt;std::same_as&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T::scalar_type&gt;;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.Fnl(state,<sp/>out_state)}-&gt;std::same_as&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.Fnl(state,<sp/>out_state,<sp/>recompute)}-&gt;std::same_as&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.KOp(state,<sp/>out_state)}-&gt;std::same_as&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.ROp(state,<sp/>out_state)}-&gt;std::same_as&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.MinvOp(state)}-&gt;std::same_as&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T::state_type&gt;;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{model.ReadEffectiveOpenings()}-&gt;std::same_as&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T::half_state_type&gt;;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+</codepart>
+    </conceptparts>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/vocal_folds/vf_pair_model.h" line="2" column="1"/>
+  </compounddef>
+</doxygen>

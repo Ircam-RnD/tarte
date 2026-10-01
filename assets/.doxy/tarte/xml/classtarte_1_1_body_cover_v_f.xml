@@ -1,0 +1,1380 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="classtarte_1_1_body_cover_v_f" kind="class" language="C++" prot="public">
+    <compoundname>tarte::BodyCoverVF</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a56e4bc11cf2d6aa883660ce7cb8a08bb" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::alpha_ct_</definition>
+        <argsstring></argsstring>
+        <name>alpha_ct_</name>
+        <qualifiedname>tarte::BodyCoverVF::alpha_ct_</qualifiedname>
+        <initializer>{0.}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="21" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ac1439cb10b37973b7e7c9d75d26b5387" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::alpha_ta_</definition>
+        <argsstring></argsstring>
+        <name>alpha_ta_</name>
+        <qualifiedname>tarte::BodyCoverVF::alpha_ta_</qualifiedname>
+        <initializer>{0.}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="21" column="17" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ac5dd990bdedd29745e62f9ac6423db3b" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::alpha_lc_</definition>
+        <argsstring></argsstring>
+        <name>alpha_lc_</name>
+        <qualifiedname>tarte::BodyCoverVF::alpha_lc_</qualifiedname>
+        <initializer>{0.49}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="21" column="27" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a509847cc5e0343b5280c3cf74c8cde8f" prot="private" static="no" mutable="no">
+        <type>Gender</type>
+        <definition>Gender tarte::BodyCoverVF&lt; T &gt;::gender_</definition>
+        <argsstring></argsstring>
+        <name>gender_</name>
+        <qualifiedname>tarte::BodyCoverVF::gender_</qualifiedname>
+        <initializer>{Gender::MALE}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="24" column="12" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ae21e3ae308f389de3af2676e8f7fda1d" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::comp_striffness_</definition>
+        <argsstring></argsstring>
+        <name>comp_striffness_</name>
+        <qualifiedname>tarte::BodyCoverVF::comp_striffness_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="25" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a5031f34bd70d85a6a59f3a0ea1bc4f15" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::shear_stiffness_</definition>
+        <argsstring></argsstring>
+        <name>shear_stiffness_</name>
+        <qualifiedname>tarte::BodyCoverVF::shear_stiffness_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="25" column="24" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ab8861af1acfa305246e616fc92cacb1f" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::depth_</definition>
+        <argsstring></argsstring>
+        <name>depth_</name>
+        <qualifiedname>tarte::BodyCoverVF::depth_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="26" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1aaa724718c7771e9cf8cfecf3381038ee" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::depth_cover_</definition>
+        <argsstring></argsstring>
+        <name>depth_cover_</name>
+        <qualifiedname>tarte::BodyCoverVF::depth_cover_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="26" column="14" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a19fae9e9d1dee041cbe2d4770eb8e758" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::depth_body_</definition>
+        <argsstring></argsstring>
+        <name>depth_body_</name>
+        <qualifiedname>tarte::BodyCoverVF::depth_body_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="26" column="27" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a845531fbfc07bd478fa808f173777752" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::shear_mode_nodal_point_</definition>
+        <argsstring></argsstring>
+        <name>shear_mode_nodal_point_</name>
+        <qualifiedname>tarte::BodyCoverVF::shear_mode_nodal_point_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="27" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a9d02cda7cb10b77b60d22ae9633e51d6" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::elongation_</definition>
+        <argsstring></argsstring>
+        <name>elongation_</name>
+        <qualifiedname>tarte::BodyCoverVF::elongation_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="28" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a939bb5aee8eaad0349eb5513cd255e9f" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::thickness_</definition>
+        <argsstring></argsstring>
+        <name>thickness_</name>
+        <qualifiedname>tarte::BodyCoverVF::thickness_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="29" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ac641c5a43229b1c200d3b196bbccc6ad" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; T, 3 &gt;</type>
+        <definition>Eigen::Vector&lt;T, 3&gt; tarte::BodyCoverVF&lt; T &gt;::thicknesses_</definition>
+        <argsstring></argsstring>
+        <name>thicknesses_</name>
+        <qualifiedname>tarte::BodyCoverVF::thicknesses_</qualifiedname>
+        <initializer>{1.5e-3,
+                                     1.5e-3,
+                                     3e-3}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="30" column="19" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="30" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ad8f8002b29971c80d9e436ba622d4f98" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; T, 3 &gt;</type>
+        <definition>Eigen::Vector&lt;T, 3&gt; tarte::BodyCoverVF&lt; T &gt;::lengths_</definition>
+        <argsstring></argsstring>
+        <name>lengths_</name>
+        <qualifiedname>tarte::BodyCoverVF::lengths_</qualifiedname>
+        <initializer>{1e-2, 1e-2, 1e-2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="33" column="19" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a390c627e6dfd29e5429f26cabb01aa4a" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::density_</definition>
+        <argsstring></argsstring>
+        <name>density_</name>
+        <qualifiedname>tarte::BodyCoverVF::density_</qualifiedname>
+        <initializer>{1040}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="47" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ad4cf8f683b9032b3d64164eec27a0e4d" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::shear_modulus_cover_</definition>
+        <argsstring></argsstring>
+        <name>shear_modulus_cover_</name>
+        <qualifiedname>tarte::BodyCoverVF::shear_modulus_cover_</qualifiedname>
+        <initializer>{500}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="47" column="16" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a06e0aceb8a0a8d76adb8483224f6d5b2" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::shear_modulus_muscle_</definition>
+        <argsstring></argsstring>
+        <name>shear_modulus_muscle_</name>
+        <qualifiedname>tarte::BodyCoverVF::shear_modulus_muscle_</qualifiedname>
+        <initializer>{1000}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="47" column="37" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1aefa9d6dcc00aa7002bd4585309fd8694" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::base_length_</definition>
+        <argsstring></argsstring>
+        <name>base_length_</name>
+        <qualifiedname>tarte::BodyCoverVF::base_length_</qualifiedname>
+        <initializer>{1.6e-2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="50" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ae3f173becb175a8d051f0a56adf73c77" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::depth_mucosa_</definition>
+        <argsstring></argsstring>
+        <name>depth_mucosa_</name>
+        <qualifiedname>tarte::BodyCoverVF::depth_mucosa_</qualifiedname>
+        <initializer>{0.2e-2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="51" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a374ab4fcc2071ec3a5ba85c7db6b30a2" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::depth_ligament_</definition>
+        <argsstring></argsstring>
+        <name>depth_ligament_</name>
+        <qualifiedname>tarte::BodyCoverVF::depth_ligament_</qualifiedname>
+        <initializer>{0.2e-2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="51" column="21" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1adad77fb0cd382bf039497e7a602e0ad5" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::depth_muscle_</definition>
+        <argsstring></argsstring>
+        <name>depth_muscle_</name>
+        <qualifiedname>tarte::BodyCoverVF::depth_muscle_</qualifiedname>
+        <initializer>{0.4e-2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="52" column="9" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1af47c1ff3a111f4cb599ff5607b3a1d5c" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::base_thickness_</definition>
+        <argsstring></argsstring>
+        <name>base_thickness_</name>
+        <qualifiedname>tarte::BodyCoverVF::base_thickness_</qualifiedname>
+        <initializer>{3e-3}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="53" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a2ef35f1e6f096255d71c0a5b3e8e77bf" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_body_</definition>
+        <argsstring></argsstring>
+        <name>sigma_body_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_body_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="76" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a3f699bce218d5b03453c41ca2048d7df" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_cover_</definition>
+        <argsstring></argsstring>
+        <name>sigma_cover_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_cover_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="76" column="19" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a33fb0a26bb46bdda477846704b5b6ab5" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_muscle_</definition>
+        <argsstring></argsstring>
+        <name>sigma_muscle_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_muscle_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="77" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a9021dfc22ca6f00051a54ad88a3d392f" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_muscle_passive_</definition>
+        <argsstring></argsstring>
+        <name>sigma_muscle_passive_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_muscle_passive_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="77" column="21" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a2a67f34984865dded907d042550836c4" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_ligament_</definition>
+        <argsstring></argsstring>
+        <name>sigma_ligament_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_ligament_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="77" column="43" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a1a35599c7796d0ae703cc2c57ae3d9a1" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_mucosa_</definition>
+        <argsstring></argsstring>
+        <name>sigma_mucosa_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_mucosa_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="77" column="59" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a52b86c95d7abe513b0c29fe526f38594" prot="private" static="no" mutable="no">
+        <type>Eigen::DiagonalMatrix&lt; T, 3 &gt;</type>
+        <definition>Eigen::DiagonalMatrix&lt;T, 3&gt; tarte::BodyCoverVF&lt; T &gt;::masses_</definition>
+        <argsstring></argsstring>
+        <name>masses_</name>
+        <qualifiedname>tarte::BodyCoverVF::masses_</qualifiedname>
+        <initializer>{1e-5, 1e-5, 5e-5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="80" column="27" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="80" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1aaf7ad41eda966324df15f9dde3ee829e" prot="private" static="no" mutable="no">
+        <type>Eigen::Vector&lt; T, 3 &gt;</type>
+        <definition>Eigen::Vector&lt;T, 3&gt; tarte::BodyCoverVF&lt; T &gt;::rest_positions_</definition>
+        <argsstring></argsstring>
+        <name>rest_positions_</name>
+        <qualifiedname>tarte::BodyCoverVF::rest_positions_</qualifiedname>
+        <initializer>{1.8e-4, 1.79e-4, 3e-3}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="81" column="19" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ac49927243a711acf28bd03566fb78e67" prot="private" static="no" mutable="no">
+        <type>Eigen::DiagonalMatrix&lt; T, 4 &gt;</type>
+        <definition>Eigen::DiagonalMatrix&lt;T, 4&gt; tarte::BodyCoverVF&lt; T &gt;::stiffnesses_</definition>
+        <argsstring></argsstring>
+        <name>stiffnesses_</name>
+        <qualifiedname>tarte::BodyCoverVF::stiffnesses_</qualifiedname>
+        <initializer>{5, 3.5, 20, 0.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="83" column="27" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1adaaabb73b109ac6f647afc99661e9944" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::eta_stiffness_</definition>
+        <argsstring></argsstring>
+        <name>eta_stiffness_</name>
+        <qualifiedname>tarte::BodyCoverVF::eta_stiffness_</qualifiedname>
+        <initializer>{1e6}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="84" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a6ed977571b3e9768be2cbbd6c0a479e8" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::xi_</definition>
+        <argsstring></argsstring>
+        <name>xi_</name>
+        <qualifiedname>tarte::BodyCoverVF::xi_</qualifiedname>
+        <initializer>{0.4}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="86" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a8b2e1c9f5704d9a5e7564c09091ffe26" prot="private" static="no" mutable="no">
+        <type>Eigen::DiagonalMatrix&lt; T, 4 &gt;</type>
+        <definition>Eigen::DiagonalMatrix&lt;T, 4&gt; tarte::BodyCoverVF&lt; T &gt;::dissipation_coefficients_</definition>
+        <argsstring></argsstring>
+        <name>dissipation_coefficients_</name>
+        <qualifiedname>tarte::BodyCoverVF::dissipation_coefficients_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="87" column="27" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a3e79db21dbec4d533e6470e02528c008" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::e1_mucosa_</definition>
+        <argsstring></argsstring>
+        <name>e1_mucosa_</name>
+        <qualifiedname>tarte::BodyCoverVF::e1_mucosa_</qualifiedname>
+        <initializer>{-0.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="36" column="24" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a832b975a77292d976f524a06e318b221" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::e2_mucosa_</definition>
+        <argsstring></argsstring>
+        <name>e2_mucosa_</name>
+        <qualifiedname>tarte::BodyCoverVF::e2_mucosa_</qualifiedname>
+        <initializer>{-0.35}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="36" column="35" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a9cbbd96b09b5070a6cf1244d5ab6e2ba" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_0_mucosa_</definition>
+        <argsstring></argsstring>
+        <name>sigma_0_mucosa_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_0_mucosa_</qualifiedname>
+        <initializer>{500}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="36" column="46" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1abae85f7e24462e83f1d983fbdc19f266" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_2_mucosa_</definition>
+        <argsstring></argsstring>
+        <name>sigma_2_mucosa_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_2_mucosa_</qualifiedname>
+        <initializer>{30000}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="36" column="62" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a5e56bed688501f4f15977009bd673bc9" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::C_mucosa_</definition>
+        <argsstring></argsstring>
+        <name>C_mucosa_</name>
+        <qualifiedname>tarte::BodyCoverVF::C_mucosa_</qualifiedname>
+        <initializer>{4.4}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="37" column="9" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ade972668b0421f5fd78aac49b6eedca8" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::e1_ligament_</definition>
+        <argsstring></argsstring>
+        <name>e1_ligament_</name>
+        <qualifiedname>tarte::BodyCoverVF::e1_ligament_</qualifiedname>
+        <initializer>{-0.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="38" column="24" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a735b13cf705ddd82ae7db50f99ac0f5d" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::e2_ligament_</definition>
+        <argsstring></argsstring>
+        <name>e2_ligament_</name>
+        <qualifiedname>tarte::BodyCoverVF::e2_ligament_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="38" column="37" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1af5eef9c8c2fcc7998c8a6d4f05c66880" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_0_ligament_</definition>
+        <argsstring></argsstring>
+        <name>sigma_0_ligament_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_0_ligament_</qualifiedname>
+        <initializer>{400}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="38" column="50" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a8db0012e659bc3a6ccf61a008c3449d2" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_2_ligament_</definition>
+        <argsstring></argsstring>
+        <name>sigma_2_ligament_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_2_ligament_</qualifiedname>
+        <initializer>{1393}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="38" column="68" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a14439484f669b8c19b24f093f81f6501" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::C_ligament_</definition>
+        <argsstring></argsstring>
+        <name>C_ligament_</name>
+        <qualifiedname>tarte::BodyCoverVF::C_ligament_</qualifiedname>
+        <initializer>{17}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="39" column="9" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a63db8659c07ac91d2973b3b2e005f215" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::e1_ta_</definition>
+        <argsstring></argsstring>
+        <name>e1_ta_</name>
+        <qualifiedname>tarte::BodyCoverVF::e1_ta_</qualifiedname>
+        <initializer>{-0.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="40" column="24" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ae27f9b6e14bdad53b824c1dd9d6aca7b" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::e2_ta_</definition>
+        <argsstring></argsstring>
+        <name>e2_ta_</name>
+        <qualifiedname>tarte::BodyCoverVF::e2_ta_</qualifiedname>
+        <initializer>{-0.05}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="40" column="31" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ae3c346ab4d8000f949a85f0919adbc31" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_0_ta_</definition>
+        <argsstring></argsstring>
+        <name>sigma_0_ta_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_0_ta_</qualifiedname>
+        <initializer>{1000.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="40" column="38" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ac38ed24d0c64f56ba14c4c9bf2473fee" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_2_ta_</definition>
+        <argsstring></argsstring>
+        <name>sigma_2_ta_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_2_ta_</qualifiedname>
+        <initializer>{1500.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="40" column="50" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a50cdbf6d61ffc4b8a48d1ca5419714f2" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::C_ta_</definition>
+        <argsstring></argsstring>
+        <name>C_ta_</name>
+        <qualifiedname>tarte::BodyCoverVF::C_ta_</qualifiedname>
+        <initializer>{6.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="40" column="62" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1ad90fcc70b7ec8b258b7f65cfa6dc53d5" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::sigma_max_ta_</definition>
+        <argsstring></argsstring>
+        <name>sigma_max_ta_</name>
+        <qualifiedname>tarte::BodyCoverVF::sigma_max_ta_</qualifiedname>
+        <initializer>{105000}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="41" column="9" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a4d133f5c6e8ccd76835c50d9bff86c08" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::e_ta_opt_</definition>
+        <argsstring></argsstring>
+        <name>e_ta_opt_</name>
+        <qualifiedname>tarte::BodyCoverVF::e_ta_opt_</qualifiedname>
+        <initializer>{0.4}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="41" column="23" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a37e31d1c428e1a456fd1b2d6c22bc543" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::b_ta_</definition>
+        <argsstring></argsstring>
+        <name>b_ta_</name>
+        <qualifiedname>tarte::BodyCoverVF::b_ta_</qualifiedname>
+        <initializer>{1.07}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="41" column="33" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a02ed3773ea259e86400c2057e8c92827" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::e_gain_</definition>
+        <argsstring></argsstring>
+        <name>e_gain_</name>
+        <qualifiedname>tarte::BodyCoverVF::e_gain_</qualifiedname>
+        <initializer>{0.2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="44" column="24" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a5d174541f01c1f4c1de0a2757e3d9369" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::e_torque_ratio_</definition>
+        <argsstring></argsstring>
+        <name>e_torque_ratio_</name>
+        <qualifiedname>tarte::BodyCoverVF::e_torque_ratio_</qualifiedname>
+        <initializer>{3}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="44" column="32" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a15b7999f40ee0ff9576b47ec64ca2e44" prot="private" static="yes" mutable="no">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::e_strain_factor</definition>
+        <argsstring></argsstring>
+        <name>e_strain_factor</name>
+        <qualifiedname>tarte::BodyCoverVF::e_strain_factor</qualifiedname>
+        <initializer>{0.2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="44" column="48" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="44" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_body_cover_v_f_1a60d30de6f373eb21333596d467926381" prot="public" static="yes" mutable="no">
+        <type>const Eigen::Matrix&lt; T, 4, 3 &gt;</type>
+        <definition>const Eigen::Matrix&lt;T, 4, 3&gt; tarte::BodyCoverVF&lt; T &gt;::elongation_matrix_</definition>
+        <argsstring></argsstring>
+        <name>elongation_matrix_</name>
+        <qualifiedname>tarte::BodyCoverVF::elongation_matrix_</qualifiedname>
+        <initializer>                                                 =
+(Eigen::Matrix&lt;T, 4, 3&gt;() &lt;&lt; 1, 0, -1, 0, 1, -1, 0, 0, 1, 1, -1, 0).finished()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="91" column="39" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1abf487ccbe69f7a1b44f55f53bb936531" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T tarte::BodyCoverVF&lt; T &gt;::PassiveStress</definition>
+        <argsstring>(const T &amp;sigma0, const T &amp;sigma2, const T &amp;e1, const T &amp;e2, const T &amp;C, const T &amp;e)</argsstring>
+        <name>PassiveStress</name>
+        <qualifiedname>tarte::BodyCoverVF::PassiveStress</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>sigma0</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>sigma2</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>e1</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>e2</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>C</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="56" column="14" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="56" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a8158bf0b46faf6a52759be5bcf56f965" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T tarte::BodyCoverVF&lt; T &gt;::PassiveStressMucosa</definition>
+        <argsstring>(const T &amp;e)</argsstring>
+        <name>PassiveStressMucosa</name>
+        <qualifiedname>tarte::BodyCoverVF::PassiveStressMucosa</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="66" column="14" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1aa4241b94bbdd78c4825076cf3d42e140" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T tarte::BodyCoverVF&lt; T &gt;::PassiveStressLigament</definition>
+        <argsstring>(const T &amp;e)</argsstring>
+        <name>PassiveStressLigament</name>
+        <qualifiedname>tarte::BodyCoverVF::PassiveStressLigament</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="70" column="14" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="70" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a18f02e06aafdc467011f12aea8fed39a" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T tarte::BodyCoverVF&lt; T &gt;::PassiveStressTA</definition>
+        <argsstring>(const T &amp;e)</argsstring>
+        <name>PassiveStressTA</name>
+        <qualifiedname>tarte::BodyCoverVF::PassiveStressTA</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="74" column="14" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="74" bodyend="74"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a0ffd8417bfe1d59a8764f3de801cfc78" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static constexpr int tarte::BodyCoverVF&lt; T &gt;::getN</definition>
+        <argsstring>()</argsstring>
+        <name>getN</name>
+        <qualifiedname>tarte::BodyCoverVF::getN</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="90" column="33" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="90" bodyend="90"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1aeaff537ce0eafe26fcbcc9a341b5c979" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tarte::BodyCoverVF&lt; T &gt;::BodyCoverVF</definition>
+        <argsstring>()</argsstring>
+        <name>BodyCoverVF</name>
+        <qualifiedname>tarte::BodyCoverVF::BodyCoverVF</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="93" column="5" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1acd466b3e7e46509943f8dd07788e33fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::SetCricothyroidActivity</definition>
+        <argsstring>(const T &amp;activity)</argsstring>
+        <name>SetCricothyroidActivity</name>
+        <qualifiedname>tarte::BodyCoverVF::SetCricothyroidActivity</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>activity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="96" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a3e06be565561921e0fea188ac341ea61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::SetThyroarytenoidActivity</definition>
+        <argsstring>(const T &amp;activity)</argsstring>
+        <name>SetThyroarytenoidActivity</name>
+        <qualifiedname>tarte::BodyCoverVF::SetThyroarytenoidActivity</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>activity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="97" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a78dcc0c0f96f798362f2f27053cddaf6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::SetCricoarytenoidActivity</definition>
+        <argsstring>(const T &amp;activity)</argsstring>
+        <name>SetCricoarytenoidActivity</name>
+        <qualifiedname>tarte::BodyCoverVF::SetCricoarytenoidActivity</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>activity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="98" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1ae345423319c36115670ec91a82f6e0fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::ComputeParametersFromMuscularActivity</definition>
+        <argsstring>()</argsstring>
+        <name>ComputeParametersFromMuscularActivity</name>
+        <qualifiedname>tarte::BodyCoverVF::ComputeParametersFromMuscularActivity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="100" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="100" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a1603d3d28c474b849e123f4aa8e07f0d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::FillDissipationCoefficients</definition>
+        <argsstring>()</argsstring>
+        <name>FillDissipationCoefficients</name>
+        <qualifiedname>tarte::BodyCoverVF::FillDissipationCoefficients</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="155" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="155" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a30c798c083fc991146fb9f4078bf63ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::DiagonalMatrix&lt; T, 3 &gt;</type>
+        <definition>Eigen::DiagonalMatrix&lt; T, 3 &gt; tarte::BodyCoverVF&lt; T &gt;::masses</definition>
+        <argsstring>()</argsstring>
+        <name>masses</name>
+        <qualifiedname>tarte::BodyCoverVF::masses</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="164" column="27" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="164" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1ad3d6a7fe2a9bfdb993e1170e480cedc3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::Vector&lt; T, 3 &gt;</type>
+        <definition>Eigen::Vector&lt; T, 3 &gt; tarte::BodyCoverVF&lt; T &gt;::rest_positions</definition>
+        <argsstring>()</argsstring>
+        <name>rest_positions</name>
+        <qualifiedname>tarte::BodyCoverVF::rest_positions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="165" column="19" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="165" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a62a84356562d22242143d58aea00a698" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::DiagonalMatrix&lt; T, 4 &gt;</type>
+        <definition>Eigen::DiagonalMatrix&lt; T, 4 &gt; tarte::BodyCoverVF&lt; T &gt;::dissipation_coefficients</definition>
+        <argsstring>()</argsstring>
+        <name>dissipation_coefficients</name>
+        <qualifiedname>tarte::BodyCoverVF::dissipation_coefficients</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="166" column="27" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="166" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a6f2aa8d1461d256ce85ed2254bb7e9d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::Vector&lt; T, 3 &gt;</type>
+        <definition>Eigen::Vector&lt; T, 3 &gt; tarte::BodyCoverVF&lt; T &gt;::lengths</definition>
+        <argsstring>()</argsstring>
+        <name>lengths</name>
+        <qualifiedname>tarte::BodyCoverVF::lengths</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="167" column="19" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="167" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a895d753c3c805a5185ac7880d601f91f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::Vector&lt; T, 3 &gt;</type>
+        <definition>Eigen::Vector&lt; T, 3 &gt; tarte::BodyCoverVF&lt; T &gt;::thicknesses</definition>
+        <argsstring>()</argsstring>
+        <name>thicknesses</name>
+        <qualifiedname>tarte::BodyCoverVF::thicknesses</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="168" column="19" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="168" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1af4e4bbcd2c74824cf443c5391dcf3328" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Eigen::DiagonalMatrix&lt; T, 4 &gt;</type>
+        <definition>Eigen::DiagonalMatrix&lt; T, 4 &gt; tarte::BodyCoverVF&lt; T &gt;::stiffnesses</definition>
+        <argsstring>()</argsstring>
+        <name>stiffnesses</name>
+        <qualifiedname>tarte::BodyCoverVF::stiffnesses</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="169" column="27" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="169" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a73398d9cbe15a6e8b730ea869dac7798" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::BodyCoverVF&lt; T &gt;::eta_stiffness</definition>
+        <argsstring>()</argsstring>
+        <name>eta_stiffness</name>
+        <qualifiedname>tarte::BodyCoverVF::eta_stiffness</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="170" column="7" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="170" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a58899a6797120787630baf44fa9ec470" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::set_masses</definition>
+        <argsstring>(const Eigen::Vector&lt; T, 3 &gt; &amp;masses)</argsstring>
+        <name>set_masses</name>
+        <qualifiedname>tarte::BodyCoverVF::set_masses</qualifiedname>
+        <param>
+          <type>const Eigen::Vector&lt; T, 3 &gt; &amp;</type>
+          <declname>masses</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="173" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="173" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1ab2fc4b00ec9e2f34ff63b58bf601a95f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::set_stiffnesses</definition>
+        <argsstring>(const Eigen::Vector&lt; T, 4 &gt; &amp;stiffnesses)</argsstring>
+        <name>set_stiffnesses</name>
+        <qualifiedname>tarte::BodyCoverVF::set_stiffnesses</qualifiedname>
+        <param>
+          <type>const Eigen::Vector&lt; T, 4 &gt; &amp;</type>
+          <declname>stiffnesses</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="174" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="174" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1ad94631365557495a2aafd929fde6da13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::set_eta_stiffness</definition>
+        <argsstring>(const T &amp;eta_stiffness)</argsstring>
+        <name>set_eta_stiffness</name>
+        <qualifiedname>tarte::BodyCoverVF::set_eta_stiffness</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>eta_stiffness</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="178" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="178" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1aa9675adad316cc537132e1e783e7b0ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::set_rest_positions</definition>
+        <argsstring>(const Eigen::Vector&lt; T, 3 &gt; &amp;rest_positions)</argsstring>
+        <name>set_rest_positions</name>
+        <qualifiedname>tarte::BodyCoverVF::set_rest_positions</qualifiedname>
+        <param>
+          <type>const Eigen::Vector&lt; T, 3 &gt; &amp;</type>
+          <declname>rest_positions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="179" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="179" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a09dc3364d34cce2c2d969726e66b8520" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::set_length</definition>
+        <argsstring>(const T &amp;length)</argsstring>
+        <name>set_length</name>
+        <qualifiedname>tarte::BodyCoverVF::set_length</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="183" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="183" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a2a7ea99f3d992e10fe4e432d5f197ff5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::set_thicknesses</definition>
+        <argsstring>(const Eigen::Vector&lt; T, 3 &gt; &amp;thicknesses)</argsstring>
+        <name>set_thicknesses</name>
+        <qualifiedname>tarte::BodyCoverVF::set_thicknesses</qualifiedname>
+        <param>
+          <type>const Eigen::Vector&lt; T, 3 &gt; &amp;</type>
+          <declname>thicknesses</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="184" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="184" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a8effff9b34bb7985c401905eef3900f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::BodyCoverVF&lt; T &gt;::set_gender</definition>
+        <argsstring>(Gender gender)</argsstring>
+        <name>set_gender</name>
+        <qualifiedname>tarte::BodyCoverVF::set_gender</qualifiedname>
+        <param>
+          <type>Gender</type>
+          <declname>gender</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="190" column="10" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="190" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_body_cover_v_f_1a1cc89c74b6c4c4c2a09463b6aeefc7b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Gender</type>
+        <definition>Gender tarte::BodyCoverVF&lt; T &gt;::get_gender</definition>
+        <argsstring>()</argsstring>
+        <name>get_gender</name>
+        <qualifiedname>tarte::BodyCoverVF::get_gender</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/body_cover_vf.h" line="208" column="12" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="208" bodyend="208"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/vocal_folds/body_cover_vf.h" line="17" column="1" bodyfile="include/vocal_folds/body_cover_vf.h" bodystart="17" bodyend="209"/>
+    <listofallmembers>
+      <member refid="classtarte_1_1_body_cover_v_f_1a56e4bc11cf2d6aa883660ce7cb8a08bb" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>alpha_ct_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ac5dd990bdedd29745e62f9ac6423db3b" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>alpha_lc_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ac1439cb10b37973b7e7c9d75d26b5387" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>alpha_ta_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a37e31d1c428e1a456fd1b2d6c22bc543" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>b_ta_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1aefa9d6dcc00aa7002bd4585309fd8694" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>base_length_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1af47c1ff3a111f4cb599ff5607b3a1d5c" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>base_thickness_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1aeaff537ce0eafe26fcbcc9a341b5c979" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>BodyCoverVF</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a14439484f669b8c19b24f093f81f6501" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>C_ligament_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a5e56bed688501f4f15977009bd673bc9" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>C_mucosa_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a50cdbf6d61ffc4b8a48d1ca5419714f2" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>C_ta_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ae21e3ae308f389de3af2676e8f7fda1d" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>comp_striffness_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ae345423319c36115670ec91a82f6e0fe" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>ComputeParametersFromMuscularActivity</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a390c627e6dfd29e5429f26cabb01aa4a" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>density_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ab8861af1acfa305246e616fc92cacb1f" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>depth_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a19fae9e9d1dee041cbe2d4770eb8e758" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>depth_body_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1aaa724718c7771e9cf8cfecf3381038ee" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>depth_cover_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a374ab4fcc2071ec3a5ba85c7db6b30a2" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>depth_ligament_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ae3f173becb175a8d051f0a56adf73c77" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>depth_mucosa_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1adad77fb0cd382bf039497e7a602e0ad5" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>depth_muscle_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a62a84356562d22242143d58aea00a698" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>dissipation_coefficients</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a8b2e1c9f5704d9a5e7564c09091ffe26" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>dissipation_coefficients_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ade972668b0421f5fd78aac49b6eedca8" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>e1_ligament_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a3e79db21dbec4d533e6470e02528c008" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>e1_mucosa_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a63db8659c07ac91d2973b3b2e005f215" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>e1_ta_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a735b13cf705ddd82ae7db50f99ac0f5d" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>e2_ligament_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a832b975a77292d976f524a06e318b221" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>e2_mucosa_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ae27f9b6e14bdad53b824c1dd9d6aca7b" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>e2_ta_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a02ed3773ea259e86400c2057e8c92827" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>e_gain_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a15b7999f40ee0ff9576b47ec64ca2e44" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>e_strain_factor</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a4d133f5c6e8ccd76835c50d9bff86c08" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>e_ta_opt_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a5d174541f01c1f4c1de0a2757e3d9369" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>e_torque_ratio_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a9d02cda7cb10b77b60d22ae9633e51d6" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>elongation_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a60d30de6f373eb21333596d467926381" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>elongation_matrix_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a73398d9cbe15a6e8b730ea869dac7798" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>eta_stiffness</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1adaaabb73b109ac6f647afc99661e9944" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>eta_stiffness_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a1603d3d28c474b849e123f4aa8e07f0d" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>FillDissipationCoefficients</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a509847cc5e0343b5280c3cf74c8cde8f" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>gender_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a1cc89c74b6c4c4c2a09463b6aeefc7b0" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>get_gender</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a0ffd8417bfe1d59a8764f3de801cfc78" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>getN</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a6f2aa8d1461d256ce85ed2254bb7e9d0" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>lengths</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ad8f8002b29971c80d9e436ba622d4f98" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>lengths_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a30c798c083fc991146fb9f4078bf63ec" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>masses</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a52b86c95d7abe513b0c29fe526f38594" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>masses_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1abf487ccbe69f7a1b44f55f53bb936531" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>PassiveStress</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1aa4241b94bbdd78c4825076cf3d42e140" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>PassiveStressLigament</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a8158bf0b46faf6a52759be5bcf56f965" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>PassiveStressMucosa</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a18f02e06aafdc467011f12aea8fed39a" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>PassiveStressTA</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ad3d6a7fe2a9bfdb993e1170e480cedc3" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>rest_positions</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1aaf7ad41eda966324df15f9dde3ee829e" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>rest_positions_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ad94631365557495a2aafd929fde6da13" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>set_eta_stiffness</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a8effff9b34bb7985c401905eef3900f9" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>set_gender</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a09dc3364d34cce2c2d969726e66b8520" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>set_length</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a58899a6797120787630baf44fa9ec470" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>set_masses</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1aa9675adad316cc537132e1e783e7b0ea" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>set_rest_positions</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ab2fc4b00ec9e2f34ff63b58bf601a95f" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>set_stiffnesses</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a2a7ea99f3d992e10fe4e432d5f197ff5" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>set_thicknesses</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a78dcc0c0f96f798362f2f27053cddaf6" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>SetCricoarytenoidActivity</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1acd466b3e7e46509943f8dd07788e33fa" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>SetCricothyroidActivity</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a3e06be565561921e0fea188ac341ea61" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>SetThyroarytenoidActivity</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a845531fbfc07bd478fa808f173777752" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>shear_mode_nodal_point_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ad4cf8f683b9032b3d64164eec27a0e4d" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>shear_modulus_cover_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a06e0aceb8a0a8d76adb8483224f6d5b2" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>shear_modulus_muscle_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a5031f34bd70d85a6a59f3a0ea1bc4f15" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>shear_stiffness_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1af5eef9c8c2fcc7998c8a6d4f05c66880" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_0_ligament_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a9cbbd96b09b5070a6cf1244d5ab6e2ba" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_0_mucosa_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ae3c346ab4d8000f949a85f0919adbc31" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_0_ta_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a8db0012e659bc3a6ccf61a008c3449d2" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_2_ligament_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1abae85f7e24462e83f1d983fbdc19f266" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_2_mucosa_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ac38ed24d0c64f56ba14c4c9bf2473fee" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_2_ta_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a2ef35f1e6f096255d71c0a5b3e8e77bf" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_body_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a3f699bce218d5b03453c41ca2048d7df" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_cover_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a2a67f34984865dded907d042550836c4" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_ligament_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ad90fcc70b7ec8b258b7f65cfa6dc53d5" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_max_ta_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a1a35599c7796d0ae703cc2c57ae3d9a1" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_mucosa_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a33fb0a26bb46bdda477846704b5b6ab5" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_muscle_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a9021dfc22ca6f00051a54ad88a3d392f" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>sigma_muscle_passive_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1af4e4bbcd2c74824cf443c5391dcf3328" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>stiffnesses</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ac49927243a711acf28bd03566fb78e67" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>stiffnesses_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a939bb5aee8eaad0349eb5513cd255e9f" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>thickness_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a895d753c3c805a5185ac7880d601f91f" prot="public" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>thicknesses</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1ac641c5a43229b1c200d3b196bbccc6ad" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>thicknesses_</name></member>
+      <member refid="classtarte_1_1_body_cover_v_f_1a6ed977571b3e9768be2cbbd6c0a479e8" prot="private" virt="non-virtual"><scope>tarte::BodyCoverVF</scope><name>xi_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="dir_35d2a1600e0c11c335c654e0ec7e535e" kind="dir">
+    <compoundname>include/vocal_folds</compoundname>
+    <innerfile refid="body__cover__pair_8h">body_cover_pair.h</innerfile>
+    <innerfile refid="body__cover__vf_8h">body_cover_vf.h</innerfile>
+    <innerfile refid="vf__pair__model_8h">vf_pair_model.h</innerfile>
+    <innerfile refid="vf__pair__model__example_8h">vf_pair_model_example.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/vocal_folds/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="dir_d44c64559bbebec7f509842c48db8b23" kind="dir">
+    <compoundname>include</compoundname>
+    <innerdir refid="dir_3a4d35156996fb70540e167b84a39bd1">include/utility</innerdir>
+    <innerdir refid="dir_35d2a1600e0c11c335c654e0ec7e535e">include/vocal_folds</innerdir>
+    <innerfile refid="articulation_8h">articulation.h</innerfile>
+    <innerfile refid="bow_8h">bow.h</innerfile>
+    <innerfile refid="duffing_8h">duffing.h</innerfile>
+    <innerfile refid="export_8h">export.h</innerfile>
+    <innerfile refid="noise__generator_8h">noise_generator.h</innerfile>
+    <innerfile refid="single__reed_8h">single_reed.h</innerfile>
+    <innerfile refid="voice_8h">voice.h</innerfile>
+    <innerfile refid="vowels_8h">vowels.h</innerfile>
+    <innerfile refid="webster_f_d_t_d_8h">websterFDTD.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/"/>
+  </compounddef>
+</doxygen>

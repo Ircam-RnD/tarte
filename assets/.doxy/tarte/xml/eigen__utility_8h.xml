@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="eigen__utility_8h" kind="file" language="C++">
+    <compoundname>eigen_utility.h</compoundname>
+    <includes local="no">Eigen/Dense</includes>
+    <includedby refid="body__cover__vf_8h" local="yes">include/vocal_folds/body_cover_vf.h</includedby>
+    <includedby refid="voice_8h" local="yes">include/voice.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/utility/eigen_utility.h</label>
+        <link refid="eigen__utility_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eigen/Dense</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>include/utility/eigen_utility.h</label>
+        <link refid="eigen__utility_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>include/vocal_folds/body_cover_pair.h</label>
+        <link refid="body__cover__pair_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>include/vocal_folds/body_cover_vf.h</label>
+        <link refid="body__cover__vf_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>include/voice.h</label>
+        <link refid="voice_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespacetarte">tarte</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Eigen/Dense&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">tarte<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Derived,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ftype&gt;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ClipEigen(Eigen::Ref&lt;</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::ArrayX&lt;Derived&gt;&gt;<sp/>array,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ftype&amp;<sp/>min,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ftype&amp;<sp/>max)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>array.cwiseMin(max).cwiseMax(min);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Derived,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ftype&gt;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ClipEigen(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::ArrayBase&lt;Derived&gt;&amp;<sp/>array,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ftype&amp;<sp/>min,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ftype&amp;<sp/>max)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>array.cwiseMin(max).cwiseMax(min);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Derived1,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Derived2&gt;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>SafeSetEigen(Eigen::ArrayBase&lt;Derived1&gt;&amp;<sp/>array,<sp/>Eigen::Ref&lt;</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::ArrayX&lt;Derived2&gt;&gt;<sp/>array2)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minDim<sp/>=<sp/>std::min(array.size(),<sp/>array2.size());</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>array.head(minDim)<sp/>=<sp/>array2.head(minDim);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Derived1,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Derived2&gt;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>SafeSetEigen(Eigen::ArrayBase&lt;Derived1&gt;&amp;<sp/>array,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::ArrayBase&lt;Derived2&gt;&amp;<sp/>array2)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>minDim<sp/>=<sp/>std::min(array.size(),<sp/>array2.size());</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>array.head(minDim)<sp/>=<sp/>array2.head(minDim);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>tarte</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/utility/eigen_utility.h"/>
+  </compounddef>
+</doxygen>

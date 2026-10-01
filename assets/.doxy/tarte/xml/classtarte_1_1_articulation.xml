@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="classtarte_1_1_articulation" kind="class" language="C++" prot="public">
+    <compoundname>tarte::Articulation</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_articulation_1aa474219da501a66e5582e410f5a5f84f" prot="private" static="no" mutable="no">
+        <type>std::array&lt; float, 6 &gt;</type>
+        <definition>std::array&lt;float, 6&gt; tarte::Articulation::areas_</definition>
+        <argsstring></argsstring>
+        <name>areas_</name>
+        <qualifiedname>tarte::Articulation::areas_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/articulation.h" line="14" column="16" bodyfile="include/articulation.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_articulation_1a6ecc93b6b634771e5066716cceddbd74" prot="private" static="no" mutable="no">
+        <type>std::array&lt; float, 6 &gt;</type>
+        <definition>std::array&lt;float, 6&gt; tarte::Articulation::positions_</definition>
+        <argsstring></argsstring>
+        <name>positions_</name>
+        <qualifiedname>tarte::Articulation::positions_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/articulation.h" line="14" column="23" bodyfile="include/articulation.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_articulation_1a46ee5125f15fbb1639100319b5faa109" prot="private" static="no" mutable="no">
+        <type>std::array&lt; float, 4 &gt;</type>
+        <definition>std::array&lt;float, 4&gt; tarte::Articulation::etas_</definition>
+        <argsstring></argsstring>
+        <name>etas_</name>
+        <qualifiedname>tarte::Articulation::etas_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/articulation.h" line="15" column="16" bodyfile="include/articulation.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtarte_1_1_articulation_1a2844c47ab3aa24c6cf56315fcc3d8498" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tarte::Articulation::Articulation</definition>
+        <argsstring>(vowels::Vowel const &amp;v=vowels::a)</argsstring>
+        <name>Articulation</name>
+        <qualifiedname>tarte::Articulation::Articulation</qualifiedname>
+        <param>
+          <type><ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">vowels::Vowel</ref> const &amp;</type>
+          <declname>v</declname>
+          <defval>vowels::a</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/articulation.h" line="18" column="5" bodyfile="include/articulation.h" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_articulation_1a4fc909468ef311bda29fc2c8fd20501f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Articulation::SetFromVowel</definition>
+        <argsstring>(vowels::Vowel const &amp;v)</argsstring>
+        <name>SetFromVowel</name>
+        <qualifiedname>tarte::Articulation::SetFromVowel</qualifiedname>
+        <param>
+          <type><ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">vowels::Vowel</ref> const &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/articulation.h" line="20" column="10" bodyfile="include/articulation.h" bodystart="20" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_articulation_1afe0ef0009f1d6684556003bba3d2b5b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Articulation::Interpolate2Vowels</definition>
+        <argsstring>(vowels::Vowel const &amp;v1, vowels::Vowel const &amp;v2, float alpha)</argsstring>
+        <name>Interpolate2Vowels</name>
+        <qualifiedname>tarte::Articulation::Interpolate2Vowels</qualifiedname>
+        <param>
+          <type><ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">vowels::Vowel</ref> const &amp;</type>
+          <declname>v1</declname>
+        </param>
+        <param>
+          <type><ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">vowels::Vowel</ref> const &amp;</type>
+          <declname>v2</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>alpha</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/articulation.h" line="27" column="10" bodyfile="include/articulation.h" bodystart="27" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_articulation_1a4cad85b84f2d825ef9f345ad6e974fb8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Articulation::InterpolateNVowels</definition>
+        <argsstring>(vowels::Vowel const *vs, float const *alphas, size_t const n)</argsstring>
+        <name>InterpolateNVowels</name>
+        <qualifiedname>tarte::Articulation::InterpolateNVowels</qualifiedname>
+        <param>
+          <type><ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">vowels::Vowel</ref> const *</type>
+          <declname>vs</declname>
+        </param>
+        <param>
+          <type>float const *</type>
+          <declname>alphas</declname>
+        </param>
+        <param>
+          <type>size_t const</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/articulation.h" line="39" column="10" bodyfile="include/articulation.h" bodystart="39" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_articulation_1a8bebddf3bf9d1b5818df66e348ca0b51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Articulation::FindClosestVowels</definition>
+        <argsstring>(float targetF0, float targetF1, size_t N, std::vector&lt; vowels::Vowel &gt; &amp;closest_vowels, std::vector&lt; float &gt; &amp;alphas)</argsstring>
+        <name>FindClosestVowels</name>
+        <qualifiedname>tarte::Articulation::FindClosestVowels</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>targetF0</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>targetF1</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">vowels::Vowel</ref> &gt; &amp;</type>
+          <declname>closest_vowels</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;</type>
+          <declname>alphas</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/articulation.h" line="64" column="10" bodyfile="include/articulation.h" bodystart="64" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_articulation_1af98cdba2847b6c4245b24448f8c28c61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Articulation::SetFromFormants</definition>
+        <argsstring>(float targetF0, float targetF1, size_t N=3)</argsstring>
+        <name>SetFromFormants</name>
+        <qualifiedname>tarte::Articulation::SetFromFormants</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>targetF0</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>targetF1</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>N</declname>
+          <defval>3</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/articulation.h" line="124" column="10" bodyfile="include/articulation.h" bodystart="124" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_articulation_1a7a42342229c48b45dd5b763ba59c54c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tarte::Articulation::getAreas</definition>
+        <argsstring>(T const *evaluation_positions, T *out, std::size_t const size)</argsstring>
+        <name>getAreas</name>
+        <qualifiedname>tarte::Articulation::getAreas</qualifiedname>
+        <param>
+          <type>T const *</type>
+          <declname>evaluation_positions</declname>
+        </param>
+        <param>
+          <type>T *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>std::size_t const</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/articulation.h" line="137" column="10" bodyfile="include/articulation.h" bodystart="137" bodyend="173"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/articulation.h" line="12" column="1" bodyfile="include/articulation.h" bodystart="12" bodyend="174"/>
+    <listofallmembers>
+      <member refid="classtarte_1_1_articulation_1aa474219da501a66e5582e410f5a5f84f" prot="private" virt="non-virtual"><scope>tarte::Articulation</scope><name>areas_</name></member>
+      <member refid="classtarte_1_1_articulation_1a2844c47ab3aa24c6cf56315fcc3d8498" prot="public" virt="non-virtual"><scope>tarte::Articulation</scope><name>Articulation</name></member>
+      <member refid="classtarte_1_1_articulation_1a46ee5125f15fbb1639100319b5faa109" prot="private" virt="non-virtual"><scope>tarte::Articulation</scope><name>etas_</name></member>
+      <member refid="classtarte_1_1_articulation_1a8bebddf3bf9d1b5818df66e348ca0b51" prot="public" virt="non-virtual"><scope>tarte::Articulation</scope><name>FindClosestVowels</name></member>
+      <member refid="classtarte_1_1_articulation_1a7a42342229c48b45dd5b763ba59c54c8" prot="public" virt="non-virtual"><scope>tarte::Articulation</scope><name>getAreas</name></member>
+      <member refid="classtarte_1_1_articulation_1afe0ef0009f1d6684556003bba3d2b5b7" prot="public" virt="non-virtual"><scope>tarte::Articulation</scope><name>Interpolate2Vowels</name></member>
+      <member refid="classtarte_1_1_articulation_1a4cad85b84f2d825ef9f345ad6e974fb8" prot="public" virt="non-virtual"><scope>tarte::Articulation</scope><name>InterpolateNVowels</name></member>
+      <member refid="classtarte_1_1_articulation_1a6ecc93b6b634771e5066716cceddbd74" prot="private" virt="non-virtual"><scope>tarte::Articulation</scope><name>positions_</name></member>
+      <member refid="classtarte_1_1_articulation_1af98cdba2847b6c4245b24448f8c28c61" prot="public" virt="non-virtual"><scope>tarte::Articulation</scope><name>SetFromFormants</name></member>
+      <member refid="classtarte_1_1_articulation_1a4fc909468ef311bda29fc2c8fd20501f" prot="public" virt="non-virtual"><scope>tarte::Articulation</scope><name>SetFromVowel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

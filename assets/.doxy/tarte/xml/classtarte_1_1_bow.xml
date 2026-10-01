@@ -1,0 +1,669 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="classtarte_1_1_bow" kind="class" language="C++" prot="public">
+    <compoundname>tarte::Bow</compoundname>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_bow_1a28d2c53433a31be63c89a00a0bada85c" prot="private" static="no" mutable="no">
+        <type>BowMode</type>
+        <definition>BowMode tarte::Bow&lt; T &gt;::bow_mode_</definition>
+        <argsstring></argsstring>
+        <name>bow_mode_</name>
+        <qualifiedname>tarte::Bow::bow_mode_</qualifiedname>
+        <initializer>= kVigue</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="12" column="13" bodyfile="include/bow.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_bow_1af02ea3560b3f879a13f567f395335e49" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::mu_s_</definition>
+        <argsstring></argsstring>
+        <name>mu_s_</name>
+        <qualifiedname>tarte::Bow::mu_s_</qualifiedname>
+        <initializer>{0.4}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="13" column="7" bodyfile="include/bow.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_bow_1af87ae15eeab37a0d00e97fdea97f1fd2" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::mu_c_</definition>
+        <argsstring></argsstring>
+        <name>mu_c_</name>
+        <qualifiedname>tarte::Bow::mu_c_</qualifiedname>
+        <initializer>{0.5}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="13" column="13" bodyfile="include/bow.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_bow_1af0fcb4ed60d10b74f3275524a2a1c481" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::mu_v_</definition>
+        <argsstring></argsstring>
+        <name>mu_v_</name>
+        <qualifiedname>tarte::Bow::mu_v_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="13" column="19" bodyfile="include/bow.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_bow_1acd7f6e6d35125fe41f59921171620d33" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::v_s_</definition>
+        <argsstring></argsstring>
+        <name>v_s_</name>
+        <qualifiedname>tarte::Bow::v_s_</qualifiedname>
+        <initializer>{0.1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="13" column="25" bodyfile="include/bow.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_bow_1afbb4b2432d5f7ff15dd052449032b289" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::v_c_</definition>
+        <argsstring></argsstring>
+        <name>v_c_</name>
+        <qualifiedname>tarte::Bow::v_c_</qualifiedname>
+        <initializer>{0.02}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="13" column="30" bodyfile="include/bow.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_bow_1a62600fa2fcf43b4b75b02e68246b497d" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::a_</definition>
+        <argsstring></argsstring>
+        <name>a_</name>
+        <qualifiedname>tarte::Bow::a_</qualifiedname>
+        <initializer>{100}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="13" column="35" bodyfile="include/bow.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_bow_1a318ed7e80553d8476c03c04bef6294b3" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::epsilon_</definition>
+        <argsstring></argsstring>
+        <name>epsilon_</name>
+        <qualifiedname>tarte::Bow::epsilon_</qualifiedname>
+        <initializer>{1e-4}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="13" column="38" bodyfile="include/bow.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_bow_1a25c0ae3e01e730eaa123287d4f439948" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::mu_d_</definition>
+        <argsstring></argsstring>
+        <name>mu_d_</name>
+        <qualifiedname>tarte::Bow::mu_d_</qualifiedname>
+        <initializer>{0.2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="13" column="47" bodyfile="include/bow.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_bow_1aa55b1684a2de89fab53336a3f3e556bd" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::n_</definition>
+        <argsstring></argsstring>
+        <name>n_</name>
+        <qualifiedname>tarte::Bow::n_</qualifiedname>
+        <initializer>{100}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="13" column="53" bodyfile="include/bow.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_bow_1a854a962be5f6edec37c7aeb5c3d826d6" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::vt_</definition>
+        <argsstring></argsstring>
+        <name>vt_</name>
+        <qualifiedname>tarte::Bow::vt_</qualifiedname>
+        <initializer>{0.01}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="13" column="56" bodyfile="include/bow.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtarte_1_1_bow_1ab13ace7290934b227d3a4d1b02ac000b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tarte::Bow&lt; T &gt;::Bow</definition>
+        <argsstring>()</argsstring>
+        <name>Bow</name>
+        <qualifiedname>tarte::Bow::Bow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="16" column="5" bodyfile="include/bow.h" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1a1fef2ea6f5cd58605f4db9690108feb8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::Phi</definition>
+        <argsstring>(T v_rel)</argsstring>
+        <name>Phi</name>
+        <qualifiedname>tarte::Bow::Phi</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>v_rel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="18" column="7" bodyfile="include/bow.h" bodystart="18" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1addf759012905faa7a9a3251d8fa9b33a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>BowMode</type>
+        <definition>BowMode tarte::Bow&lt; T &gt;::get_bow_mode</definition>
+        <argsstring>() const</argsstring>
+        <name>get_bow_mode</name>
+        <qualifiedname>tarte::Bow::get_bow_mode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="38" column="13" bodyfile="include/bow.h" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1acf461b971af7606b8770962737d47ded" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::get_mu_s</definition>
+        <argsstring>() const</argsstring>
+        <name>get_mu_s</name>
+        <qualifiedname>tarte::Bow::get_mu_s</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="39" column="7" bodyfile="include/bow.h" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1a9dee95ef10f13d87f3a59a63a8f1d0c2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::get_mu_c</definition>
+        <argsstring>() const</argsstring>
+        <name>get_mu_c</name>
+        <qualifiedname>tarte::Bow::get_mu_c</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="40" column="7" bodyfile="include/bow.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1a8f4555395add14821c83edc57e2094a2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::get_mu_v</definition>
+        <argsstring>() const</argsstring>
+        <name>get_mu_v</name>
+        <qualifiedname>tarte::Bow::get_mu_v</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="41" column="7" bodyfile="include/bow.h" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1aa45dda3440e3aa4eae7f5080761bc851" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::get_v_s</definition>
+        <argsstring>() const</argsstring>
+        <name>get_v_s</name>
+        <qualifiedname>tarte::Bow::get_v_s</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="42" column="7" bodyfile="include/bow.h" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1a8625aad56899bdd0f8a1330d3cd33d56" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::get_v_c</definition>
+        <argsstring>() const</argsstring>
+        <name>get_v_c</name>
+        <qualifiedname>tarte::Bow::get_v_c</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="43" column="7" bodyfile="include/bow.h" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1acb77c72600dd7c7e57aa6c0e966bf100" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::get_a</definition>
+        <argsstring>() const</argsstring>
+        <name>get_a</name>
+        <qualifiedname>tarte::Bow::get_a</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="44" column="7" bodyfile="include/bow.h" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1aeea4734e9a2fd332646d25daf24b37ca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::get_epsilon</definition>
+        <argsstring>() const</argsstring>
+        <name>get_epsilon</name>
+        <qualifiedname>tarte::Bow::get_epsilon</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="45" column="7" bodyfile="include/bow.h" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1a88f0799ea9d6ad7b78ecdf89b8d73e67" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::get_mu_d</definition>
+        <argsstring>() const</argsstring>
+        <name>get_mu_d</name>
+        <qualifiedname>tarte::Bow::get_mu_d</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="46" column="7" bodyfile="include/bow.h" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1af7698fff5d5cd9944cf12e2c38743105" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T tarte::Bow&lt; T &gt;::get_n</definition>
+        <argsstring>() const</argsstring>
+        <name>get_n</name>
+        <qualifiedname>tarte::Bow::get_n</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="47" column="7" bodyfile="include/bow.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1af8771a24475b9459a1ec5c783f4a253e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_bow_mode</definition>
+        <argsstring>(BowMode mode)</argsstring>
+        <name>set_bow_mode</name>
+        <qualifiedname>tarte::Bow::set_bow_mode</qualifiedname>
+        <param>
+          <type>BowMode</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="50" column="10" bodyfile="include/bow.h" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1a588422263e98bff0ca117198e024ad50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_mu_s</definition>
+        <argsstring>(T value)</argsstring>
+        <name>set_mu_s</name>
+        <qualifiedname>tarte::Bow::set_mu_s</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="51" column="10" bodyfile="include/bow.h" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1ad8cb59f7019052ea978cd8347d3a6bb8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_mu_c</definition>
+        <argsstring>(T value)</argsstring>
+        <name>set_mu_c</name>
+        <qualifiedname>tarte::Bow::set_mu_c</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="52" column="10" bodyfile="include/bow.h" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1af80134c115b10d15fc04b7a16597e888" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_mu_v</definition>
+        <argsstring>(T value)</argsstring>
+        <name>set_mu_v</name>
+        <qualifiedname>tarte::Bow::set_mu_v</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="53" column="10" bodyfile="include/bow.h" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1a0e441926b6e1494ca4928c53663e4b6f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_v_s</definition>
+        <argsstring>(T value)</argsstring>
+        <name>set_v_s</name>
+        <qualifiedname>tarte::Bow::set_v_s</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="54" column="10" bodyfile="include/bow.h" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1ab32538f752d6d4cf1ab5fd2fdf9955b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_v_c</definition>
+        <argsstring>(T value)</argsstring>
+        <name>set_v_c</name>
+        <qualifiedname>tarte::Bow::set_v_c</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="55" column="10" bodyfile="include/bow.h" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1ae0345334e2a7ac29228951ce6540e062" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_a</definition>
+        <argsstring>(T value)</argsstring>
+        <name>set_a</name>
+        <qualifiedname>tarte::Bow::set_a</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="56" column="10" bodyfile="include/bow.h" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1a18ca7a7be772292031646fd7c4d2da16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_epsilon</definition>
+        <argsstring>(T value)</argsstring>
+        <name>set_epsilon</name>
+        <qualifiedname>tarte::Bow::set_epsilon</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="57" column="10" bodyfile="include/bow.h" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1ab09d90c17568204151513fcb605bdcd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_mu_d</definition>
+        <argsstring>(T value)</argsstring>
+        <name>set_mu_d</name>
+        <qualifiedname>tarte::Bow::set_mu_d</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="58" column="10" bodyfile="include/bow.h" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1a7eb6e6a2b0e4c6a7246e58ebfdf27c36" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_n</definition>
+        <argsstring>(T value)</argsstring>
+        <name>set_n</name>
+        <qualifiedname>tarte::Bow::set_n</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="59" column="10" bodyfile="include/bow.h" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1ad34c9a4d08fdcb670d01568cacb8e633" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_matusiak_parameters</definition>
+        <argsstring>(T mu_s, T mu_c, T mu_v, T v_s, T v_c, T a)</argsstring>
+        <name>set_matusiak_parameters</name>
+        <qualifiedname>tarte::Bow::set_matusiak_parameters</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>mu_s</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>mu_c</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>mu_v</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>v_s</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>v_c</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="62" column="10" bodyfile="include/bow.h" bodystart="62" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1a2b441e6575424052b31e6ca04c88193b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_terrien_parameters</definition>
+        <argsstring>(T mu_s, T mu_d, T vt)</argsstring>
+        <name>set_terrien_parameters</name>
+        <qualifiedname>tarte::Bow::set_terrien_parameters</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>mu_s</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>mu_d</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>vt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="74" column="10" bodyfile="include/bow.h" bodystart="74" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_bow_1ae7b69e97ebe23eb5c427def361a39392" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::Bow&lt; T &gt;::set_vigue_parameters</definition>
+        <argsstring>(T mu_s_, T mu_d, T n, T epsilon)</argsstring>
+        <name>set_vigue_parameters</name>
+        <qualifiedname>tarte::Bow::set_vigue_parameters</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>mu_s_</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>mu_d</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>epsilon</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/bow.h" line="83" column="10" bodyfile="include/bow.h" bodystart="83" bodyend="90"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/bow.h" line="10" column="1" bodyfile="include/bow.h" bodystart="10" bodyend="91"/>
+    <listofallmembers>
+      <member refid="classtarte_1_1_bow_1a62600fa2fcf43b4b75b02e68246b497d" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>a_</name></member>
+      <member refid="classtarte_1_1_bow_1ab13ace7290934b227d3a4d1b02ac000b" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>Bow</name></member>
+      <member refid="classtarte_1_1_bow_1a28d2c53433a31be63c89a00a0bada85c" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>bow_mode_</name></member>
+      <member refid="classtarte_1_1_bow_1a318ed7e80553d8476c03c04bef6294b3" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>epsilon_</name></member>
+      <member refid="classtarte_1_1_bow_1acb77c72600dd7c7e57aa6c0e966bf100" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>get_a</name></member>
+      <member refid="classtarte_1_1_bow_1addf759012905faa7a9a3251d8fa9b33a" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>get_bow_mode</name></member>
+      <member refid="classtarte_1_1_bow_1aeea4734e9a2fd332646d25daf24b37ca" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>get_epsilon</name></member>
+      <member refid="classtarte_1_1_bow_1a9dee95ef10f13d87f3a59a63a8f1d0c2" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>get_mu_c</name></member>
+      <member refid="classtarte_1_1_bow_1a88f0799ea9d6ad7b78ecdf89b8d73e67" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>get_mu_d</name></member>
+      <member refid="classtarte_1_1_bow_1acf461b971af7606b8770962737d47ded" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>get_mu_s</name></member>
+      <member refid="classtarte_1_1_bow_1a8f4555395add14821c83edc57e2094a2" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>get_mu_v</name></member>
+      <member refid="classtarte_1_1_bow_1af7698fff5d5cd9944cf12e2c38743105" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>get_n</name></member>
+      <member refid="classtarte_1_1_bow_1a8625aad56899bdd0f8a1330d3cd33d56" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>get_v_c</name></member>
+      <member refid="classtarte_1_1_bow_1aa45dda3440e3aa4eae7f5080761bc851" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>get_v_s</name></member>
+      <member refid="classtarte_1_1_bow_1af87ae15eeab37a0d00e97fdea97f1fd2" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>mu_c_</name></member>
+      <member refid="classtarte_1_1_bow_1a25c0ae3e01e730eaa123287d4f439948" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>mu_d_</name></member>
+      <member refid="classtarte_1_1_bow_1af02ea3560b3f879a13f567f395335e49" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>mu_s_</name></member>
+      <member refid="classtarte_1_1_bow_1af0fcb4ed60d10b74f3275524a2a1c481" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>mu_v_</name></member>
+      <member refid="classtarte_1_1_bow_1aa55b1684a2de89fab53336a3f3e556bd" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>n_</name></member>
+      <member refid="classtarte_1_1_bow_1a1fef2ea6f5cd58605f4db9690108feb8" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>Phi</name></member>
+      <member refid="classtarte_1_1_bow_1ae0345334e2a7ac29228951ce6540e062" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_a</name></member>
+      <member refid="classtarte_1_1_bow_1af8771a24475b9459a1ec5c783f4a253e" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_bow_mode</name></member>
+      <member refid="classtarte_1_1_bow_1a18ca7a7be772292031646fd7c4d2da16" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_epsilon</name></member>
+      <member refid="classtarte_1_1_bow_1ad34c9a4d08fdcb670d01568cacb8e633" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_matusiak_parameters</name></member>
+      <member refid="classtarte_1_1_bow_1ad8cb59f7019052ea978cd8347d3a6bb8" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_mu_c</name></member>
+      <member refid="classtarte_1_1_bow_1ab09d90c17568204151513fcb605bdcd8" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_mu_d</name></member>
+      <member refid="classtarte_1_1_bow_1a588422263e98bff0ca117198e024ad50" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_mu_s</name></member>
+      <member refid="classtarte_1_1_bow_1af80134c115b10d15fc04b7a16597e888" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_mu_v</name></member>
+      <member refid="classtarte_1_1_bow_1a7eb6e6a2b0e4c6a7246e58ebfdf27c36" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_n</name></member>
+      <member refid="classtarte_1_1_bow_1a2b441e6575424052b31e6ca04c88193b" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_terrien_parameters</name></member>
+      <member refid="classtarte_1_1_bow_1ab32538f752d6d4cf1ab5fd2fdf9955b0" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_v_c</name></member>
+      <member refid="classtarte_1_1_bow_1a0e441926b6e1494ca4928c53663e4b6f" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_v_s</name></member>
+      <member refid="classtarte_1_1_bow_1ae7b69e97ebe23eb5c427def361a39392" prot="public" virt="non-virtual"><scope>tarte::Bow</scope><name>set_vigue_parameters</name></member>
+      <member refid="classtarte_1_1_bow_1afbb4b2432d5f7ff15dd052449032b289" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>v_c_</name></member>
+      <member refid="classtarte_1_1_bow_1acd7f6e6d35125fe41f59921171620d33" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>v_s_</name></member>
+      <member refid="classtarte_1_1_bow_1a854a962be5f6edec37c7aeb5c3d826d6" prot="private" virt="non-virtual"><scope>tarte::Bow</scope><name>vt_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

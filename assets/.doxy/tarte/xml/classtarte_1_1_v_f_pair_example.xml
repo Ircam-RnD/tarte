@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="classtarte_1_1_v_f_pair_example" kind="class" language="C++" prot="public">
+    <compoundname>tarte::VFPairExample</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename ftype</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classtarte_1_1_v_f_pair_example_1a12ba160cf67a84d45e1db9cbaf3d2893" prot="public" static="no">
+        <type>ftype</type>
+        <definition>using tarte::VFPairExample&lt; ftype &gt;::scalar_type = ftype</definition>
+        <argsstring></argsstring>
+        <name>scalar_type</name>
+        <qualifiedname>tarte::VFPairExample::scalar_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="18" column="5" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classtarte_1_1_v_f_pair_example_1ac32a69fa4edbb58667696ecf0f049872" prot="public" static="no">
+        <type>Eigen::Vector&lt; ftype, N &gt;</type>
+        <definition>using tarte::VFPairExample&lt; ftype &gt;::state_type = Eigen::Vector&lt;ftype, N&gt;</definition>
+        <argsstring></argsstring>
+        <name>state_type</name>
+        <qualifiedname>tarte::VFPairExample::state_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="19" column="5" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classtarte_1_1_v_f_pair_example_1ab587d61282d811ab2525552132663653" prot="public" static="no">
+        <type>Eigen::Vector&lt; ftype, half_N &gt;</type>
+        <definition>using tarte::VFPairExample&lt; ftype &gt;::half_state_type = Eigen::Vector&lt;ftype, half_N&gt;</definition>
+        <argsstring></argsstring>
+        <name>half_state_type</name>
+        <qualifiedname>tarte::VFPairExample::half_state_type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="20" column="5" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_v_f_pair_example_1a4ac5de48144e0311f73325ac13523dd0" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int tarte::VFPairExample&lt; ftype &gt;::N</definition>
+        <argsstring></argsstring>
+        <name>N</name>
+        <qualifiedname>tarte::VFPairExample::N</qualifiedname>
+        <initializer>{6}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="14" column="22" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_v_f_pair_example_1a15a9083c6e171a640759316342a6791c" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int tarte::VFPairExample&lt; ftype &gt;::half_N</definition>
+        <argsstring></argsstring>
+        <name>half_N</name>
+        <qualifiedname>tarte::VFPairExample::half_N</qualifiedname>
+        <initializer>{3}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="15" column="22" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="15" bodyend="15"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1a99c9fc883c33d254ffc6fc756d05aa33" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static constexpr int tarte::VFPairExample&lt; ftype &gt;::get_N</definition>
+        <argsstring>()</argsstring>
+        <name>get_N</name>
+        <qualifiedname>tarte::VFPairExample::get_N</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="21" column="33" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1a25a7add11cab5b6c8d51ca3e7e3a021d" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static constexpr int tarte::VFPairExample&lt; ftype &gt;::get_half_N</definition>
+        <argsstring>()</argsstring>
+        <name>get_half_N</name>
+        <qualifiedname>tarte::VFPairExample::get_half_N</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="22" column="33" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="22" bodyend="22"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1aac5793e48665182deb5ad19eaf3ebf43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>tarte::VFPairExample&lt; ftype &gt;::VFPairExample</definition>
+        <argsstring>()</argsstring>
+        <name>VFPairExample</name>
+        <qualifiedname>tarte::VFPairExample::VFPairExample</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="23" column="5" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1afaf91df714aaa66a4975931b7b293c11" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::VFPairExample&lt; ftype &gt;::FillIntermediary</definition>
+        <argsstring>(const state_type &amp;state_q)</argsstring>
+        <name>FillIntermediary</name>
+        <qualifiedname>tarte::VFPairExample::FillIntermediary</qualifiedname>
+        <param>
+          <type>const state_type &amp;</type>
+          <declname>state_q</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="28" column="10" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1a7129caa6571617031cf4d3dd3ea8fe8c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::VFPairExample&lt; ftype &gt;::EffectiveAreas</definition>
+        <argsstring>(state_type &amp;out_area_P_sub, state_type &amp;out_area_P_sup)</argsstring>
+        <name>EffectiveAreas</name>
+        <qualifiedname>tarte::VFPairExample::EffectiveAreas</qualifiedname>
+        <param>
+          <type>state_type &amp;</type>
+          <declname>out_area_P_sub</declname>
+        </param>
+        <param>
+          <type>state_type &amp;</type>
+          <declname>out_area_P_sup</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="29" column="10" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1a56f4cb3e41fd81199bd13dd411ba237c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::VFPairExample&lt; ftype &gt;::ComputeFlow</definition>
+        <argsstring>(const ftype &amp;Psub, const ftype &amp;Psup)</argsstring>
+        <name>ComputeFlow</name>
+        <qualifiedname>tarte::VFPairExample::ComputeFlow</qualifiedname>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>Psub</declname>
+        </param>
+        <param>
+          <type>const ftype &amp;</type>
+          <declname>Psup</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="30" column="11" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1a3f7f7bbe28c85d246d6e28132f586720" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::VFPairExample&lt; ftype &gt;::Enl</definition>
+        <argsstring>(const state_type &amp;state_q, bool recompute_intermediary=false)</argsstring>
+        <name>Enl</name>
+        <qualifiedname>tarte::VFPairExample::Enl</qualifiedname>
+        <param>
+          <type>const state_type &amp;</type>
+          <declname>state_q</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>recompute_intermediary</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="31" column="11" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1ad3aa00cb31416bd7012c90d040ced035" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::VFPairExample&lt; ftype &gt;::Fnl</definition>
+        <argsstring>(const state_type &amp;state_q, state_type &amp;out, bool recompute_intermediary=false)</argsstring>
+        <name>Fnl</name>
+        <qualifiedname>tarte::VFPairExample::Fnl</qualifiedname>
+        <param>
+          <type>const state_type &amp;</type>
+          <declname>state_q</declname>
+        </param>
+        <param>
+          <type>state_type &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>recompute_intermediary</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="32" column="10" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1a5779af097cec588ec3260fc352d6efa8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::VFPairExample&lt; ftype &gt;::KOp</definition>
+        <argsstring>(const state_type &amp;state_q, state_type &amp;out)</argsstring>
+        <name>KOp</name>
+        <qualifiedname>tarte::VFPairExample::KOp</qualifiedname>
+        <param>
+          <type>const state_type &amp;</type>
+          <declname>state_q</declname>
+        </param>
+        <param>
+          <type>state_type &amp;</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="33" column="10" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1a1d3b1f42dbd028a1014e1a5c0bbad783" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::VFPairExample&lt; ftype &gt;::ROp</definition>
+        <argsstring>(const state_type &amp;state_p, state_type &amp;out)</argsstring>
+        <name>ROp</name>
+        <qualifiedname>tarte::VFPairExample::ROp</qualifiedname>
+        <param>
+          <type>const state_type &amp;</type>
+          <declname>state_p</declname>
+        </param>
+        <param>
+          <type>state_type &amp;</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="34" column="10" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1a123821b9edcadcbe995cb50d6e0e8431" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>state_type</type>
+        <definition>state_type tarte::VFPairExample&lt; ftype &gt;::MinvOp</definition>
+        <argsstring>(const state_type &amp;state_p)</argsstring>
+        <name>MinvOp</name>
+        <qualifiedname>tarte::VFPairExample::MinvOp</qualifiedname>
+        <param>
+          <type>const state_type &amp;</type>
+          <declname>state_p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="35" column="16" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_v_f_pair_example_1a65f930d7298bf270445ec3e3bf4bd844" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>half_state_type</type>
+        <definition>half_state_type tarte::VFPairExample&lt; ftype &gt;::ReadEffectiveOpenings</definition>
+        <argsstring>()</argsstring>
+        <name>ReadEffectiveOpenings</name>
+        <qualifiedname>tarte::VFPairExample::ReadEffectiveOpenings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vocal_folds/vf_pair_model_example.h" line="36" column="21" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="36" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/vocal_folds/vf_pair_model_example.h" line="12" column="1" bodyfile="include/vocal_folds/vf_pair_model_example.h" bodystart="12" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classtarte_1_1_v_f_pair_example_1a56f4cb3e41fd81199bd13dd411ba237c" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>ComputeFlow</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a7129caa6571617031cf4d3dd3ea8fe8c" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>EffectiveAreas</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a3f7f7bbe28c85d246d6e28132f586720" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>Enl</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1afaf91df714aaa66a4975931b7b293c11" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>FillIntermediary</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1ad3aa00cb31416bd7012c90d040ced035" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>Fnl</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a25a7add11cab5b6c8d51ca3e7e3a021d" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>get_half_N</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a99c9fc883c33d254ffc6fc756d05aa33" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>get_N</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a15a9083c6e171a640759316342a6791c" prot="private" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>half_N</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1ab587d61282d811ab2525552132663653" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>half_state_type</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a5779af097cec588ec3260fc352d6efa8" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>KOp</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a123821b9edcadcbe995cb50d6e0e8431" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>MinvOp</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a4ac5de48144e0311f73325ac13523dd0" prot="private" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>N</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a65f930d7298bf270445ec3e3bf4bd844" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>ReadEffectiveOpenings</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a1d3b1f42dbd028a1014e1a5c0bbad783" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>ROp</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1a12ba160cf67a84d45e1db9cbaf3d2893" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>scalar_type</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1ac32a69fa4edbb58667696ecf0f049872" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>state_type</name></member>
+      <member refid="classtarte_1_1_v_f_pair_example_1aac5793e48665182deb5ad19eaf3ebf43" prot="public" virt="non-virtual"><scope>tarte::VFPairExample</scope><name>VFPairExample</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

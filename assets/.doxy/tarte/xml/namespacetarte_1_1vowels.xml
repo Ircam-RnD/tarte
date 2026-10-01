@@ -1,0 +1,426 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="namespacetarte_1_1vowels" kind="namespace" language="C++">
+    <compoundname>tarte::vowels</compoundname>
+    <innerclass refid="structtarte_1_1vowels_1_1_vowel" prot="public">tarte::vowels::Vowel</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="vowels_8h_1a3f31f44f1154afd308bdcabf7ae29aeb" prot="public" static="no" mutable="no">
+        <type>const std::array&lt; std::string, 16 &gt;</type>
+        <definition>const std::array&lt;std::string, 16&gt; tarte::vowels::vowelNames</definition>
+        <argsstring></argsstring>
+        <name>vowelNames</name>
+        <qualifiedname>tarte::vowels::vowelNames</qualifiedname>
+        <initializer>= {&quot;/a:/&quot;,
+                    &quot;/e:/&quot;,
+                    &quot;/i:/&quot;,
+                    &quot;/o:/&quot;,
+                    &quot;/u:/&quot;,
+                    &quot;/E:/&quot;,
+                    &quot;/ø:/&quot;,
+                    &quot;/y:/&quot;,
+                    &quot;/a/&quot;,
+                    &quot;/E/&quot;,
+                    &quot;/I/&quot;,
+                    &quot;/O/&quot;,
+                    &quot;/U/&quot;,
+                    &quot;/œ/&quot;,
+                    &quot;/Y/&quot;,
+                    &quot;/@/&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="19" column="25" bodyfile="include/vowels.h" bodystart="19" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a8497a64c318f4f6cdcfd5a0ce04a8289" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float tarte::vowels::minF0</definition>
+        <argsstring></argsstring>
+        <name>minF0</name>
+        <qualifiedname>tarte::vowels::minF0</qualifiedname>
+        <initializer>= 228</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="36" column="20" bodyfile="include/vowels.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a8bbde4f4034076b03a6efe3964f35548" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float tarte::vowels::minF1</definition>
+        <argsstring></argsstring>
+        <name>minF1</name>
+        <qualifiedname>tarte::vowels::minF1</qualifiedname>
+        <initializer>= 601</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="37" column="20" bodyfile="include/vowels.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1ab84cf1a4e5afa198f11cf39022361b81" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float tarte::vowels::maxF0</definition>
+        <argsstring></argsstring>
+        <name>maxF0</name>
+        <qualifiedname>tarte::vowels::maxF0</qualifiedname>
+        <initializer>= 710</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="39" column="20" bodyfile="include/vowels.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a82cc9f0d2e25e6fd1d41a1d32f493c6f" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float tarte::vowels::maxF1</definition>
+        <argsstring></argsstring>
+        <name>maxF1</name>
+        <qualifiedname>tarte::vowels::maxF1</qualifiedname>
+        <initializer>= 2200</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="40" column="20" bodyfile="include/vowels.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1ae0593def8a8b8cb619d3d7d6b93db6de" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <qualifiedname>tarte::vowels::a</qualifiedname>
+        <initializer>                 = {
+&quot;/a:/&quot;,
+{0.00011530000000000001, 0.0005755000000000001, 9.51e-05, 0.0006655000000000001, 0.0002706, 0.0002787},
+{0.018660000000000003, 0.028929999999999997, 0.08477, 0.14385, 0.17028, 0.17099},
+{0.418, 7.363, 0.852, 0.543},
+{702, 1246}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="42" column="20" bodyfile="include/vowels.h" bodystart="42" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a0218fc7b39092a1b7e30f94db40c5365" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::e</definition>
+        <argsstring></argsstring>
+        <name>e</name>
+        <qualifiedname>tarte::vowels::e</qualifiedname>
+        <initializer>= {&quot;/e:/&quot;,
+   {0.0001474, 0.0007055, 4.78e-05, 0.0003199, 0.0003859, 0.0002485},
+   {0.00458, 0.030430000000000002, 0.1278, 0.17236, 0.17498999999999998, 0.18142},
+   {0.208, 0.833, 0.473, 0.586},
+   {323, 2132}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="49" column="20" bodyfile="include/vowels.h" bodystart="49" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1abc1260574399f0d80180818da25732a5" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::i</definition>
+        <argsstring></argsstring>
+        <name>i</name>
+        <qualifiedname>tarte::vowels::i</qualifiedname>
+        <initializer>= {&quot;/i:/&quot;,
+   {0.00020459999999999999, 0.0008834, 2.7500000000000004e-05, 0.0004055, 0.0002929, 0.0003298},
+   {0.01644, 0.05625, 0.1345, 0.17323, 0.17936, 0.18136},
+   {2.391, 0.955, 0.298, 1.408},
+   {257, 2066}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="55" column="20" bodyfile="include/vowels.h" bodystart="55" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a6851f5604bc19edef90cc9c423cc138f" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::o</definition>
+        <argsstring></argsstring>
+        <name>o</name>
+        <qualifiedname>tarte::vowels::o</qualifiedname>
+        <initializer>                 = {
+&quot;/o:/&quot;,
+{0.00019830000000000002, 0.0007530000000000001, 4.21e-05, 0.0014351000000000001, 0.00020870000000000003, 6.38e-05},
+{0.01059, 0.02839, 0.11405, 0.17574, 0.203451, 0.21425000000000002},
+{0.217, 0.722, 0.4, 0.736},
+{325, 601}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="61" column="20" bodyfile="include/vowels.h" bodystart="61" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1ac1e92d170d8c1acb93056e2d07be2954" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::u</definition>
+        <argsstring></argsstring>
+        <name>u</name>
+        <qualifiedname>tarte::vowels::u</qualifiedname>
+        <initializer>= {&quot;/u:/&quot;,
+   {0.0001904, 0.0008881000000000001, 7.82e-05, 0.0009436000000000001, 0.0002288, 4.23e-05},
+   {0.01278, 0.06448000000000001, 0.14457, 0.18572, 0.20002, 0.21519},
+   {4.252, 2.13, 1.043, 1.019},
+   {265, 751}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="68" column="20" bodyfile="include/vowels.h" bodystart="68" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a78a5a4444524f7e41df735d624a80f0a" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::E</definition>
+        <argsstring></argsstring>
+        <name>E</name>
+        <qualifiedname>tarte::vowels::E</qualifiedname>
+        <initializer>= {&quot;/E:/&quot;,
+   {7.72e-05, 0.0003614, 0.0001316, 0.0002632, 0.0004133, 0.00043920000000000005},
+   {0.02477, 0.026469999999999997, 0.12300000000000001, 0.15279, 0.16851, 0.17422},
+   {1.066, 0.773, 1.635, 8.927},
+   {528, 1905}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="74" column="20" bodyfile="include/vowels.h" bodystart="74" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a914e92fc7705a53326e7d6375b8ce9f5" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::oe</definition>
+        <argsstring></argsstring>
+        <name>oe</name>
+        <qualifiedname>tarte::vowels::oe</qualifiedname>
+        <initializer>= {&quot;/ø:/&quot;,
+   {0.000146, 0.0009609, 0.0001305, 0.00042740000000000003, 0.00022210000000000003, 6.2e-05},
+   {0.00895, 0.03122, 0.1439, 0.18767, 0.19100999999999999, 0.20538},
+   {0.324, 0.653, 0.873, 1.583},
+   {298, 1300}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="80" column="20" bodyfile="include/vowels.h" bodystart="80" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1ac39fc8c2554a523bcf889b5ffb7f5c91" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>tarte::vowels::y</qualifiedname>
+        <initializer>= {&quot;/y:/&quot;,
+   {0.0001776, 0.0011572, 5.97e-05, 0.00027410000000000005, 0.0001044, 3.4200000000000005e-05},
+   {0.0151, 0.06103, 0.15014, 0.18637, 0.19313, 0.20687999999999998},
+   {3.013, 0.935, 0.592, 0.918},
+   {228, 1657}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="86" column="20" bodyfile="include/vowels.h" bodystart="86" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a37b4fa94fd2e4ea336fef3b27950c731" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::a_short</definition>
+        <argsstring></argsstring>
+        <name>a_short</name>
+        <qualifiedname>tarte::vowels::a_short</qualifiedname>
+        <initializer>= {&quot;/a/&quot;,
+   {6.850000000000001e-05, 0.0004311, 7.76e-05, 0.0008536, 0.0003637, 0.0003216},
+   {0.02319, 0.03247, 0.09551, 0.15677, 0.18042000000000002, 0.18420999999999998},
+   {1.268, 6.154, 1.593, 0.725},
+   {671, 1130}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="92" column="20" bodyfile="include/vowels.h" bodystart="92" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1ac97f1996caa7a84265406c1e39bf6206" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::E_short</definition>
+        <argsstring></argsstring>
+        <name>E_short</name>
+        <qualifiedname>tarte::vowels::E_short</qualifiedname>
+        <initializer>                       = {
+&quot;/E/&quot;,
+{7.72e-05, 0.0003818, 0.0001325, 0.0003951, 0.0003283, 0.0004015},
+{0.027559999999999998, 0.02643, 0.08135999999999999, 0.16795000000000002, 0.17379999999999998, 0.17474},
+{1.276, 0.275, 0.508, 0.594},
+{523, 1805}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="98" column="20" bodyfile="include/vowels.h" bodystart="98" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1af6b45b343f63f3c8cb5f6504cd8f9af4" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::I</definition>
+        <argsstring></argsstring>
+        <name>I</name>
+        <qualifiedname>tarte::vowels::I</qualifiedname>
+        <initializer>= {&quot;/I/&quot;,
+   {0.00019580000000000002, 0.0007822, 0.0001155, 0.0004364, 0.0003368, 0.0002681},
+   {0.01606, 0.06628, 0.12842, 0.16456, 0.17894, 0.18712},
+   {3.7, 2.747, 1.082, 0.629},
+   {355, 1756}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="105" column="20" bodyfile="include/vowels.h" bodystart="105" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1ad15eb22aebc91721d39ae2d9ce32e012" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::O</definition>
+        <argsstring></argsstring>
+        <name>O</name>
+        <qualifiedname>tarte::vowels::O</qualifiedname>
+        <initializer>= {&quot;/O/&quot;,
+   {8.17e-05, 0.0004504, 5.0600000000000003e-05, 0.0010108, 0.00020800000000000001, 0.0001563},
+   {0.0, 0.02625, 0.10555999999999999, 0.17550000000000002, 0.19366, 0.20241},
+   {0.428, 0.941, 1.798, 0.808},
+   {463, 890}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="111" column="20" bodyfile="include/vowels.h" bodystart="111" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a77fcb816d36de064dc3b10be4cf83477" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::U</definition>
+        <argsstring></argsstring>
+        <name>U</name>
+        <qualifiedname>tarte::vowels::U</qualifiedname>
+        <initializer>= {&quot;/U/&quot;,
+   {0.0001978, 0.0008708, 3.4699999999999996e-05, 0.0012732, 0.00015840000000000003, 8.16e-05},
+   {0.00863, 0.02098, 0.11086, 0.17442, 0.19684000000000001, 0.20848},
+   {0.515, 0.792, 0.925, 0.852},
+   {327, 997}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="117" column="20" bodyfile="include/vowels.h" bodystart="117" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a306780bab22d0cc1fd7e2bfad05b1d5a" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::oe_short</definition>
+        <argsstring></argsstring>
+        <name>oe_short</name>
+        <qualifiedname>tarte::vowels::oe_short</qualifiedname>
+        <initializer>= {&quot;/œ/&quot;,
+   {0.00015260000000000002, 0.0007445, 0.0002493, 0.0005019, 0.0002929, 0.0001405},
+   {0.01634, 0.033690000000000005, 0.06158, 0.10767, 0.18042000000000002, 0.19012},
+   {0.791, 1.928, 5.605, 0.225},
+   {464, 1313}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="123" column="20" bodyfile="include/vowels.h" bodystart="123" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a0cf638c78eba5f32dd15a53a18d4eda8" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::Y</definition>
+        <argsstring></argsstring>
+        <name>Y</name>
+        <qualifiedname>tarte::vowels::Y</qualifiedname>
+        <initializer>= {&quot;/Y/&quot;,
+   {0.0001167, 0.0008247, 0.0001894, 0.0005053, 0.0002858, 8.16e-05},
+   {0.00594, 0.02773, 0.128, 0.16428, 0.18201, 0.19541},
+   {0.464, 0.905, 0.761, 0.581},
+   {372, 1366}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="129" column="20" bodyfile="include/vowels.h" bodystart="129" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a229ef321a4b37e038185a460317567fc" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref></type>
+        <definition>const Vowel tarte::vowels::schwa</definition>
+        <argsstring></argsstring>
+        <name>schwa</name>
+        <qualifiedname>tarte::vowels::schwa</qualifiedname>
+        <initializer>= {&quot;/@/&quot;,
+   {0.0001077, 0.0006256, 0.00014560000000000002, 0.0001773, 0.0002575, 0.0001405},
+   {0.0, 0.03074, 0.12783, 0.16725, 0.17407, 0.1856},
+   {0.208, 0.726, 2.679, 0.896},
+   {406, 1626}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="135" column="20" bodyfile="include/vowels.h" bodystart="135" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="variable" id="vowels_8h_1a970ce7d06ad4c77d7ae234cd121494a0" prot="public" static="no" mutable="no">
+        <type>const std::array&lt; <ref refid="structtarte_1_1vowels_1_1_vowel" kindref="compound">Vowel</ref>, 16 &gt;</type>
+        <definition>const std::array&lt;Vowel, 16&gt; tarte::vowels::vowels</definition>
+        <argsstring></argsstring>
+        <name>vowels</name>
+        <qualifiedname>tarte::vowels::vowels</qualifiedname>
+        <initializer>= {a, e, i, o, u, E, oe, y, a_short, E_short, I, O, U, oe_short, Y, schwa}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/vowels.h" line="141" column="25" bodyfile="include/vowels.h" bodystart="141" bodyend="141"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/vowels.h" line="7" column="1"/>
+  </compounddef>
+</doxygen>

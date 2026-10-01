@@ -1,0 +1,2245 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="en-US">
+  <compounddef id="classtarte_1_1_webster_f_d_t_d" kind="class" language="C++" prot="public">
+    <compoundname>tarte::WebsterFDTD</compoundname>
+    <innerclass refid="structtarte_1_1_webster_f_d_t_d_1_1_frequency_response" prot="public">tarte::WebsterFDTD::FrequencyResponse</innerclass>
+    <innerclass refid="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues" prot="public">tarte::WebsterFDTD::PolesResidues</innerclass>
+    <templateparamlist>
+      <param>
+        <type>typename ftype</type>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>kMaxN</declname>
+        <defname>kMaxN</defname>
+        <defval>50</defval>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classtarte_1_1_webster_f_d_t_d_1a87c39dc6f470ad13964a584fef61f63c" prot="private" static="no">
+        <type>Eigen::Array&lt; ftype, kMaxN, 1 &gt;</type>
+        <definition>using tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ArrayN = Eigen::Array&lt;ftype, kMaxN, 1&gt;</definition>
+        <argsstring></argsstring>
+        <name>ArrayN</name>
+        <qualifiedname>tarte::WebsterFDTD::ArrayN</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="35" column="5" bodyfile="include/websterFDTD.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classtarte_1_1_webster_f_d_t_d_1a0b8c22b019b5307f5a4fda684c3d7251" prot="private" static="no">
+        <type>Eigen::Array&lt; ftype, kMaxN - 1, 1 &gt;</type>
+        <definition>using tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ArrayNm1 = Eigen::Array&lt;ftype, kMaxN - 1, 1&gt;</definition>
+        <argsstring></argsstring>
+        <name>ArrayNm1</name>
+        <qualifiedname>tarte::WebsterFDTD::ArrayNm1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="37" column="5" bodyfile="include/websterFDTD.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a527ab2c42788e1af45d8dcf7d9f15df7" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::c0_</definition>
+        <argsstring></argsstring>
+        <name>c0_</name>
+        <qualifiedname>tarte::WebsterFDTD::c0_</qualifiedname>
+        <initializer>{340}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="40" column="11" bodyfile="include/websterFDTD.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a1f2d28295783e49bd07bca3f872fc70d" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::rho0_</definition>
+        <argsstring></argsstring>
+        <name>rho0_</name>
+        <qualifiedname>tarte::WebsterFDTD::rho0_</qualifiedname>
+        <initializer>{1.2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="40" column="15" bodyfile="include/websterFDTD.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1af2daa110778d7ba348ac987043f21506" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::l0_</definition>
+        <argsstring></argsstring>
+        <name>l0_</name>
+        <qualifiedname>tarte::WebsterFDTD::l0_</qualifiedname>
+        <initializer>{17e-2}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="40" column="21" bodyfile="include/websterFDTD.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1ad8e72438a78136943c9baa9fe331be00" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::c02_</definition>
+        <argsstring></argsstring>
+        <name>c02_</name>
+        <qualifiedname>tarte::WebsterFDTD::c02_</qualifiedname>
+        <initializer>{0.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="40" column="25" bodyfile="include/websterFDTD.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a193fd7b3bb496f51e43add90ca96cbf5" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::lip_radius</definition>
+        <argsstring></argsstring>
+        <name>lip_radius</name>
+        <qualifiedname>tarte::WebsterFDTD::lip_radius</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="41" column="11" bodyfile="include/websterFDTD.h" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a23713f5f94db4cd5293eda8eabcad2eb" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::L_rad_</definition>
+        <argsstring></argsstring>
+        <name>L_rad_</name>
+        <qualifiedname>tarte::WebsterFDTD::L_rad_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="41" column="22" bodyfile="include/websterFDTD.h" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a9fcc95cea90978839d8472570147fce1" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::R_rad_</definition>
+        <argsstring></argsstring>
+        <name>R_rad_</name>
+        <qualifiedname>tarte::WebsterFDTD::R_rad_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="41" column="29" bodyfile="include/websterFDTD.h" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1ab4b8d3b7a840cc3f958af83b8bc8d6c3" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::wall_area_mass_</definition>
+        <argsstring></argsstring>
+        <name>wall_area_mass_</name>
+        <qualifiedname>tarte::WebsterFDTD::wall_area_mass_</qualifiedname>
+        <initializer>{15}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="42" column="11" bodyfile="include/websterFDTD.h" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1ad39dd57e8fa4d4f4d24c4b08214dab99" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::wall_area_stiffness_</definition>
+        <argsstring></argsstring>
+        <name>wall_area_stiffness_</name>
+        <qualifiedname>tarte::WebsterFDTD::wall_area_stiffness_</qualifiedname>
+        <initializer>{3e6}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="42" column="27" bodyfile="include/websterFDTD.h" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a7bd6993a60931827ad7ed468edf25d20" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::wall_area_damping_</definition>
+        <argsstring></argsstring>
+        <name>wall_area_damping_</name>
+        <qualifiedname>tarte::WebsterFDTD::wall_area_damping_</qualifiedname>
+        <initializer>{16000}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="42" column="48" bodyfile="include/websterFDTD.h" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a9c9b6d046ae2357fad1c68e89df2910d" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::radiation_</definition>
+        <argsstring></argsstring>
+        <name>radiation_</name>
+        <qualifiedname>tarte::WebsterFDTD::radiation_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="45" column="10" bodyfile="include/websterFDTD.h" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a6df0ba045723f15f24b3772efccb8e89" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::yielding_walls_</definition>
+        <argsstring></argsstring>
+        <name>yielding_walls_</name>
+        <qualifiedname>tarte::WebsterFDTD::yielding_walls_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="46" column="10" bodyfile="include/websterFDTD.h" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1aaba0c5e480d138f1edf96eb64edf9052" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::time_varying_geometry_</definition>
+        <argsstring></argsstring>
+        <name>time_varying_geometry_</name>
+        <qualifiedname>tarte::WebsterFDTD::time_varying_geometry_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="47" column="10" bodyfile="include/websterFDTD.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a48265d4454c444a93330e0bc74bde11f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::pumped_flow_</definition>
+        <argsstring></argsstring>
+        <name>pumped_flow_</name>
+        <qualifiedname>tarte::WebsterFDTD::pumped_flow_</qualifiedname>
+        <initializer>{true}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="48" column="9" bodyfile="include/websterFDTD.h" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a10c8fbf13d4057185c79d0b77d70328d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::N_update_geometry_</definition>
+        <argsstring></argsstring>
+        <name>N_update_geometry_</name>
+        <qualifiedname>tarte::WebsterFDTD::N_update_geometry_</qualifiedname>
+        <initializer>{1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="49" column="9" bodyfile="include/websterFDTD.h" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a9e250e44249db5c105d1fee9cfb0a71a" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::update_counter_geometry_</definition>
+        <argsstring></argsstring>
+        <name>update_counter_geometry_</name>
+        <qualifiedname>tarte::WebsterFDTD::update_counter_geometry_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="50" column="9" bodyfile="include/websterFDTD.h" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a306669ac572e26a0d6da26c878fd11f8" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::S_direct_</definition>
+        <argsstring></argsstring>
+        <name>S_direct_</name>
+        <qualifiedname>tarte::WebsterFDTD::S_direct_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="52" column="12" bodyfile="include/websterFDTD.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1adedd31eb8fcbf62f36cece7e808592e3" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::S_target_</definition>
+        <argsstring></argsstring>
+        <name>S_target_</name>
+        <qualifiedname>tarte::WebsterFDTD::S_target_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="52" column="22" bodyfile="include/websterFDTD.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1ae4ddf44640346854aa48c265046c462d" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::S_direct_last_</definition>
+        <argsstring></argsstring>
+        <name>S_direct_last_</name>
+        <qualifiedname>tarte::WebsterFDTD::S_direct_last_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="52" column="32" bodyfile="include/websterFDTD.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a4d4e59e2d9d5241d00253ea772ec87d4" prot="private" static="no" mutable="no">
+        <type>ArrayNm1</type>
+        <definition>ArrayNm1 tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::S_dual_</definition>
+        <argsstring></argsstring>
+        <name>S_dual_</name>
+        <qualifiedname>tarte::WebsterFDTD::S_dual_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="53" column="14" bodyfile="include/websterFDTD.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a9d69050863fd241a521398f1152b74f9" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::S_primal_</definition>
+        <argsstring></argsstring>
+        <name>S_primal_</name>
+        <qualifiedname>tarte::WebsterFDTD::S_primal_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="54" column="12" bodyfile="include/websterFDTD.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1adeebae271b1ff315a32c853a0409f974" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::S_primal_last_</definition>
+        <argsstring></argsstring>
+        <name>S_primal_last_</name>
+        <qualifiedname>tarte::WebsterFDTD::S_primal_last_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="54" column="22" bodyfile="include/websterFDTD.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1adfbb81df0e2f87c4de9f46a9e6c7fb5a" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::d_S_primal_</definition>
+        <argsstring></argsstring>
+        <name>d_S_primal_</name>
+        <qualifiedname>tarte::WebsterFDTD::d_S_primal_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="54" column="37" bodyfile="include/websterFDTD.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a865a23c4f36318d74a92762e6eef5427" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::gamma_primal_</definition>
+        <argsstring></argsstring>
+        <name>gamma_primal_</name>
+        <qualifiedname>tarte::WebsterFDTD::gamma_primal_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="55" column="12" bodyfile="include/websterFDTD.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a335f98754d226d52b3aa98d9502e2103" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::dt_</definition>
+        <argsstring></argsstring>
+        <name>dt_</name>
+        <qualifiedname>tarte::WebsterFDTD::dt_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="58" column="11" bodyfile="include/websterFDTD.h" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a36ebb012854f5644a83f6b593ca02b68" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::sr_</definition>
+        <argsstring></argsstring>
+        <name>sr_</name>
+        <qualifiedname>tarte::WebsterFDTD::sr_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="58" column="15" bodyfile="include/websterFDTD.h" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a6c2cabceeb4a1f019730df866ce4e812" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::h_</definition>
+        <argsstring></argsstring>
+        <name>h_</name>
+        <qualifiedname>tarte::WebsterFDTD::h_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="58" column="19" bodyfile="include/websterFDTD.h" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a8671afcff46e9b61ed4a40b3bea5db12" prot="private" static="no" mutable="no">
+        <type>ArrayNm1</type>
+        <definition>ArrayNm1 tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::x_dual_</definition>
+        <argsstring></argsstring>
+        <name>x_dual_</name>
+        <qualifiedname>tarte::WebsterFDTD::x_dual_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="59" column="14" bodyfile="include/websterFDTD.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1aa19da9e41837a8cc361f494973b0bcf3" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::x_primal_</definition>
+        <argsstring></argsstring>
+        <name>x_primal_</name>
+        <qualifiedname>tarte::WebsterFDTD::x_primal_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="60" column="12" bodyfile="include/websterFDTD.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a34004d2fc93b733ddb4f49220a9414d9" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::N_</definition>
+        <argsstring></argsstring>
+        <name>N_</name>
+        <qualifiedname>tarte::WebsterFDTD::N_</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="61" column="9" bodyfile="include/websterFDTD.h" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a0fbe4b22be9cddce8ec9e0f49f915721" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::flip_</definition>
+        <argsstring></argsstring>
+        <name>flip_</name>
+        <qualifiedname>tarte::WebsterFDTD::flip_</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="64" column="10" bodyfile="include/websterFDTD.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1acb70022470700b7ddf7bbea8acc0a421" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::rho_buf_[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>rho_buf_</name>
+        <qualifiedname>tarte::WebsterFDTD::rho_buf_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="66" column="12" bodyfile="include/websterFDTD.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1aad73434c39540d34b568d06bb0843050" prot="private" static="no" mutable="no">
+        <type>ArrayNm1</type>
+        <definition>ArrayNm1 tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::vel_buf_[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>vel_buf_</name>
+        <qualifiedname>tarte::WebsterFDTD::vel_buf_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="67" column="14" bodyfile="include/websterFDTD.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a89f02ae9afb3959934ca68012d7236b4" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::wall_momentum_buf_[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>wall_momentum_buf_</name>
+        <qualifiedname>tarte::WebsterFDTD::wall_momentum_buf_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="68" column="12" bodyfile="include/websterFDTD.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a925380a3d5117c951a5328f0d0c94e45" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::wall_displacement_buf_[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>wall_displacement_buf_</name>
+        <qualifiedname>tarte::WebsterFDTD::wall_displacement_buf_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="69" column="12" bodyfile="include/websterFDTD.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a1dc2d6563e349ef94b8a83c03632fae3" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::radiation_flow_buf_[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>radiation_flow_buf_</name>
+        <qualifiedname>tarte::WebsterFDTD::radiation_flow_buf_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="70" column="11" bodyfile="include/websterFDTD.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a10d4e43cc27de374a42dbc054404f15f" prot="private" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="classtarte_1_1_biquad" kindref="compound">Biquad</ref>, kMaxN+1 &gt;</type>
+        <definition>std::array&lt;Biquad, kMaxN + 1&gt; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::lp_filters_</definition>
+        <argsstring></argsstring>
+        <name>lp_filters_</name>
+        <qualifiedname>tarte::WebsterFDTD::lp_filters_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="84" column="16" bodyfile="include/websterFDTD.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a6b903ffc70993e438bc7aa06ebbb7d59" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::lpf_frequency_</definition>
+        <argsstring></argsstring>
+        <name>lpf_frequency_</name>
+        <qualifiedname>tarte::WebsterFDTD::lpf_frequency_</qualifiedname>
+        <initializer>{10.0f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="85" column="11" bodyfile="include/websterFDTD.h" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1aee382c35cbcaa4c286f74abccab6604c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::N_lpf_</definition>
+        <argsstring></argsstring>
+        <name>N_lpf_</name>
+        <qualifiedname>tarte::WebsterFDTD::N_lpf_</qualifiedname>
+        <initializer>{kMaxN + 1}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="86" column="9" bodyfile="include/websterFDTD.h" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a8eda174cc0e717c0e178d5a1095a55cd" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::intermediary_</definition>
+        <argsstring></argsstring>
+        <name>intermediary_</name>
+        <qualifiedname>tarte::WebsterFDTD::intermediary_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="89" column="12" bodyfile="include/websterFDTD.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a592976423bb6453016da5a1c357f14d7" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::d_plus_v_</definition>
+        <argsstring></argsstring>
+        <name>d_plus_v_</name>
+        <qualifiedname>tarte::WebsterFDTD::d_plus_v_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="90" column="12" bodyfile="include/websterFDTD.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1ab069f0217a4002cea8683ea344b63a3a" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::A_</definition>
+        <argsstring></argsstring>
+        <name>A_</name>
+        <qualifiedname>tarte::WebsterFDTD::A_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="90" column="22" bodyfile="include/websterFDTD.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a405c71084fdc821123fdfe234200192f" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::B_</definition>
+        <argsstring></argsstring>
+        <name>B_</name>
+        <qualifiedname>tarte::WebsterFDTD::B_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="90" column="25" bodyfile="include/websterFDTD.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a125876a973129edf182a5c716fb3e798" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::D_</definition>
+        <argsstring></argsstring>
+        <name>D_</name>
+        <qualifiedname>tarte::WebsterFDTD::D_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="90" column="28" bodyfile="include/websterFDTD.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1aa2b7fcb0f477f08a554dc8634c15ef79" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::E_</definition>
+        <argsstring></argsstring>
+        <name>E_</name>
+        <qualifiedname>tarte::WebsterFDTD::E_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="90" column="31" bodyfile="include/websterFDTD.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a43cb403d59e629293975a919c7628f5a" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::A_walls_</definition>
+        <argsstring></argsstring>
+        <name>A_walls_</name>
+        <qualifiedname>tarte::WebsterFDTD::A_walls_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="90" column="34" bodyfile="include/websterFDTD.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1ad47b99454e014fad06efd6da7d234bca" prot="private" static="no" mutable="no">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::B_walls_</definition>
+        <argsstring></argsstring>
+        <name>B_walls_</name>
+        <qualifiedname>tarte::WebsterFDTD::B_walls_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="90" column="43" bodyfile="include/websterFDTD.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1af704fcbc33a35795984f4fd6a4583169" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::F_</definition>
+        <argsstring></argsstring>
+        <name>F_</name>
+        <qualifiedname>tarte::WebsterFDTD::F_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="91" column="11" bodyfile="include/websterFDTD.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a61976d9c1781e8543f2e3acd7c9f2659" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::G_</definition>
+        <argsstring></argsstring>
+        <name>G_</name>
+        <qualifiedname>tarte::WebsterFDTD::G_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="91" column="14" bodyfile="include/websterFDTD.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1ade939b5577989111a2d1308acf26525d" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::vel_coeff_</definition>
+        <argsstring></argsstring>
+        <name>vel_coeff_</name>
+        <qualifiedname>tarte::WebsterFDTD::vel_coeff_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="92" column="11" bodyfile="include/websterFDTD.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a26468e24df104c8381bc78ebc0e23164" prot="private" static="no" mutable="no">
+        <type>ArrayNm1</type>
+        <definition>ArrayNm1 tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::C_top_</definition>
+        <argsstring></argsstring>
+        <name>C_top_</name>
+        <qualifiedname>tarte::WebsterFDTD::C_top_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="93" column="14" bodyfile="include/websterFDTD.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a2b47f7bcdf37ef9fc641519c3b738633" prot="private" static="no" mutable="no">
+        <type>ArrayNm1</type>
+        <definition>ArrayNm1 tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::C_low_</definition>
+        <argsstring></argsstring>
+        <name>C_low_</name>
+        <qualifiedname>tarte::WebsterFDTD::C_low_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="93" column="21" bodyfile="include/websterFDTD.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a15028e6a745409ed1eee5d221b147609" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::kinetic_energy_fluid_[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>kinetic_energy_fluid_</name>
+        <qualifiedname>tarte::WebsterFDTD::kinetic_energy_fluid_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="105" column="11" bodyfile="include/websterFDTD.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1ac8e9a87c1181504d6483d1fcef1ae44b" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::potential_energy_fluid_[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>potential_energy_fluid_</name>
+        <qualifiedname>tarte::WebsterFDTD::potential_energy_fluid_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="105" column="33" bodyfile="include/websterFDTD.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1af41e96a0174e4241ce5abd3d9187f911" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::kinetic_energy_walls_[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>kinetic_energy_walls_</name>
+        <qualifiedname>tarte::WebsterFDTD::kinetic_energy_walls_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="105" column="57" bodyfile="include/websterFDTD.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a5010daf8096f2aa75bc2830904a4149c" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::potential_energy_walls_[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>potential_energy_walls_</name>
+        <qualifiedname>tarte::WebsterFDTD::potential_energy_walls_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="105" column="79" bodyfile="include/websterFDTD.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a09dad4e1177e8986225ce32e3242a270" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::kinetic_energy_radiation_[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>kinetic_energy_radiation_</name>
+        <qualifiedname>tarte::WebsterFDTD::kinetic_energy_radiation_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="106" column="9" bodyfile="include/websterFDTD.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1af7764d2da85078135da64b6b06979129" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_diss_walls_</definition>
+        <argsstring></argsstring>
+        <name>P_diss_walls_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_diss_walls_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="107" column="11" bodyfile="include/websterFDTD.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a91da722a5773555507066c5dce6de550" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_diss_radiation_</definition>
+        <argsstring></argsstring>
+        <name>P_diss_radiation_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_diss_radiation_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="107" column="25" bodyfile="include/websterFDTD.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a134adb0499386e36c45cb0e3b9d4f84d" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_diss_tot_</definition>
+        <argsstring></argsstring>
+        <name>P_diss_tot_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_diss_tot_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="107" column="43" bodyfile="include/websterFDTD.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1af972ddf98516d677a617927b49a9d6b0" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_in_</definition>
+        <argsstring></argsstring>
+        <name>P_in_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_in_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="108" column="11" bodyfile="include/websterFDTD.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a2c84bc2e2b3b0a49b979a287a2c4a743" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_stored_fluid_</definition>
+        <argsstring></argsstring>
+        <name>P_stored_fluid_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_stored_fluid_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="109" column="11" bodyfile="include/websterFDTD.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a5d27203c7dfd494e76782548a4bbc777" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_stored_fluid_kinetic_</definition>
+        <argsstring></argsstring>
+        <name>P_stored_fluid_kinetic_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_stored_fluid_kinetic_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="109" column="27" bodyfile="include/websterFDTD.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a6992032883e6c82c65822d61bec398a1" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_stored_fluid_potential_</definition>
+        <argsstring></argsstring>
+        <name>P_stored_fluid_potential_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_stored_fluid_potential_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="109" column="51" bodyfile="include/websterFDTD.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1af9e372f47dd685302567f1e7a25ac916" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_stored_walls_</definition>
+        <argsstring></argsstring>
+        <name>P_stored_walls_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_stored_walls_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="110" column="11" bodyfile="include/websterFDTD.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a5c959b8c7c2d87f407f0f3a1802474f4" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_stored_walls_kinetic_</definition>
+        <argsstring></argsstring>
+        <name>P_stored_walls_kinetic_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_stored_walls_kinetic_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="110" column="27" bodyfile="include/websterFDTD.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a13e28a7971f34640f3d9eed988d118e6" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_stored_walls_potential_</definition>
+        <argsstring></argsstring>
+        <name>P_stored_walls_potential_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_stored_walls_potential_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="110" column="51" bodyfile="include/websterFDTD.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a3cf8b0ea0fd9d591fda85a1a0b70305a" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_stored_radiation_</definition>
+        <argsstring></argsstring>
+        <name>P_stored_radiation_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_stored_radiation_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="111" column="11" bodyfile="include/websterFDTD.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1ab74f39998994ecc4300b0bf6aab3c782" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_stored_tot_</definition>
+        <argsstring></argsstring>
+        <name>P_stored_tot_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_stored_tot_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="111" column="31" bodyfile="include/websterFDTD.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1ae902a47952294712a9c353ade13bbca8" prot="private" static="no" mutable="no">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::P_tot_</definition>
+        <argsstring></argsstring>
+        <name>P_tot_</name>
+        <qualifiedname>tarte::WebsterFDTD::P_tot_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="112" column="11" bodyfile="include/websterFDTD.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtarte_1_1_webster_f_d_t_d_1a9cea317729b19e212e44a6c94db3fdee" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::compute_powers_</definition>
+        <argsstring></argsstring>
+        <name>compute_powers_</name>
+        <qualifiedname>tarte::WebsterFDTD::compute_powers_</qualifiedname>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="114" column="10" bodyfile="include/websterFDTD.h" bodystart="114" bodyend="114"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a2b15feb91d8c866410d3eae78f4a792e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto &amp;</type>
+        <definition>auto &amp; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::rho_now_ac</definition>
+        <argsstring>()</argsstring>
+        <name>rho_now_ac</name>
+        <qualifiedname>tarte::WebsterFDTD::rho_now_ac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="72" column="10" bodyfile="include/websterFDTD.h" bodystart="72" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a4ec4e428e736019f8340eebf8ce042a0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto &amp;</type>
+        <definition>auto &amp; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::rho_next_ac</definition>
+        <argsstring>()</argsstring>
+        <name>rho_next_ac</name>
+        <qualifiedname>tarte::WebsterFDTD::rho_next_ac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="73" column="10" bodyfile="include/websterFDTD.h" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a5be14977f48f546bbf12ec8be547d3c9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto &amp;</type>
+        <definition>auto &amp; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::vel_now_ac</definition>
+        <argsstring>()</argsstring>
+        <name>vel_now_ac</name>
+        <qualifiedname>tarte::WebsterFDTD::vel_now_ac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="74" column="10" bodyfile="include/websterFDTD.h" bodystart="74" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a8712264bd6a9c7cdda0233d5783954aa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto &amp;</type>
+        <definition>auto &amp; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::vel_next_ac</definition>
+        <argsstring>()</argsstring>
+        <name>vel_next_ac</name>
+        <qualifiedname>tarte::WebsterFDTD::vel_next_ac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="75" column="10" bodyfile="include/websterFDTD.h" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a5bae0c06bb7753af340d9b6ffe58218d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto &amp;</type>
+        <definition>auto &amp; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::wall_momentum_now_ac</definition>
+        <argsstring>()</argsstring>
+        <name>wall_momentum_now_ac</name>
+        <qualifiedname>tarte::WebsterFDTD::wall_momentum_now_ac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="76" column="10" bodyfile="include/websterFDTD.h" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a9855834e29a7ac4f7e57a8c8e96d350c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto &amp;</type>
+        <definition>auto &amp; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::wall_momentum_next_ac</definition>
+        <argsstring>()</argsstring>
+        <name>wall_momentum_next_ac</name>
+        <qualifiedname>tarte::WebsterFDTD::wall_momentum_next_ac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="77" column="10" bodyfile="include/websterFDTD.h" bodystart="77" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ae6c66dee75d213ca9c645d0d3723f6b1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto &amp;</type>
+        <definition>auto &amp; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::wall_displacement_now_ac</definition>
+        <argsstring>()</argsstring>
+        <name>wall_displacement_now_ac</name>
+        <qualifiedname>tarte::WebsterFDTD::wall_displacement_now_ac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="78" column="10" bodyfile="include/websterFDTD.h" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a49454c7196238695efe940952e7beb1b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto &amp;</type>
+        <definition>auto &amp; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::wall_displacement_next_ac</definition>
+        <argsstring>()</argsstring>
+        <name>wall_displacement_next_ac</name>
+        <qualifiedname>tarte::WebsterFDTD::wall_displacement_next_ac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="79" column="10" bodyfile="include/websterFDTD.h" bodystart="79" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ab3c5aebc7c06507effa604bfc577bce0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto &amp;</type>
+        <definition>auto &amp; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::radiation_flow_now_ac</definition>
+        <argsstring>()</argsstring>
+        <name>radiation_flow_now_ac</name>
+        <qualifiedname>tarte::WebsterFDTD::radiation_flow_now_ac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="80" column="10" bodyfile="include/websterFDTD.h" bodystart="80" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1aa3a284cd593d597ad956093931cfc781" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto &amp;</type>
+        <definition>auto &amp; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::radiation_flow_next_ac</definition>
+        <argsstring>()</argsstring>
+        <name>radiation_flow_next_ac</name>
+        <qualifiedname>tarte::WebsterFDTD::radiation_flow_next_ac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="81" column="10" bodyfile="include/websterFDTD.h" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1aed2ea177a72dcd74dd733083182dbca8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::SetNStability</definition>
+        <argsstring>()</argsstring>
+        <name>SetNStability</name>
+        <qualifiedname>tarte::WebsterFDTD::SetNStability</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="96" column="10" bodyfile="src/websterFDTD.cpp" bodystart="94" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1aa10259c2e8032aa7aeb5c26af62d0087" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ComputeDiscreteGeometry</definition>
+        <argsstring>()</argsstring>
+        <name>ComputeDiscreteGeometry</name>
+        <qualifiedname>tarte::WebsterFDTD::ComputeDiscreteGeometry</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="97" column="10" bodyfile="src/websterFDTD.cpp" bodystart="134" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1aaf5b828506062be2af68ebdb860012a2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::UpdateRadiationParameters</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateRadiationParameters</name>
+        <qualifiedname>tarte::WebsterFDTD::UpdateRadiationParameters</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="98" column="10" bodyfile="src/websterFDTD.cpp" bodystart="153" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a608a38b6c5a338e17913bbfc55a51fa7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::UpdateCoefficients</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateCoefficients</name>
+        <qualifiedname>tarte::WebsterFDTD::UpdateCoefficients</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="99" column="10" bodyfile="src/websterFDTD.cpp" bodystart="163" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a0cce3bf8e82850111627d5ee0485002c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::filterSdirectTarget</definition>
+        <argsstring>()</argsstring>
+        <name>filterSdirectTarget</name>
+        <qualifiedname>tarte::WebsterFDTD::filterSdirectTarget</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="101" column="10" bodyfile="src/websterFDTD.cpp" bodystart="610" bodyend="615"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a4ddcd368090549c88cd7ed26cecbbaab" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_N_lpf</definition>
+        <argsstring>(int num)</argsstring>
+        <name>set_N_lpf</name>
+        <qualifiedname>tarte::WebsterFDTD::set_N_lpf</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>num</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="102" column="10" bodyfile="src/websterFDTD.cpp" bodystart="568" bodyend="574"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ae5a4e75b1009c5c4a534f99e18ad2156" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ComputePowers</definition>
+        <argsstring>(ftype inputFlow, ftype outputFlow)</argsstring>
+        <name>ComputePowers</name>
+        <qualifiedname>tarte::WebsterFDTD::ComputePowers</qualifiedname>
+        <param>
+          <type>ftype</type>
+          <declname>inputFlow</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>outputFlow</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="115" column="10" bodyfile="src/websterFDTD.cpp" bodystart="325" bodyend="367"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a37f0ce2714caf129caa5254e78e95ed7" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::BuildLaplaceStateSpace</definition>
+        <argsstring>(Eigen::MatrixXd &amp;matinternal, Eigen::VectorXd &amp;Sxu, Eigen::RowVectorXd &amp;matoutZ, Eigen::RowVectorXd &amp;matoutTFFlow, Eigen::RowVectorXd &amp;matoutTFPressure) const</argsstring>
+        <name>BuildLaplaceStateSpace</name>
+        <qualifiedname>tarte::WebsterFDTD::BuildLaplaceStateSpace</qualifiedname>
+        <param>
+          <type>Eigen::MatrixXd &amp;</type>
+          <declname>matinternal</declname>
+        </param>
+        <param>
+          <type>Eigen::VectorXd &amp;</type>
+          <declname>Sxu</declname>
+        </param>
+        <param>
+          <type>Eigen::RowVectorXd &amp;</type>
+          <declname>matoutZ</declname>
+        </param>
+        <param>
+          <type>Eigen::RowVectorXd &amp;</type>
+          <declname>matoutTFFlow</declname>
+        </param>
+        <param>
+          <type>Eigen::RowVectorXd &amp;</type>
+          <declname>matoutTFPressure</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="117" column="10" bodyfile="src/websterFDTD.cpp" bodystart="370" bodyend="495"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a505c88584ed9945dc6c471479ee17351" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::WebsterFDTD</definition>
+        <argsstring>(ftype sampleRate, ftype length=ftype(17e-2), Articulation *art=nullptr)</argsstring>
+        <name>WebsterFDTD</name>
+        <qualifiedname>tarte::WebsterFDTD::WebsterFDTD</qualifiedname>
+        <param>
+          <type>ftype</type>
+          <declname>sampleRate</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>length</declname>
+          <defval>ftype(17e-2)</defval>
+        </param>
+        <param>
+          <type><ref refid="classtarte_1_1_articulation" kindref="compound">Articulation</ref> *</type>
+          <declname>art</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="124" column="5" bodyfile="src/websterFDTD.cpp" bodystart="8" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a58889ae4b7056b8d25c031e336a8d3f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::DspSetup</definition>
+        <argsstring>(ftype sampleRate, Articulation *art=nullptr)</argsstring>
+        <name>DspSetup</name>
+        <qualifiedname>tarte::WebsterFDTD::DspSetup</qualifiedname>
+        <param>
+          <type>ftype</type>
+          <declname>sampleRate</declname>
+        </param>
+        <param>
+          <type><ref refid="classtarte_1_1_articulation" kindref="compound">Articulation</ref> *</type>
+          <declname>art</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="127" column="10" bodyfile="src/websterFDTD.cpp" bodystart="16" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ae50b40b6b223d755b4ca191dba4444d5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename intype</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::SetTargetGeometry</definition>
+        <argsstring>(intype const *in, std::size_t const size)</argsstring>
+        <name>SetTargetGeometry</name>
+        <qualifiedname>tarte::WebsterFDTD::SetTargetGeometry</qualifiedname>
+        <param>
+          <type>intype const *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>std::size_t const</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="131" column="10" bodyfile="include/websterFDTD.h" bodystart="131" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a5fbd40d4f033ffc2bcbb6e114a6f5ad7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::SetTargetGeometryFromArticulation</definition>
+        <argsstring>(Articulation articulation, bool force_direct=false)</argsstring>
+        <name>SetTargetGeometryFromArticulation</name>
+        <qualifiedname>tarte::WebsterFDTD::SetTargetGeometryFromArticulation</qualifiedname>
+        <param>
+          <type><ref refid="classtarte_1_1_articulation" kindref="compound">Articulation</ref></type>
+          <declname>articulation</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>force_direct</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="145" column="10" bodyfile="src/websterFDTD.cpp" bodystart="110" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1aa7f27477b6ba9de5bc17eed83ccc5777" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::SetConstantSection</definition>
+        <argsstring>(ftype section)</argsstring>
+        <name>SetConstantSection</name>
+        <qualifiedname>tarte::WebsterFDTD::SetConstantSection</qualifiedname>
+        <param>
+          <type>ftype</type>
+          <declname>section</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="146" column="10" bodyfile="src/websterFDTD.cpp" bodystart="122" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a6fe5f47caf74e5ee3fd95153b955b555" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_lp_frequency</definition>
+        <argsstring>(int index, ftype freq)</argsstring>
+        <name>set_lp_frequency</name>
+        <qualifiedname>tarte::WebsterFDTD::set_lp_frequency</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>freq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="149" column="10" bodyfile="src/websterFDTD.cpp" bodystart="577" bodyend="582"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a2cad1898630c40a74acd0433beb05434" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_lp_Q</definition>
+        <argsstring>(int index, ftype Q)</argsstring>
+        <name>set_lp_Q</name>
+        <qualifiedname>tarte::WebsterFDTD::set_lp_Q</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>Q</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="150" column="10" bodyfile="src/websterFDTD.cpp" bodystart="585" bodyend="590"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ac15947ddc78c9055a635ae35fdcd289c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_lp_frequencies</definition>
+        <argsstring>(ftype freq)</argsstring>
+        <name>set_lp_frequencies</name>
+        <qualifiedname>tarte::WebsterFDTD::set_lp_frequencies</qualifiedname>
+        <param>
+          <type>ftype</type>
+          <declname>freq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="151" column="10" bodyfile="src/websterFDTD.cpp" bodystart="593" bodyend="599"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a7823bf21f673c05b573be8ef342b2f13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_lp_Qs</definition>
+        <argsstring>(ftype Q)</argsstring>
+        <name>set_lp_Qs</name>
+        <qualifiedname>tarte::WebsterFDTD::set_lp_Qs</qualifiedname>
+        <param>
+          <type>ftype</type>
+          <declname>Q</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="152" column="10" bodyfile="src/websterFDTD.cpp" bodystart="602" bodyend="607"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ae31932b60036bf843e53c9178d02bfdb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::Process</definition>
+        <argsstring>(ftype inputFlow, ftype outputFlow=0)</argsstring>
+        <name>Process</name>
+        <qualifiedname>tarte::WebsterFDTD::Process</qualifiedname>
+        <param>
+          <type>ftype</type>
+          <declname>inputFlow</declname>
+        </param>
+        <param>
+          <type>ftype</type>
+          <declname>outputFlow</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="155" column="10" bodyfile="src/websterFDTD.cpp" bodystart="200" bodyend="303"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a91fb0ee1b6cc210c330cbbe9ff70fba4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::tuple&lt; ftype, ftype &gt;</type>
+        <definition>std::tuple&lt; ftype, ftype &gt; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::GetIOLinearDependencyCoefficients</definition>
+        <argsstring>()</argsstring>
+        <name>GetIOLinearDependencyCoefficients</name>
+        <qualifiedname>tarte::WebsterFDTD::GetIOLinearDependencyCoefficients</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="157" column="16" bodyfile="src/websterFDTD.cpp" bodystart="306" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1aacd7b2b1e815e26178ca600258c2c1c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadInputPressure</definition>
+        <argsstring>()</argsstring>
+        <name>ReadInputPressure</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadInputPressure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="160" column="18" bodyfile="include/websterFDTD.h" bodystart="160" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a5e2425dd4f87f8fb3c3a8fa30bf55877" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadRadiatedPressure</definition>
+        <argsstring>()</argsstring>
+        <name>ReadRadiatedPressure</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadRadiatedPressure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="161" column="18" bodyfile="include/websterFDTD.h" bodystart="161" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a31afbddb3874cb488dcbfeaa4ee3c67e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayN</type>
+        <definition>ArrayN tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadCurrentDensityDistribution</definition>
+        <argsstring>()</argsstring>
+        <name>ReadCurrentDensityDistribution</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadCurrentDensityDistribution</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="163" column="19" bodyfile="include/websterFDTD.h" bodystart="163" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ad74b898a93e8f1f1fd8d73d470c924f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayNm1</type>
+        <definition>ArrayNm1 tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadCurrentVelocityDistribution</definition>
+        <argsstring>()</argsstring>
+        <name>ReadCurrentVelocityDistribution</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadCurrentVelocityDistribution</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="164" column="21" bodyfile="include/websterFDTD.h" bodystart="164" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a6836a7b22c7f68f86e6fd7655f747d0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadPowerTotal</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPowerTotal</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadPowerTotal</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="167" column="18" bodyfile="include/websterFDTD.h" bodystart="167" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ab0605025036416aaf88670a20ed08c2c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadPowerStoredFluid</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPowerStoredFluid</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadPowerStoredFluid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="168" column="18" bodyfile="include/websterFDTD.h" bodystart="168" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a1760c76a2f0803325abeabe1b06fd810" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadPowerStoredFluidKinetic</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPowerStoredFluidKinetic</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadPowerStoredFluidKinetic</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="169" column="18" bodyfile="include/websterFDTD.h" bodystart="169" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a3b7444b63b8eeb13089740ffdd065866" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadPowerStoredFluidPotential</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPowerStoredFluidPotential</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadPowerStoredFluidPotential</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="170" column="18" bodyfile="include/websterFDTD.h" bodystart="170" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a49461daaebb9f09b4f5c9a4224b04e5b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadPowerStoredWalls</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPowerStoredWalls</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadPowerStoredWalls</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="171" column="18" bodyfile="include/websterFDTD.h" bodystart="171" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a43806cf1fb58601cb1f8a24c7d9514de" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadPowerStoredRadiation</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPowerStoredRadiation</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadPowerStoredRadiation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="172" column="18" bodyfile="include/websterFDTD.h" bodystart="172" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1aa0d4bacf46f27e7dad4dc84fac35faf6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadPowerDissipatedWalls</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPowerDissipatedWalls</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadPowerDissipatedWalls</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="173" column="18" bodyfile="include/websterFDTD.h" bodystart="173" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ac4db7bc7dd14a28b9c354c5060c28799" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadPowerDissipatedRadiation</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPowerDissipatedRadiation</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadPowerDissipatedRadiation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="174" column="18" bodyfile="include/websterFDTD.h" bodystart="174" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a6fb0aa956008f3e5716120aa4f5783ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ReadPowerExchanged</definition>
+        <argsstring>()</argsstring>
+        <name>ReadPowerExchanged</name>
+        <qualifiedname>tarte::WebsterFDTD::ReadPowerExchanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="175" column="18" bodyfile="include/websterFDTD.h" bodystart="175" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a6330173529203200818775aea5c10ea7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structtarte_1_1_webster_f_d_t_d_1_1_poles_residues" kindref="compound">PolesResidues</ref></type>
+        <definition>WebsterFDTD&lt; ftype, kMaxN &gt;::PolesResidues tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ComputePolesResidues</definition>
+        <argsstring>()</argsstring>
+        <name>ComputePolesResidues</name>
+        <qualifiedname>tarte::WebsterFDTD::ComputePolesResidues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="178" column="19" bodyfile="src/websterFDTD.cpp" bodystart="498" bodyend="530"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1afaafa778102620b2cf1ac17b8b3f61c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structtarte_1_1_webster_f_d_t_d_1_1_frequency_response" kindref="compound">FrequencyResponse</ref> &gt;</type>
+        <definition>std::vector&lt; typename WebsterFDTD&lt; ftype, kMaxN &gt;::FrequencyResponse &gt; tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::ComputeFrequencyResponse</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;frequenciesHz)</argsstring>
+        <name>ComputeFrequencyResponse</name>
+        <qualifiedname>tarte::WebsterFDTD::ComputeFrequencyResponse</qualifiedname>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>frequenciesHz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="179" column="17" bodyfile="src/websterFDTD.cpp" bodystart="533" bodyend="565"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a490e18a0b4e5804a6e07fe7a5efd6a3d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::get_N</definition>
+        <argsstring>()</argsstring>
+        <name>get_N</name>
+        <qualifiedname>tarte::WebsterFDTD::get_N</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="182" column="24" bodyfile="include/websterFDTD.h" bodystart="182" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a3e02f1aaa7a25a27ce303e2e0da47242" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::get_c0</definition>
+        <argsstring>()</argsstring>
+        <name>get_c0</name>
+        <qualifiedname>tarte::WebsterFDTD::get_c0</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="183" column="18" bodyfile="include/websterFDTD.h" bodystart="183" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a30a7b928ae28de218569a33610a66ea6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::get_rho0</definition>
+        <argsstring>()</argsstring>
+        <name>get_rho0</name>
+        <qualifiedname>tarte::WebsterFDTD::get_rho0</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="184" column="18" bodyfile="include/websterFDTD.h" bodystart="184" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a8606355467dce087344af68d6cc3ea7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::get_l0</definition>
+        <argsstring>()</argsstring>
+        <name>get_l0</name>
+        <qualifiedname>tarte::WebsterFDTD::get_l0</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="185" column="18" bodyfile="include/websterFDTD.h" bodystart="185" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a46dd2670fcdc5b7886b43e891d22d0b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::get_wall_area_mass</definition>
+        <argsstring>()</argsstring>
+        <name>get_wall_area_mass</name>
+        <qualifiedname>tarte::WebsterFDTD::get_wall_area_mass</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="186" column="18" bodyfile="include/websterFDTD.h" bodystart="186" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a5034533e9fdff9cd0f175b73ec03b7b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ftype</type>
+        <definition>ftype tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::get_wall_area_damping</definition>
+        <argsstring>()</argsstring>
+        <name>get_wall_area_damping</name>
+        <qualifiedname>tarte::WebsterFDTD::get_wall_area_damping</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="187" column="18" bodyfile="include/websterFDTD.h" bodystart="187" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ace7b2d49176192691b1e04ac84932900" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::get_lpf_frequency</definition>
+        <argsstring>()</argsstring>
+        <name>get_lpf_frequency</name>
+        <qualifiedname>tarte::WebsterFDTD::get_lpf_frequency</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="188" column="18" bodyfile="include/websterFDTD.h" bodystart="188" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a898c3ddd4aa4d3e60b8b9d9d7f8f1a8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::getTargetGeometry</definition>
+        <argsstring>(ftype *out, const size_t N)</argsstring>
+        <name>getTargetGeometry</name>
+        <qualifiedname>tarte::WebsterFDTD::getTargetGeometry</qualifiedname>
+        <param>
+          <type>ftype *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="190" column="10" bodyfile="include/websterFDTD.h" bodystart="190" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1ab3c1da4cb108ea605ea1ae1a498f5674" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_radiation</definition>
+        <argsstring>(const bool isRadiating)</argsstring>
+        <name>set_radiation</name>
+        <qualifiedname>tarte::WebsterFDTD::set_radiation</qualifiedname>
+        <param>
+          <type>const bool</type>
+          <declname>isRadiating</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="200" column="17" bodyfile="include/websterFDTD.h" bodystart="200" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a1cac27f7d1d7c7c82dfa005e2b614b76" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_yielding_walls</definition>
+        <argsstring>(const bool isYielding)</argsstring>
+        <name>set_yielding_walls</name>
+        <qualifiedname>tarte::WebsterFDTD::set_yielding_walls</qualifiedname>
+        <param>
+          <type>const bool</type>
+          <declname>isYielding</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="205" column="17" bodyfile="include/websterFDTD.h" bodystart="205" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a595c45f1a18d8716fcca196eee7ab26c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_time_varying_geometry</definition>
+        <argsstring>(const bool isVarying)</argsstring>
+        <name>set_time_varying_geometry</name>
+        <qualifiedname>tarte::WebsterFDTD::set_time_varying_geometry</qualifiedname>
+        <param>
+          <type>const bool</type>
+          <declname>isVarying</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="210" column="17" bodyfile="include/websterFDTD.h" bodystart="210" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1acb91237302bfdfe977c39e4d53c2e843" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_N_update_geometry</definition>
+        <argsstring>(const int NUpdateGeometry)</argsstring>
+        <name>set_N_update_geometry</name>
+        <qualifiedname>tarte::WebsterFDTD::set_N_update_geometry</qualifiedname>
+        <param>
+          <type>const int</type>
+          <declname>NUpdateGeometry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="211" column="17" bodyfile="include/websterFDTD.h" bodystart="211" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a0f74dfe29a35f1abbf2d5b1036735ff0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_c0</definition>
+        <argsstring>(const ftype sound_velocity)</argsstring>
+        <name>set_c0</name>
+        <qualifiedname>tarte::WebsterFDTD::set_c0</qualifiedname>
+        <param>
+          <type>const ftype</type>
+          <declname>sound_velocity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="219" column="10" bodyfile="include/websterFDTD.h" bodystart="219" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a7c90f8886fac6ee45ea16135b1a959c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_pumped_flow</definition>
+        <argsstring>(const bool pumpedFlow)</argsstring>
+        <name>set_pumped_flow</name>
+        <qualifiedname>tarte::WebsterFDTD::set_pumped_flow</qualifiedname>
+        <param>
+          <type>const bool</type>
+          <declname>pumpedFlow</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="224" column="17" bodyfile="include/websterFDTD.h" bodystart="224" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a102966b5a898832c587dbe202cbfa8a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_l0</definition>
+        <argsstring>(const ftype length)</argsstring>
+        <name>set_l0</name>
+        <qualifiedname>tarte::WebsterFDTD::set_l0</qualifiedname>
+        <param>
+          <type>const ftype</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="235" column="10" bodyfile="include/websterFDTD.h" bodystart="235" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a641d139bef43bdac17545cdbe59b6a1c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_rho0</definition>
+        <argsstring>(const ftype rest_density)</argsstring>
+        <name>set_rho0</name>
+        <qualifiedname>tarte::WebsterFDTD::set_rho0</qualifiedname>
+        <param>
+          <type>const ftype</type>
+          <declname>rest_density</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="240" column="10" bodyfile="include/websterFDTD.h" bodystart="240" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a569fb354ea378bc3e25979b065570041" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::set_compute_powers</definition>
+        <argsstring>(const bool compute_powers)</argsstring>
+        <name>set_compute_powers</name>
+        <qualifiedname>tarte::WebsterFDTD::set_compute_powers</qualifiedname>
+        <param>
+          <type>const bool</type>
+          <declname>compute_powers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="246" column="10" bodyfile="include/websterFDTD.h" bodystart="246" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classtarte_1_1_webster_f_d_t_d_1a53b65fcb509038a7228fd291f607c72f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tarte::WebsterFDTD&lt; ftype, kMaxN &gt;::initializeFilters</definition>
+        <argsstring>()</argsstring>
+        <name>initializeFilters</name>
+        <qualifiedname>tarte::WebsterFDTD::initializeFilters</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/websterFDTD.h" line="247" column="10" bodyfile="src/websterFDTD.cpp" bodystart="618" bodyend="628"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/websterFDTD.h" line="17" column="1" bodyfile="include/websterFDTD.h" bodystart="17" bodyend="248"/>
+    <listofallmembers>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ab069f0217a4002cea8683ea344b63a3a" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>A_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a43cb403d59e629293975a919c7628f5a" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>A_walls_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a87c39dc6f470ad13964a584fef61f63c" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ArrayN</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a0b8c22b019b5307f5a4fda684c3d7251" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ArrayNm1</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a405c71084fdc821123fdfe234200192f" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>B_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ad47b99454e014fad06efd6da7d234bca" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>B_walls_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a37f0ce2714caf129caa5254e78e95ed7" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>BuildLaplaceStateSpace</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ad8e72438a78136943c9baa9fe331be00" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>c02_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a527ab2c42788e1af45d8dcf7d9f15df7" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>c0_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a2b47f7bcdf37ef9fc641519c3b738633" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>C_low_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a26468e24df104c8381bc78ebc0e23164" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>C_top_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a9cea317729b19e212e44a6c94db3fdee" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>compute_powers_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aa10259c2e8032aa7aeb5c26af62d0087" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ComputeDiscreteGeometry</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1afaafa778102620b2cf1ac17b8b3f61c3" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ComputeFrequencyResponse</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a6330173529203200818775aea5c10ea7" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ComputePolesResidues</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ae5a4e75b1009c5c4a534f99e18ad2156" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ComputePowers</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a125876a973129edf182a5c716fb3e798" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>D_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a592976423bb6453016da5a1c357f14d7" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>d_plus_v_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1adfbb81df0e2f87c4de9f46a9e6c7fb5a" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>d_S_primal_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a58889ae4b7056b8d25c031e336a8d3f6" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>DspSetup</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a335f98754d226d52b3aa98d9502e2103" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>dt_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aa2b7fcb0f477f08a554dc8634c15ef79" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>E_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1af704fcbc33a35795984f4fd6a4583169" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>F_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a0cce3bf8e82850111627d5ee0485002c" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>filterSdirectTarget</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a0fbe4b22be9cddce8ec9e0f49f915721" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>flip_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a61976d9c1781e8543f2e3acd7c9f2659" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>G_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a865a23c4f36318d74a92762e6eef5427" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>gamma_primal_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a3e02f1aaa7a25a27ce303e2e0da47242" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>get_c0</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a8606355467dce087344af68d6cc3ea7c" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>get_l0</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ace7b2d49176192691b1e04ac84932900" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>get_lpf_frequency</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a490e18a0b4e5804a6e07fe7a5efd6a3d" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>get_N</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a30a7b928ae28de218569a33610a66ea6" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>get_rho0</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a5034533e9fdff9cd0f175b73ec03b7b0" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>get_wall_area_damping</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a46dd2670fcdc5b7886b43e891d22d0b4" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>get_wall_area_mass</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a91fb0ee1b6cc210c330cbbe9ff70fba4" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>GetIOLinearDependencyCoefficients</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a898c3ddd4aa4d3e60b8b9d9d7f8f1a8e" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>getTargetGeometry</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a6c2cabceeb4a1f019730df866ce4e812" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>h_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a53b65fcb509038a7228fd291f607c72f" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>initializeFilters</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a8eda174cc0e717c0e178d5a1095a55cd" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>intermediary_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a15028e6a745409ed1eee5d221b147609" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>kinetic_energy_fluid_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a09dad4e1177e8986225ce32e3242a270" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>kinetic_energy_radiation_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1af41e96a0174e4241ce5abd3d9187f911" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>kinetic_energy_walls_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1af2daa110778d7ba348ac987043f21506" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>l0_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a23713f5f94db4cd5293eda8eabcad2eb" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>L_rad_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a193fd7b3bb496f51e43add90ca96cbf5" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>lip_radius</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a10d4e43cc27de374a42dbc054404f15f" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>lp_filters_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a6b903ffc70993e438bc7aa06ebbb7d59" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>lpf_frequency_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a34004d2fc93b733ddb4f49220a9414d9" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>N_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aee382c35cbcaa4c286f74abccab6604c" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>N_lpf_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a10c8fbf13d4057185c79d0b77d70328d" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>N_update_geometry_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a91da722a5773555507066c5dce6de550" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_diss_radiation_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a134adb0499386e36c45cb0e3b9d4f84d" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_diss_tot_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1af7764d2da85078135da64b6b06979129" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_diss_walls_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1af972ddf98516d677a617927b49a9d6b0" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_in_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a2c84bc2e2b3b0a49b979a287a2c4a743" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_stored_fluid_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a5d27203c7dfd494e76782548a4bbc777" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_stored_fluid_kinetic_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a6992032883e6c82c65822d61bec398a1" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_stored_fluid_potential_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a3cf8b0ea0fd9d591fda85a1a0b70305a" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_stored_radiation_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ab74f39998994ecc4300b0bf6aab3c782" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_stored_tot_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1af9e372f47dd685302567f1e7a25ac916" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_stored_walls_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a5c959b8c7c2d87f407f0f3a1802474f4" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_stored_walls_kinetic_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a13e28a7971f34640f3d9eed988d118e6" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_stored_walls_potential_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ae902a47952294712a9c353ade13bbca8" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>P_tot_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ac8e9a87c1181504d6483d1fcef1ae44b" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>potential_energy_fluid_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a5010daf8096f2aa75bc2830904a4149c" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>potential_energy_walls_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ae31932b60036bf843e53c9178d02bfdb" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>Process</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a48265d4454c444a93330e0bc74bde11f" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>pumped_flow_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a9fcc95cea90978839d8472570147fce1" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>R_rad_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a9c9b6d046ae2357fad1c68e89df2910d" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>radiation_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a1dc2d6563e349ef94b8a83c03632fae3" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>radiation_flow_buf_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aa3a284cd593d597ad956093931cfc781" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>radiation_flow_next_ac</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ab3c5aebc7c06507effa604bfc577bce0" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>radiation_flow_now_ac</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a31afbddb3874cb488dcbfeaa4ee3c67e" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadCurrentDensityDistribution</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ad74b898a93e8f1f1fd8d73d470c924f7" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadCurrentVelocityDistribution</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aacd7b2b1e815e26178ca600258c2c1c2" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadInputPressure</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ac4db7bc7dd14a28b9c354c5060c28799" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadPowerDissipatedRadiation</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aa0d4bacf46f27e7dad4dc84fac35faf6" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadPowerDissipatedWalls</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a6fb0aa956008f3e5716120aa4f5783ff" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadPowerExchanged</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ab0605025036416aaf88670a20ed08c2c" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadPowerStoredFluid</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a1760c76a2f0803325abeabe1b06fd810" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadPowerStoredFluidKinetic</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a3b7444b63b8eeb13089740ffdd065866" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadPowerStoredFluidPotential</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a43806cf1fb58601cb1f8a24c7d9514de" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadPowerStoredRadiation</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a49461daaebb9f09b4f5c9a4224b04e5b" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadPowerStoredWalls</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a6836a7b22c7f68f86e6fd7655f747d0e" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadPowerTotal</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a5e2425dd4f87f8fb3c3a8fa30bf55877" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>ReadRadiatedPressure</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a1f2d28295783e49bd07bca3f872fc70d" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>rho0_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1acb70022470700b7ddf7bbea8acc0a421" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>rho_buf_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a4ec4e428e736019f8340eebf8ce042a0" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>rho_next_ac</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a2b15feb91d8c866410d3eae78f4a792e" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>rho_now_ac</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a306669ac572e26a0d6da26c878fd11f8" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>S_direct_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ae4ddf44640346854aa48c265046c462d" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>S_direct_last_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a4d4e59e2d9d5241d00253ea772ec87d4" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>S_dual_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a9d69050863fd241a521398f1152b74f9" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>S_primal_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1adeebae271b1ff315a32c853a0409f974" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>S_primal_last_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1adedd31eb8fcbf62f36cece7e808592e3" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>S_target_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a0f74dfe29a35f1abbf2d5b1036735ff0" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_c0</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a569fb354ea378bc3e25979b065570041" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_compute_powers</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a102966b5a898832c587dbe202cbfa8a3" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_l0</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ac15947ddc78c9055a635ae35fdcd289c" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_lp_frequencies</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a6fe5f47caf74e5ee3fd95153b955b555" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_lp_frequency</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a2cad1898630c40a74acd0433beb05434" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_lp_Q</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a7823bf21f673c05b573be8ef342b2f13" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_lp_Qs</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a4ddcd368090549c88cd7ed26cecbbaab" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_N_lpf</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1acb91237302bfdfe977c39e4d53c2e843" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_N_update_geometry</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a7c90f8886fac6ee45ea16135b1a959c6" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_pumped_flow</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ab3c1da4cb108ea605ea1ae1a498f5674" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_radiation</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a641d139bef43bdac17545cdbe59b6a1c" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_rho0</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a595c45f1a18d8716fcca196eee7ab26c" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_time_varying_geometry</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a1cac27f7d1d7c7c82dfa005e2b614b76" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>set_yielding_walls</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aa7f27477b6ba9de5bc17eed83ccc5777" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>SetConstantSection</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aed2ea177a72dcd74dd733083182dbca8" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>SetNStability</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ae50b40b6b223d755b4ca191dba4444d5" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>SetTargetGeometry</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a5fbd40d4f033ffc2bcbb6e114a6f5ad7" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>SetTargetGeometryFromArticulation</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a36ebb012854f5644a83f6b593ca02b68" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>sr_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aaba0c5e480d138f1edf96eb64edf9052" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>time_varying_geometry_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a9e250e44249db5c105d1fee9cfb0a71a" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>update_counter_geometry_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a608a38b6c5a338e17913bbfc55a51fa7" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>UpdateCoefficients</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aaf5b828506062be2af68ebdb860012a2" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>UpdateRadiationParameters</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aad73434c39540d34b568d06bb0843050" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>vel_buf_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ade939b5577989111a2d1308acf26525d" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>vel_coeff_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a8712264bd6a9c7cdda0233d5783954aa" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>vel_next_ac</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a5be14977f48f546bbf12ec8be547d3c9" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>vel_now_ac</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a7bd6993a60931827ad7ed468edf25d20" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>wall_area_damping_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ab4b8d3b7a840cc3f958af83b8bc8d6c3" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>wall_area_mass_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ad39dd57e8fa4d4f4d24c4b08214dab99" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>wall_area_stiffness_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a925380a3d5117c951a5328f0d0c94e45" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>wall_displacement_buf_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a49454c7196238695efe940952e7beb1b" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>wall_displacement_next_ac</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1ae6c66dee75d213ca9c645d0d3723f6b1" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>wall_displacement_now_ac</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a89f02ae9afb3959934ca68012d7236b4" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>wall_momentum_buf_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a9855834e29a7ac4f7e57a8c8e96d350c" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>wall_momentum_next_ac</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a5bae0c06bb7753af340d9b6ffe58218d" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>wall_momentum_now_ac</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a505c88584ed9945dc6c471479ee17351" prot="public" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>WebsterFDTD</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a8671afcff46e9b61ed4a40b3bea5db12" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>x_dual_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1aa19da9e41837a8cc361f494973b0bcf3" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>x_primal_</name></member>
+      <member refid="classtarte_1_1_webster_f_d_t_d_1a6df0ba045723f15f24b3772efccb8e89" prot="private" virt="non-virtual"><scope>tarte::WebsterFDTD</scope><name>yielding_walls_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
