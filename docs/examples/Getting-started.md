@@ -2,9 +2,16 @@
 title: Getting started
 ---
 
+## Cloning the repo
+
+The first step to get to use the code is to clone the repository on your computer. You'll need git for that, then you just need to run 
+```
+git clone https://github.com/Ircam-RnD/tarte
+```
+and it will create a new folder named tarte with all the content of the repository in it.
+
 
 ## Compilation of the C++ code
-
 
 ### Basics
 
