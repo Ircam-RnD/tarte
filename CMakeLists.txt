@@ -45,7 +45,6 @@ add_library(tarte::tarte ALIAS tarte)
 target_compile_features(tarte PUBLIC cxx_std_23)
 # Search for dependencies here
 find_package(Eigen3 5.0 REQUIRED NO_MODULE)
-find_package(nlohmann_json REQUIRED)
 
 #----------------------------------------------------------------------------------------------------------------------
 # tarte sources
@@ -86,8 +85,7 @@ set_target_properties(tarte PROPERTIES
     VERSION ${PROJECT_VERSION})
 
 target_link_libraries(tarte PUBLIC 
-    Eigen3::Eigen 
-    nlohmann_json::nlohmann_json)
+    Eigen3::Eigen)
 
 if(TARTE_USE_HDF5)
     find_package(HDF5 REQUIRED COMPONENTS C CXX)
