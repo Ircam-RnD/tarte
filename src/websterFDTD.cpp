@@ -43,7 +43,7 @@ void WebsterFDTD<ftype, kMaxN>::DspSetup(ftype sampleRate, Articulation* art)
         S_target_.head(N_).setOnes();
         S_direct_.head(N_) = S_target_.head(N_);
         S_direct_last_.head(N_) = S_direct_.head(N_);
-        ComputeDiscreteGreometry();
+        ComputeDiscreteGeometry();
     }
     S_primal_last_.head(N_) = S_primal_.head(N_);
 
@@ -112,7 +112,7 @@ void WebsterFDTD<ftype, kMaxN>::SetTargetGeometryFromArticulation(Articulation a
     articulation.getAreas(x_primal_.data(), S_target_.data(), N_);
     if (!time_varying_geometry_ or force_direct) {
         S_direct_.head(N_) = S_target_.head(N_);
-        ComputeDiscreteGreometry();
+        ComputeDiscreteGeometry();
         UpdateRadiationParameters();
         UpdateCoefficients();
     }
@@ -124,14 +124,14 @@ void WebsterFDTD<ftype, kMaxN>::SetConstantSection(ftype section)
     S_target_.head(N_).setConstant(section);
     if (!time_varying_geometry_) {
         S_direct_.head(N_) = S_target_.head(N_);
-        ComputeDiscreteGreometry();
+        ComputeDiscreteGeometry();
         UpdateRadiationParameters();
         UpdateCoefficients();
     }
 }
 
 template<typename ftype, int kMaxN>
-void WebsterFDTD<ftype, kMaxN>::ComputeDiscreteGreometry()
+void WebsterFDTD<ftype, kMaxN>::ComputeDiscreteGeometry()
 {
     S_dual_.head(N_ - 1) = 0.5 * (S_direct_.head(N_ - 1) + S_direct_.segment(1, N_ - 1));
     S_primal_(0) = S_direct_(0);
@@ -241,6 +241,7 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
         rho_next(0) += G_ * inputFlow / A(0);
         if (radiation_) {
             rho_next(N_ - 1) += F_ * radiation_flow_now_ac() / A(N_ - 1);
+            rho_next(N_ - 1) += F_ * outputFlow / A(N_ - 1);
             radiation_flow_next_ac() =
                 radiation_flow_now_ac() + dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
         } else {
@@ -263,6 +264,7 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
         rho_next(0) += G_ * inputFlow / A(0);
         if (radiation_) {
             rho_next(N_ - 1) += F_ * radiation_flow_now_ac() / A(N_ - 1);
+            rho_next(N_ - 1) += F_ * outputFlow / A(N_ - 1);
             radiation_flow_next_ac() =
                 radiation_flow_now_ac() + dt_ * c02_ / L_rad_ * ftype(0.5) * (rho_next(N_ - 1) + rho_now(N_ - 1));
         } else {
@@ -286,7 +288,7 @@ void WebsterFDTD<ftype, kMaxN>::Process(ftype inputFlow, ftype outputFlow)
             for (int i = 0; i < N_ && i < N_lpf_; ++i) {
                 S_direct_[i] = static_cast<ftype>(lp_filters_[i].Process(static_cast<double>(S_target_[i])));
             }
-            ComputeDiscreteGreometry();
+            ComputeDiscreteGeometry();
             UpdateRadiationParameters();
             UpdateCoefficients();
 
@@ -620,7 +622,7 @@ void WebsterFDTD<ftype, kMaxN>::initializeFilters()
         lp_filters_[i] = Biquad(sr_ / N_update_geometry_, kLowPass, lpf_frequency_, 0.0f, 0.5f);
         lp_filters_[i].InitializeState(static_cast<double>(S_target_[i]));
     }
-    ComputeDiscreteGreometry();
+    ComputeDiscreteGeometry();
     UpdateRadiationParameters();
     UpdateCoefficients();
 }

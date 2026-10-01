@@ -94,7 +94,7 @@ private:
 
     // Private helpers
     void SetNStability();
-    void ComputeDiscreteGreometry();
+    void ComputeDiscreteGeometry();
     void UpdateRadiationParameters();
     void UpdateCoefficients();
 
@@ -134,6 +134,12 @@ public:
         std::size_t safe_size = std::min(size, std::size_t(N_ + 1));
         for (std::size_t i = 0; i < safe_size; ++i) {
             S_target_[i] = static_cast<ftype>(std::max(float(1e-8), float(in[i])));
+        }
+        if (!time_varying_geometry_) {
+            S_direct_.head(N_) = S_target_.head(N_);
+            ComputeDiscreteGeometry();
+            UpdateRadiationParameters();
+            UpdateCoefficients();
         }
     }
     void SetTargetGeometryFromArticulation(Articulation articulation, bool force_direct = false);
