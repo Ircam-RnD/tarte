@@ -48,4 +48,5 @@ build/
 
 xcode/
 
-**/results*
+# Ignore all folders whose name starts with results
+*/results*/
